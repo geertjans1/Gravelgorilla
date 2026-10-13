@@ -396,3 +396,23 @@ ExpiresByType application/javascript "access plus 1 day"
 '@
 Schrijf ".htaccess" $htaccess
 "klaar: .htaccess"
+
+# ---------- Versienummers op opmaak en code ----------
+# Browsers bewaren css/js een dag. Met ?v=<code van de inhoud> halen ze een gewijzigd bestand meteen opnieuw op.
+$md5 = [Security.Cryptography.MD5]::Create()
+$versies = @{}
+Get-ChildItem "$root\assets\css", "$root\assets\js" -File | ForEach-Object {
+  $h = ($md5.ComputeHash([IO.File]::ReadAllBytes($_.FullName)) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
+  $versies["/assets/$($_.Directory.Name)/$($_.Name)"] = $h
+}
+$paginas = Get-ChildItem $root -Recurse -Filter *.html | Where-Object { $_.FullName -notmatch '[\\/](_bron|inhoud|\.claude|\.git)[\\/]' }
+foreach ($p in $paginas) {
+  $t = [IO.File]::ReadAllText($p.FullName, [Text.Encoding]::UTF8)
+  $nieuw = [regex]::Replace($t, '(/assets/(?:css|js)/[^"?]+)(\?v=[0-9a-f]*)?"', [Text.RegularExpressions.MatchEvaluator]{
+    param($m)
+    $v = $versies[$m.Groups[1].Value]
+    if ($v) { "$($m.Groups[1].Value)?v=$v""" } else { $m.Value }
+  })
+  if ($nieuw -ne $t) { [IO.File]::WriteAllText($p.FullName, $nieuw, $utf8) }
+}
+"versienummers: $($paginas.Count) pagina's bijgewerkt"
