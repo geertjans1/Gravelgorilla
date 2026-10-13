@@ -112,10 +112,10 @@ zoekveld.addEventListener("input", toonBordjes);
 /* ---------- Gorilla-tips ---------- */
 const TIPS = [
   { tekst: "Rijd je veel zand? Een bredere band met wat minder spanning zakt minder weg dan een smalle, harde band.", link: "/tools/bandenspanning-calculator/" },
-  { tekst: "Tubeless? Kijk elke paar maanden of er nog genoeg melk in je band zit. Die droogt langzaam op.", link: "/beste-gravelbanden/" },
+  { tekst: "Tubeless? Kijk elke paar maanden of er nog genoeg melk in je band zit. Die droogt langzaam op.", link: "/tools/bandenspanning-calculator/" },
   { tekst: "Twijfel je tussen twee framematen? Kijk niet alleen naar de maat, maar ook naar stack en reach.", link: "/tools/gravelbike-kiezer/" },
-  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/gravelbike/" },
-  { tekst: "Na een modderrit eerst je ketting schoonmaken en smeren. Dat scheelt je later een nieuwe aandrijving.", link: "/gravelbike/" }
+  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/tools/profielsticker/" },
+  { tekst: "Na een modderrit eerst je ketting schoonmaken en smeren. Dat scheelt je later een nieuwe aandrijving.", link: "/tools/gravelbike-kiezer/" }
 ];
 let tip = 0;
 const tipTekst = document.getElementById("tipTekst");
@@ -143,12 +143,6 @@ function herstartTips() {
   if (!minderBeweging) tipKlok = setInterval(() => toonTip(tip + 1), 8000);
 }
 herstartTips();
-
-/* ---------- Veldnotities: pijltjes schuiven de strook ---------- */
-const strook = document.getElementById("strook");
-const stap = () => (strook.querySelector(".notitie")?.offsetWidth || 300) + 18;
-document.getElementById("notitieTerug").addEventListener("click", () => strook.scrollBy({ left: -stap(), behavior: "smooth" }));
-document.getElementById("notitieVerder").addEventListener("click", () => strook.scrollBy({ left: stap(), behavior: "smooth" }));
 
 /* ---------- Verschijnen bij scrollen ---------- */
 const kijker = new IntersectionObserver(items => {

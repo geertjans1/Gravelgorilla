@@ -1,12 +1,11 @@
 ﻿# EENMALIG: haalt de inhoud van de oude WordPress-site (gedownload in _bron/) naar de map inhoud/.
-# - blogs: schone tekst + foto's (assets/img/blog/)
 # - tool-pagina's: de uitlegtekst, de bandenspanning-calculator, en de losse tool-bestanden
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $bron = "$root\_bron"
 $utf8 = New-Object Text.UTF8Encoding $false
 $fotoMap = "$root\assets\img\blog"
-New-Item -ItemType Directory -Force $fotoMap, "$root\inhoud\blogs", "$root\inhoud\tools" | Out-Null
+New-Item -ItemType Directory -Force "$root\inhoud\tools" | Out-Null
 
 function Lees($naam) { [IO.File]::ReadAllText("$bron\$naam.html", [Text.Encoding]::UTF8) }
 function Inhoud($html) {
@@ -21,6 +20,7 @@ function Foto([string]$url) {
   $url = $url -replace '^//', 'https://'
   if ($url -notmatch '^https?://') { $url = "https://gravelgorilla.nl$url" }
   $naam = (Split-Path ($url -replace '\?.*$', '') -Leaf).ToLower()
+  New-Item -ItemType Directory -Force $fotoMap | Out-Null
   $doel = Join-Path $fotoMap $naam
   if (-not (Test-Path $doel)) {
     # kapotte foto op de oude site? dan een eigen tekening met dezelfde naam (.svg) gebruiken
@@ -86,38 +86,7 @@ function Schoon([string]$c) {
   $c.Trim()
 }
 
-# ---------------- Blogs ----------------
-$blogs = @(
-  @{ slug = 'gravelbike'; kort = 'Alles over gravelbikes in één gids'; categorie = 'Beginnen' }
-  @{ slug = 'gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike'; kort = 'Welke gravelbike moet ik kopen?'; categorie = 'Kopen' }
-  @{ slug = 'welke-gravelbike-budget'; kort = 'Welke gravelbike past bij je budget?'; categorie = 'Kopen' }
-  @{ slug = 'beste-prijs-kwaliteit-verhouding-gravelbike'; kort = 'De beste prijs-kwaliteit gravelbikes'; categorie = 'Kopen' }
-  @{ slug = 'beste-gravelbanden'; kort = 'Gravelbanden voor Limburg, Veluwe en Maasduinen'; categorie = 'Banden' }
-  @{ slug = 'fietsverlichting-budgetverlichting-merkverlichting'; kort = 'Verlichting: budget of merk?'; categorie = 'Materiaal' }
-  @{ slug = 'zadeltassen-bikepacken-avontuur-fietstassen'; kort = 'De beste zadeltassen voor bikepacken'; categorie = 'Bikepacking' }
-  @{ slug = 'de-10-spectaculairste-gravelbestemmingen'; kort = '10 spectaculaire gravelbestemmingen'; categorie = 'Avontuur' }
-)
-$lijst = @()
-foreach ($b in $blogs) {
-  $h = Lees $b.slug
-  $tekst = Schoon (Inhoud $h)
-  [IO.File]::WriteAllText("$root\inhoud\blogs\$($b.slug).html", $tekst + "`n", $utf8)
-  $woorden = ([regex]::Replace($tekst, '<[^>]+>', ' ') -split '\s+' | Where-Object { $_ }).Count
-  $beeld = Meta $h '<meta property="og:image" content="([^"]+)"'
-  $lijst += [ordered]@{
-    slug         = $b.slug
-    titel        = Meta $h '<h1[^>]*>(.*?)</h1>'
-    kort         = $b.kort
-    categorie    = $b.categorie
-    beschrijving = Meta $h '<meta name="description" content="([^"]*)"'
-    datum        = Meta $h 'article:published_time" content="([^"T]+)'
-    bijgewerkt   = Meta $h 'article:modified_time" content="([^"T]+)'
-    beeld        = $(if ($beeld) { Foto $beeld } else { $null })
-    minuten      = [Math]::Max(1, [Math]::Round($woorden / 200))
-  }
-  "blog: $($b.slug) ($woorden woorden)"
-}
-[IO.File]::WriteAllText("$root\inhoud\blogs.json", (ConvertTo-Json $lijst -Depth 4), $utf8)
+# (De blogs werden hier ook overgezet; die zijn in oktober 2026 van de site gehaald.)
 
 # ---------------- Tool-pagina's: uitlegtekst ----------------
 foreach ($t in 'gravelbike-kiezer','gravelwielen-kiezer','ultra-eventkiezer') {
@@ -141,4 +110,3 @@ foreach ($t in @(,@('ultra-eventkiezer','ultra-eventkiezer-tool.html'))) { # ori
   Copy-Item "$bron\$($t[1])" "$root\inhoud\bron\$($t[0])-origineel.html" -Force
   "tool-bestand: $($t[0])"
 }
-"Foto's: $((Get-ChildItem $fotoMap).Count)"

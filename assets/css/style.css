@@ -209,43 +209,6 @@ button { font: inherit; color: inherit; }
 .tips__knoppen .rond:hover { background: #F4F1EA; color: var(--diepgroen); }
 .tips__link { margin-left: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 
-/* ---------- Veldnotities ---------- */
-.notities { padding: 0 0 130px; }
-.notities__kop { max-width: var(--breed); margin: 0 auto 36px; padding: 0 clamp(16px, 4vw, 40px); display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 32px; }
-.notities__kop p { color: var(--tekst-zacht); max-width: 22em; }
-.notities__pijlen { display: flex; gap: 8px; }
-.strook {
-  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  padding: 6px max(clamp(16px, 4vw, 40px), calc((100vw - var(--breed)) / 2 + clamp(16px, 4vw, 40px))) 10px;
-  scroll-padding: 0 max(clamp(16px, 4vw, 40px), calc((100vw - var(--breed)) / 2 + clamp(16px, 4vw, 40px)));
-}
-.strook::-webkit-scrollbar { display: none; }
-.notitie {
-  flex: 0 0 clamp(250px, 26vw, 320px); aspect-ratio: 3 / 4; scroll-snap-align: start;
-  position: relative; overflow: hidden; border-radius: 20px; padding: 24px;
-  display: flex; flex-direction: column; background: var(--vlak); border: 1px solid var(--lijn);
-  transition: transform .4s var(--zacht), border-color .3s;
-}
-/* stafkaart-lijntjes, elke notitie net anders */
-.notitie::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none; transition: opacity .3s, transform .8s var(--zacht);
-  background: repeating-radial-gradient(ellipse at var(--hx, 70%) var(--hy, 30%), transparent 0 18px, var(--lijn) 18px 19px); }
-.notitie:nth-child(2)::before { --hx: 20%; --hy: 60%; }
-.notitie:nth-child(3)::before { --hx: 90%; --hy: 85%; }
-.notitie:nth-child(4)::before { --hx: 40%; --hy: 10%; }
-.notitie:nth-child(5)::before { --hx: 10%; --hy: 20%; }
-.notitie:hover { transform: translateY(-6px); border-color: var(--groen); }
-.notitie:hover::before { opacity: 1; transform: scale(1.08); }
-.notitie > * { position: relative; }
-.notitie__nr { font-family: var(--kopfont); font-weight: 600; font-size: 1.1rem; color: var(--groen-tekst); }
-.notitie__onderwerp { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--tekst-zacht); margin-top: 4px; }
-.notitie h3 { margin-top: auto; font-size: clamp(1.6rem, 2.3vw, 2rem); line-height: 1.02; }
-.notitie__tijd { margin-top: 14px; font-size: .88rem; color: var(--tekst-zacht); }
-.notitie--alles { background: var(--tekst); color: var(--achtergrond); border-color: var(--tekst); justify-content: space-between; }
-.notitie--alles::before { display: none; }
-.notitie--alles h3 { margin-top: 0; font-size: clamp(2rem, 3vw, 2.6rem); }
-.notitie__pijl { font-size: 2.6rem; align-self: flex-end; transition: transform .3s var(--zacht); }
-.notitie--alles:hover .notitie__pijl { transform: translateX(8px); }
-
 /* ---------- Voet ---------- */
 .voet { position: relative; overflow: hidden; background: #15181A; color: #F4F1EA; padding-bottom: 28px; }
 :root[data-thema="donker"] .voet { background: #0F1112; }
@@ -274,9 +237,6 @@ button { font: inherit; color: inherit; }
   .bordje__soort { display: none; }
   .bordje__pijl { grid-column: 3; grid-row: 1 / span 2; }
   .bordje__kijk { display: none; }
-  .notities__kop { grid-template-columns: 1fr auto; }
-  .notities__kop p { grid-column: 1; grid-row: 2; }
-  .notities__pijlen { grid-column: 2; grid-row: 1 / span 2; }
 }
 
 /* ---------- Telefoon ---------- */
@@ -306,8 +266,6 @@ button { font: inherit; color: inherit; }
   .bordje__pijl { grid-column: 2; grid-row: 1 / span 3; width: 46px; height: 46px; }
   .tips__kaart { grid-template-columns: 1fr; border-radius: 22px; }
   .tips__tekst { min-height: 5em; }
-  .notities__kop { gap: 16px; }
-  .notitie { flex-basis: 76vw; }
   .voet__binnen { padding-top: 56px; }
 }
 

@@ -1,6 +1,6 @@
 ﻿# Bouwt alle vervolgpagina's van de site uit de map inhoud/:
-#   /blog/ + 8 blogartikelen, /tools/<naam>/ (4 tools), /over-ons/, /contact/,
-#   404.html, sitemap.xml, robots.txt, .htaccess, en de veldnotities op de homepage.
+#   /tools/<naam>/ (4 tools), /over-ons/, /contact/,
+#   404.html, sitemap.xml, robots.txt, .htaccess. (De blogs zijn in oktober 2026 verwijderd.)
 # Opnieuw draaien kan altijd: alle pagina's worden dan opnieuw gemaakt.
 param(
   [string]$ContactMail = "info@gravelgorilla.nl"
@@ -9,8 +9,6 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $utf8 = New-Object Text.UTF8Encoding $false
 $site = "https://gravelgorilla.nl"
-$blogs = @((Get-Content "$root\inhoud\blogs.json" -Raw -Encoding UTF8 | ConvertFrom-Json) | ForEach-Object { $_ })
-$maanden = 'januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'
 
 function Html([string]$s) { [Net.WebUtility]::HtmlEncode($s) }
 function Datum([string]$iso) { $d = [datetime]::ParseExact($iso, 'yyyy-MM-dd', $null); "$($d.Day) $($maanden[$d.Month - 1]) $($d.Year)" }
@@ -68,7 +66,6 @@ $extraCss
     </a>
     <nav class="bar__links" aria-label="Hoofdmenu">
       <a href="/#wegwijzer">Tools</a>
-      <a href="/blog/">Veldnotities</a>
       <a href="/over-ons/">Over ons</a>
     </nav>
     <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
@@ -91,7 +88,7 @@ function Voet([string[]]$js = @()) {
     <div class="voet__binnen">
       <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
       <nav aria-label="Voet">
-        <a href="/#wegwijzer">Tools</a><a href="/blog/">Veldnotities</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
+        <a href="/#wegwijzer">Tools</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
       </nav>
     </div>
     <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
@@ -103,23 +100,6 @@ $extraJs
 </body>
 </html>
 "@
-}
-
-# ---------- Kaartje voor een veldnotitie ----------
-function Kaartje($b, [int]$nr, [switch]$MetFoto) {
-  $n = "N°{0:00}" -f $nr
-  if ($MetFoto -and $b.beeld) {
-@"
-        <a href="/$($b.slug)/" class="notitie notitie--foto">
-          <span class="notitie__foto"><img src="$($b.beeld)" alt="" loading="lazy"></span>
-          <span class="notitie__tekst"><span class="notitie__nr">$n</span><span class="notitie__onderwerp">$(Html $b.categorie)</span><h3>$(Html $b.kort)</h3><span class="notitie__tijd">$($b.minuten) min lezen</span></span>
-        </a>
-"@
-  } else {
-@"
-        <a href="/$($b.slug)/" class="notitie"><span class="notitie__nr">$n</span><span class="notitie__onderwerp">$(Html $b.categorie)</span><h3>$(Html $b.kort)</h3><span class="notitie__tijd">$($b.minuten) min lezen</span></a>
-"@
-  }
 }
 
 # ---------- De tools ----------
@@ -199,68 +179,6 @@ $uitleg
   Schrijf "tools\$($t.slug)\index.html" $pagina
   "tool: $pad"
 }
-
-# ---------- Blogartikelen ----------
-$toolBijCategorie = @{
-  'Banden'      = @('bandenspanning-calculator', 'Bandenspanning Calculator', 'Reken het meteen uit')
-  'Bikepacking' = @('ultra-eventkiezer', 'Ultra-eventkiezer', 'Klaar voor een groot avontuur?')
-  'Avontuur'    = @('ultra-eventkiezer', 'Ultra-eventkiezer', 'Op zoek naar een volgend doel?')
-}
-for ($i = 0; $i -lt $blogs.Count; $i++) {
-  $b = $blogs[$i]
-  $pad = "/$($b.slug)/"
-  $tekst = Lees "inhoud\blogs\$($b.slug).html"
-  $tip = $toolBijCategorie[$b.categorie]
-  if (-not $tip) { $tip = @('gravelbike-kiezer', 'Gravelbike Kiezer', 'Liever meteen een antwoord?') }
-  $beeld = if ($b.beeld) { "    <figure class=""artikel-beeld""><img src=""$($b.beeld)"" alt=""$(Html $b.titel)""></figure>" } else { '    <div class="artikel-zonder-beeld"></div>' }
-  $anderen = @($blogs | Where-Object { $_.slug -ne $b.slug } | Select-Object -First 3)
-  $meer = ($anderen | ForEach-Object { Kaartje $_ ([array]::IndexOf($blogs.slug, $_.slug) + 1) -MetFoto }) -join "`n"
-  $bijgewerkt = if ($b.bijgewerkt -and $b.bijgewerkt -ne $b.datum) { " · bijgewerkt $(Datum $b.bijgewerkt)" } else { '' }
-  $pagina = (Kop "$($b.titel) — Gravel Gorilla" $b.beschrijving $pad @() $b.beeld 'article') + @"
-  <main>
-    <header class="artikel-kop">
-      <a href="/blog/" class="terug">← Alle veldnotities</a>
-      <p class="artikel-meta"><b>N°$('{0:00}' -f ($i + 1))</b><span>$(Html $b.categorie)</span><span>$(Datum $b.datum)$bijgewerkt</span><span>$($b.minuten) min lezen</span></p>
-      <h1>$(Html $b.titel)</h1>
-      <p class="artikel-intro">$(Html $b.beschrijving)</p>
-    </header>
-$beeld
-    <article class="lees">
-$tekst
-    </article>
-    <aside class="tool-tip">
-      <a href="/tools/$($tip[0])/"><img src="/assets/img/logo-icon.svg" alt=""><span><small>$($tip[2])</small><strong>$($tip[1])</strong></span><span class="pijl" aria-hidden="true">→</span></a>
-    </aside>
-    <section class="meer">
-      <h2>Lees ook</h2>
-      <div class="notitie-raster">
-$meer
-      </div>
-    </section>
-  </main>
-"@ + (Voet)
-  Schrijf "$($b.slug)\index.html" $pagina
-  "blog: $pad"
-}
-
-# ---------- Blogoverzicht ----------
-$alle = (0..($blogs.Count - 1) | ForEach-Object { Kaartje $blogs[$_] ($_ + 1) -MetFoto }) -join "`n"
-$pagina = (Kop "Veldnotities — Gravel Gorilla" "Eerlijke uitleg over gravelbikes, banden, materiaal en avontuur. Geschreven door een gravelrijder, voor gravelrijders." "/blog/") + @"
-  <main>
-    <section class="pagina-kop">
-      <a href="/" class="terug">← Home</a>
-      <h1 class="kop-l">Veld&shy;<span class="groen">notities</span></h1>
-      <p class="pagina-sub">Korte, eerlijke uitleg. Geschreven onderweg, voor onderweg.</p>
-    </section>
-    <section class="blog-overzicht">
-      <div class="notitie-raster">
-$alle
-      </div>
-    </section>
-  </main>
-"@ + (Voet)
-Schrijf "blog\index.html" $pagina
-"blog-overzicht: /blog/"
 
 # ---------- Over ons ----------
 $pagina = (Kop "Over ons — Gravel Gorilla" "Gravel Gorilla is gebouwd door een gravelrijder. Gratis tools en eerlijke uitleg, zonder dat iemand je iets probeert te verkopen." "/over-ons/") + @"
@@ -342,19 +260,10 @@ $pagina = (Kop "Pagina niet gevonden — Gravel Gorilla" "Deze pagina bestaat ni
 Schrijf "404.html" $pagina
 "pagina: 404.html"
 
-# ---------- Veldnotities op de homepage ----------
-$voorpagina = Lees "index.html"
-$strook = ((0..([Math]::Min(5, $blogs.Count) - 1)) | ForEach-Object { Kaartje $blogs[$_] ($_ + 1) }) -join "`n"
-$strook += "`n        <a href=""/blog/"" class=""notitie notitie--alles""><h3>Alle veld&shy;notities</h3><span class=""notitie__pijl"">→</span></a>"
-$voorpagina = [regex]::Replace($voorpagina, '(?s)(<!--NOTITIES-->).*?(\s*<!--/NOTITIES-->)', "`$1`n$strook`$2")
-Schrijf "index.html" $voorpagina
-"homepage: veldnotities bijgewerkt"
-
 # ---------- Sitemap, robots.txt ----------
 $vandaag = Get-Date -Format 'yyyy-MM-dd'
-$adressen = @(@('/', $vandaag), @('/blog/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag))
+$adressen = @(@('/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag))
 $adressen += $tools | ForEach-Object { ,@("/tools/$($_.slug)/", $vandaag) }
-$adressen += $blogs | ForEach-Object { ,@("/$($_.slug)/", $(if ($_.bijgewerkt) { $_.bijgewerkt } else { $_.datum })) }
 $xml = "<?xml version=""1.0"" encoding=""UTF-8""?>`n<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"">`n"
 $xml += ($adressen | ForEach-Object { "  <url><loc>$site$($_[0])</loc><lastmod>$($_[1])</lastmod></url>" }) -join "`n"
 $xml += "`n</urlset>`n"
@@ -378,9 +287,16 @@ RewriteRule \.(ps1|md|json|gitignore)$ - [F,L]
 # Oude adressen van de WordPress-site doorsturen naar de nieuwe plek (301 = blijvend verhuisd)
 RewriteRule ^kiezer/?$ /tools/gravelbike-kiezer/ [R=301,L]
 RewriteRule ^tools/?$ /#wegwijzer [R=301,L,NE]
-RewriteRule ^(category|tag)/ /blog/ [R=301,L]
+RewriteRule ^(category|tag)/ / [R=301,L]
 RewriteRule ^author/ /over-ons/ [R=301,L]
-RewriteRule ^(.*/)?feed/?$ /blog/ [R=301,L]
+RewriteRule ^(.*/)?feed/?$ / [R=301,L]
+# Verwijderde blogs (oktober 2026) doorsturen naar de best passende tool
+RewriteRule ^(uncategorized|materiaal)/ /#wegwijzer [R=301,L,NE]
+RewriteRule ^blog/?$ /#wegwijzer [R=301,L,NE]
+RewriteRule ^(gravelbike|gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike|welke-gravelbike-budget|beste-prijs-kwaliteit-verhouding-gravelbike)/?$ /tools/gravelbike-kiezer/ [R=301,L]
+RewriteRule ^beste-gravelbanden/?$ /tools/bandenspanning-calculator/ [R=301,L]
+RewriteRule ^(zadeltassen-bikepacken-avontuur-fietstassen|de-10-spectaculairste-gravelbestemmingen)/?$ /tools/ultra-eventkiezer/ [R=301,L]
+RewriteRule ^fietsverlichting-budgetverlichting-merkverlichting/?$ / [R=301,L]
 RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301,L]
 </IfModule>
 

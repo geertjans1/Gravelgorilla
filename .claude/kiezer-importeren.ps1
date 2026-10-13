@@ -115,6 +115,9 @@ $slot = @'
 
 [IO.File]::WriteAllText("$root\assets\css\$Naam.css", $eigen + $css.Trim() + "`n" + $slot, $utf8)
 
+# ---------- 3b. "Blog"-knopjes eruit: de blogs zijn van de site gehaald ----------
+$body = [regex]::Replace($body, '(?s)\s*<span class="gk-blog"[^>]*>.*?</span></span></span>', '')
+
 # ---------- 4. HTML: oude kopbalk eruit (de site heeft er al een) ----------
 $body = [regex]::Replace($body, '(?s)\s*<div class="gk-header".*?</div>\s*</div>\s*(?=<nav class="gk-tabs")', "`n`n  ")
 
