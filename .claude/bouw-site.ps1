@@ -364,6 +364,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Hulpbestanden uit GitHub (scripts, werkmappen) zijn niet voor bezoekers
+RewriteRule (^|/)(\.claude|\.git|inhoud|_bron)(/|$) - [F,L]
+RewriteRule \.(ps1|md|json|gitignore)$ - [F,L]
+
 # Oude adressen van de WordPress-site doorsturen naar de nieuwe plek (301 = blijvend verhuisd)
 RewriteRule ^kiezer/?$ /tools/gravelbike-kiezer/ [R=301,L]
 RewriteRule ^tools/?$ /#wegwijzer [R=301,L,NE]
