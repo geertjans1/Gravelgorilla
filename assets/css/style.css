@@ -250,11 +250,11 @@ button { font: inherit; color: inherit; }
 .voet { position: relative; overflow: hidden; background: #15181A; color: #F4F1EA; padding-bottom: 28px; }
 :root[data-thema="donker"] .voet { background: #0F1112; }
 .voet__band { height: 22px; background: repeating-linear-gradient(90deg, #2F8F3E 0 14px, transparent 14px 26px); opacity: .9; }
-.voet__binnen { max-width: var(--breed); margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.voet__binnen { position: relative; z-index: 1; max-width: var(--breed); margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 24px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .voet__slot { font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.02; }
 .voet nav { display: flex; gap: 24px; color: #9AA098; }
 .voet nav a:hover { color: #F4F1EA; }
-.voet__woord { font-family: var(--kopfont); text-transform: uppercase; font-weight: 700; white-space: nowrap; text-align: center; line-height: .85; font-size: 15.5vw; color: transparent; -webkit-text-stroke: 1.5px #333B37; margin: 16px 0 20px; transition: -webkit-text-stroke-color .4s; }
+.voet__woord { position: relative; pointer-events: none; font-family: var(--kopfont); text-transform: uppercase; font-weight: 700; white-space: nowrap; text-align: center; line-height: .85; font-size: 15.5vw; color: transparent; -webkit-text-stroke: 1.5px #333B37; margin: 16px 0 20px; transition: -webkit-text-stroke-color .4s; }
 .voet:hover .voet__woord { -webkit-text-stroke-color: #2F8F3E; }
 .voet__klein { text-align: center; font-size: .85rem; color: #9AA098; padding: 0 16px; }
 
