@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Gravel Gorilla</title>
+  <meta name="description" content="Een vraag, een tip of feedback op een tool? Stuur Gravel Gorilla een bericht.">
+  <link rel="canonical" href="https://gravelgorilla.nl/contact/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Gravel Gorilla">
+  <meta property="og:description" content="Een vraag, een tip of feedback op een tool? Stuur Gravel Gorilla een bericht.">
+  <meta property="og:url" content="https://gravelgorilla.nl/contact/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/logo-icon.svg">
+  <meta property="og:locale" content="nl_NL">
+  <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/pagina.css">
+
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <a href="/" class="brand" aria-label="Gravel Gorilla, naar de homepage">
+      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Hoofdmenu">
+      <a href="/#wegwijzer">Tools</a>
+      <a href="/blog/">Veldnotities</a>
+      <a href="/over-ons/">Over ons</a>
+    </nav>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
+    <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main>
+    <section class="pagina-kop">
+      <a href="/" class="terug">← Home</a>
+      <h1 class="kop-l">Con<span class="groen">tact</span></h1>
+      <p class="pagina-sub">Een vraag, een tip, een prijs die niet klopt of een idee voor een nieuwe tool? Laat het weten.</p>
+    </section>
+    <section class="contact">
+      <div class="contact-mail">
+        <h2>Stuur een bericht</h2>
+        <p>Mail ons rechtstreeks. We lezen alles en reageren zo snel mogelijk, meestal binnen een paar dagen.</p>
+        <a class="contact-adres" href="mailto:info@gravelgorilla.nl">info@gravelgorilla.nl</a>
+        <a class="knop knop--actie" href="mailto:info@gravelgorilla.nl?subject=Bericht%20via%20gravelgorilla.nl">Mail openen →</a>
+      </div>
+      <div class="contact-weetjes">
+        <div class="weetje"><h3>Tip bij tool-feedback</h3><p>Zet erbij om welke tool het gaat en op welk apparaat je hem gebruikt. Dan kunnen we er sneller mee aan de slag.</p></div>
+        <div class="weetje"><h3>Liever meteen aan de slag?</h3><p>Alle tools staan voor je klaar. Gratis, Nederlands en zonder account. <a href="/#wegwijzer">Naar de tools</a></p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
+      <nav aria-label="Voet">
+        <a href="/#wegwijzer">Tools</a><a href="/blog/">Veldnotities</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+
+</body>
+</html>

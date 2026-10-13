@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ultra-eventkiezer — Gravel Gorilla</title>
+  <meta name="description" content="Vind het ultra gravel-event dat bij je past. Beantwoord een paar vragen over ervaring, conditie, terrein en tijd en krijg een shortlist met events.">
+  <link rel="canonical" href="https://gravelgorilla.nl/tools/ultra-eventkiezer/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ultra-eventkiezer — Gravel Gorilla">
+  <meta property="og:description" content="Vind het ultra gravel-event dat bij je past. Beantwoord een paar vragen over ervaring, conditie, terrein en tijd en krijg een shortlist met events.">
+  <meta property="og:url" content="https://gravelgorilla.nl/tools/ultra-eventkiezer/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/logo-icon.svg">
+  <meta property="og:locale" content="nl_NL">
+  <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/pagina.css">
+
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <a href="/" class="brand" aria-label="Gravel Gorilla, naar de homepage">
+      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Hoofdmenu">
+      <a href="/#wegwijzer">Tools</a>
+      <a href="/blog/">Veldnotities</a>
+      <a href="/over-ons/">Over ons</a>
+    </nav>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
+    <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main>
+    <section class="pagina-kop">
+      <a href="/#wegwijzer" class="terug">← Alle tools</a>
+      <p class="pagina-km">KM 04</p>
+      <h1 class="kop-l">Ultra-event<span class="groen">kiezer</span></h1>
+      <p class="pagina-sub">Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?</p>
+    </section>
+    <div class="tool-vak">
+      <div class="tool-frame"><iframe src="tool.html" id="toolVenster" title="Ultra-eventkiezer" loading="lazy"></iframe></div>
+    </div>
+    <script>
+      /* het venster groeit mee met de inhoud van de tool */
+      (function () {
+        var f = document.getElementById("toolVenster");
+        function maat() {
+          try {
+            var d = f.contentDocument;
+            if (!d || !d.body) return;
+            var h = d.body.scrollHeight + 24 + "px";
+            if (f.style.height !== h) f.style.height = h;
+          } catch (e) {}
+        }
+        f.addEventListener("load", function () {
+          maat();
+          try { new ResizeObserver(maat).observe(f.contentDocument.body); } catch (e) {}
+          setInterval(maat, 800);
+        });
+      })();
+    </script>
+    <article class="lees tool-uitleg">
+      <h2 class="tool-uitleg-kop">Over deze kiezer</h2>
+<p>
+Twintig tabbladen open, drie inschrijfformulieren halfingevuld en nog steeds geen idee welke ultra je dit jaar gaat rijden. Herkenbaar? Het aanbod aan ultra gravel events groeit hard, van kusttochten langs de Noordzee tot bikepacking routes door de Alpen, en ergens tussen al die opties raak je het overzicht kwijt.<br>Deze kiezer haalt die twijfel weg. Beantwoord een paar vragen over je ervaring, je conditie, het terrein waar je energie van krijgt en hoeveel dagen je hebt, en je krijgt een shortlist met events die echt bij jou passen. Geen lijstjes doorspitten, maar een paar gerichte matches waar je meteen iets mee kunt.<br>Vul hem in, laat je verrassen door een event dat nog niet op je radar stond, en boek je startplek voor die vol zit. </p>
+
+    </article>
+  </main>
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
+      <nav aria-label="Voet">
+        <a href="/#wegwijzer">Tools</a><a href="/blog/">Veldnotities</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+
+</body>
+</html>

@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gravel Gorilla — Tem de jungle</title>
   <meta name="description" content="Gratis tools en eerlijke uitleg voor gravelrijders. De gorilla rekent het voor je uit: welke fiets, welke banden, welke spanning.">
-  <link rel="icon" href="assets/img/logo-icon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://gravelgorilla.nl/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gravel Gorilla — Tem de jungle">
+  <meta property="og:description" content="Gratis tools en eerlijke uitleg voor gravelrijders. De gorilla rekent het voor je uit: welke fiets, welke banden, welke spanning.">
+  <meta property="og:url" content="https://gravelgorilla.nl/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/logo-icon.svg">
+  <meta property="og:locale" content="nl_NL">
+  <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
   <!-- Kies meteen het juiste thema (licht/donker), zodat de pagina niet eerst wit flitst -->
   <script>
     (function () {
@@ -18,26 +25,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
   <!-- ===== Bovenbalk ===== -->
   <header class="bar" id="bar">
-    <a href="#" class="brand" aria-label="Gravel Gorilla, naar de homepage">
-      <img src="assets/img/logo-icon.svg" alt="" width="36" height="36">
+    <a href="/" class="brand" aria-label="Gravel Gorilla, naar de homepage">
+      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
       <span class="brand__word">Gravel <b>Gorilla</b></span>
     </a>
     <nav class="bar__links" aria-label="Hoofdmenu">
-      <a href="#wegwijzer">Wegwijzer</a>
-      <a href="#tips">Gorilla-tips</a>
-      <a href="#notities">Veldnotities</a>
+      <a href="#wegwijzer">Tools</a>
+      <a href="/blog/">Veldnotities</a>
+      <a href="/over-ons/">Over ons</a>
     </nav>
     <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
       <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
       <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
     </button>
-    <a href="kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
+    <a href="/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
     <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
   </header>
 
@@ -55,9 +62,9 @@
         <div class="snelkeuze verschijn" style="--v:420ms">
           <p class="snelkeuze__begin">Ik wil…</p>
           <div class="snelkeuze__opties">
-            <a href="kiezer/">een gravelbike kiezen</a>
-            <a href="/bandenspanning/">mijn bandenspanning weten</a>
-            <a href="/wielen-kiezer/">de juiste wielen vinden</a>
+            <a href="/tools/gravelbike-kiezer/">een gravelbike kiezen</a>
+            <a href="/tools/bandenspanning-calculator/">mijn bandenspanning weten</a>
+            <a href="/tools/gravelwielen-kiezer/">de juiste wielen vinden</a>
             <a href="#wegwijzer" class="snelkeuze__alles">alle tools zien ↓</a>
           </div>
         </div>
@@ -134,7 +141,7 @@
     <!-- ===== Gorilla-tips: één grote tip tegelijk ===== -->
     <section class="tips" id="tips">
       <div class="tips__kaart verschijn">
-        <img src="assets/img/logo-icon.svg" alt="" width="72" height="72" class="tips__gorilla">
+        <img src="/assets/img/logo-icon.svg" alt="" width="72" height="72" class="tips__gorilla">
         <div class="tips__inhoud">
           <p class="tips__label">Gorilla-tip <span id="tipNummer">01</span></p>
           <blockquote class="tips__tekst" id="tipTekst" aria-live="polite"></blockquote>
@@ -158,12 +165,14 @@
         </div>
       </div>
       <div class="strook" id="strook" tabindex="0" aria-label="Veldnotities, schuif horizontaal">
-        <a href="/tubeless-gravelbike-uitgelegd/" class="notitie"><span class="notitie__nr">N°01</span><span class="notitie__onderwerp">Banden</span><h3>Tubeless zonder gedoe</h3><span class="notitie__tijd">4 min lezen</span></a>
-        <a href="/stack-en-reach-uitgelegd/" class="notitie"><span class="notitie__nr">N°02</span><span class="notitie__onderwerp">Pasvorm</span><h3>Stack en reach in gewone taal</h3><span class="notitie__tijd">5 min lezen</span></a>
-        <a href="/1x-vs-2x-aandrijving-gravelbike/" class="notitie"><span class="notitie__nr">N°03</span><span class="notitie__onderwerp">Techniek</span><h3>1x of 2x: hoeveel tandwielen voor?</h3><span class="notitie__tijd">4 min lezen</span></a>
-        <a href="/gravelbike-winterklaar-maken/" class="notitie"><span class="notitie__nr">N°04</span><span class="notitie__onderwerp">Onderhoud</span><h3>Je gravelbike winterklaar</h3><span class="notitie__tijd">3 min lezen</span></a>
-        <a href="/bikepacking-gids-uitrusting/" class="notitie"><span class="notitie__nr">N°05</span><span class="notitie__onderwerp">Avontuur</span><h3>Bikepacking: wat gaat er mee?</h3><span class="notitie__tijd">6 min lezen</span></a>
+        <!--NOTITIES-->
+        <a href="/gravelbike/" class="notitie"><span class="notitie__nr">N°01</span><span class="notitie__onderwerp">Beginnen</span><h3>Alles over gravelbikes in &#233;&#233;n gids</h3><span class="notitie__tijd">17 min lezen</span></a>
+        <a href="/gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike/" class="notitie"><span class="notitie__nr">N°02</span><span class="notitie__onderwerp">Kopen</span><h3>Welke gravelbike moet ik kopen?</h3><span class="notitie__tijd">10 min lezen</span></a>
+        <a href="/welke-gravelbike-budget/" class="notitie"><span class="notitie__nr">N°03</span><span class="notitie__onderwerp">Kopen</span><h3>Welke gravelbike past bij je budget?</h3><span class="notitie__tijd">9 min lezen</span></a>
+        <a href="/beste-prijs-kwaliteit-verhouding-gravelbike/" class="notitie"><span class="notitie__nr">N°04</span><span class="notitie__onderwerp">Kopen</span><h3>De beste prijs-kwaliteit gravelbikes</h3><span class="notitie__tijd">17 min lezen</span></a>
+        <a href="/beste-gravelbanden/" class="notitie"><span class="notitie__nr">N°05</span><span class="notitie__onderwerp">Banden</span><h3>Gravelbanden voor Limburg, Veluwe en Maasduinen</h3><span class="notitie__tijd">6 min lezen</span></a>
         <a href="/blog/" class="notitie notitie--alles"><h3>Alle veld&shy;notities</h3><span class="notitie__pijl">→</span></a>
+        <!--/NOTITIES-->
       </div>
     </section>
   </main>
@@ -174,14 +183,14 @@
     <div class="voet__binnen">
       <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
       <nav aria-label="Voet">
-        <a href="#wegwijzer">Wegwijzer</a><a href="#notities">Veldnotities</a><a href="/contact/">Contact</a>
+        <a href="#wegwijzer">Tools</a><a href="/blog/">Veldnotities</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
       </nav>
     </div>
     <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
     <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
   </footer>
 
-  <script src="assets/js/site.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+# Gravel Gorilla — instellingen voor de webserver (gemaakt door .claude/bouw-site.ps1)
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Oude adressen van de WordPress-site doorsturen naar de nieuwe plek (301 = blijvend verhuisd)
+RewriteRule ^kiezer/?$ /tools/gravelbike-kiezer/ [R=301,L]
+RewriteRule ^tools/?$ /#wegwijzer [R=301,L,NE]
+RewriteRule ^(category|tag)/ /blog/ [R=301,L]
+RewriteRule ^author/ /over-ons/ [R=301,L]
+RewriteRule ^(.*/)?feed/?$ /blog/ [R=301,L]
+RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301,L]
+</IfModule>
+
+# Afbeeldingen, opmaak en code mogen even bewaard worden door de browser (sneller)
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+ExpiresByType text/css "access plus 1 day"
+ExpiresByType application/javascript "access plus 1 day"
+</IfModule>

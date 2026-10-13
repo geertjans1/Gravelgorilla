@@ -8,7 +8,7 @@ const minderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)").mat
    DE LIJST MET TOOLS (de wegwijzer)
    Nieuwe tool toevoegen? Kopieer een blok en pas het aan.
    - soort:     "kiezen", "berekenen" of "plannen"
-   - plaatje:   "quiz", "wiel", "meter", "liniaal" of "tas"
+   - plaatje:   "quiz", "wiel", "meter", "liniaal", "tas" of "vlag"
    - label:     klein oranje labeltje (optioneel)
    - binnenkort: true = bordje zonder link, half doorzichtig
    --------------------------------------------------------- */
@@ -16,7 +16,7 @@ const TOOLS = [
   {
     naam: "Gravelbike Kiezer",
     uitleg: "Een paar vragen over hoe en waar je rijdt, en je ziet welke van 147 gravelbikes bij je passen.",
-    link: "kiezer/",
+    link: "/tools/gravelbike-kiezer/",
     soort: "kiezen",
     plaatje: "quiz",
     label: "Meest gebruikt"
@@ -24,30 +24,23 @@ const TOOLS = [
   {
     naam: "Bandenspanning",
     uitleg: "De juiste spanning voor jouw gewicht, bandbreedte en ondergrond. Voor en achter apart.",
-    link: "/bandenspanning/",
+    link: "/tools/bandenspanning-calculator/",
     soort: "berekenen",
     plaatje: "meter"
   },
   {
     naam: "Wielen Kiezer",
-    uitleg: "Licht, stevig of juist snel? Vind de wielset die bij je rijstijl past.",
-    link: "/wielen-kiezer/",
+    uitleg: "Licht, stevig of juist snel? Vind de wielset die bij je fiets en rijstijl past.",
+    link: "/tools/gravelwielen-kiezer/",
     soort: "kiezen",
     plaatje: "wiel"
   },
   {
-    naam: "Maat Bepalen",
-    uitleg: "Je framemaat op basis van je lengte en binnenbeenlengte.",
-    soort: "berekenen",
-    plaatje: "liniaal",
-    binnenkort: true
-  },
-  {
-    naam: "Paklijst Bikepacking",
-    uitleg: "Een slimme checklist voor je volgende tocht van meerdere dagen.",
+    naam: "Ultra-eventkiezer",
+    uitleg: "Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist.",
+    link: "/tools/ultra-eventkiezer/",
     soort: "plannen",
-    plaatje: "tas",
-    binnenkort: true
+    plaatje: "vlag"
   }
 ];
 
@@ -57,6 +50,7 @@ const PLAATJES = {
   meter: `<svg viewBox="0 0 100 100" width="100" height="100"><path d="M15 70 A35 35 0 0 1 85 70" fill="none" stroke="#E3DDCF" stroke-width="9" stroke-linecap="round"/><path d="M15 70 A35 35 0 0 1 72 42" fill="none" stroke="#2F8F3E" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="70" x2="68" y2="44" stroke="#15181A" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="70" r="6" fill="#FF6B2C"/></svg>`,
   wiel: `<svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="#15181A" stroke-width="8" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="33" fill="none" stroke="#C9C2B2" stroke-width="2"/>${Array.from({ length: 10 }, (_, i) => `<line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(${i * 36} 50 50)"/>`).join("")}<circle cx="50" cy="50" r="6" fill="#2F8F3E"/></svg>`,
   liniaal: `<svg viewBox="0 0 100 100" width="96" height="96"><rect x="12" y="38" width="76" height="24" rx="4" fill="#2F8F3E"/><g stroke="#F4F1EA" stroke-width="2"><path d="M22 38v8M32 38v12M42 38v8M52 38v12M62 38v8M72 38v12M82 38v8"/></g></svg>`,
+  vlag: `<svg viewBox="0 0 100 100" width="96" height="96"><path d="M28 86V16" stroke="#15181A" stroke-width="4" stroke-linecap="round"/><path d="M30 18h46l-9 14 9 14H30z" fill="#2F8F3E"/><g fill="#F4F1EA"><rect x="38" y="22" width="7" height="7"/><rect x="52" y="22" width="7" height="7"/><rect x="45" y="29" width="7" height="7"/><rect x="59" y="29" width="7" height="7"/><rect x="38" y="36" width="7" height="7"/><rect x="52" y="36" width="7" height="7"/></g></svg>`,
   tas: `<svg viewBox="0 0 100 100" width="96" height="96"><rect x="22" y="32" width="56" height="50" rx="10" fill="#2F8F3E"/><path d="M38 32v-6a12 12 0 0 1 24 0v6" fill="none" stroke="#15181A" stroke-width="4"/><rect x="22" y="50" width="56" height="6" fill="#14361E"/></svg>`
 };
 
@@ -108,11 +102,11 @@ zoekveld.addEventListener("input", toonBordjes);
 
 /* ---------- Gorilla-tips ---------- */
 const TIPS = [
-  { tekst: "Rijd je veel zand? Een bredere band met wat minder spanning zakt minder weg dan een smalle, harde band.", link: "/bandenspanning-gravelbike-berekenen/" },
-  { tekst: "Tubeless? Kijk elke paar maanden of er nog genoeg melk in je band zit. Die droogt langzaam op.", link: "/tubeless-onderhoud-melk-bijvullen/" },
-  { tekst: "Twijfel je tussen twee framematen? Kijk niet alleen naar de maat, maar ook naar stack en reach.", link: "/tussen-twee-maten-gravelbike/" },
-  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/eerste-gravelrit-tips/" },
-  { tekst: "Na een modderrit eerst je ketting schoonmaken en smeren. Dat scheelt je later een nieuwe aandrijving.", link: "/gravelbike-onderhoud-basics/" }
+  { tekst: "Rijd je veel zand? Een bredere band met wat minder spanning zakt minder weg dan een smalle, harde band.", link: "/tools/bandenspanning-calculator/" },
+  { tekst: "Tubeless? Kijk elke paar maanden of er nog genoeg melk in je band zit. Die droogt langzaam op.", link: "/beste-gravelbanden/" },
+  { tekst: "Twijfel je tussen twee framematen? Kijk niet alleen naar de maat, maar ook naar stack en reach.", link: "/tools/gravelbike-kiezer/" },
+  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/gravelbike/" },
+  { tekst: "Na een modderrit eerst je ketting schoonmaken en smeren. Dat scheelt je later een nieuwe aandrijving.", link: "/gravelbike/" }
 ];
 let tip = 0;
 const tipTekst = document.getElementById("tipTekst");

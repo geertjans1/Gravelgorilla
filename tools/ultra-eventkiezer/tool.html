@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultra Eventkiezer · 2026/2027</title>
+<style>
+:root{
+  --bg:#f4f1ea; --card:#fffdf9; --ink:#211d18; --muted:#7d7466; --line:#e5ddcc;
+  --accent:#d9530f; --accent-soft:#fbe8db; --dark:#1e1b16; --cream:#f5efe2;
+  --road-bg:#e9edfa; --road-tx:#3b4f9e; --mix-bg:#e2f2ee; --mix-tx:#0d6a5c;
+  --dirt-bg:#f7e9dc; --dirt-tx:#a3520e; --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 60px}
+
+/* ── Hero ─────────────────────────── */
+.hero{background:var(--dark);color:var(--cream);border-radius:0 0 26px 26px;padding:46px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+.hero .kicker{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-size:13px;color:var(--accent);margin-bottom:6px}
+.hero h1{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(40px,6vw,68px);line-height:.95;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.sub{max-width:640px;margin-top:14px;font-size:15px;color:#c9c0ae}
+.hero .stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
+.hero .stat b{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-size:30px;font-weight:700;display:block;line-height:1;color:#fff}
+.hero .stat span{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#9a8f7a}
+.hero svg.route{position:absolute;right:-30px;top:0;height:100%;opacity:.5;pointer-events:none}
+
+/* ── Filterpaneel ─────────────────── */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:18px;box-shadow:0 1px 3px rgba(40,30,10,.05)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.controls input[type=search]{flex:1;min-width:200px;padding:9px 13px;border:1px solid var(--line);border-radius:9px;font-size:14px;background:#fff;font-family:inherit}
+.controls select{padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:13.5px;background:#fff;font-family:inherit;color:var(--ink);max-width:220px}
+.controls input:focus,.controls select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:13.5px;cursor:pointer;user-select:none;white-space:nowrap}
+.toggle input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.resetbtn{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:9px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--muted)}
+.resetbtn:hover{border-color:var(--accent);color:var(--accent)}
+.fgroup{display:flex;align-items:baseline;gap:12px;padding:7px 0;border-top:1px dashed var(--line);flex-wrap:wrap}
+.fgroup .flabel{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;color:var(--muted);width:92px;flex-shrink:0}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:12.5px;cursor:pointer;font-family:inherit;color:#4d463b;transition:all .12s}
+.chip:hover{border-color:#c9b99a}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.on.acc{background:var(--accent);border-color:var(--accent)}
+
+/* ── Resultatenbalk ───────────────── */
+.resultbar{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 12px;flex-wrap:wrap;gap:8px}
+.resultbar .count{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:15px}
+.resultbar .count b{color:var(--accent)}
+.resultbar .hint{font-size:12px;color:var(--muted)}
+
+/* ── Kaarten ──────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.cardE{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 15px;display:flex;flex-direction:column;gap:9px;position:relative;transition:transform .12s, box-shadow .12s}
+.cardE:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(50,35,10,.09)}
+.cardE.past{opacity:.52}
+.cardE .toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.cardE .geo{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600;padding-top:3px}
+.cardE .geo .fl{font-size:15px;margin-right:5px;letter-spacing:0}
+.datebadge{text-align:center;background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:5px 10px 4px;min-width:58px;flex-shrink:0}
+.datebadge b{display:block;font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-size:21px;font-weight:700;line-height:1}
+.datebadge span{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.cardE.past .datebadge{background:#eceae4;color:#8b8577}
+.datebadge.y27{background:#e9e6f7;color:#5b4bb5}
+.cardE h3{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;font-weight:700;text-transform:uppercase;font-size:23px;line-height:1.02;letter-spacing:.015em}
+.cardE .place{font-size:13px;color:var(--muted);margin-top:-4px}
+.numchips{display:flex;gap:7px;flex-wrap:wrap}
+.numchip{background:var(--ink);color:#fff;border-radius:7px;padding:3px 9px;font-size:12.5px;font-weight:600}
+.numchip.hm{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3.5px 9px;border-radius:6px}
+.tag.asfalt{background:var(--road-bg);color:var(--road-tx)}
+.tag.gemengd{background:var(--mix-bg);color:var(--mix-tx)}
+.tag.onverhard{background:var(--dirt-bg);color:var(--dirt-tx)}
+.tag.bike{background:transparent;border:1px solid #cfc6b2;color:#6b6250}
+.tag.fmt{background:#f1eee6;color:#6b6250;border:none}
+.tag.fmt.sup{background:#f3e8f9;color:#7c3aad}
+.cardE .note{font-size:12.8px;color:#5d5546;line-height:1.45}
+.cardE .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed var(--line)}
+.cardE .foot a{color:var(--accent);font-weight:600;font-size:13px;text-decoration:none}
+.cardE .foot a:hover{text-decoration:underline}
+.pastlabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b8577}
+.tbc{font-size:10.5px;color:#b0672e;font-weight:600;display:block;margin-top:2px}
+
+.empty{text-align:center;padding:70px 20px;color:var(--muted)}
+.empty b{font-family:'Arial Narrow','Avenir Next Condensed','Segoe UI',Arial,sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:.06em;display:block;margin-bottom:6px;color:var(--ink)}
+
+/* ── Footer ───────────────────────── */
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--muted);line-height:1.7}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:640px){
+  .hero{padding:34px 22px 26px}
+  .fgroup .flabel{width:100%}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+<style>html,body{overflow-x:clip;max-width:100vw}</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <svg class="route" width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M-20 260 C 80 240, 90 120, 180 140 S 300 250, 360 160 S 420 40, 470 60" stroke="#d9530f" stroke-width="2.5" stroke-dasharray="7 8" opacity=".55"/>
+    <path d="M-20 290 C 100 280, 120 170, 210 180 S 320 280, 400 190" stroke="#f5efe2" stroke-width="1.5" stroke-dasharray="3 9" opacity=".25"/>
+    <circle cx="180" cy="140" r="5" fill="#d9530f"/>
+    <circle cx="360" cy="160" r="5" fill="#f5efe2" opacity=".6"/>
+  </svg>
+  <div class="kicker">Ultrafietsen · kalender 2026–2027</div>
+  <h1>Ultra <em>Eventkiezer</em></h1>
+  <p class="sub">Vind jouw volgende ultra: filter op datum, werelddeel, land, afstand, ondergrond en type fiets. Van 460 km Tuscany Trail tot 7.400 km Northcape–Tarifa.</p>
+  <div class="stats">
+    <div class="stat"><b id="st-ev">–</b><span>events</span></div>
+    <div class="stat"><b id="st-land">–</b><span>landen</span></div>
+    <div class="stat"><b id="st-cont">–</b><span>werelddelen</span></div>
+    <div class="stat"><b id="st-km">–</b><span>km totaal</span></div>
+  </div>
+</header>
+
+<section class="panel" aria-label="Filters">
+  <div class="controls">
+    <input type="search" id="q" placeholder="Zoek op naam, plaats of land…">
+    <select id="land"><option value="">Alle landen</option></select>
+    <select id="sort">
+      <option value="datum">Sorteer: datum</option>
+      <option value="km-op">Afstand ↑</option>
+      <option value="km-af">Afstand ↓</option>
+      <option value="hm-af">Hoogtemeters ↓</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="future" checked> Alleen aankomend</label>
+    <button class="resetbtn" id="reset">✕ Wis filters</button>
+  </div>
+  <div class="fgroup"><div class="flabel">Maand</div><div class="chips" id="f-maand"></div></div>
+  <div class="fgroup"><div class="flabel">Werelddeel</div><div class="chips" id="f-cont"></div></div>
+  <div class="fgroup"><div class="flabel">Afstand</div><div class="chips" id="f-km"></div></div>
+  <div class="fgroup"><div class="flabel">Ondergrond</div><div class="chips" id="f-surf"></div></div>
+  <div class="fgroup"><div class="flabel">Fiets</div><div class="chips" id="f-bike"></div></div>
+</section>
+
+<div class="resultbar">
+  <div class="count"><b id="n">0</b> <span id="ntxt">events</span></div>
+  <div class="hint">Klik op chips om te filteren · data zijn richtwaarden, check altijd de officiële site</div>
+</div>
+
+<main class="grid" id="grid"></main>
+<div class="empty" id="empty" style="display:none"><b>Geen events gevonden</b>Pas je filters aan of wis alles met ✕.</div>
+
+<footer>
+  <strong>Bronnen:</strong> samengesteld juli 2026 op basis van <a href="https://ozogan.eu/bikepacking-races-2026/" target="_blank" rel="noopener">ozogan.eu</a>, <a href="https://dotwatcher.cc/events" target="_blank" rel="noopener">DotWatcher.cc</a>, <a href="https://www.cyclenoid.com/cycling-calendar-ultra-bikepacking-2026.html" target="_blank" rel="noopener">Cyclenoid</a> en de officiële eventwebsites.<br>
+  Afstanden en hoogtemeters zijn richtwaarden van de organisaties; data en routes kunnen wijzigen. Events gemarkeerd met “datum onder voorbehoud” zijn nog niet definitief bevestigd. Self-supported = zelfvoorzienend zonder hulp van buitenaf; supported = met volgauto/team.
+</footer>
+
+</div>
+
+<script>
+/* n=naam u=url d=startdatum tbc=datum onder voorbehoud city=start/route cc=landcode
+   land, cont=werelddeel, km, hm (null=onbekend), surf: asfalt|gemengd|onverhard,
+   bike:[race|gravel|mtb], fmt: self|sup|tour|rally|brevet|stage */
+const EVENTS=[
+{n:"Tour Te Waipounamu",u:"https://www.tourtewaipounamu.co.nz/",d:"2026-01-25",city:"Pūponga → Slope Point (Zuidereiland)",cc:"NZ",land:"Nieuw-Zeeland",cont:"Oceanië",km:1300,hm:null,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Ruige traverse van Nieuw-Zeelands Zuidereiland, inclusief flinke stukken hike-a-bike. Deelname via ballot."},
+{n:"GranGuanche Audax Road",u:"https://granguanche.com/audax/",d:"2026-01-25",city:"Lanzarote → El Hierro (Canarische Eilanden)",cc:"ES",land:"Spanje",cont:"Europa",km:650,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Eilandhoppen over vijf Canarische eilanden, veerboten inbegrepen. Ideale winterultra."},
+{n:"Race Around Rwanda",u:"https://racearoundrwanda.com/",d:"2026-02-01",city:"Kigali (ronde door Rwanda)",cc:"RW",land:"Rwanda",cont:"Afrika",km:1000,hm:17000,surf:"gemengd",bike:["gravel"],fmt:"self",note:"Gravel en asfalt door het land van duizend heuvels."},
+{n:"Atlas Mountain Race",u:"https://www.themountainraces.cc/atlas-mountain-race",d:"2026-02-06",city:"Marrakesh → Essaouira",cc:"MA",land:"Marokko",cont:"Afrika",km:1300,hm:25000,surf:"onverhard",bike:["mtb","gravel"],fmt:"self",note:"IJskoude nachten, gloeiende dagen: dé winterklassieker door de Atlas en Anti-Atlas."},
+{n:"Transcordilleras",u:"https://transcordilleras.cc/",d:"2026-02-22",city:"Choachí, Colombiaanse Andes",cc:"CO",land:"Colombia",cont:"Zuid-Amerika",km:965,hm:18000,surf:"onverhard",bike:["gravel"],fmt:"stage",note:"Acht etappes bikepacking over de drie cordilleras van de Colombiaanse Andes."},
+{n:"Indian Pacific Wheel Ride",u:"https://www.indianpacificwheelrace.com/",d:"2026-03-21",city:"Fremantle → Sydney",cc:"AU",land:"Australië",cont:"Oceanië",km:5500,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Dwars over het Australische continent, inclusief de beruchte kale Nullarbor-vlakte."},
+{n:"GranGuanche Audax Gravel",u:"https://granguanche.com/audax/",d:"2026-03-22",city:"Lanzarote → El Hierro (Canarische Eilanden)",cc:"ES",land:"Spanje",cont:"Europa",km:800,hm:null,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Gravelversie van het eilandhoppen: vulkanische trails, vijf eilanden, veerboten."},
+{n:"Borderline 700",u:"https://borderline700.com/",d:"2026-04-03",city:"Nederland (grensroute)",cc:"NL",land:"Nederland",cont:"Europa",km:700,hm:5000,surf:"asfalt",bike:["race"],fmt:"self",note:"Zelfvoorzienende race langs de Nederlandse grensstreek — verrassend veel hoogtemeters."},
+{n:"The Two Volcano Sprint",u:"https://www.twovolcanosprint.com/",d:"2026-04-26",city:"Zuid-Italië (Etna ↔ Vesuvius)",cc:"IT",land:"Italië",cont:"Europa",km:1100,hm:24000,surf:"asfalt",bike:["race"],fmt:"self",note:"Van vulkaan naar vulkaan: kort, steil en venijnig door Zuid-Italië."},
+{n:"Race Across Italy",u:"https://raceacrossitaly.com/",d:"2026-04-30",city:"Silvi (kust-tot-kust)",cc:"IT",land:"Italië",cont:"Europa",km:775,hm:null,surf:"asfalt",bike:["race"],fmt:"sup",note:"Non-stop kust-tot-kust met volgauto; ook 300 km-variant. Klassieker in het supported ultrarijden."},
+{n:"Italy Divide",u:"https://www.italydivide.it/",d:"2026-04-30",city:"Napels → Gardameer",cc:"IT",land:"Italië",cont:"Europa",km:1250,hm:22000,surf:"gemengd",bike:["gravel","mtb"],fmt:"self",note:"Drie varianten (700, 1.250 of 1.650 km) van zuid naar noord: trails, gravel en heel veel Italië."},
+{n:"Graval Road",u:"https://graval.cc/graval-road/",d:"2026-05-01",city:"Spanje",cc:"ES",land:"Spanje",cont:"Europa",km:600,hm:11000,surf:"asfalt",bike:["race"],fmt:"self",note:"Compacte Spaanse road-ultra: 600 km met 11.000 hoogtemeters."},
+{n:"Montenegro Mountain Madness",u:"https://montenegromountainmadness.com/",d:"2026-05-01",city:"Montenegro",cc:"ME",land:"Montenegro",cont:"Europa",km:700,hm:16000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Klein land, groot lijden: bergtrails door de Dinarische Alpen."},
+{n:"May Divide",u:"https://bike-paradise.cz/",d:"2026-05-01",city:"Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:850,hm:13000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"MTB-bikepacking door Tsjechische bossen en heuvelruggen."},
+{n:"Race around the Netherlands",u:"https://www.adventurebikeracing.com/ratn/",d:"2026-05-02",city:"Amerongen (ronde van NL)",cc:"NL",land:"Nederland",cont:"Europa",km:1950,hm:7000,surf:"gemengd",bike:["race","gravel"],fmt:"self",note:"Hét Nederlandse ultra-avontuur: 1.950 km langs de randen van het land, met gravelstroken."},
+{n:"Highland Trail 550",u:"https://highlandtrail550.weebly.com/",d:"2026-05-09",city:"Tyndrum, Schotland",cc:"GB",land:"Verenigd Koninkrijk",cont:"Europa",km:550,hm:16000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"De Schotse Hooglanden op hun rauwst; cult-klassieker zonder inschrijfgeld."},
+{n:"Race Through Slovakia",u:"https://rtsk.cc/",d:"2026-05-09",city:"Slowakije",cc:"SK",land:"Slowakije",cont:"Europa",km:1000,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Road-ultra dwars door Slowakije."},
+{n:"The Accursed Race",u:"https://www.lostdot.cc/race-brand/the-accursed-race",d:"2026-05-12",city:"Shkodër (Balkanronde)",cc:"AL",land:"Albanië",cont:"Europa",km:1600,hm:null,surf:"onverhard",bike:["mtb","gravel"],fmt:"self",note:"Off-road epos van Lost Dot door de Vervloekte Bergen en meerdere Balkanlanden."},
+{n:"Seven Serpents · Quick Bite!",u:"https://www.seven-serpents.com/",d:"2026-05-17",city:"Slovenië",cc:"SI",land:"Slovenië",cont:"Europa",km:500,hm:10000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Instapversie van Seven Serpents: 500 km Sloveens-Kroatische gravel."},
+{n:"Tuscany Trail",u:"https://www.tuscanytrail.it/",d:"2026-05-20",city:"Campiglia Marittima, Toscane",cc:"IT",land:"Italië",cont:"Europa",km:460,hm:null,surf:"onverhard",bike:["gravel","mtb"],fmt:"tour",note:"Het grootste bikepacking-event ter wereld: geen race, wél duizenden deelnemers en strade bianche."},
+{n:"Utrecht Ultra",u:"https://utrechtultra.com/",d:"2026-05-23",city:"Utrecht",cc:"NL",land:"Nederland",cont:"Europa",km:1000,hm:6000,surf:"asfalt",bike:["race"],fmt:"self",note:"1.000 km vanuit Utrecht de grens over en terug; snelle, sociale Nederlandse ultrascene."},
+{n:"Hellenic Mountain Race",u:"https://www.themountainraces.cc/hellenic-mountain-race",d:"2026-05-23",city:"Agios Athanasios, Pindos",cc:"GR",land:"Griekenland",cont:"Europa",km:870,hm:27000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Zusje van Atlas & Silk Road, door het Griekse Pindosgebergte."},
+{n:"Race Through Poland",u:"https://racethroughpoland.pl/",d:"2026-05-23",city:"Polen",cc:"PL",land:"Polen",cont:"Europa",km:1800,hm:27000,surf:"asfalt",bike:["race"],fmt:"self",note:"1.800 km road tussen Oostzee en Tatra."},
+{n:"Unbound XL",u:"https://www.unboundgravel.com/",d:"2026-05-29",city:"Emporia, Kansas",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:560,hm:null,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Nachtstart in de Flint Hills: de ultra-versie van 's werelds bekendste gravelrace."},
+{n:"Trans Balkan Race",u:"https://www.transbalkanrace.com/",d:"2026-05-29",city:"Slovenië (Balkantraverse)",cc:"SI",land:"Slovenië",cont:"Europa",km:1400,hm:30000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"MTB-traverse over de ruggengraat van de Dinarische Alpen."},
+{n:"Moravia Divide",u:"https://ultrabikers.eu/",d:"2026-05-29",city:"Moravië, Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:800,hm:13000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Off-road bikepacking door Moravië."},
+{n:"Lost Ride",u:"https://lost-ride.cz/",d:"2026-06-02",city:"Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:750,hm:20000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Technisch en steil: veel hoogtemeters per kilometer."},
+{n:"Trans Am Bike Nonstop",u:"https://rideyrbike.com/TABNS2026",d:"2026-06-07",city:"Astoria (OR) → Yorktown (VA)",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:6800,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"De TransAmerica-route non-stop van west naar oost; opvolger van de Trans Am Bike Race."},
+{n:"Seven Serpents",u:"https://www.seven-serpents.com/",d:"2026-06-07",city:"Slovenië → Kroatië",cc:"SI",land:"Slovenië",cont:"Europa",km:1000,hm:18000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Zeven bergruggen tussen de Alpen en de Adriatische Zee."},
+{n:"Hydra Epic",u:"https://hydra.epas.cc/",d:"2026-06-08",city:"Polen",cc:"PL",land:"Polen",cont:"Europa",km:1800,hm:15000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Lange off-road lus door Polen."},
+{n:"Toulání Šumavou",u:"https://www.toulanisumavou.cz/",d:"2026-06-09",city:"Šumava (Boheemse Woud)",cc:"CZ",land:"Tsjechië",cont:"Europa",km:850,hm:null,surf:"onverhard",bike:["mtb"],fmt:"self",note:"550 of 850 km dwalen door het Boheemse Woud."},
+{n:"Ultralajkonik",u:"https://ultralajkonik.pl/",d:"2026-06-12",city:"Krakau",cc:"PL",land:"Polen",cont:"Europa",km:1000,hm:25000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Gravel-ultra vanuit Krakau; ook een 500 km-versie."},
+{n:"Tour Divide",u:"https://tourdivide.org/",d:"2026-06-12",city:"Banff → Antelope Wells",cc:"CA",land:"Canada",cont:"Noord-Amerika",km:4400,hm:61000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Hét halo-event van bikepacking: de Great Divide van Canada naar de Mexicaanse grens."},
+{n:"Hope 1000",u:"https://www.hope1000.ch/",d:"2026-06-13",city:"Romanshorn → Montreux",cc:"CH",land:"Zwitserland",cont:"Europa",km:1000,hm:31000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Zwitserland van oost naar west, over alpenweiden en bergpassen."},
+{n:"Taunus Bikepacking",u:"https://taunus-bikepacking.com/",d:"2026-06-14",city:"Taunus, Duitsland",cc:"DE",land:"Duitsland",cont:"Europa",km:1000,hm:20000,surf:"gemengd",bike:["gravel"],fmt:"self",note:"Grote lus door de Taunus en omstreken; gemoedelijke Duitse bikepacking-scene."},
+{n:"Race Across America (RAAM)",u:"https://www.raceacrossamerica.org/",d:"2026-06-16",city:"Oceanside → Atlantic City",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:4800,hm:53000,surf:"asfalt",bike:["race"],fmt:"sup",note:"De legende: non-stop met volgteam, 3.000 mijl door 13 staten. Teams starten 20 juni."},
+{n:"Race Across France",u:"https://www.raceacrossseries.com/",d:"2026-06-18",city:"Mandelieu-la-Napoule",cc:"FR",land:"Frankrijk",cont:"Europa",km:2600,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Groot ultrafestival met afstanden van 300 tot 2.600 km."},
+{n:"Northcape–Tarifa",u:"https://www.northcape-tarifa.com/",d:"2026-06-19",city:"Noordkaap → Tarifa",cc:"NO",land:"Noorwegen",cont:"Europa",km:7400,hm:80000,surf:"asfalt",bike:["race"],fmt:"self",note:"Van de kop van Europa naar het zuidpuntje; ook 1.700, 4.000 en 5.300 km-varianten."},
+{n:"Styrkeprøven",u:"https://styrkeproven.no/",d:"2026-06-20",city:"Trondheim → Oslo",cc:"NO",land:"Noorwegen",cont:"Europa",km:540,hm:null,surf:"asfalt",bike:["race"],fmt:"tour",note:"Noorse klassieker sinds 1967: 540 km in één ruk naar Oslo."},
+{n:"Monaco di Baviera Classic",u:"https://ultracyclingchallenges.com/monaco-di-baviera-classic",d:"2026-06-20",city:"München (semi-vrije route)",cc:"DE",land:"Duitsland",cont:"Europa",km:1300,hm:23550,surf:"asfalt",bike:["race"],fmt:"self",note:"Semi-vrije route langs 20 alpenpassen; Lite-versie (840 km) start 4 juni."},
+{n:"BC Epic 1000",u:"https://www.bcepic1000.com/",d:"2026-06-27",city:"Merritt → Fernie (British Columbia)",cc:"CA",land:"Canada",cont:"Noord-Amerika",km:1000,hm:null,surf:"onverhard",bike:["mtb","gravel"],fmt:"self",note:"Brits-Columbia via oude spoorpaden en trails."},
+{n:"Race Around Poland",u:"https://racearoundpoland.pl/",d:"2026-06-27",city:"Ronde van Polen",cc:"PL",land:"Polen",cont:"Europa",km:3600,hm:33000,surf:"asfalt",bike:["race"],fmt:"self",note:"Grote ronde van Polen; met unsupported én supported categorieën."},
+{n:"Three Peaks Bike Race",u:"https://www.adventurebikeracing.com/threepeaksbikerace/",d:"2026-07-04",city:"Wenen → finish aan zee",cc:"AT",land:"Oostenrijk",cont:"Europa",km:2300,hm:30000,surf:"asfalt",bike:["race"],fmt:"self",note:"Vrije routekeuze langs drie iconische checkpoints richting het zuiden."},
+{n:"Vistula 1200",u:"https://wisla1200.pl/",d:"2026-07-04",city:"Langs de Wisła, Polen",cc:"PL",land:"Polen",cont:"Europa",km:1200,hm:null,surf:"onverhard",bike:["gravel"],fmt:"self",note:"De Wisła volgen van de bergen naar de zee."},
+{n:"The Bright Midnight",u:"https://brightmidnight.cc/",d:"2026-07-04",city:"Lofoten, Noorwegen",cc:"NO",land:"Noorwegen",cont:"Europa",km:1100,hm:20000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Gravel onder de middernachtzon, boven de poolcirkel."},
+{n:"1000 Miles Adventure",u:"https://www.1000miles.cz/en",d:"2026-07-05",city:"Slowakije → Tsjechië",cc:"SK",land:"Slowakije",cont:"Europa",km:1600,hm:36000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Dwars door Slowakije en Tsjechië; kies de North- of South-route."},
+{n:"Race Across Czechia",u:"https://ultrabikers.eu/",d:"2026-07-09",city:"Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:1100,hm:13000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Gravel door heel Tsjechië; ook 800 km-variant."},
+{n:"Pan Celtic Ultra",u:"https://www.pancelticrace.com/",d:"2026-07-12",city:"Conwy, Wales",cc:"GB",land:"Verenigd Koninkrijk",cont:"Europa",km:2300,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Keltische kusten en cols; route ±2.300 km, wisselt per editie."},
+{n:"Transcontinental Race No12",u:"https://www.lostdot.cc/race/tcrno12",d:"2026-07-19",city:"Trondheim → Kalamata",cc:"NO",land:"Noorwegen",cont:"Europa",km:5000,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Dé klassieker onder de road-ultra's: vrije route van Noorwegen naar Griekenland, ±5.000 km."},
+{n:"NorthCape4000",u:"https://www.northcape4000.com/",d:"2026-07-25",city:"Rovereto → Noordkaap",cc:"IT",land:"Italië",cont:"Europa",km:4000,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"Van Italië naar de Noordkaap over een vaste route; groot internationaal deelnemersveld."},
+{n:"Basajaun",u:"https://www.transiberica.club/basajaun/",d:"2026-07-26",city:"Vitoria-Gasteiz, Baskenland",cc:"ES",land:"Spanje",cont:"Europa",km:780,hm:15000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Baskische bossen, Pyreneeën-uitlopers en de halfwoestijn van de Bardenas."},
+{n:"Slovakia Divide",u:"https://classic.slovakiadivide.sk/",d:"2026-08-01",city:"Slowakije",cc:"SK",land:"Slowakije",cont:"Europa",km:650,hm:15000,surf:"onverhard",bike:["mtb","gravel"],fmt:"self",note:"Classic 650, Gravel 790 of Hardline 950 km (start 31 juli)."},
+{n:"Utrecht Ultra XL",u:"https://utrechtultra.com/utrechtultraxl/",d:"2026-08-01",city:"Utrecht",cc:"NL",land:"Nederland",cont:"Europa",km:1000,hm:14000,surf:"asfalt",bike:["race"],fmt:"self",note:"XL-editie met fors meer klimwerk richting Ardennen en Eifel."},
+{n:"Mother North",u:"https://www.mother-north.com/",d:"2026-08-02",city:"Noorwegen",cc:"NO",land:"Noorwegen",cont:"Europa",km:1100,hm:18000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Fjorden, hoogvlakten en eindeloze Noorse gravel."},
+{n:"Colorado Trail Race",u:"https://bikepacking.com/event/2026-colorado-trail-race-ctr/",d:"2026-08-02",city:"Waterton Canyon → Durango",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:850,hm:21000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Singletrack-monster op grote hoogte langs de Colorado Trail."},
+{n:"Carpatia Divide",u:"https://kolarstwoprzygodowe.pl/en/carpatia-divide-2/",d:"2026-08-08",city:"Poolse Karpaten",cc:"PL",land:"Polen",cont:"Europa",km:600,hm:20000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"600 km met 20.000 hoogtemeters — steiler wordt het zelden."},
+{n:"Race Around Austria",u:"https://www.racearoundaustria.at/",d:"2026-08-12",tbc:true,city:"St. Georgen im Attergau (ronde van Oostenrijk)",cc:"AT",land:"Oostenrijk",cont:"Europa",km:2200,hm:30000,surf:"asfalt",bike:["race"],fmt:"sup",note:"Supported ronde van Oostenrijk; de Challenge-versie (560 km) start 10 augustus."},
+{n:"West Carpathian Challenge",u:"https://westcarpathianchallenge.sk/",d:"2026-08-12",city:"Slowakije",cc:"SK",land:"Slowakije",cont:"Europa",km:600,hm:13500,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Compact maar taai: de West-Karpaten off-road."},
+{n:"Silk Road Mountain Race",u:"https://www.themountainraces.cc/silk-road-mountain-race",d:"2026-08-14",city:"Kirgizië",cc:"KG",land:"Kirgizië",cont:"Azië",km:1900,hm:28000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Het zwaarste dat bikepacking te bieden heeft: hooggebergte, rivierdoorwadingen en yurtkampen."},
+{n:"GBDURO",u:"https://www.theracingcollective.com/gbduro.html",d:"2026-08-15",city:"Land's End → John o' Groats",cc:"GB",land:"Verenigd Koninkrijk",cont:"Europa",km:2000,hm:null,surf:"gemengd",bike:["gravel"],fmt:"stage",note:"In vier etappes off-road door Groot-Brittannië; inschrijving via loting."},
+{n:"Polska 3200",u:"https://www.polishbiketour.pl/",d:"2026-08-15",city:"Gliwice (ronde van Polen)",cc:"PL",land:"Polen",cont:"Europa",km:3200,hm:30000,surf:"gemengd",bike:["gravel"],fmt:"self",note:"Enorme gravelronde van Polen."},
+{n:"Kõkõva",u:"https://www.panepanepane.ee/k6k6va",d:"2026-08-15",city:"Zuid-Estland",cc:"EE",land:"Estland",cont:"Europa",km:900,hm:3300,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Vlak, snel en bosrijk Baltisch gravelen; ook 500 km-versie."},
+{n:"Alaska Divide",u:"https://alaskadivide.com/",d:"2026-08-16",city:"Alaska",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:1700,hm:17700,surf:"onverhard",bike:["gravel","mtb"],fmt:"self",note:"Wildernisultra door Alaska — beren inbegrepen."},
+{n:"Trendy Lakes Challenge",u:"https://ultrabikers.eu/",d:"2026-08-20",city:"Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:1100,hm:16000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"850 of 1.100 km langs Tsjechische meren."},
+{n:"Around the Republic",u:"https://www.okolorepubliky.cz/en/",d:"2026-08-22",city:"Ronde van Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:1500,hm:null,surf:"asfalt",bike:["race"],fmt:"self",note:"850 of 1.500 km rond de Tsjechische Republiek."},
+{n:"Sneak Peaks",u:"https://www.orbit360.cc/sneak-peaks",d:"2026-08-26",city:"Italiaanse Alpen",cc:"IT",land:"Italië",cont:"Europa",km:1100,hm:40000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Orbit360-serie: Adventure 1.100, Classic 800 of Entree 500 km. Hoogtemeters in overvloed."},
+{n:"Badlands",u:"https://badlands.cc/",d:"2026-08-30",city:"Granada, Andalusië",cc:"ES",land:"Spanje",cont:"Europa",km:800,hm:16000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Europa's populairste gravel-ultra: woestijn van Gorafe, Cabo de Gata en de Sierra Nevada."},
+{n:"Torino–Nice Rally",u:"https://torino-nice.weebly.com/",d:"2026-09-01",tbc:true,city:"Turijn → Nice",cc:"IT",land:"Italië",cont:"Europa",km:700,hm:null,surf:"gemengd",bike:["gravel"],fmt:"rally",note:"Geen race maar een rally over legendarische gravelpassen; in 2026 geen officiële editie, route vrij te rijden."},
+{n:"Alps Divide",u:"https://alpsdivide.com/",d:"2026-09-05",city:"Franse Alpen",cc:"FR",land:"Frankrijk",cont:"Europa",km:1050,hm:32000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Door de Franse Alpen van meer naar zee."},
+{n:"Bohemian Border Bash Race",u:"https://www.borderbash.cc/",d:"2026-09-05",city:"Ronde van Bohemen",cc:"CZ",land:"Tsjechië",cont:"Europa",km:1300,hm:22000,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Langs de grenzen van Bohemen; ruig, bosrijk en verrassend zwaar."},
+{n:"2-Continents Adventure",u:"https://2-continents.com/",d:"2026-09-20",city:"Spanje → Marokko",cc:"ES",land:"Spanje",cont:"Europa",km:4000,hm:52000,surf:"gemengd",bike:["gravel","race"],fmt:"self",note:"Twee continenten in één race; gravel- (4.000 km) en road-variant (4.250 km)."},
+{n:"Trans Pyrenees Race No6",u:"https://www.lostdot.cc/tpr",d:"2026-09-25",city:"Pyreneeën, coast-to-coast",cc:"FR",land:"Frankrijk",cont:"Europa",km:1500,hm:30000,surf:"asfalt",bike:["race"],fmt:"self",note:"Lost Dots herfstrace over de grote Pyreneeëncols; ±1.500 km."},
+{n:"Bohemia Divide",u:"https://bohemiadivide.wixsite.com/english",d:"2026-09-26",city:"Tsjechië",cc:"CZ",land:"Tsjechië",cont:"Europa",km:800,hm:16000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Klassieke Tsjechische divide-route."},
+{n:"Iberian Road",u:"https://graval.cc/iberian-road/",d:"2026-10-07",city:"Spanje",cc:"ES",land:"Spanje",cont:"Europa",km:1000,hm:13000,surf:"asfalt",bike:["race"],fmt:"self",note:"Spaanse road-ultra in het naseizoen."},
+{n:"The Rhino Run",u:"https://www.rhino-run.com/",d:"2026-10-12",city:"Windhoek → Graaff-Reinet",cc:"NA",land:"Namibië",cont:"Afrika",km:3050,hm:null,surf:"onverhard",bike:["gravel"],fmt:"self",note:"Van Windhoek door woestijn, winelands en Karoo naar Zuid-Afrika."},
+{n:"HolyLand Challenge",u:"https://holylandmtbchallenge.com/",d:"2026-10-15",city:"Israël, noord → zuid",cc:"IL",land:"Israël",cont:"Azië",km:1450,hm:20000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Van de Golan tot de Rode Zee; ook North- (700) en South-helft (750 km)."},
+{n:"Arizona Trail Race",u:"https://bikepacking.com/event/2026-arizona-trail-race-aztr/",d:"2026-10-15",city:"Mexicaanse grens → Utah",cc:"US",land:"Verenigde Staten",cont:"Noord-Amerika",km:1300,hm:null,surf:"onverhard",bike:["mtb"],fmt:"self",note:"800 mijl AZT inclusief Grand Canyon-doorsteek met de fiets op de rug; ook 300-mijlversie."},
+{n:"Taurus Mountain Race",u:"https://www.themountainraces.cc/taurus-mountain-race",d:"2026-10-16",city:"Taurusgebergte, Turkije",cc:"TR",land:"Turkije",cont:"Azië",km:1400,hm:35000,surf:"onverhard",bike:["mtb"],fmt:"self",note:"Nieuwste telg van The Mountain Races, door het Turkse Taurusgebergte."},
+{n:"Paris–Brest–Paris",u:"https://www.paris-brest-paris.org/",d:"2027-08-15",tbc:true,city:"Rambouillet → Brest → Rambouillet",cc:"FR",land:"Frankrijk",cont:"Europa",km:1200,hm:12000,surf:"asfalt",bike:["race"],fmt:"brevet",note:"De moeder van alle brevetten, eens per vier jaar; kwalificatie via de BRM-serie. Volgende editie: augustus 2027."},
+{n:"The Japanese Odyssey",u:"https://japanese-odyssey.com/",d:"2027-10-01",tbc:true,city:"Japan",cc:"JP",land:"Japan",cont:"Azië",km:2400,hm:null,surf:"gemengd",bike:["race","gravel"],fmt:"self",note:"Ultra-avontuur door de Japanse bergen; volgende editie in 2027, details volgen."},
+];
+
+const MND=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+const FMT={self:"Self-supported",sup:"Supported",tour:"Toertocht",rally:"Rally",brevet:"Brevet",stage:"In etappes"};
+const BIKE={race:"Race",gravel:"Gravel",mtb:"MTB"};
+const SURF={asfalt:"Asfalt",gemengd:"Gemengd",onverhard:"Onverhard"};
+const KMB=[{id:"a",lbl:"< 750 km",f:e=>e.km<750},{id:"b",lbl:"750 – 1.500 km",f:e=>e.km>=750&&e.km<1500},{id:"c",lbl:"1.500 – 3.000 km",f:e=>e.km>=1500&&e.km<3000},{id:"d",lbl:"> 3.000 km",f:e=>e.km>=3000}];
+const flag=cc=>String.fromCodePoint(...[...cc].map(c=>0x1F1E6+c.charCodeAt(0)-65));
+const nf=n=>n.toLocaleString("nl-NL");
+const TODAY=new Date(); TODAY.setHours(0,0,0,0);
+
+const S={maand:new Set(),cont:new Set(),km:new Set(),surf:new Set(),bike:new Set(),land:"",q:"",future:true,sort:"datum"};
+
+function chiprow(el,items,set,acc){
+  items.forEach(it=>{
+    const b=document.createElement("button");
+    b.className="chip"+(acc?" acc":"");b.textContent=it.lbl;b.dataset.v=it.id;
+    b.onclick=()=>{set.has(it.id)?set.delete(it.id):set.add(it.id);b.classList.toggle("on");apply();};
+    el.appendChild(b);
+  });
+}
+
+function init(){
+  chiprow(document.getElementById("f-maand"),MND.map((m,i)=>({id:String(i),lbl:m})),S.maand,true);
+  const conts=[...new Set(EVENTS.map(e=>e.cont))].sort();
+  chiprow(document.getElementById("f-cont"),conts.map(c=>({id:c,lbl:c})),S.cont);
+  chiprow(document.getElementById("f-km"),KMB.map(k=>({id:k.id,lbl:k.lbl})),S.km);
+  chiprow(document.getElementById("f-surf"),Object.keys(SURF).map(s=>({id:s,lbl:SURF[s]})),S.surf);
+  chiprow(document.getElementById("f-bike"),Object.keys(BIKE).map(b=>({id:b,lbl:BIKE[b]})),S.bike);
+  const lsel=document.getElementById("land");
+  const lands={};EVENTS.forEach(e=>lands[e.land]=(lands[e.land]||0)+1);
+  Object.keys(lands).sort((a,b)=>a.localeCompare(b,"nl")).forEach(l=>{
+    const o=document.createElement("option");o.value=l;o.textContent=`${l} (${lands[l]})`;lsel.appendChild(o);
+  });
+  lsel.onchange=()=>{S.land=lsel.value;apply();};
+  document.getElementById("q").oninput=e=>{S.q=e.target.value.toLowerCase();apply();};
+  document.getElementById("sort").onchange=e=>{S.sort=e.target.value;apply();};
+  document.getElementById("future").onchange=e=>{S.future=e.target.checked;apply();};
+  document.getElementById("reset").onclick=reset;
+  document.getElementById("st-ev").textContent=EVENTS.length;
+  document.getElementById("st-land").textContent=Object.keys(lands).length;
+  document.getElementById("st-cont").textContent=conts.length;
+  document.getElementById("st-km").textContent=nf(EVENTS.reduce((a,e)=>a+e.km,0));
+  apply();
+}
+
+function reset(){
+  ["maand","cont","km","surf","bike"].forEach(k=>S[k].clear());
+  S.land="";S.q="";S.sort="datum";S.future=true;
+  document.querySelectorAll(".chip.on").forEach(c=>c.classList.remove("on"));
+  document.getElementById("q").value="";document.getElementById("land").value="";
+  document.getElementById("sort").value="datum";document.getElementById("future").checked=true;
+  apply();
+}
+
+function pass(e){
+  const dt=new Date(e.d+"T12:00:00");
+  if(S.future&&dt<TODAY)return false;
+  if(S.maand.size&&!S.maand.has(String(dt.getMonth())))return false;
+  if(S.cont.size&&!S.cont.has(e.cont))return false;
+  if(S.km.size&&![...S.km].some(id=>KMB.find(k=>k.id===id).f(e)))return false;
+  if(S.surf.size&&!S.surf.has(e.surf))return false;
+  if(S.bike.size&&!e.bike.some(b=>S.bike.has(b)))return false;
+  if(S.land&&e.land!==S.land)return false;
+  if(S.q){const h=(e.n+" "+e.city+" "+e.land+" "+e.cont+" "+e.note).toLowerCase();if(!h.includes(S.q))return false;}
+  return true;
+}
+
+function card(e){
+  const dt=new Date(e.d+"T12:00:00");
+  const past=dt<TODAY;
+  const y27=dt.getFullYear()>2026;
+  const dlabel=e.tbc?`<b>±</b><span>${MND[dt.getMonth()]} ${String(dt.getFullYear()).slice(2)}</span>`
+    :`<b>${dt.getDate()}</b><span>${MND[dt.getMonth()]} ${String(dt.getFullYear()).slice(2)}</span>`;
+  return `<article class="cardE${past?" past":""}">
+    <div class="toprow">
+      <div class="geo"><span class="fl">${flag(e.cc)}</span>${e.land} · ${e.cont}</div>
+      <div class="datebadge${y27?" y27":""}">${dlabel}</div>
+    </div>
+    <h3>${e.n}</h3>
+    <div class="place">📍 ${e.city}${e.tbc?'<span class="tbc">datum onder voorbehoud</span>':""}</div>
+    <div class="numchips"><span class="numchip">${nf(e.km)} km</span>${e.hm?`<span class="numchip hm">${nf(e.hm)} hm</span>`:""}</div>
+    <div class="tags">
+      <span class="tag ${e.surf}">${SURF[e.surf]}</span>
+      ${e.bike.map(b=>`<span class="tag bike">${BIKE[b]}</span>`).join("")}
+      <span class="tag fmt${e.fmt==="sup"?" sup":""}">${FMT[e.fmt]}</span>
+    </div>
+    <div class="note">${e.note}</div>
+    <div class="foot">
+      <a href="${e.u}" target="_blank" rel="noopener">Naar website ↗</a>
+      ${past?'<span class="pastlabel">Geweest</span>':""}
+    </div>
+  </article>`;
+}
+
+function apply(){
+  let list=EVENTS.filter(pass);
+  const cmp={
+    "datum":(a,b)=>a.d.localeCompare(b.d),
+    "km-op":(a,b)=>a.km-b.km,
+    "km-af":(a,b)=>b.km-a.km,
+    "hm-af":(a,b)=>(b.hm||0)-(a.hm||0)
+  }[S.sort];
+  list.sort(cmp);
+  document.getElementById("grid").innerHTML=list.map(card).join("");
+  document.getElementById("n").textContent=list.length;
+  document.getElementById("ntxt").textContent=(list.length===1?"event":"events")+" van "+EVENTS.length;
+  document.getElementById("empty").style.display=list.length?"none":"block";
+}
+
+init();
+</script>
+</body>
+</html>

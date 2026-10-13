@@ -1,0 +1,540 @@
+/* =========================================================
+   Gravelbike Kiezer — omgezet naar de Gravel Gorilla-huisstijl.
+   Dit bestand wordt gemaakt door .claude/kiezer-importeren.ps1.
+   Pas kleuren liever aan in het blok hieronder dan verderop.
+   ========================================================= */
+:root {
+  --k-vlak2: #EFEBE1;
+  --k-hover: #E6E0D2;
+  --k-oranje-tekst: #B5500F;
+  --k-oranje-lijn: #F2B48F;
+  --k-oranje-vlak: #FFF0E6;
+}
+:root[data-thema="donker"] {
+  --k-vlak2: #262B2E;
+  --k-hover: #2E3438;
+  --k-oranje-tekst: #FF8A50;
+  --k-oranje-lijn: #7A3E22;
+  --k-oranje-vlak: #2C211B;
+}
+/* Geen externe Google Fonts (AVG-vriendelijk) — gebruik systeem-fonts die op alle platforms vergelijkbaar ogen */
+    .gk-scope *, .gk-scope *::before, .gk-scope *::after { margin: 0; padding: 0; }
+
+    .gk-wrap { max-width: 1200px; margin: 0 auto; }
+
+    .gk-header { background: var(--k-vlak2); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.4rem 1.6rem; margin-bottom: 1.25rem; }
+    .gk-title { font-size: 30px; font-weight: 600; color: var(--tekst); margin-bottom: 4px; }
+    .gk-sub { color: var(--tekst-zacht); font-size: 15px; }
+
+    /* AI assistant */
+    .gk-ai { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.25rem 1.4rem; margin-bottom: 1.25rem; transition: padding 0.18s ease; }
+    .gk-ai.collapsed { padding: 0.85rem 1.4rem; margin-bottom: 1rem; }
+    .gk-ai.collapsed .gk-ai-desc,
+    .gk-ai.collapsed .gk-ai-row,
+    .gk-ai.collapsed .gk-ai-ex,
+    .gk-ai.collapsed .gk-ai-answer { display: none !important; }
+    .gk-ai.collapsed .gk-ai-title { margin-bottom: 0; }
+    .gk-ai-title { font-size: 16px; font-weight: 600; color: var(--tekst); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; border-radius: 8px; padding: 4px 6px; margin-left: -6px; margin-right: -6px; transition: background 0.13s ease; }
+    .gk-ai-title:hover { background: var(--k-hover); }
+    .gk-ai-title-text { flex: 1; }
+    .gk-ai-toggle-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--k-oranje-tekst); }
+    .gk-ai-toggle { border: none; background: transparent; color: var(--tekst-zacht); font-size: 20px; line-height: 1; cursor: pointer; padding: 2px 8px; border-radius: 6px; font-weight: 700; pointer-events: none; }
+    .gk-ai-answer { position: relative; }
+    .gk-ai-close { position: absolute; top: 8px; right: 10px; border: none; background: var(--vlak); color: var(--tekst-zacht); font-size: 20px; line-height: 1; cursor: pointer; padding: 2px 9px; border-radius: 6px; font-weight: 700; z-index: 2; }
+    .gk-ai-close:hover { background: var(--k-vlak2); color: var(--tekst); }
+    .gk-ai-desc { font-size: 13px; color: var(--tekst-zacht); margin-bottom: 12px; }
+    .gk-ai-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .gk-ai-input { flex: 1 1 280px; font-family: inherit; font-size: 15px; border: 1px solid var(--lijn); border-radius: 10px; padding: 11px 14px; color: var(--tekst); }
+    .gk-ai-input:focus { outline: none; border-color: var(--actie); box-shadow: 0 0 0 3px rgba(232,123,5,0.12); }
+    .gk-ai-btn { font-size: 15px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 10px; padding: 11px 24px; cursor: pointer; transition: background 0.15s; }
+    .gk-ai-btn:hover { background: var(--actie-hover); }
+    .gk-ai-ex { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .gk-ai-ex-chip { font-size: 12px; background: var(--k-vlak2); border: 1px solid var(--lijn); color: var(--tekst-zacht); border-radius: 20px; padding: 5px 11px; cursor: pointer; }
+    .gk-ai-ex-chip:hover { border-color: var(--actie); color: var(--k-oranje-tekst); }
+    .gk-ai-answer { display: none; margin-top: 14px; background: var(--k-vlak2); border: 1px solid var(--lijn); border-radius: 12px; padding: 1rem 1.1rem; }
+    .gk-ai-text { font-size: 14px; color: var(--tekst); line-height: 1.55; margin-bottom: 10px; }
+    .gk-ai-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 10px; }
+    .gk-ai-card { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .gk-ai-card-h { display: flex; justify-content: space-between; gap: 6px; align-items: baseline; }
+    .gk-ai-card-name { font-weight: 600; font-size: 13px; color: var(--tekst); }
+    .gk-ai-card-price { font-weight: 600; font-size: 13px; color: var(--k-oranje-tekst); white-space: nowrap; }
+    .gk-ai-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .gk-ai-card-spec { font-size: 11.5px; color: var(--tekst-zacht); line-height: 1.4; }
+    .gk-ai-card a { font-size: 12px; color: var(--k-oranje-tekst); text-decoration: none; font-weight: 500; }
+    .gk-ai-card a:hover { text-decoration: underline; }
+    .gk-ai-apply { font-size: 13px; font-weight: 600; color: var(--k-oranje-tekst); background: var(--vlak); border: 1px solid var(--k-oranje-lijn); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+    .gk-ai-apply:hover { background: var(--k-oranje-vlak); }
+    .gk-ai-more { font-size: 13px; color: var(--tekst-zacht); margin-top: 4px; }
+
+    /* Dealer-zoeker (postcode) */
+    .gk-dealer { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.25rem 1.4rem; margin-bottom: 1.25rem; transition: padding 0.18s ease; }
+    .gk-dealer.collapsed { padding: 0.85rem 1.4rem; margin-bottom: 1rem; }
+    .gk-dealer.collapsed .gk-dealer-body { display: none !important; }
+    .gk-dealer.collapsed .gk-dealer-title { margin-bottom: 0; }
+    .gk-dealer-title { font-size: 16px; font-weight: 600; color: var(--tekst); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; border-radius: 8px; padding: 4px 6px; margin-left: -6px; margin-right: -6px; transition: background 0.13s ease; }
+    .gk-dealer-title:hover { background: var(--k-hover); }
+    .gk-dealer-title-text { flex: 1; }
+    .gk-dealer-desc { font-size: 13px; color: var(--tekst-zacht); margin-bottom: 12px; }
+    .gk-dealer-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .gk-dealer-row select, .gk-dealer-row input { font-family: inherit; font-size: 15px; border: 1px solid var(--lijn); border-radius: 10px; padding: 11px 14px; color: var(--tekst); background: var(--vlak); }
+    .gk-dealer-row select { flex: 1 1 210px; cursor: pointer; }
+    .gk-dealer-row input { flex: 1 1 170px; }
+    .gk-dealer-row select:focus, .gk-dealer-row input:focus { outline: none; border-color: var(--actie); box-shadow: 0 0 0 3px rgba(232,123,5,0.12); }
+    .gk-dealer-btn { font-size: 15px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 10px; padding: 11px 24px; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+    .gk-dealer-btn:hover { background: var(--actie-hover); }
+    .gk-dealer-err { display: none; font-size: 13px; color: #b3261e; margin-top: 8px; }
+    .gk-dealer-note { display: none; font-size: 13px; color: var(--tekst-zacht); background: var(--k-vlak2); border: 1px solid var(--lijn); border-radius: 10px; padding: 9px 12px; margin-top: 10px; line-height: 1.5; }
+    .gk-dealer-note a { color: var(--k-oranje-tekst); font-weight: 600; }
+    .gk-dealer-official { display: none; font-size: 13px; margin-top: 10px; }
+    .gk-dealer-official a { color: var(--k-oranje-tekst); font-weight: 600; text-decoration: none; }
+    .gk-dealer-official a:hover { text-decoration: underline; }
+
+    /* Top action bar (between header and filters) */
+    .gk-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1rem 1.4rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .gk-topbar .gk-sort { display: flex; align-items: center; gap: 10px; }
+    .gk-topbar .gk-sort label { font-size: 16px; font-weight: 600; color: var(--tekst-zacht); }
+    .gk-topbar .gk-sort select { font-size: 16px; font-family: inherit; border: 1px solid var(--lijn); border-radius: 10px; padding: 10px 16px; background: var(--vlak); cursor: pointer; color: var(--tekst); font-weight: 500; }
+    .gk-topbar .gk-reset { font-size: 16px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 10px; padding: 11px 22px; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+    .gk-topbar .gk-reset:hover { background: var(--actie-hover); }
+
+    .gk-filters-box { background: var(--vlak); border-radius: 16px; border: 1px solid var(--lijn); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .gk-filters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+    .gk-filter-group { display: flex; flex-direction: column; gap: 8px; }
+    .gk-filter-group.wide-2 { grid-column: span 2; }
+    .gk-filter-group.wide-3 { grid-column: span 3; }
+    @media (max-width: 760px) { .gk-filter-group.wide-2, .gk-filter-group.wide-3 { grid-column: span 1; } }
+    .gk-chips-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; align-items: start; }
+    .gk-chips-2col > .gk-chip[data-val="all"] { grid-column: 1 / -1; justify-self: start; }
+    .gk-chips-col { display: flex; flex-direction: column; gap: 5px; }
+    .gk-chips-subhead { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--k-oranje-tekst); padding-bottom: 2px; border-bottom: 1px solid var(--lijn); margin-bottom: 2px; }
+    .gk-chips-col .gk-chip { text-align: center; }
+    .gk-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--tekst-zacht); display: flex; align-items: center; gap: 5px; }
+
+    /* Uitleg-tooltip (?) en Blog-knop */
+    .gk-help { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--lijn); color: #fff; font-size: 10px; font-weight: 700; cursor: help; position: relative; flex-shrink: 0; outline: none; }
+    .gk-help:hover, .gk-help:focus-visible { background: var(--actie); }
+    .gk-blog { display: inline-flex; align-items: center; gap: 4px; height: 18px; padding: 0 9px; border-radius: 20px; background: var(--k-oranje-vlak); border: 1px solid var(--k-oranje-lijn); color: var(--k-oranje-tekst); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; position: relative; flex-shrink: 0; outline: none; }
+    .gk-blog:hover, .gk-blog:focus-visible { background: var(--actie); border-color: var(--actie); color: #15181A; }
+    .gk-pop { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 9px; width: 250px; max-width: 80vw; display: none; z-index: 80; }
+    .gk-help:hover .gk-pop, .gk-help:focus-within .gk-pop, .gk-blog:hover .gk-pop, .gk-blog:focus-within .gk-pop { display: block; }
+    .gk-pop-box { display: block; background: var(--tekst); color: #fff; border-radius: 9px; padding: 10px 12px; font-size: 12px; font-weight: 400; line-height: 1.5; text-align: left; text-transform: none; letter-spacing: normal; box-shadow: 0 8px 24px rgba(0,0,0,0.32); position: relative; }
+    .gk-pop-box::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: var(--tekst); }
+    .gk-pop-text { display: block; color: #fff; }
+    .gk-pop-title { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--lijn); margin-bottom: 7px; }
+    .gk-pop-link { display: block; color: #ffd591; font-weight: 600; text-decoration: underline; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.12); }
+    .gk-pop-link:first-of-type { border-top: none; }
+    .gk-pop-link:hover { color: #fff; text-decoration: underline; }
+
+    /* Live selectie-paneel (alleen merk + model) */
+    .gk-live { position: fixed; top: 84px; right: 16px; width: 232px; max-height: calc(100vh - 110px); background: var(--vlak); border: 1px solid var(--lijn); border-radius: 14px; box-shadow: 0 8px 28px rgba(80,60,10,0.16); z-index: 60; display: flex; flex-direction: column; overflow: hidden; }
+    .gk-live-head { display: flex; align-items: center; gap: 8px; padding: 11px 14px; background: var(--k-vlak2); border-bottom: 1px solid var(--lijn); cursor: grab; user-select: none; transition: background 0.13s ease; touch-action: none; }
+    .gk-live-head:hover { background: var(--k-hover); }
+    .gk-live-head:active { cursor: grabbing; }
+    .gk-live.dragging { box-shadow: 0 14px 38px rgba(80,60,10,0.28); opacity: 0.97; }
+    .gk-live.dragging .gk-live-head { cursor: grabbing; background: var(--k-hover); }
+    .gk-live-head:focus-visible { outline: 2px solid var(--actie); outline-offset: -2px; }
+    .gk-live-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tekst-zacht); flex: 1; }
+    .gk-live-count { font-size: 12px; font-weight: 700; color: #15181A; background: var(--actie); border-radius: 20px; padding: 2px 9px; }
+    .gk-live-toggle-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--k-oranje-tekst); }
+    .gk-live-toggle { border: none; background: transparent; color: var(--tekst-zacht); font-size: 18px; line-height: 1; cursor: pointer; padding: 0 2px; pointer-events: none; }
+    .gk-live-body { overflow-y: auto; padding: 4px 0; }
+    .gk-live.collapsed { max-height: none; }
+    .gk-live.collapsed .gk-live-body { display: none; }
+    .gk-live-item { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-bottom: 1px solid var(--lijn); text-decoration: none; color: inherit; transition: background 0.13s ease; cursor: pointer; }
+    .gk-live-item:last-child { border-bottom: none; }
+    .gk-live-item:hover { background: var(--k-hover); }
+    .gk-live-item:hover .gk-live-brand { color: var(--k-oranje-tekst); }
+    .gk-live-item:focus-visible { outline: 2px solid var(--actie); outline-offset: -2px; }
+    .gk-live-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .gk-live-brand { font-size: 13px; font-weight: 600; color: var(--tekst); }
+    .gk-live-brand .gk-live-e { color: var(--k-oranje-tekst); font-size: 11px; }
+    .gk-live-model { font-size: 12px; color: var(--tekst-zacht); line-height: 1.3; }
+    .gk-live-arrow { width: 14px; height: 14px; flex-shrink: 0; color: var(--tekst-zacht); transition: color 0.13s ease; }
+    .gk-live-item:hover .gk-live-arrow { color: var(--actie); }
+    .gk-live-empty { padding: 18px 14px; font-size: 13px; color: var(--tekst-zacht); text-align: center; }
+    /* Tablet: smaller width, blijft zichtbaar maar klein zodat het niet in de weg zit */
+    @media (max-width: 1180px) and (min-width: 700px) {
+      .gk-live { width: 190px; top: 70px; right: 10px; max-height: calc(100vh - 90px); }
+      .gk-live.collapsed { width: auto; min-width: 170px; }
+      .gk-live-head { padding: 9px 12px; }
+      .gk-live-title { font-size: 11px; }
+    }
+    @media (max-width: 699px) { .gk-live { display: none; } }
+
+    .gk-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .gk-chip { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--lijn); background: var(--vlak); color: var(--tekst); font-size: 13px; font-family: inherit; cursor: pointer; transition: all 0.15s ease; user-select: none; }
+    .gk-chip:hover { border-color: var(--actie); color: var(--k-oranje-tekst); }
+    .gk-chip:focus-visible { outline: 2px solid var(--actie); outline-offset: 2px; }
+    .gk-chip.active { background: var(--actie); border-color: var(--actie); color: #15181A; }
+    .gk-multi-hint { font-size: 10px; color: var(--tekst-zacht); font-style: italic; margin-top: -2px; }
+
+    /* Vergelijkknop + AI-overzicht (onder het filterblok) */
+    .gk-compare { margin: -0.5rem 0 1.5rem; }
+    .gk-compare-btn { display: block; width: 100%; font-family: inherit; font-size: 16px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 12px; padding: 13px 24px; cursor: pointer; transition: background 0.15s; }
+    .gk-compare-btn:hover { background: var(--actie-hover); }
+    .gk-compare-btn.open { background: var(--k-oranje-tekst); border-radius: 12px 12px 0 0; }
+    .gk-compare-panel { display: none; background: var(--k-vlak2); border: 1px solid var(--lijn); border-top: none; border-radius: 0 0 12px 12px; padding: 1.1rem 1.25rem; }
+    .gk-cmp-head { font-size: 15px; font-weight: 600; color: var(--tekst); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .gk-cmp-count { font-size: 12px; font-weight: 700; color: #15181A; background: var(--actie); border-radius: 20px; padding: 2px 9px; }
+    .gk-cmp-intro { font-size: 14px; color: var(--tekst); line-height: 1.6; margin-bottom: 6px; }
+    .gk-cmp-sec { font-size: 13.5px; color: var(--tekst); line-height: 1.65; padding: 8px 0; border-top: 1px solid var(--lijn); }
+    .gk-cmp-t { color: var(--tekst); }
+    .gk-cmp-bikes-title { font-size: 14px; font-weight: 600; color: var(--tekst); margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--lijn); }
+    .gk-cmp-bike { font-size: 13.5px; color: var(--tekst); line-height: 1.6; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 10px; padding: 8px 12px; margin-top: 8px; }
+    .gk-cmp-bike em { font-style: normal; font-weight: 600; color: var(--k-oranje-tekst); }
+    .gk-cmp-tip { font-size: 12.5px; color: var(--k-oranje-tekst); background: var(--k-oranje-vlak); border: 1px solid var(--k-oranje-lijn); border-radius: 8px; padding: 8px 11px; margin-top: 12px; }
+    .gk-cmp-foot { font-size: 11.5px; color: var(--tekst-zacht); margin-top: 12px; }
+    .gk-cmp-empty { font-size: 14px; color: var(--tekst-zacht); }
+    .gk-cmp-loading { font-size: 14px; color: var(--tekst-zacht); padding: 4px 0; animation: gkCmpPulse 1.1s ease-in-out infinite; }
+    @keyframes gkCmpPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+    .gk-count { font-size: 14px; color: var(--tekst-zacht); margin-bottom: 10px; display: block; }
+
+    .gk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+
+    .gk-card { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.25rem; transition: box-shadow 0.2s, border-color 0.2s; display: flex; flex-direction: column; gap: 10px; }
+    .gk-thumb { height: 128px; display: flex; align-items: center; justify-content: center; background: var(--vlak); border-bottom: 1px solid var(--k-vlak2); padding-bottom: 10px; }
+    .gk-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .gk-thumb-fb { display: none; flex-direction: column; align-items: center; gap: 4px; color: var(--tekst-zacht); font-size: 12px; }
+    .gk-thumb-fb .e { font-size: 30px; line-height: 1; }
+    .gk-thumb.fb img { display: none; }
+    .gk-thumb.fb .gk-thumb-fb { display: flex; }
+    .gk-card:hover { border-color: var(--actie); box-shadow: 0 4px 18px rgba(140,90,10,0.10); }
+    .gk-card.ebike { border-color: var(--k-oranje-lijn); background: var(--vlak); }
+    .gk-card.ebike:hover { border-color: var(--actie); }
+
+    .gk-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .gk-brand { font-weight: 600; font-size: 16px; color: var(--tekst); }
+    .gk-model { font-size: 13px; color: var(--tekst-zacht); margin-top: 2px; line-height: 1.3; }
+    .gk-right { text-align: right; flex-shrink: 0; }
+    .gk-price-tag { font-size: 15px; font-weight: 600; color: var(--k-oranje-tekst); }
+    .gk-region-dot { font-size: 11px; color: var(--tekst-zacht); margin-top: 2px; }
+
+    .gk-geo-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 5px; }
+    .gk-geo-race { background: #EEEDFE; color: #3C3489; }
+    .gk-geo-adventure { background: #E1F5EE; color: #085041; }
+    .gk-geo-allroad { background: #FAEEDA; color: #633806; }
+    .gk-geo-endurance { background: #FAECE7; color: #712B13; }
+    .gk-geo-touring { background: #E6F1FB; color: #0C447C; }
+
+    .gk-geo-desc { font-size: 12.5px; color: var(--tekst); line-height: 1.5; }
+
+    .gk-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+    .gk-badge { font-size: 11px; padding: 3px 9px; border-radius: 5px; font-weight: 600; }
+    .gk-badge.carbon-frame  { background: #EEEDFE; color: #3C3489; }
+    .gk-badge.alu-frame     { background: #E6F1FB; color: #0C447C; }
+    .gk-badge.ti-frame      { background: #F1EFE8; color: #2C2C2A; }
+    .gk-badge.steel-frame   { background: #D3D1C7; color: #2C2C2A; }
+    .gk-badge.carbon-wheels { background: #E1F5EE; color: #085041; }
+    .gk-badge.alu-wheels    { background: #EAF3DE; color: #27500A; }
+    .gk-badge.shimano       { background: #F1EFE8; color: #444441; }
+    .gk-badge.sram          { background: #FAEEDA; color: #633806; }
+    .gk-badge.campagnolo    { background: #FCEBEB; color: #501313; }
+    .gk-badge.microshift    { background: #D3D1C7; color: #2C2C2A; }
+    .gk-badge.electronic    { background: #FBEAF0; color: #72243E; }
+    .gk-badge.mechanical    { background: #F1EFE8; color: #3B6D11; }
+    .gk-badge.integrated    { background: #FAECE7; color: #712B13; }
+    .gk-badge.ebike         { background: #FFE9B0; color: #7A4E00; }
+
+    .gk-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px; font-size: 12px; border-top: 1px solid var(--lijn); padding-top: 10px; }
+    .gk-spec-key { color: var(--tekst-zacht); }
+    .gk-spec-val { color: var(--tekst); font-weight: 500; }
+    .gk-spec-tire { color: var(--k-oranje-tekst); font-weight: 600; }
+
+    /* Wieldetails (inklapbaar via native <details>) */
+    .gk-wheel { border-top: 1px solid var(--lijn); padding-top: 9px; font-size: 12px; }
+    .gk-wheel > summary { cursor: pointer; list-style: none; color: var(--k-oranje-tekst); font-weight: 600; display: flex; align-items: center; gap: 6px; user-select: none; outline: none; }
+    .gk-wheel > summary::-webkit-details-marker { display: none; }
+    .gk-wheel > summary::after { content: '+'; margin-left: auto; font-size: 15px; font-weight: 700; color: var(--tekst-zacht); }
+    .gk-wheel[open] > summary::after { content: '\2013'; }
+    .gk-wheel > summary:hover { color: var(--actie); }
+    .gk-wheel > summary:focus-visible { outline: 2px solid var(--actie); outline-offset: 2px; border-radius: 4px; }
+    .gk-wheel-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 9px 0 2px; }
+    .gk-wheel-grid .k { color: var(--tekst-zacht); }
+    .gk-wheel-grid .v { color: var(--tekst); font-weight: 500; }
+    .gk-wheel-note { margin-top: 7px; font-size: 11px; color: var(--tekst-zacht); font-style: italic; line-height: 1.4; }
+
+    .gk-feats { display: flex; flex-wrap: wrap; gap: 5px; }
+    .gk-feat { font-size: 11px; padding: 3px 8px; border-radius: 5px; display: inline-flex; align-items: center; gap: 4px; font-weight: 500; }
+    .gk-feat.mounts  { background: #EAF3DE; color: #27500A; }
+    .gk-feat.fender  { background: #E6F1FB; color: #0C447C; }
+    .gk-feat.damp    { background: #FBEAF0; color: #72243E; }
+    .gk-feat.tl      { background: #E1F5EE; color: #085041; }
+    .gk-feat.off     { background: var(--k-vlak2); color: var(--tekst-zacht); }
+
+    .gk-card-footer { border-top: 1px solid var(--lijn); padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .gk-link { font-size: 13px; color: var(--k-oranje-tekst); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+    .gk-link:hover { text-decoration: underline; }
+    .gk-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .gk-weight-pill { font-size: 11px; background: var(--k-vlak2); color: var(--tekst-zacht); padding: 3px 9px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+
+    .gk-empty { grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--tekst-zacht); font-size: 15px; }
+    .gk-empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+    .gk-active-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .gk-af-pill { font-size: 12px; background: var(--k-hover); color: var(--tekst); border: 1px solid var(--lijn); padding: 3px 10px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
+    .gk-af-rm { cursor: pointer; font-size: 14px; line-height: 1; }
+
+    @media (max-width: 600px) {
+      .gk-filters-grid { grid-template-columns: 1fr; }
+      .gk-grid { grid-template-columns: 1fr; }
+      .gk-title { font-size: 22px; }
+      .gk-topbar { flex-direction: column; align-items: stretch; }
+      .gk-topbar .gk-reset { width: 100%; }
+    }
+
+    /* ===================== v8: nieuwe UX/UI-componenten ===================== */
+
+    /* Basis/geavanceerd filters (progressive disclosure) */
+    .gk-adv-toggle { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: 9px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--k-oranje-tekst); background: var(--k-oranje-vlak); border: 1px solid var(--k-oranje-lijn); border-radius: 10px; padding: 10px 18px; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+    .gk-adv-toggle:hover { background: var(--k-oranje-vlak); border-color: var(--actie); }
+    .gk-adv-toggle .gk-adv-caret { font-size: 11px; transition: transform 0.2s ease; }
+    .gk-adv-toggle[aria-expanded="true"] .gk-adv-caret { transform: rotate(180deg); }
+    .gk-adv-toggle .gk-adv-badge { display: none; font-size: 11px; font-weight: 700; color: #15181A; background: var(--actie); border-radius: 20px; padding: 1px 8px; }
+    .gk-adv-toggle.has-active .gk-adv-badge { display: inline-block; }
+    .gk-filters-adv { margin-top: 1.25rem; }
+    .gk-filters-adv[hidden] { display: none; }
+
+    /* Dynamische tellers op chips */
+    .gk-chip-count { font-size: 11px; opacity: 0.65; margin-left: 4px; font-variant-numeric: tabular-nums; }
+    .gk-chip.active .gk-chip-count { opacity: 0.85; }
+    .gk-chip.gk-disabled { opacity: 0.4; cursor: not-allowed; }
+    .gk-chip.gk-disabled:hover { border-color: var(--lijn); color: var(--tekst); }
+
+    /* AI floating chatbubbel */
+    .gk-ai-fab { position: fixed; right: 18px; bottom: 18px; z-index: 70; display: inline-flex; align-items: center; gap: 9px; font-family: inherit; font-size: 15px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 30px; padding: 13px 21px; cursor: pointer; box-shadow: 0 6px 22px rgba(140,90,10,0.32); transition: background 0.15s, transform 0.15s; }
+    .gk-ai-fab:hover { background: var(--actie-hover); transform: translateY(-1px); }
+    .gk-ai-fab .gk-ai-fab-ico { font-size: 19px; line-height: 1; }
+    .gk-ai-pop { position: fixed; right: 18px; bottom: 80px; z-index: 71; width: 384px; max-width: calc(100vw - 28px); max-height: calc(100vh - 120px); overflow-y: auto; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; box-shadow: 0 14px 44px rgba(80,60,10,0.28); padding: 1.1rem 1.2rem 1.2rem; }
+    .gk-ai-pop[hidden] { display: none; }
+    .gk-ai-pop-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .gk-ai-pop-title { flex: 1; font-size: 16px; font-weight: 600; color: var(--tekst); }
+    .gk-ai-pop-x { border: none; background: var(--k-vlak2); color: var(--tekst-zacht); font-size: 18px; line-height: 1; cursor: pointer; padding: 3px 10px; border-radius: 8px; font-weight: 700; }
+    .gk-ai-pop-x:hover { background: var(--k-hover); color: var(--tekst); }
+    @media (max-width: 480px) {
+      .gk-ai-fab .gk-ai-fab-txt { display: none; }
+      .gk-ai-fab { padding: 14px; }
+      .gk-ai-pop { right: 10px; left: 10px; width: auto; bottom: 84px; }
+    }
+
+    /* Resultaatkaart: CTA-hiërarchie */
+    .gk-card-cta { border-top: 1px solid var(--lijn); padding-top: 12px; margin-top: auto; display: flex; flex-direction: column; gap: 9px; }
+    .gk-buy-btn { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; font-family: inherit; font-size: 14.5px; font-weight: 600; color: #15181A; background: var(--actie); border: none; border-radius: 10px; padding: 11px 16px; cursor: pointer; text-decoration: none; transition: background 0.15s; }
+    .gk-buy-btn:hover { background: var(--actie-hover); }
+    .gk-buy-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .gk-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .gk-cmp-link { font-family: inherit; font-size: 13px; font-weight: 600; color: var(--k-oranje-tekst); background: var(--k-oranje-vlak); border: 1px solid var(--k-oranje-lijn); border-radius: 8px; padding: 6px 12px; cursor: pointer; transition: background 0.15s; }
+    .gk-cmp-link:hover { background: var(--k-oranje-vlak); }
+
+    /* Mini-thumbnails in 'In selectie'-paneel */
+    .gk-live-thumb { width: 40px; height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 6px; overflow: hidden; font-size: 15px; line-height: 1; }
+    .gk-live-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    /* Dealer als afsluiter onderaan */
+    .gk-dealer.gk-dealer-foot { margin-top: 1.75rem; }
+
+    /* ===================== v9: Tabs ===================== */
+    .gk-tabs { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .gk-tab { flex: 1 1 200px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--tekst-zacht); background: var(--k-vlak2); border: 1px solid var(--lijn); border-radius: 14px; padding: 13px 16px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+    .gk-tab:hover { background: var(--k-hover); }
+    .gk-tab.active { background: #2F8F3E; border-color: #2F8F3E; color: #fff; box-shadow: 0 4px 14px rgba(47,143,62,.28); }
+    .gk-tab .gk-tab-ico { font-size: 18px; line-height: 1; }
+    .gk-tab .gk-tab-ico svg { width: 22px; height: 22px; display: block; }
+    .gk-tabpanel { display: none; }
+    .gk-tabpanel.active { display: block; animation: gkFade .25s ease; }
+    @keyframes gkFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* ===================== v9: Voordeur (finder) ===================== */
+    .gk-finder-intro { background: #14361E; color: #EDE7DB; border-radius: 16px; padding: 1.4rem 1.6rem; margin-bottom: 1.25rem; display: flex; gap: 16px; align-items: center; }
+    .gk-finder-intro .gk-fi-logo { width: 64px; height: 64px; flex-shrink: 0; }
+    .gk-finder-intro h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+    .gk-finder-intro p { font-size: 14px; line-height: 1.5; color: #c9d2c0; }
+    .gk-fstep { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.25rem 1.4rem; margin-bottom: 1rem; }
+    .gk-fstep.hidden { display: none; }
+    .gk-fstep-q { font-size: 16px; font-weight: 700; color: var(--tekst); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .gk-fstep-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #2F8F3E; color: #fff; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .gk-fstep-sub { font-size: 13px; color: var(--tekst-zacht); margin: 2px 0 12px 32px; }
+    .gk-fchips { display: flex; flex-wrap: wrap; gap: 10px; margin-left: 32px; }
+    .gk-fchip { font-family: inherit; font-size: 14.5px; font-weight: 600; color: var(--tekst); background: var(--k-vlak2); border: 1.5px solid var(--lijn); border-radius: 12px; padding: 11px 15px; cursor: pointer; transition: all .14s ease; display: flex; flex-direction: column; gap: 2px; min-width: 116px; text-align: left; }
+    .gk-fchip small { font-size: 11.5px; font-weight: 500; color: var(--tekst-zacht); }
+    .gk-fchip:hover { border-color: #2F8F3E; background: var(--k-hover); }
+    .gk-fchip.sel { border-color: #2F8F3E; background: #2F8F3E; color: #fff; box-shadow: 0 3px 12px rgba(47,143,62,.26); }
+    .gk-fchip.sel small { color: rgba(255,255,255,.85); }
+    @media (max-width: 600px) { .gk-fstep-sub, .gk-fchips { margin-left: 0; } .gk-fchip { flex: 1 1 100%; } }
+
+    .gk-advice { background: #14361E; color: #EDE7DB; border-radius: 16px; padding: 1.4rem 1.6rem; margin: 1.25rem 0; display: none; }
+    .gk-advice.show { display: block; animation: gkFade .3s ease; }
+    .gk-advice-head { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .gk-advice-head .gk-fi-logo { width: 34px; height: 34px; flex-shrink: 0; }
+    .gk-advice p { font-size: 14.5px; line-height: 1.6; color: #dfe6d8; }
+    .gk-advice-tip { margin-top: 10px; font-size: 13.5px; color: #ffe4c2; background: rgba(255,107,44,.14); border-left: 3px solid #FF6B2C; padding: 8px 12px; border-radius: 6px; }
+    .gk-finder-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 2px 0 1.25rem; }
+    .gk-finder-actions button { font-family: inherit; font-size: 14px; font-weight: 600; border-radius: 10px; padding: 11px 18px; cursor: pointer; border: 1px solid var(--lijn); }
+    .gk-fbtn-primary { background: var(--actie); color: #15181A; border-color: var(--actie); }
+    .gk-fbtn-primary:hover { background: var(--actie-hover); }
+    .gk-fbtn-ghost { background: var(--vlak); color: var(--tekst-zacht); }
+    .gk-fbtn-ghost:hover { background: var(--k-hover); }
+
+    /* finder result-cards */
+    .gk-fcount { font-size: 14px; font-weight: 600; color: var(--tekst-zacht); margin: 0 0 12px; }
+    .gk-fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .gk-fcard { position: relative; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 7px; }
+    .gk-fcard.gk-f-perfect { border-color: #2F8F3E; box-shadow: 0 4px 16px rgba(47,143,62,.16); }
+    .gk-fscore-wrap { position: absolute; top: 12px; right: 12px; text-align: center; z-index: 3; }
+    .gk-fscore { font-size: 18px; font-weight: 800; color: #fff; background: #2F8F3E; border-radius: 12px; padding: 5px 10px; line-height: 1.1; box-shadow: 0 3px 10px rgba(47,143,62,.3); }
+    .gk-f-sterk .gk-fscore { background: #6f8f2f; }
+    .gk-f-kan .gk-fscore { background: var(--k-oranje-tekst); }
+    .gk-ftier { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--tekst-zacht); margin-top: 3px; }
+    .gk-fcard .gk-brand { font-size: 13px; color: var(--tekst-zacht); font-weight: 600; }
+    .gk-fcard .gk-model { font-size: 17px; font-weight: 700; color: var(--tekst); line-height: 1.2; padding-right: 66px; }
+    .gk-fprice { font-size: 13px; color: var(--tekst-zacht); font-weight: 500; }
+    .gk-freasons { list-style: none; display: flex; flex-direction: column; gap: 5px; margin: 4px 0 2px; }
+    .gk-freasons li { font-size: 12.5px; color: var(--tekst); padding-left: 20px; position: relative; line-height: 1.4; }
+    .gk-freasons li::before { content: '✓'; position: absolute; left: 0; color: #2F8F3E; font-weight: 800; }
+    .gk-fcard .gk-buy-btn { margin-top: 6px; }
+    .gk-freasons-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #2F8F3E; margin: 6px 0 -1px; }
+    .gk-fsize { font-size: 12px; font-weight: 700; border-radius: 9px; padding: 5px 10px; align-self: flex-start; line-height: 1.3; }
+    .gk-fsize-ok { background: #e7f3ea; color: #1f7a32; border: 1px solid #b9dcc1; }
+    .gk-fsize-no { background: #fdf0e1; color: #a9540a; border: 1px solid #f0cfa3; }
+    .gk-fcard.gk-f-nosize { opacity: .92; }
+    .gk-ftop3 { margin: 0 0 18px; }
+    .gk-ftop3:empty { display: none; }
+    .gk-top3 { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 1.1rem 1.2rem 1.25rem; }
+    .gk-top3-title { font-size: 15.5px; font-weight: 700; color: var(--tekst); margin-bottom: 4px; }
+    .gk-top3-sub { font-size: 12.5px; color: var(--tekst-zacht); margin-bottom: 14px; line-height: 1.45; }
+    .gk-t3tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .gk-t3tbl th, .gk-t3tbl td { padding: 8px 8px; text-align: left; vertical-align: middle; border-top: 1px solid var(--k-vlak2); }
+    .gk-t3tbl th:first-child, .gk-t3tbl td:first-child { width: 116px; }
+    .gk-t3tbl th:not(:first-child), .gk-t3tbl td:not(:first-child) { width: auto; }
+    .gk-t3tbl thead th { border-top: none; font-size: 12.5px; font-weight: 700; color: var(--tekst); line-height: 1.25; }
+    .gk-t3tbl thead th .gk-t3rank { display: block; font-size: 10.5px; font-weight: 700; color: #2F8F3E; margin-bottom: 1px; }
+    .gk-t3axis { font-size: 12.5px; font-weight: 600; color: var(--tekst-zacht); white-space: nowrap; width: 118px; }
+    .gk-t3cell { min-width: 0; overflow: hidden; }
+    .gk-t3bar { height: 9px; border-radius: 5px; background: var(--k-vlak2); position: relative; overflow: hidden; }
+    .gk-t3bar > span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: linear-gradient(90deg,#5aa86a,#2F8F3E); }
+    .gk-t3best > span { background: linear-gradient(90deg,#ff9a5c,#FF6B2C); }
+    .gk-t3val { font-size: 10.5px; color: var(--tekst-zacht); margin-top: 3px; }
+    @media (max-width: 600px) { .gk-t3axis { width: 76px; font-size: 11.5px; } .gk-t3tbl th:first-child, .gk-t3tbl td:first-child { width: 76px; } .gk-t3tbl th, .gk-t3tbl td { padding: 7px 4px; } .gk-t3tbl thead th { font-size: 11px; } }
+    .gk-fempty { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 2rem; text-align: center; color: var(--tekst-zacht); }
+
+    /* ===================== v2: review-verbeteringen ===================== */
+    /* Gorilla-oordeel (afgeleide score: gewicht + prijs-kwaliteit + veelzijdigheid) */
+    .gk-rate { display: flex; align-items: center; gap: 7px; }
+    .gk-stars { font-size: 14px; letter-spacing: 1px; color: #e8a23a; line-height: 1; }
+    .gk-stars .off { color: #dcdcc4; }
+    .gk-rate-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--tekst-zacht); }
+    /* Beste voor + niveau-badge */
+    .gk-tagrow { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+    .gk-bestfor { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 5px; background: var(--k-vlak2); color: var(--tekst); }
+    .gk-levelbadge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 5px; background: #14361E; color: #EDE7DB; }
+    /* Verwachte winst (begrijpelijk, niet wetenschappelijk) */
+    .gk-benefit { font-size: 12.5px; color: #27500A; background: #eaf3de; border: 1px solid #cfe3b0; border-radius: 8px; padding: 7px 11px; line-height: 1.45; }
+    /* Vriendelijke hookless-indicator */
+    .gk-hook { font-size: 11px; padding: 3px 8px; border-radius: 5px; font-weight: 600; }
+    .gk-hook-ok { background: #e1f5ee; color: #085041; }
+    .gk-hook-warn { background: #fdf0e1; color: #a9540a; }
+    /* A vs B vergelijking */
+    .gk-ab { margin: -0.25rem 0 1.25rem; }
+    .gk-ab-btn { display: block; width: 100%; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--tekst-zacht); background: var(--vlak); border: 1px solid var(--lijn); border-radius: 12px; padding: 12px 20px; cursor: pointer; transition: background .15s; }
+    .gk-ab-btn:hover { background: var(--k-hover); }
+    .gk-ab-btn.open { background: var(--k-vlak2); border-radius: 12px 12px 0 0; }
+    .gk-ab-panel { display: none; background: var(--k-vlak2); border: 1px solid var(--lijn); border-top: none; border-radius: 0 0 12px 12px; padding: 1.1rem 1.25rem; }
+    .gk-ab-panel.show { display: block; }
+    .gk-ab-pick { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .gk-ab-lab { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: var(--tekst-zacht); flex: 1 1 210px; }
+    .gk-ab-lab select { font-family: inherit; font-size: 14px; border: 1px solid var(--lijn); border-radius: 10px; padding: 9px 12px; background: var(--vlak); color: var(--tekst); cursor: pointer; }
+    .gk-ab-vs { font-weight: 800; color: var(--k-oranje-tekst); padding-bottom: 10px; }
+    .gk-ab-verdict { font-size: 14px; color: var(--tekst); line-height: 1.6; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 10px; padding: 10px 13px; margin-bottom: 10px; }
+    .gk-ab-verdict strong { color: var(--k-oranje-tekst); }
+    .gk-ab-tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .gk-ab-tbl th, .gk-ab-tbl td { padding: 7px 8px; font-size: 13px; border-top: 1px solid var(--lijn); text-align: center; }
+    .gk-ab-tbl th:first-child, .gk-ab-tbl td:first-child { text-align: left; width: 130px; color: var(--tekst-zacht); font-weight: 600; }
+    .gk-ab-tbl thead th { border-top: none; font-weight: 700; color: var(--tekst); line-height: 1.2; }
+    .gk-ab-win { background: #e7f3ea; color: #1f7a32; font-weight: 700; }
+    @media (max-width: 600px) { .gk-ab-tbl th:first-child, .gk-ab-tbl td:first-child { width: 92px; font-size: 12px; } .gk-ab-tbl th, .gk-ab-tbl td { padding: 6px 4px; font-size: 12px; } }
+    /* Sticky resultaatknop (mobiel) + grotere CTA */
+    .gk-sticky { display: none; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 75; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 700; color: #15181A; background: var(--actie); border: none; border-radius: 30px; padding: 14px 20px; box-shadow: 0 6px 22px rgba(140,90,10,0.34); cursor: pointer; }
+    .gk-sticky #gk-sticky-count { background: rgba(255,255,255,.22); border-radius: 16px; padding: 1px 9px; }
+    @media (max-width: 600px) { .gk-sticky { display: flex; } .gk-buy-btn { padding: 14px 16px; font-size: 16px; } .gk-grid { padding-bottom: 64px; } }
+
+    /* ===================== v3: review-ronde (unified cards + werkende vergelijker) ===================== */
+    .gk-card { transition: box-shadow .2s, border-color .2s, transform .2s; }
+    .gk-card:hover { transform: translateY(-3px); }
+    .gk-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 26px; margin-bottom: 2px; }
+    .gk-matchbar { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: #14361E; }
+    .gk-matchbar b { font-size: 15px; font-weight: 800; color: #fff; background: #2F8F3E; border-radius: 8px; padding: 2px 9px; }
+    .gk-mb-sterk b { background: #6f8f2f; }
+    .gk-mb-kan b { background: var(--k-oranje-tekst); }
+    .gk-card.gk-match-perfect { border-color: #2F8F3E; box-shadow: 0 4px 16px rgba(47,143,62,.14); }
+    .gk-cmp-check { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--tekst-zacht); background: #f4f5e9; border: 1px solid #e0e0d0; padding: 4px 9px; border-radius: 8px; cursor: pointer; user-select: none; transition: background .15s, border-color .15s, color .15s; }
+    .gk-cmp-check:hover { background: var(--k-hover); border-color: var(--lijn); color: var(--tekst); }
+    .gk-cmp-check input { cursor: pointer; accent-color: #2F8F3E; width: 15px; height: 15px; }
+    .gk-card:has(.gk-cmp-check input:checked) { border-color: #2F8F3E; box-shadow: 0 4px 16px rgba(47,143,62,.16); }
+    .gk-price-row { display: flex; align-items: baseline; gap: 10px; margin: 3px 0 1px; }
+    /* compare-knop in topbar + finder-acties */
+    .gk-cmp-go { font-family: inherit; font-size: 15px; font-weight: 600; color: #fff; background: var(--tekst); border: none; border-radius: 10px; padding: 11px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background .18s, transform .1s; }
+    .gk-cmp-go:hover:not(:disabled) { background: #15181A; transform: translateY(-1px); }
+    .gk-cmp-go:disabled { background: #c0c2b0; cursor: not-allowed; }
+    .gk-cmp-go .gk-cmp-n { background: rgba(255,255,255,.22); border-radius: 14px; padding: 1px 9px; font-weight: 800; }
+    .gk-cmp-note { display: none; font-size: 12.5px; color: #a9540a; background: #fdf0e1; border: 1px solid #f0cfa3; border-radius: 8px; padding: 6px 11px; margin-top: 8px; }
+    /* vergelijk-modal */
+    .gk-modal-ov { display: none; position: fixed; inset: 0; background: rgba(20,20,12,.55); z-index: 1000; align-items: flex-start; justify-content: center; padding: 3vh 1rem; }
+    .gk-modal-ov.active { display: flex; animation: gkFade .2s ease; }
+    .gk-modal { background: var(--vlak); border-radius: 18px; max-width: 1100px; width: 100%; max-height: 94vh; overflow: auto; padding: 1.6rem 1.6rem 2rem; box-shadow: 0 24px 50px rgba(0,0,0,.28); position: relative; }
+    .gk-modal-x { position: absolute; top: 14px; right: 14px; background: var(--tekst); color: #fff; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; line-height: 1; cursor: pointer; transition: background .15s; }
+    .gk-modal-x:hover { background: #15181A; }
+    .gk-modal h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; color: var(--tekst); }
+    .gk-modal-sub { color: var(--tekst-zacht); font-size: 14px; margin-bottom: 1.1rem; padding-right: 40px; }
+    .gk-ctbl-wrap { overflow-x: auto; }
+    .gk-ctbl { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 520px; }
+    .gk-ctbl th, .gk-ctbl td { padding: 10px 12px; border-bottom: 1px solid #eef0e0; text-align: left; vertical-align: top; }
+    .gk-ctbl thead th { background: #f4f5e9; color: var(--tekst); font-weight: 700; font-size: 13px; }
+    .gk-ctbl th:first-child, .gk-ctbl td:first-child { color: #8a8c70; font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: .03em; width: 132px; white-space: nowrap; }
+    .gk-ctbl .gk-cbest { background: #e7f3ea; color: #1f7a32; font-weight: 700; }
+    .gk-ctbl .gk-chero { font-size: 15px; font-weight: 700; color: var(--tekst); }
+    .gk-ctbl .gk-chero small { display: block; font-weight: 500; color: var(--tekst-zacht); font-size: 12px; }
+    .gk-ctbl-buy { color: var(--k-oranje-tekst); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .gk-ctbl-buy:hover { text-decoration: underline; }
+    @media (max-width: 600px) { .gk-modal { padding: 1.1rem; } .gk-ctbl th:first-child, .gk-ctbl td:first-child { width: 96px; } }
+  
+
+
+#gg-cmpbar{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translate(-50%,150%);z-index:900;display:flex;align-items:center;gap:12px;background:#232826;color:var(--k-vlak2);padding:10px 12px 10px 18px;border-radius:999px;box-shadow:0 6px 24px rgba(35,40,38,.35);font-size:14px;line-height:1.2;max-width:min(92vw,480px);transition:none;white-space:nowrap}
+#gg-cmpbar.on{transform:translate(-50%,0)}
+#gg-cmpbar-go{border:0;border-radius:999px;padding:9px 16px;background:var(--actie);color: #15181A;font-weight:700;font-size:14px;cursor:pointer}
+#gg-cmpbar-go:disabled{opacity:.45;cursor:default}
+#gg-cmpbar-go:not(:disabled):hover{background:var(--k-oranje-tekst)}
+body.gg-cmpbar-open{padding-bottom:90px}
+#cmp-modal-body{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#cmp-modal-body table{border-collapse:separate;border-spacing:0}
+#cmp-modal-body table tr>*:first-child{position:sticky;left:0;background:var(--k-vlak2);z-index:2;box-shadow:2px 0 6px rgba(35,40,38,.10)}
+#cmp-modal-body table tr:first-child>*{position:sticky;top:0;background:#ede7db;z-index:3}
+#cmp-modal-body table tr:first-child>*:first-child{z-index:4}
+#cmp-modal-body table tr:nth-child(even)>*{background-color:#f4f3ea}
+
+#gg-cmpbar{transition:none!important;animation:none!important}
+
+/* ===================== Aanpassingen voor de site ===================== */
+.gk-scope { font-family: var(--tekstfont); color: var(--tekst); }
+.gk-scope button, .gk-scope input, .gk-scope select { font-family: inherit; }
+.gk-wrap { max-width: 1240px; padding: 0 clamp(16px, 4vw, 40px) 100px; }
+.gk-tab { font-family: var(--kopfont); text-transform: uppercase; letter-spacing: .03em; font-size: 17px; font-weight: 600; border-radius: 10px; }
+.gk-tab.active { box-shadow: none; }
+.gk-finder-intro, .gk-advice { border-radius: 20px; }
+.gk-finder-intro h2, .gk-advice-head, .gk-top3-title { font-family: var(--kopfont); text-transform: uppercase; letter-spacing: .01em; }
+.gk-finder-intro h2 { font-size: 30px; line-height: 1; margin-bottom: 8px; }
+.gk-fstep, .gk-fcard, .gk-card, .gk-top3, .gk-filters-box, .gk-topbar, .gk-dealer, .gk-ai, .gk-fempty { border-radius: 18px; }
+.gk-fstep-q { font-size: 17px; }
+/* uitleg-ballonnetjes altijd donker */
+.gk-pop-box { background: #15181A; color: #F4F1EA; }
+.gk-pop-box::before { border-bottom-color: #15181A; }
+:root[data-thema="donker"] .gk-pop-box { background: #2E3438; }
+:root[data-thema="donker"] .gk-pop-box::before { border-bottom-color: #2E3438; }
+/* productfoto's hebben een witte achtergrond: houd die wit, ook 's nachts */
+.gk-thumb, .gk-live-thumb { background: #fff; border-radius: 10px; }
+:root[data-thema="donker"] .gk-thumb { border-bottom-color: transparent; }
+.gk-compare-btn.open { background: var(--actie-hover); }
+.gk-f-kan .gk-fscore { background: #B5500F; }
+.gk-live { top: 84px; }
+:root[data-thema="donker"] .gk-card.ebike { border-color: #7A5A1A; }
+:root[data-thema="donker"] td.gk-best { background: rgba(63,166,80,.18); }

@@ -1,0 +1,90 @@
+[
+    {
+        "slug":  "gravelbike",
+        "titel":  "De Ultieme Gids voor Gravelbikes: Alles Wat Je Moet Weten",
+        "kort":  "Alles over gravelbikes in één gids",
+        "categorie":  "Beginnen",
+        "beschrijving":  "Ontdek alles over gravelbikes: wat het is, voordelen, verschillen met racefietsen en mountainbikes, en tips voor het kiezen van jouw ideale gravelbike.",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-07",
+        "beeld":  "/assets/img/blog/gravelbike-op-onverharde-weg-door-bos.jpeg",
+        "minuten":  17
+    },
+    {
+        "slug":  "gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike",
+        "titel":  "Welke gravelbike moet ik kopen?",
+        "kort":  "Welke gravelbike moet ik kopen?",
+        "categorie":  "Kopen",
+        "beschrijving":  "Welke gravelbike moet je kiezen? Onze keuzehulp helpt je bij het selecteren van de juiste gravelfiets voor lange tochten of korte avonturen!",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-06",
+        "beeld":  "/assets/img/blog/gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike.jpeg",
+        "minuten":  10
+    },
+    {
+        "slug":  "welke-gravelbike-budget",
+        "titel":  "Welke gravelbike past het beste bij mijn budget en rijstijl?",
+        "kort":  "Welke gravelbike past bij je budget?",
+        "categorie":  "Kopen",
+        "beschrijving":  "Zoek je welke gravelbike budget het beste bij jouw rijstijl past? Onze gids geeft je alles wat je moet weten voor de perfecte keus.",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-07",
+        "beeld":  "/assets/img/blog/welke-gravelbike-budget.jpeg",
+        "minuten":  9
+    },
+    {
+        "slug":  "beste-prijs-kwaliteit-verhouding-gravelbike",
+        "titel":  "beste prijs kwaliteit verhouding gravelbike",
+        "kort":  "De beste prijs-kwaliteit gravelbikes",
+        "categorie":  "Kopen",
+        "beschrijving":  "Zoek je de beste prijs kwaliteit verhouding gravelbike? Onze koopgids helpt je de beste keuze te maken en veel waar voor je geld te krijgen!",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-07",
+        "beeld":  "/assets/img/blog/beste-prijs-kwaliteit-verhouding-gravelbike.jpeg",
+        "minuten":  17
+    },
+    {
+        "slug":  "beste-gravelbanden",
+        "titel":  "Wat zijn de beste gravelbanden voor Zuid-Limburg, de Veluwe en de Maasduinen",
+        "kort":  "Gravelbanden voor Limburg, Veluwe en Maasduinen",
+        "categorie":  "Banden",
+        "beschrijving":  "Ontdek de beste gravelbanden voor Zuid-Limburg 45-55mm, de Veluwe 45-50mm en de Maasduinen 40-45mm voor jouw avontuurlijke ritten.",
+        "datum":  "2026-06-02",
+        "bijgewerkt":  "2026-06-03",
+        "beeld":  "/assets/img/blog/gravelbanden-voor-gravelbiken-in-nederland.png",
+        "minuten":  6
+    },
+    {
+        "slug":  "fietsverlichting-budgetverlichting-merkverlichting",
+        "titel":  "Budget Verlichting vs. Duurdere Merken: Welke Kies Jij voor je Gravelbike?",
+        "kort":  "Verlichting: budget of merk?",
+        "categorie":  "Materiaal",
+        "beschrijving":  "Ontdek de verschillen tussen fietsverlichting, budgetverlichting en merkverlichting voor jouw gravelbike. Welke past het beste bij jouw wensen en budget?",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-03",
+        "beeld":  "/assets/img/blog/veilige-fietsverlichting-voor-gravelbike.jpeg",
+        "minuten":  32
+    },
+    {
+        "slug":  "zadeltassen-bikepacken-avontuur-fietstassen",
+        "titel":  "De beste zadeltassen voor bikepacken",
+        "kort":  "De beste zadeltassen voor bikepacken",
+        "categorie":  "Bikepacking",
+        "beschrijving":  "Ontdek de beste zadeltassen voor bikepacken en maak je avontuur compleet met duurzame fietstassen die perfect passen bij jouw fietsuitrusting.",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-06-03",
+        "beeld":  "/assets/img/blog/zadeltassen-bikepacken-avontuur-fietstassen.jpeg",
+        "minuten":  30
+    },
+    {
+        "slug":  "de-10-spectaculairste-gravelbestemmingen",
+        "titel":  "De 10 spectaculairste gravelbestemmingen voor jouw volgende avontuur",
+        "kort":  "10 spectaculaire gravelbestemmingen",
+        "categorie":  "Avontuur",
+        "beschrijving":  "Ontdek de 10 spectaculairste gravelbestemmingen met epische routes, prachtige landschappen en onvergetelijke avonturen. Van Alpen tot Schotse Hooglanden.",
+        "datum":  "2026-06-03",
+        "bijgewerkt":  "2026-07-12",
+        "beeld":  "/assets/img/blog/de-10-spectaculairste-gravelbestemmingen-met-gravelfiets-op-onverharde-paden-door-berglandschap.jpeg",
+        "minuten":  13
+    }
+]

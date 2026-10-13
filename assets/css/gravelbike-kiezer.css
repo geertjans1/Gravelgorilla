@@ -502,10 +502,3 @@
 .gk-live { top: 84px; }
 :root[data-thema="donker"] .gk-card.ebike { border-color: #7A5A1A; }
 :root[data-thema="donker"] td.gk-best { background: rgba(63,166,80,.18); }
-
-/* Kop van de pagina */
-.kiezer-kop { max-width: 1240px; margin: 0 auto; padding: 120px clamp(16px, 4vw, 40px) 36px; }
-.kiezer-terug { display: inline-block; font-weight: 600; font-size: .95rem; color: var(--tekst-zacht); margin-bottom: 26px; transition: color .2s; }
-.kiezer-terug:hover { color: var(--groen-tekst); }
-.kiezer-km { font-family: var(--kopfont); font-weight: 500; letter-spacing: .05em; color: var(--tekst-zacht); margin-bottom: 8px; }
-.kiezer-sub { max-width: 40em; margin-top: 20px; color: var(--tekst-zacht); font-size: 1.05rem; }
