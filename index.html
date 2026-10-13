@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gravel Gorilla — Tem de jungle</title>
+  <meta name="description" content="Gratis tools en eerlijke uitleg voor gravelrijders. De gorilla rekent het voor je uit: welke fiets, welke banden, welke spanning.">
+  <link rel="icon" href="assets/img/logo-icon.svg" type="image/svg+xml">
+  <!-- Kies meteen het juiste thema (licht/donker), zodat de pagina niet eerst wit flitst -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Bovenbalk ===== -->
+  <header class="bar" id="bar">
+    <a href="#" class="brand" aria-label="Gravel Gorilla, naar de homepage">
+      <img src="assets/img/logo-icon.svg" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Hoofdmenu">
+      <a href="#wegwijzer">Wegwijzer</a>
+      <a href="#tips">Gorilla-tips</a>
+      <a href="#notities">Veldnotities</a>
+    </nav>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
+    <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- ===== Opening: kop links, rollende band rechts ===== -->
+    <section class="opening">
+      <div class="opening__tekst">
+        <h1 class="kop-xl">
+          <span class="regel"><span>Tem de</span></span>
+          <span class="regel"><span class="groen">jungle.</span></span>
+        </h1>
+        <p class="opening__intro verschijn" style="--v:300ms">Twijfel je over een fiets, banden of spanning? De gorilla rekent het voor je uit. Gratis en eerlijk, zonder dat iemand je iets probeert te verkopen.</p>
+
+        <!-- Snelkeuze: één zin, je kiest zelf het einde -->
+        <div class="snelkeuze verschijn" style="--v:420ms">
+          <p class="snelkeuze__begin">Ik wil…</p>
+          <div class="snelkeuze__opties">
+            <a href="/kiezer/">een gravelbike kiezen</a>
+            <a href="/bandenspanning/">mijn bandenspanning weten</a>
+            <a href="/wielen-kiezer/">de juiste wielen vinden</a>
+            <a href="#wegwijzer" class="snelkeuze__alles">alle tools zien ↓</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- De band uit het logo, groot. Draait mee als je scrolt. -->
+      <div class="opening__band" aria-hidden="true">
+        <svg viewBox="0 0 400 400" class="band">
+          <defs>
+            <path id="tekstcirkel" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+          </defs>
+          <g class="band__draai">
+            <circle cx="200" cy="200" r="150" fill="none" stroke="var(--band)" stroke-width="34" stroke-dasharray="15 13"/>
+            <circle cx="200" cy="200" r="130" fill="none" stroke="var(--actie)" stroke-width="3"/>
+            <text class="band__tekst"><textPath href="#tekstcirkel">GRAVEL GORILLA · TEM DE JUNGLE · GRAVEL GORILLA · TEM DE JUNGLE ·</textPath></text>
+          </g>
+          <circle cx="200" cy="200" r="124" fill="var(--band-binnen)"/>
+          <!-- gorillagezicht uit het logo -->
+          <g transform="translate(200 200) scale(2.6) translate(-60 -60)">
+            <circle cx="34" cy="58" r="7.5" fill="var(--gorilla-oor)"/>
+            <circle cx="86" cy="58" r="7.5" fill="var(--gorilla-oor)"/>
+            <ellipse cx="60" cy="56" rx="26" ry="20" fill="#EDE7DB"/>
+            <ellipse cx="60" cy="77" rx="19" ry="15" fill="#EDE7DB"/>
+            <ellipse cx="51" cy="52" rx="10.5" ry="3.9" fill="#232826" transform="rotate(-13 51 52)"/>
+            <ellipse cx="69" cy="52" rx="10.5" ry="3.9" fill="#232826" transform="rotate(13 69 52)"/>
+            <g class="ogen"><circle cx="51" cy="60" r="3.3" fill="#232826"/><circle cx="69" cy="60" r="3.3" fill="#232826"/></g>
+            <path d="M50,70 Q60,67 70,70 Q73,80 64,83 Q60,84.5 56,83 Q47,80 50,70 Z" fill="#232826"/>
+            <circle cx="56.5" cy="75" r="1.9" fill="#EDE7DB"/>
+            <circle cx="63.5" cy="75" r="1.9" fill="#EDE7DB"/>
+            <path d="M54,87 Q60,90 66,87" fill="none" stroke="#232826" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <!-- bandenspoor dat uit de band wegloopt -->
+        <svg class="spoor" viewBox="0 0 60 400" preserveAspectRatio="none"><path d="M30 0 V400" stroke="var(--band)" stroke-width="22" stroke-dasharray="8 10"/></svg>
+      </div>
+    </section>
+
+    <!-- ===== Hoogteprofiel: tekent zichzelf terwijl je scrolt, en is meteen een routekaart van de pagina ===== -->
+    <nav class="profiel" aria-label="Route over deze pagina">
+     <div class="profiel__vak">
+      <svg viewBox="0 0 1200 150" preserveAspectRatio="none" class="profiel__lijn" aria-hidden="true">
+        <path class="profiel__vlak" d="M0 120 C80 118 120 90 200 95 C300 100 330 40 420 45 C520 50 540 110 640 105 C740 100 760 30 860 25 C960 20 1000 90 1080 85 C1140 82 1170 70 1200 68 V150 H0Z"/>
+        <path class="profiel__pad" id="profielPad" d="M0 120 C80 118 120 90 200 95 C300 100 330 40 420 45 C520 50 540 110 640 105 C740 100 760 30 860 25 C960 20 1000 90 1080 85 C1140 82 1170 70 1200 68"/>
+      </svg>
+      <a href="#wegwijzer" class="profiel__punt" style="--x:35%;--y:30%"><i></i><span>Wegwijzer</span></a>
+      <a href="#tips" class="profiel__punt" style="--x:53%;--y:70%"><i></i><span>Gorilla-tips</span></a>
+      <a href="#notities" class="profiel__punt" style="--x:71.6%;--y:17%"><i></i><span>Veldnotities</span></a>
+     </div>
+    </nav>
+
+    <!-- ===== Wegwijzer: alle tools als bordjes onder elkaar ===== -->
+    <section class="wegwijzer" id="wegwijzer">
+      <div class="wegwijzer__kop">
+        <h2 class="kop-l verschijn">Waar wil<br>je heen?</h2>
+        <div class="wegwijzer__zoek verschijn" style="--v:120ms">
+          <div class="filters" role="group" aria-label="Filter tools">
+            <button class="filter is-aan" data-filter="alle" aria-pressed="true">Alles</button>
+            <button class="filter" data-filter="kiezen" aria-pressed="false">Kiezen</button>
+            <button class="filter" data-filter="berekenen" aria-pressed="false">Berekenen</button>
+            <button class="filter" data-filter="plannen" aria-pressed="false">Plannen</button>
+          </div>
+          <label class="zoekveld">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="zoekTool" placeholder="Zoek een tool" aria-label="Zoek een tool">
+          </label>
+        </div>
+      </div>
+
+      <!-- De bordjes worden gemaakt vanuit de lijst in assets/js/main.js -->
+      <ol class="bordjes" id="bordjes"></ol>
+      <p class="bordjes__leeg" id="bordjesLeeg" hidden>Hier loopt het pad dood. Probeer een ander woord, of <a href="/contact/">tip de gorilla</a> welke tool je mist.</p>
+    </section>
+
+    <!-- ===== Gorilla-tips: één grote tip tegelijk ===== -->
+    <section class="tips" id="tips">
+      <div class="tips__kaart verschijn">
+        <img src="assets/img/logo-icon.svg" alt="" width="72" height="72" class="tips__gorilla">
+        <div class="tips__inhoud">
+          <p class="tips__label">Gorilla-tip <span id="tipNummer">01</span></p>
+          <blockquote class="tips__tekst" id="tipTekst" aria-live="polite"></blockquote>
+          <div class="tips__knoppen">
+            <button class="rond" id="tipVorige" aria-label="Vorige tip">←</button>
+            <button class="rond" id="tipVolgende" aria-label="Volgende tip">→</button>
+            <a href="#" class="tips__link" id="tipLink">Lees meer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Veldnotities: gidsen in een schuifbare strook ===== -->
+    <section class="notities" id="notities">
+      <div class="notities__kop">
+        <h2 class="kop-l verschijn">Veld&shy;notities</h2>
+        <p class="verschijn" style="--v:100ms">Korte, eerlijke uitleg. Geschreven onderweg, voor onderweg.</p>
+        <div class="notities__pijlen verschijn" style="--v:160ms">
+          <button class="rond" id="notitieTerug" aria-label="Scroll naar links">←</button>
+          <button class="rond" id="notitieVerder" aria-label="Scroll naar rechts">→</button>
+        </div>
+      </div>
+      <div class="strook" id="strook" tabindex="0" aria-label="Veldnotities, schuif horizontaal">
+        <a href="/tubeless-gravelbike-uitgelegd/" class="notitie"><span class="notitie__nr">N°01</span><span class="notitie__onderwerp">Banden</span><h3>Tubeless zonder gedoe</h3><span class="notitie__tijd">4 min lezen</span></a>
+        <a href="/stack-en-reach-uitgelegd/" class="notitie"><span class="notitie__nr">N°02</span><span class="notitie__onderwerp">Pasvorm</span><h3>Stack en reach in gewone taal</h3><span class="notitie__tijd">5 min lezen</span></a>
+        <a href="/1x-vs-2x-aandrijving-gravelbike/" class="notitie"><span class="notitie__nr">N°03</span><span class="notitie__onderwerp">Techniek</span><h3>1x of 2x: hoeveel tandwielen voor?</h3><span class="notitie__tijd">4 min lezen</span></a>
+        <a href="/gravelbike-winterklaar-maken/" class="notitie"><span class="notitie__nr">N°04</span><span class="notitie__onderwerp">Onderhoud</span><h3>Je gravelbike winterklaar</h3><span class="notitie__tijd">3 min lezen</span></a>
+        <a href="/bikepacking-gids-uitrusting/" class="notitie"><span class="notitie__nr">N°05</span><span class="notitie__onderwerp">Avontuur</span><h3>Bikepacking: wat gaat er mee?</h3><span class="notitie__tijd">6 min lezen</span></a>
+        <a href="/blog/" class="notitie notitie--alles"><h3>Alle veld&shy;notities</h3><span class="notitie__pijl">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Voet: groot woordmerk ===== -->
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
+      <nav aria-label="Voet">
+        <a href="#wegwijzer">Wegwijzer</a><a href="#notities">Veldnotities</a><a href="/contact/">Contact</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
