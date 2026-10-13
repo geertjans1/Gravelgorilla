@@ -172,7 +172,8 @@ pad.style.strokeDashoffset = minderBeweging ? 0 : padLengte;
 function bijScrollen() {
   const y = window.scrollY;
   if (!minderBeweging) {
-    bandDraai.style.transform = `rotate(${y * 0.25}deg)`;
+    // draaien om het midden van de band (200,200)
+    bandDraai.setAttribute("transform", `rotate(${(y * 0.25).toFixed(1)} 200 200)`);
     // het profiel is helemaal getekend als het halverwege het scherm staat
     const vak = profiel.getBoundingClientRect();
     const voortgang = Math.min(Math.max((window.innerHeight - vak.top) / (window.innerHeight * 0.6), 0), 1);
