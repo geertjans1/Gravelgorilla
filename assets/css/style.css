@@ -1,5 +1,5 @@
 /* =========================================================
-   Gravel Gorilla — "Tem de jungle"
+   Gravel Gorilla — "Laat de gorilla je helpen"
    Huisstijl: Ink, Gorilla Green, Deep Green, Bone, Gravel grey.
    Trail Orange alleen voor actie (knoppen, het belangrijkste klikbare).
    Koppen in Oswald (hoofdletters), tekst in Inter.
@@ -68,7 +68,7 @@ p { margin: 0; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--actie); outline-offset: 3px; border-radius: 6px; }
 
-.kop-xl { font-size: clamp(4.2rem, 13vw, 11.5rem); }
+.kop-xl { font-size: clamp(2.8rem, 6.4vw, 5.8rem); }
 .kop-l { font-size: clamp(2.8rem, 6.5vw, 5.6rem); }
 .groen { color: var(--groen); }
 
