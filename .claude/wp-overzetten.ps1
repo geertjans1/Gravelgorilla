@@ -73,6 +73,10 @@ function Schoon([string]$c) {
     "<$tag$houd>"
   })
   $c = [regex]::Replace($c, '<p>\s*(<br>\s*)+', '<p>')
+  # kale adressen van losse WordPress-bestanden (stonden als tekst op de oude pagina) weg
+  $c = [regex]::Replace($c, '(?m)^\s*https?://(www\.)?gravelgorilla\.nl/wp-content/\S*\s*$', '')
+  # de tool staat op de nieuwe pagina boven de uitleg
+  $c = $c.Replace('Start de kiezer hieronder.', '<a href="#tab-finder">Start de kiezer bovenaan deze pagina.</a>')
   # links naar losse bestanden in WordPress-uploads verdwijnen straks: die alinea's weg
   $c = [regex]::Replace($c, '<p><a href="/wp-content/[^"]*">[^<]*</a></p>', '')
   $c = [regex]::Replace($c, '<(p|h2|h3|h4|li|strong|em|b|i)>\s*(&nbsp;|\s)*\s*</\1>', '')
