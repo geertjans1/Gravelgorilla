@@ -42,6 +42,7 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <meta property="og:url" content="$site$pad">
   <meta property="og:image" content="$ogBeeld">
   <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="Gravel Gorilla">
   <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
   <script>
     (function () {
