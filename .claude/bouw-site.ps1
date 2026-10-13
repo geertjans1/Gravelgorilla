@@ -31,6 +31,8 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
   <title>$(Html $titel)</title>
   <meta name="description" content="$(Html $beschrijving)">
   <link rel="canonical" href="$site$pad">
