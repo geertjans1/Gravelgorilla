@@ -101,3 +101,7 @@
   .werkwijze li { grid-template-columns: 1fr; gap: 4px; }
   .blokken, .contact { grid-template-columns: 1fr; }
 }
+
+/* ---------- Gebruiksteller op tool-pagina's ---------- */
+.pagina-teller { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 5px 12px; border-radius: 999px; background: var(--vlak); border: 1px solid var(--lijn); font-size: .9rem; font-weight: 600; color: var(--groen-tekst); }
+.pagina-teller::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--groen); box-shadow: 0 0 0 4px rgba(47,143,62,.18); }

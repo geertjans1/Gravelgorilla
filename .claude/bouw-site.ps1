@@ -166,6 +166,7 @@ foreach ($t in $tools) {
     <section class="pagina-kop">
       <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
       <p class="pagina-km">KM $($t.km)</p>
+      <p class="pagina-teller" data-teller="$($t.slug)" hidden></p>
       <h1 class="kop-l">$($t.kop)</h1>
       <p class="pagina-sub"$subId>$(Html $t.sub)</p>
     </section>
@@ -175,7 +176,7 @@ $tool
 $uitleg
     </article>
   </main>
-"@ + (Voet $js)
+"@ + (Voet (@($js) + 'teller.js'))
   Schrijf "tools\$($t.slug)\index.html" $pagina
   "tool: $pad"
 }

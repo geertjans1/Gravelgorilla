@@ -69,7 +69,7 @@ function maakBordje(tool, i) {
   const binnen = `
     <span class="bordje__km" aria-label="Kilometer ${nummer}"><span class="bordje__bord"><small>KM</small>${nummer}</span></span>
     <span class="bordje__naam">${tool.naam}${label ? `<span class="bordje__label">${label}</span>` : ""}</span>
-    <span class="bordje__uitleg">${tool.uitleg}</span>
+    <span class="bordje__uitleg">${tool.uitleg}${tool.link ? `<span class="bordje__teller" data-teller-tool="${tool.link.split("/").filter(Boolean).pop()}" hidden></span>` : ""}</span>
     <span class="bordje__soort">${tool.soort}</span>
     ${tool.binnenkort ? "<span></span>" : '<span class="bordje__pijl" aria-hidden="true">→</span>'}
     ${tool.binnenkort ? "" : `<span class="bordje__kijk" aria-hidden="true">${PLAATJES[tool.plaatje] || ""}</span>`}`;

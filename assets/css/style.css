@@ -284,3 +284,7 @@ button { font: inherit; color: inherit; }
   .regel > span, .verschijn, .bordje { transform: none; opacity: 1; }
   html { scroll-behavior: auto; }
 }
+
+/* Gebruiksteller bij de bordjes in de wegwijzer */
+.bordje__teller { display: block; margin-top: 6px; font-size: .82rem; font-weight: 600; color: var(--groen-tekst); }
+.bordje > a:hover .bordje__teller { color: #8FD9A0; }
