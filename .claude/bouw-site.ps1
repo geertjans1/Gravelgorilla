@@ -135,7 +135,10 @@ $tools = @(
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
     sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Vind het ultra gravel-event dat bij je past. Beantwoord een paar vragen over ervaring, conditie, terrein en tijd en krijg een shortlist met events.'
-    soort = 'venster'; uitlegKop = 'Over deze kiezer' }
+    soort = 'kiezer'; scope = 'ue-scope'; uitlegKop = 'Over deze kiezer' }
+  [ordered]@{ slug = 'profielsticker'; km = '05'; kop = 'Profiel<span class="groen">sticker</span>'; titel = 'Profielsticker'
+    sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor op je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
+    soort = 'venster'; uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
 )
 
 foreach ($t in $tools) {
@@ -143,8 +146,9 @@ foreach ($t in $tools) {
   $css = @(); $js = @(); $subId = ''
   switch ($t.soort) {
     'kiezer' {
-      $css = @("$($t.slug).css"); $js = @("$($t.slug).js"); $subId = ' id="gk-sub-text"'
-      $tool = "    <div class=""gk-scope"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
+      $scope = if ($t.scope) { $t.scope } else { 'gk-scope' }
+      $css = @("$($t.slug).css"); $js = @("$($t.slug).js"); if ($scope -eq 'gk-scope') { $subId = ' id="gk-sub-text"' }
+      $tool = "    <div class=""$scope"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
     }
     'blok' {
       $tool = "    <div class=""tool-vak"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
@@ -265,10 +269,10 @@ $pagina = (Kop "Over ons — Gravel Gorilla" "Gravel Gorilla is gebouwd door een
       <a href="/" class="terug">← Home</a>
       <p class="pagina-km">Gebouwd door een gravelrijder</p>
       <h1 class="kop-l">Over <span class="groen">ons</span></h1>
-      <p class="pagina-sub">Van frustratie naar vier tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
+      <p class="pagina-sub">Van frustratie naar vijf tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
     </section>
     <section class="cijfers" aria-label="Het verhaal in cijfers">
-      <div class="cijfer"><strong>4</strong><span>gratis interactieve tools</span></div>
+      <div class="cijfer"><strong>5</strong><span>gratis interactieve tools</span></div>
       <div class="cijfer"><strong>147</strong><span>gravelbikes in de kiezer</span></div>
       <div class="cijfer"><strong>21</strong><span>e-gravelbikes vergeleken</span></div>
       <div class="cijfer"><strong>13</strong><span>merken naast elkaar</span></div>

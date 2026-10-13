@@ -1,0 +1,17 @@
+/* =========================================================
+   Profielsticker — kleuren en lettertype van Gravel Gorilla.
+   Wordt in de tool geladen door .claude/profielsticker-importeren.ps1.
+   De tool zelf blijft ongewijzigd; alleen zijn kleurvariabelen worden overschreven.
+   ========================================================= */
+:root {
+  --bg: #F4F1EA; --card: #FBF9F4; --card2: #ECE7DC;
+  --ink: #15181A; --ink2: #3A3F3B; --muted: #5B625D;
+  --line: #D9D3C5; --line2: #9AA098;
+  --orange: #FF6B2C; --orange-ink: #B5500F; --orange-l: #FFF0E6;
+  --green: #2F8F3E; --green-ink: #26773A; --green-l: #E3F0E5;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r: 18px;
+}
+/* de pagina heeft al een kop en intro */
+.ps-head { display: none; }
+.ps-app { padding-top: 24px; }

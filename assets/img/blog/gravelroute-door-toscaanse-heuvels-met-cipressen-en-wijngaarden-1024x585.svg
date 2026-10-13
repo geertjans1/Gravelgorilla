@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 585" width="1024" height="585" role="img" aria-label="Gravelroute door Toscaanse heuvels met cipressen en wijngaarden">
+<defs><linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE3C4"/><stop offset="1" stop-color="#F4F1EA"/></linearGradient></defs>
+<rect width="1024" height="585" fill="url(#l)"/>
+<circle cx="780" cy="170" r="70" fill="#FFB27A"/>
+<path d="M0 330 C150 280 260 300 400 285 C560 268 680 320 820 300 C920 287 980 295 1024 290 V585 H0Z" fill="#C9D3A4"/>
+<path d="M0 400 C180 350 330 390 520 365 C700 342 850 395 1024 370 V585 H0Z" fill="#9DB873"/>
+<g stroke="#6F8F45" stroke-width="5" stroke-linecap="round" opacity=".7"><path d="M560 420 L1024 395"/><path d="M560 445 L1024 422"/><path d="M560 470 L1024 449"/><path d="M560 495 L1024 476"/><path d="M560 520 L1024 503"/></g>
+<path d="M0 470 C200 430 360 470 540 455 V585 H0Z" fill="#7E9E55"/>
+<g fill="#2F4F28"><ellipse cx="300" cy="330" rx="9" ry="42"/><ellipse cx="325" cy="335" rx="8" ry="36"/><ellipse cx="350" cy="328" rx="9" ry="44"/><ellipse cx="610" cy="300" rx="8" ry="36"/><ellipse cx="632" cy="304" rx="7" ry="30"/></g>
+<path d="M-10 585 C120 520 250 520 360 470 C470 420 560 420 700 360 C780 330 860 320 930 300" fill="none" stroke="#F4F1EA" stroke-width="10" stroke-linecap="round"/>
+<path d="M-10 585 C120 520 250 520 360 470 C470 420 560 420 700 360 C780 330 860 320 930 300" fill="none" stroke="#D9B98A" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round"/>
+<g font-family="Oswald, Arial Narrow, sans-serif" font-weight="700"><rect x="40" y="505" width="177" height="48" rx="8" fill="#15181A"/><text x="60" y="540" font-size="30" fill="#F4F1EA" letter-spacing="2">TOSCANE</text></g>
+</svg>

@@ -1,0 +1,52 @@
+<div class="wrap">
+
+<div class="hero">
+  <svg class="route" width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M-20 260 C 80 240, 90 120, 180 140 S 300 250, 360 160 S 420 40, 470 60" stroke="#d9530f" stroke-width="2.5" stroke-dasharray="7 8" opacity=".55"/>
+    <path d="M-20 290 C 100 280, 120 170, 210 180 S 320 280, 400 190" stroke="#f5efe2" stroke-width="1.5" stroke-dasharray="3 9" opacity=".25"/>
+    <circle cx="180" cy="140" r="5" fill="#d9530f"/>
+    <circle cx="360" cy="160" r="5" fill="#f5efe2" opacity=".6"/>
+  </svg>
+  <p class="sub">Vind jouw volgende ultra: filter op datum, werelddeel, land, afstand, ondergrond en type fiets. Van 460 km Tuscany Trail tot 7.400 km Northcape–Tarifa.</p>
+  <div class="stats">
+    <div class="stat"><b id="st-ev">–</b><span>events</span></div>
+    <div class="stat"><b id="st-land">–</b><span>landen</span></div>
+    <div class="stat"><b id="st-cont">–</b><span>werelddelen</span></div>
+    <div class="stat"><b id="st-km">–</b><span>km totaal</span></div>
+  </div>
+</div>
+
+<section class="panel" aria-label="Filters">
+  <div class="controls">
+    <input type="search" id="q" placeholder="Zoek op naam, plaats of land…">
+    <select id="land"><option value="">Alle landen</option></select>
+    <select id="sort">
+      <option value="datum">Sorteer: datum</option>
+      <option value="km-op">Afstand ↑</option>
+      <option value="km-af">Afstand ↓</option>
+      <option value="hm-af">Hoogtemeters ↓</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="future" checked> Alleen aankomend</label>
+    <button class="resetbtn" id="reset">✕ Wis filters</button>
+  </div>
+  <div class="fgroup"><div class="flabel">Maand</div><div class="chips" id="f-maand"></div></div>
+  <div class="fgroup"><div class="flabel">Werelddeel</div><div class="chips" id="f-cont"></div></div>
+  <div class="fgroup"><div class="flabel">Afstand</div><div class="chips" id="f-km"></div></div>
+  <div class="fgroup"><div class="flabel">Ondergrond</div><div class="chips" id="f-surf"></div></div>
+  <div class="fgroup"><div class="flabel">Fiets</div><div class="chips" id="f-bike"></div></div>
+</section>
+
+<div class="resultbar">
+  <div class="count"><b id="n">0</b> <span id="ntxt">events</span></div>
+  <div class="hint">Klik op chips om te filteren · data zijn richtwaarden, check altijd de officiële site</div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" style="display:none"><b>Geen events gevonden</b>Pas je filters aan of wis alles met ✕.</div>
+
+<div class="bronnen">
+  <strong>Bronnen:</strong> samengesteld juli 2026 op basis van <a href="https://ozogan.eu/bikepacking-races-2026/" target="_blank" rel="noopener">ozogan.eu</a>, <a href="https://dotwatcher.cc/events" target="_blank" rel="noopener">DotWatcher.cc</a>, <a href="https://www.cyclenoid.com/cycling-calendar-ultra-bikepacking-2026.html" target="_blank" rel="noopener">Cyclenoid</a> en de officiële eventwebsites.<br>
+  Afstanden en hoogtemeters zijn richtwaarden van de organisaties; data en routes kunnen wijzigen. Events gemarkeerd met “datum onder voorbehoud” zijn nog niet definitief bevestigd. Self-supported = zelfvoorzienend zonder hulp van buitenaf; supported = met volgauto/team.
+</div>
+
+</div>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 585" width="1024" height="585" role="img" aria-label="Alpenpassen met gravelfiets en sneeuwtoppen">
+<defs><linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFD6EA"/><stop offset="1" stop-color="#EEF3F6"/></linearGradient></defs>
+<rect width="1024" height="585" fill="url(#l)"/>
+<path d="M0 380 L160 150 L250 240 L380 60 L500 230 L600 130 L720 260 L840 90 L1024 300 V585 H0Z" fill="#7F8E99"/>
+<g fill="#FFFFFF"><path d="M160 150 L200 205 L178 198 L160 214 L140 200 L124 202Z"/><path d="M380 60 L432 132 L404 124 L384 142 L360 128 L338 120Z"/><path d="M600 130 L640 186 L618 180 L600 196 L580 184 L566 180Z"/><path d="M840 90 L896 168 L866 158 L842 176 L820 162 L796 156Z"/></g>
+<path d="M0 450 C180 380 380 420 560 380 C740 340 880 400 1024 370 V585 H0Z" fill="#5E8A5A"/>
+<path d="M0 520 C220 480 420 510 640 490 C820 474 920 500 1024 495 V585 H0Z" fill="#3D6B3C"/>
+<path d="M120 585 C260 540 200 500 360 470 C520 440 420 410 600 390 C720 376 760 360 820 345" fill="none" stroke="#F4F1EA" stroke-width="9" stroke-linecap="round"/>
+<path d="M120 585 C260 540 200 500 360 470 C520 440 420 410 600 390 C720 376 760 360 820 345" fill="none" stroke="#B8A27A" stroke-width="3" stroke-dasharray="4 10" stroke-linecap="round"/>
+<circle cx="820" cy="345" r="9" fill="#FF6B2C"/>
+<g font-family="Oswald, Arial Narrow, sans-serif" font-weight="700"><rect x="40" y="505" width="139" height="48" rx="8" fill="#15181A"/><text x="60" y="540" font-size="30" fill="#F4F1EA" letter-spacing="2">ALPEN</text></g>
+</svg>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
+  <title>Profielsticker — Gravel Gorilla</title>
+  <meta name="description" content="Maak gratis een profielsticker van je GPX voor op je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.">
+  <link rel="canonical" href="https://gravelgorilla.nl/tools/profielsticker/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profielsticker — Gravel Gorilla">
+  <meta property="og:description" content="Maak gratis een profielsticker van je GPX voor op je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.">
+  <meta property="og:url" content="https://gravelgorilla.nl/tools/profielsticker/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/logo-icon.svg">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="Gravel Gorilla">
+  <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/pagina.css">
+
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <a href="/" class="brand" aria-label="Gravel Gorilla, naar de homepage">
+      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Hoofdmenu">
+      <a href="/#wegwijzer">Tools</a>
+      <a href="/blog/">Veldnotities</a>
+      <a href="/over-ons/">Over ons</a>
+    </nav>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
+    <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main>
+    <section class="pagina-kop">
+      <a href="/#wegwijzer" class="terug">← Alle tools</a>
+      <p class="pagina-km">KM 05</p>
+      <h1 class="kop-l">Profiel<span class="groen">sticker</span></h1>
+      <p class="pagina-sub">Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.</p>
+    </section>
+    <div class="tool-vak">
+      <div class="tool-frame"><iframe src="tool.html" id="toolVenster" title="Profielsticker" loading="lazy"></iframe></div>
+    </div>
+    <script>
+      /* het venster groeit mee met de inhoud van de tool */
+      (function () {
+        var f = document.getElementById("toolVenster");
+        function maat() {
+          try {
+            var d = f.contentDocument;
+            if (!d || !d.body) return;
+            var h = d.body.scrollHeight + 24 + "px";
+            if (f.style.height !== h) f.style.height = h;
+          } catch (e) {}
+        }
+        f.addEventListener("load", function () {
+          maat();
+          try { new ResizeObserver(maat).observe(f.contentDocument.body); } catch (e) {}
+          setInterval(maat, 800);
+        });
+      })();
+    </script>
+    <article class="lees tool-uitleg">
+      <h2 class="tool-uitleg-kop">Nooit meer gokken wat er na de bocht komt</h2>
+<p>Kilometer 87. Je benen zeggen stop, je hoofd vraagt zich af hoe lang die klim nog duurt, en ergens in je achterzak zit een reep waarvan je vergeten bent dat hij er zit. Herkenbaar? Precies daarvoor is de profielsticker. Eén strook op je bovenbuis of stuur, en je ziet in één oogopslag wat er nog komt.</p>
+<h3>Wat staat er op je sticker?</h3>
+<ul>
+<li><strong>Het hoogteprofiel van je route</strong>, met de klimmen erop gemarkeerd. Geen verrassingen meer na die ene bocht.</li>
+<li><strong>De ondergrond</strong>: asfalt, gravel of zand als gekleurde balk. Die haalt de tool automatisch op bij OpenStreetMap, of je tekent hem zelf.</li>
+<li><strong>Je posten</strong>: rustpunten, waterpunten, controles of je slaapplek, met je verwachte aankomsttijd.</li>
+<li><strong>Je wattage</strong> per stuk, zodat je niet in de eerste klim al je kruit verschiet.</li>
+<li><strong>Wanneer je moet eten en drinken.</strong> De tool rekent uit hoeveel koolhydraten je onderweg nodig hebt en zet de eetmomenten gewoon op de sticker.</li>
+</ul>
+<h3>Zo werkt het</h3>
+<p>Sleep je GPX- of TCX-bestand erin, uit Komoot, Strava, RideWithGPS, Garmin of van de eventsite. Je sticker staat er meteen, met standaardinstellingen. Wil je het preciezer? Vul dan je gewicht, je FTP of niveau, je bagage en je eetgewoontes in. Kies het formaat, controleer het voorbeeld en print of download hem.</p>
+<p>Je route wordt niet geüpload: de tool leest het bestand op je eigen apparaat. Alleen als je de ondergrond laat ophalen, gaan de coördinaten van je route (zonder naam of tijden) naar een openbare OpenStreetMap-server.</p>
+<h3>Ideaal voor</h3>
+<p>Een lange dagrit door de Ardennen, je eerste gravelwedstrijd of een ultra waar je om drie uur 's nachts niet meer helder kunt rekenen. Geen GPX bij de hand? Probeer dan de voorbeeldrit in de tool.</p>
+<p>Alle tijden, wattages en voedingsadviezen zijn schattingen. Wind, groepjes en je dagvorm kunnen flink schelen, en voeding is geen medisch advies.</p>
+
+    </article>
+  </main>
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
+      <nav aria-label="Voet">
+        <a href="/#wegwijzer">Tools</a><a href="/blog/">Veldnotities</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+
+</body>
+</html>

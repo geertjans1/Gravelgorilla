@@ -23,6 +23,9 @@ function Foto([string]$url) {
   $naam = (Split-Path ($url -replace '\?.*$', '') -Leaf).ToLower()
   $doel = Join-Path $fotoMap $naam
   if (-not (Test-Path $doel)) {
+    # kapotte foto op de oude site? dan een eigen tekening met dezelfde naam (.svg) gebruiken
+    $tekening = [IO.Path]::ChangeExtension($doel, '.svg')
+    if (Test-Path $tekening) { return "/assets/img/blog/$(Split-Path $tekening -Leaf)" }
     try { Invoke-WebRequest $url -UseBasicParsing -TimeoutSec 60 -OutFile $doel } catch { Write-Warning "Foto niet gelukt: $url"; return $null }
   }
   "/assets/img/blog/$naam"
@@ -129,9 +132,9 @@ $rekenblok = [regex]::Replace($c.Substring($begin, $eind - $begin), '(?s)<!--.*?
 "tool: bandenspanning-calculator"
 
 # Losse tool-bestanden (stonden in WordPress-uploads)
-foreach ($t in @(,@('ultra-eventkiezer','ultra-eventkiezer-tool.html'))) {
-  New-Item -ItemType Directory -Force "$root\tools\$($t[0])" | Out-Null
-  Copy-Item "$bron\$($t[1])" "$root\tools\$($t[0])\tool.html" -Force
+foreach ($t in @(,@('ultra-eventkiezer','ultra-eventkiezer-tool.html'))) { # origineel bewaren; .claude/ultra-importeren.ps1 maakt er een bouwstuk van
+  New-Item -ItemType Directory -Force "$root\inhoud\bron" | Out-Null
+  Copy-Item "$bron\$($t[1])" "$root\inhoud\bron\$($t[0])-origineel.html" -Force
   "tool-bestand: $($t[0])"
 }
 "Foto's: $((Get-ChildItem $fotoMap).Count)"

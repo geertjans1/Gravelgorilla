@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 585" width="1024" height="585" role="img" aria-label="Gravelroute door de Belgische Ardennen met dichte bossen en heuvels">
+<defs><linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE6D8"/><stop offset="1" stop-color="#EEF0E6"/></linearGradient></defs>
+<rect width="1024" height="585" fill="url(#l)"/>
+<path d="M0 260 C140 200 260 240 380 210 C520 175 640 240 780 215 C900 195 970 220 1024 210 V585 H0Z" fill="#9DBE98"/>
+<path d="M0 340 C160 290 320 330 480 300 C650 268 800 330 1024 300 V585 H0Z" fill="#5F8F5A"/>
+<path d="M0 430 C200 390 380 430 560 410 C760 388 880 430 1024 415 V585 H0Z" fill="#2F6B38"/>
+<g fill="#1F4A26"><path d="M80 430 l30 -90 l30 90z"/><path d="M130 430 l26 -76 l26 76z"/><path d="M820 420 l30 -96 l30 96z"/><path d="M870 420 l24 -72 l24 72z"/><path d="M920 425 l28 -84 l28 84z"/></g>
+<g fill="#3E7A45" opacity=".8"><path d="M300 300 l18 -54 l18 54z"/><path d="M335 298 l16 -46 l16 46z"/><path d="M600 290 l18 -56 l18 56z"/></g>
+<path d="M520 585 C540 520 470 500 500 460 C530 420 640 420 660 390" fill="none" stroke="#D9C9A8" stroke-width="16" stroke-linecap="round"/>
+<path d="M520 585 C540 520 470 500 500 460 C530 420 640 420 660 390" fill="none" stroke="#B8A27A" stroke-width="4" stroke-dasharray="5 11" stroke-linecap="round"/>
+<g font-family="Oswald, Arial Narrow, sans-serif" font-weight="700"><rect x="40" y="505" width="196" height="48" rx="8" fill="#15181A"/><text x="60" y="540" font-size="30" fill="#F4F1EA" letter-spacing="2">ARDENNEN</text></g>
+</svg>
