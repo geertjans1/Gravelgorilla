@@ -15,8 +15,8 @@ const minderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)").mat
 const TOOLS = [
   {
     naam: "Gravelbike Kiezer",
-    uitleg: "Een paar vragen over hoe en waar je rijdt, en je ziet welke van 140 gravelbikes bij je passen.",
-    link: "/kiezer/",
+    uitleg: "Een paar vragen over hoe en waar je rijdt, en je ziet welke van 147 gravelbikes bij je passen.",
+    link: "kiezer/",
     soort: "kiezen",
     plaatje: "quiz",
     label: "Meest gebruikt"
@@ -175,7 +175,6 @@ function bijScrollen() {
     const voortgang = Math.min(Math.max((window.innerHeight - vak.top) / (window.innerHeight * 0.6), 0), 1);
     pad.style.strokeDashoffset = padLengte * (1 - voortgang);
   }
-  bar.classList.toggle("is-gescrold", y > 20);
 }
 
 let wacht = false;
@@ -185,22 +184,4 @@ window.addEventListener("scroll", () => {
   requestAnimationFrame(() => { bijScrollen(); wacht = false; });
 }, { passive: true });
 
-/* ---------- Bovenbalk & menu ---------- */
-const bar = document.getElementById("bar");
-const menuKnop = bar.querySelector(".bar__menu");
-menuKnop.addEventListener("click", () => {
-  const open = bar.classList.toggle("is-open");
-  menuKnop.setAttribute("aria-expanded", open);
-});
-bar.querySelectorAll(".bar__links a").forEach(a => a.addEventListener("click", () => {
-  bar.classList.remove("is-open");
-  menuKnop.setAttribute("aria-expanded", "false");
-}));
 bijScrollen();
-
-/* ---------- Donkere modus (nachtrit) ---------- */
-document.getElementById("themaKnop").addEventListener("click", () => {
-  const nieuw = document.documentElement.getAttribute("data-thema") === "donker" ? "licht" : "donker";
-  document.documentElement.setAttribute("data-thema", nieuw);
-  try { localStorage.setItem("gg-thema", nieuw); } catch (e) {}
-});
