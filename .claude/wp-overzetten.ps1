@@ -129,7 +129,7 @@ $rekenblok = [regex]::Replace($c.Substring($begin, $eind - $begin), '(?s)<!--.*?
 "tool: bandenspanning-calculator"
 
 # Losse tool-bestanden (stonden in WordPress-uploads)
-foreach ($t in @(@('gravelwielen-kiezer','gravelwielen-kiezer-tool-v4.html'), @('ultra-eventkiezer','ultra-eventkiezer-tool.html'))) {
+foreach ($t in @(,@('ultra-eventkiezer','ultra-eventkiezer-tool.html'))) {
   New-Item -ItemType Directory -Force "$root\tools\$($t[0])" | Out-Null
   Copy-Item "$bron\$($t[1])" "$root\tools\$($t[0])\tool.html" -Force
   "tool-bestand: $($t[0])"
