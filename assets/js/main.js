@@ -67,7 +67,7 @@ function maakBordje(tool, i) {
   const nummer = String(i + 1).padStart(2, "0");
   const label = tool.binnenkort ? "Binnenkort" : tool.label;
   const binnen = `
-    <span class="bordje__km">KM ${nummer}</span>
+    <span class="bordje__km" aria-label="Kilometer ${nummer}"><span class="bordje__bord"><small>KM</small>${nummer}</span></span>
     <span class="bordje__naam">${tool.naam}${label ? `<span class="bordje__label">${label}</span>` : ""}</span>
     <span class="bordje__uitleg">${tool.uitleg}</span>
     <span class="bordje__soort">${tool.soort}</span>
