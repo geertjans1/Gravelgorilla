@@ -6,7 +6,7 @@
 
 /* ---------- Paginakop (tools, blog, over ons) ---------- */
 .pagina-kop { max-width: var(--breed); margin: 0 auto; padding: 120px clamp(16px, 4vw, 40px) 36px; }
-.terug { display: inline-block; font-weight: 600; font-size: .95rem; color: var(--tekst-zacht); margin-bottom: 26px; transition: color .2s; }
+.terug { display: inline-block; font-weight: 600; font-size: 1.15rem; color: var(--tekst-zacht); margin-bottom: 26px; transition: color .2s; }
 .terug:hover { color: var(--groen-tekst); }
 .pagina-km { font-family: var(--kopfont); font-weight: 500; letter-spacing: .05em; color: var(--tekst-zacht); margin-bottom: 8px; text-transform: uppercase; }
 .pagina-sub { max-width: 40em; margin-top: 20px; color: var(--tekst-zacht); font-size: 1.1rem; }

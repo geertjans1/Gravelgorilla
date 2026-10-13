@@ -184,7 +184,7 @@ foreach ($t in $tools) {
   $pagina = (Kop "$($t.titel) — Gravel Gorilla" $t.beschrijving $pad $css) + @"
   <main>
     <section class="pagina-kop">
-      <a href="/#wegwijzer" class="terug">← Alle tools</a>
+      <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
       <p class="pagina-km">KM $($t.km)</p>
       <h1 class="kop-l">$($t.kop)</h1>
       <p class="pagina-sub"$subId>$(Html $t.sub)</p>
