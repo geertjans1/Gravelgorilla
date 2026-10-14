@@ -137,3 +137,31 @@
 .privacy { margin-bottom: 120px; }
 .privacy h2 { margin-top: 1.6em; }
 .privacy h3 { font-family: var(--tekstfont); text-transform: none; letter-spacing: 0; font-size: 1.1rem; font-weight: 600; }
+
+/* ---------- Vraag de Gorilla (onder de tool) ---------- */
+.vg { max-width: var(--breed); margin: 8px auto 48px; padding: 0 clamp(16px, 4vw, 40px); }
+.vg > * { max-width: 860px; }
+.vg__kop { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.vg__kop img { flex-shrink: 0; filter: drop-shadow(0 4px 8px rgba(0,0,0,.15)); }
+.vg__kop h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.vg__kop p { color: var(--tekst-zacht); margin-top: 4px; }
+.vg__rij { display: flex; gap: 10px; flex-wrap: wrap; }
+.vg__invoer { flex: 1 1 260px; font: inherit; font-size: 1rem; color: var(--tekst); background: var(--vlak); border: 1.5px solid var(--lijn); border-radius: 14px; padding: 14px 16px; }
+.vg__invoer:focus { outline: none; border-color: var(--groen); box-shadow: 0 0 0 4px rgba(47,143,62,.15); }
+.vg__voorbeelden { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.vg__voorbeelden button { font: inherit; font-size: .88rem; padding: 7px 13px; border-radius: 999px; border: 1.5px dashed var(--lijn); background: transparent; color: var(--tekst-zacht); cursor: pointer; transition: border-color .2s, color .2s; }
+.vg__voorbeelden button:hover { border-color: var(--groen); border-style: solid; color: var(--groen-tekst); }
+.vg__antwoord { margin-top: 20px; }
+.vg__bubbel { display: flex; gap: 14px; align-items: flex-start; animation: vg-in .45s var(--zacht) both; }
+.vg__bubbel img { flex-shrink: 0; margin-top: 4px; }
+.vg__tekst { position: relative; flex: 1; background: var(--diepgroen); color: #F4F1EA; border-radius: 4px 20px 20px 20px; padding: 18px 22px; line-height: 1.55; }
+.vg__tekst a { color: #FFD2B8; text-decoration: underline; }
+.vg__tekst ul, .vg__tekst ol { margin: 10px 0; padding-left: 1.2em; display: grid; gap: 5px; }
+.vg__tekst b { color: #fff; }
+.vg__knop { display: inline-block; margin-top: 12px; font: inherit; font-weight: 600; font-size: .92rem; padding: 9px 16px; border-radius: 10px; border: 0; background: var(--actie); color: #15181A; cursor: pointer; }
+.vg__knop:hover { background: var(--actie-hover); }
+@keyframes vg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .vg__bubbel { animation: none; } }
+@media (max-width: 480px) { .vg__bubbel img { display: none; } }
+.vg__tip { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(244,241,234,.18); }
+.vg__rij .knop { border: 0; font: inherit; font-weight: 600; cursor: pointer; }

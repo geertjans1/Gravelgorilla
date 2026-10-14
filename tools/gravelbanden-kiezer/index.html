@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=67ac91b1">
-  <link rel="stylesheet" href="/assets/css/pagina.css?v=eba6eea1">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
   <link rel="stylesheet" href="/assets/css/gravelbanden-kiezer.css?v=bc0a79fa">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/tools/gravelbanden-kiezer/#tool","name":"Gravelbanden Kiezer","url":"https://gravelgorilla.nl/tools/gravelbanden-kiezer/","description":"Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"nl","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Gravelbanden Kiezer","item":"https://gravelgorilla.nl/tools/gravelbanden-kiezer/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/tools/gravelbanden-kiezer/#faq","mainEntity":[{"@type":"Question","name":"Welke gravelband is het beste?","acceptedAnswer":{"@type":"Answer","text":"Er is geen beste band voor iedereen: het hangt af van je ondergrond, je rijstijl en het weer. Voor wie op wisselende ondergrond rijdt, is een allround band van 40 tot 45 mm meestal de beste keuze. Wie veel asfalt en hardpack rijdt, is sneller met een semi-slick; wie in zand en modder rijdt, heeft meer aan een grof profiel. De kiezer rekent het voor jouw situatie uit."}},{"@type":"Question","name":"Hoe breed moet mijn gravelband zijn?","acceptedAnswer":{"@type":"Answer","text":"Op asfalt en hardpack is 35 tot 40 mm genoeg, op gemengd en los gravel voelen 40 tot 45 mm vaak het best, en in zand of met bagage is 45 tot 50 mm fijn. Kijk altijd hoe breed de band in je frame mag zijn en houd een paar millimeter ruimte voor modder."}},{"@type":"Question","name":"Welke gravelband voor zand, zoals op de Veluwe of in de Maasduinen?","acceptedAnswer":{"@type":"Answer","text":"In los zand drijft een brede band beter dan een smalle. Kies 45 mm of breder als je frame dat toelaat, met een allround of grof profiel, en rijd met wat minder bandenspanning. Zet in de kiezer de ondergrond op \"Zand en modder\" voor een advies."}},{"@type":"Question","name":"Wat is het verschil tussen een semi-slick en een allround band?","acceptedAnswer":{"@type":"Answer","text":"Een semi-slick heeft een gladde of heel fijne middenstrook met noppen aan de zijkant: snel op vaste ondergrond, met grip in de bocht. Een allround band heeft over de hele breedte kleine noppen: iets minder snel op asfalt, maar met meer grip op los gravel en natte paden."}},{"@type":"Question","name":"Waar komen de gegevens vandaan?","acceptedAnswer":{"@type":"Answer","text":"De breedtes en gewichten komen van de fabrikanten (700c, peildatum oktober 2026). Het profieltype, de scores en de prijsklasse zijn een inschatting van Gravel Gorilla. Bij veel banden staat een link naar de rolweerstandstest van bicyclerollingresistance.com, waar je de gemeten rolweerstand kunt bekijken."}}]}]}</script>
 </head>
@@ -151,6 +151,21 @@
   </section>
 </div>
     </div>
+    <section class="vg" id="vraagGorilla" data-tool="gravelbanden-kiezer" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Vraag de <span class="groen">Gorilla</span></h2>
+          <p>Stel je vraag in gewone taal. Kan de gorilla de tool voor je invullen, dan doet hij dat meteen.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Je vraag aan de gorilla" placeholder="Stel je vraag">
+        <button class="knop knop--actie" type="submit">Vraag</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Voorbeeldvragen"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">Zo kies je de juiste gravelband</h2>
 <p>Banden zijn de goedkoopste upgrade die je fiets het meest verandert. Dezelfde gravelbike voelt met een snelle semi-slick als een vlotte allroad-racer, en met een grove noppenband als een kleine mountainbike. Maar met tientallen merken, profielen en breedtes zie je door de noppen het pad niet meer. Deze kiezer zet ze voor je op een rij.</p>
@@ -206,7 +221,8 @@
   </footer>
 
   <script src="/assets/js/site.js?v=b7405aa5"></script>
-  <script src="/assets/js/gravelbanden-kiezer.js?v=6fa03fa7"></script>
+  <script src="/assets/js/gravelbanden-kiezer.js?v=2cc1a3a1"></script>
+  <script src="/assets/js/vraag-gorilla.js?v=a5297e69"></script>
   <script src="/assets/js/teller.js?v=7ce63e18"></script>
 </body>
 </html>

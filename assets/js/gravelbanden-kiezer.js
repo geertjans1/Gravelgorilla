@@ -69,6 +69,7 @@
   ];
 
   const PROFIEL = ["Slick", "Semi-slick", "Allround", "Grof profiel", "Modderprofiel"];
+  window.GG_BANDEN = { BANDEN, PROFIEL, MERKEN }; // voor Vraag de Gorilla
   const ONDERGROND = ["Asfalt", "Hardpack", "Gemengd", "Los gravel", "Zand en modder"];
   const STIJL = ["Race", "Snel", "Training", "Toer", "Bikepacking"];
   const WEER = ["Droog", "Wisselend", "Nat"];

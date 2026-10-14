@@ -140,19 +140,19 @@ $tools = @(
     naamKort = 'Wielen Kiezer'; kort = 'Licht, stevig of juist snel? Vind de wielset die bij je fiets en rijstijl past.'
     filter = 'kiezen'; plaatje = 'wiel'
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
-  [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
+  [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<wbr><span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
     seoTitel = 'Ultra gravel events 2026–2027 kiezen | Gravel Gorilla'
     sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 80 ultra gravel- en bikepacking-events in 2026 en 2027. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
     naamKort = 'Ultra-eventkiezer'; kort = 'Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist.'
     filter = 'plannen'; plaatje = 'vlag'
     soort = 'kiezer'; scope = 'ue-scope'; uitlegKop = 'Over deze kiezer' }
-  [ordered]@{ slug = 'profielsticker'; km = '05'; kop = 'Profiel<span class="groen">sticker</span>'; titel = 'Profielsticker'
+  [ordered]@{ slug = 'profielsticker'; km = '05'; kop = 'Profiel<wbr><span class="groen">sticker</span>'; titel = 'Profielsticker'
     seoTitel = 'Profielsticker maken van je GPX (gratis) | Gravel Gorilla'
     sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
     naamKort = 'Profielsticker'; kort = 'Van GPX naar sticker voor je bovenbuis: klimmen, posten, wattage en wanneer je moet eten.'
     filter = 'plannen'; plaatje = 'profiel'
     soort = 'venster'; uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
-  [ordered]@{ slug = 'kledingadvies'; km = '06'; kop = 'Kleding<span class="groen">advies</span>'; titel = 'Kledingadvies'
+  [ordered]@{ slug = 'kledingadvies'; km = '06'; kop = 'Kleding<wbr><span class="groen">advies</span>'; titel = 'Kledingadvies'
     seoTitel = 'Wat trek ik aan op de fiets? Kledingadvies | Gravel Gorilla'
     sub = 'Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.'; beschrijving = 'Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.'
     naamKort = 'Kledingadvies'; kort = 'Te warm of te koud? Zie per lichaamsdeel wat je aantrekt, met de weersverwachting voor jouw rit.'
@@ -237,6 +237,29 @@ foreach ($t in $tools) {
   }
   $uitleg = Lees "inhoud\tools\$($t.slug)-uitleg.html"
 
+  # Vraag de Gorilla onder de tool (de gravelbike- en wielenkiezer hebben er zelf al een in de tool)
+  $gorillaHtml = ''
+  if (@('gravelbike-kiezer', 'gravelwielen-kiezer') -notcontains $t.slug) {
+    $js = @($js) + 'vraag-gorilla.js'
+    $gorillaHtml = @"
+    <section class="vg" id="vraagGorilla" data-tool="$($t.slug)" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Vraag de <span class="groen">Gorilla</span></h2>
+          <p>Stel je vraag in gewone taal. Kan de gorilla de tool voor je invullen, dan doet hij dat meteen.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Je vraag aan de gorilla" placeholder="Stel je vraag">
+        <button class="knop knop--actie" type="submit">Vraag</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Voorbeeldvragen"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
+"@
+  }
+
   # veelgestelde vragen
   $faq = @(LeesFaq $t.slug)
   $faqHtml = ''
@@ -276,6 +299,7 @@ foreach ($t in $tools) {
       <p class="pagina-sub"$subId>$(Html $t.sub)</p>
     </section>
 $tool
+$gorillaHtml
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">$(Html $t.uitlegKop)</h2>
 $uitleg

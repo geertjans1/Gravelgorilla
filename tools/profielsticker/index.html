@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=67ac91b1">
-  <link rel="stylesheet" href="/assets/css/pagina.css?v=eba6eea1">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/tools/profielsticker/#tool","name":"Profielsticker","url":"https://gravelgorilla.nl/tools/profielsticker/","description":"Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"nl","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Profielsticker","item":"https://gravelgorilla.nl/tools/profielsticker/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/tools/profielsticker/#faq","mainEntity":[{"@type":"Question","name":"Wat is een profielsticker?","acceptedAnswer":{"@type":"Answer","text":"Een smalle strook voor op je bovenbuis, stuur of stuurpen met het hoogteprofiel van je route. Je ziet in één oogopslag waar de klimmen zitten, wat de ondergrond is, waar je posten liggen, welk wattage je per stuk aanhoudt en wanneer je moet eten en drinken."}},{"@type":"Question","name":"Welke routebestanden kan ik gebruiken?","acceptedAnswer":{"@type":"Answer","text":"GPX- en TCX-bestanden, bijvoorbeeld uit Komoot, Strava, RideWithGPS, Garmin of van de website van een event. Geen bestand bij de hand? Probeer dan de voorbeeldrit in de tool."}},{"@type":"Question","name":"Wordt mijn route geüpload?","acceptedAnswer":{"@type":"Answer","text":"Nee. De tool leest je bestand op je eigen apparaat. Alleen als je de ondergrond laat ophalen, gaan de coördinaten van je route, zonder naam of tijden, naar OpenStreetMap om te kijken waar asfalt, gravel of zand ligt."}},{"@type":"Question","name":"Welke formaten kan ik maken?","acceptedAnswer":{"@type":"Answer","text":"Een strook voor je bovenbuis (200 × 30 mm), je stuur (130 × 24 mm) of je stuurpen (90 × 32 mm), een spiekbriefje (35 × 110 mm) of een eigen maat. Je kunt de sticker printen op A4 of downloaden als PNG of SVG."}},{"@type":"Question","name":"Kan ik posten toevoegen en verschuiven?","acceptedAnswer":{"@type":"Answer","text":"Ja. Tik op het profiel om een post neer te zetten, zoals een rustpost, waterpunt of slaapplek. Wil je hem verplaatsen? Sleep het genummerde rondje naar links of rechts. Aankomsttijden, water en eten worden direct opnieuw uitgerekend."}}]}]}</script>
 </head>
@@ -61,7 +61,7 @@
       <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
       <p class="pagina-km" data-km-tool="profielsticker">KM 05</p>
       <p class="pagina-teller" data-teller="profielsticker" hidden></p>
-      <h1 class="kop-l">Profiel<span class="groen">sticker</span></h1>
+      <h1 class="kop-l">Profiel<wbr><span class="groen">sticker</span></h1>
       <p class="pagina-sub">Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.</p>
     </section>
     <div class="tool-vak">
@@ -86,6 +86,21 @@
         });
       })();
     </script>
+    <section class="vg" id="vraagGorilla" data-tool="profielsticker" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Vraag de <span class="groen">Gorilla</span></h2>
+          <p>Stel je vraag in gewone taal. Kan de gorilla de tool voor je invullen, dan doet hij dat meteen.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Je vraag aan de gorilla" placeholder="Stel je vraag">
+        <button class="knop knop--actie" type="submit">Vraag</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Voorbeeldvragen"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">Nooit meer gokken wat er na de bocht komt</h2>
 <p>Kilometer 87. Je benen zeggen stop, je hoofd vraagt zich af hoe lang die klim nog duurt, en ergens in je achterzak zit een reep waarvan je vergeten bent dat hij er zit. Herkenbaar? Precies daarvoor is de profielsticker. Eén strook op je bovenbuis of stuur, en je ziet in één oogopslag wat er nog komt.</p>
@@ -143,6 +158,7 @@
   </footer>
 
   <script src="/assets/js/site.js?v=b7405aa5"></script>
+  <script src="/assets/js/vraag-gorilla.js?v=a5297e69"></script>
   <script src="/assets/js/teller.js?v=7ce63e18"></script>
 </body>
 </html>

@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=67ac91b1">
-  <link rel="stylesheet" href="/assets/css/pagina.css?v=eba6eea1">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
   <link rel="stylesheet" href="/assets/css/kledingadvies.css?v=8aa6b113">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/tools/kledingadvies/#tool","name":"Kledingadvies","url":"https://gravelgorilla.nl/tools/kledingadvies/","description":"Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"nl","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Kledingadvies","item":"https://gravelgorilla.nl/tools/kledingadvies/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/tools/kledingadvies/#faq","mainEntity":[{"@type":"Question","name":"Wat trek ik aan bij 10 graden op de fiets?","acceptedAnswer":{"@type":"Answer","text":"Bij 10 graden zonder wind of regen adviseert de tool: een korte koersbroek met beenstukken of een dunne lange koersbroek, een ondershirt met een shirt met lange mouwen (of korte mouwen met armstukken) en een windvest, dunne lange handschoenen, wollen sokken en een buff of hoofdband over je oren. Waait het of regent het, dan voelt het kouder en kleed je je warmer."}},{"@type":"Question","name":"Wat is de gevoelstemperatuur op de fiets?","acceptedAnswer":{"@type":"Answer","text":"Op de fiets maak je je eigen wind. Wind, regen, een rustig tempo en natte modder maken het kouder dan het getal op je weerapp; wedstrijdtempo maakt het warmer. De tool rekent daarom met een \"voelt als\"-temperatuur en kiest daar je kleding bij."}},{"@type":"Question","name":"Waar komt de weersverwachting vandaan?","acceptedAnswer":{"@type":"Answer","text":"Van Open-Meteo, een gratis weerdienst. Je vult een plaats, datum en starttijd in, en de tool haalt de temperatuur, kans op neerslag en wind op voor de uren van je rit. Je hebt geen account nodig."}},{"@type":"Question","name":"Wat neem ik mee in mijn achterzak?","acceptedAnswer":{"@type":"Answer","text":"Dat hangt af van het weer en je rit. Vaak zijn dat een gilet (windvest), een buff, armstukken en bij kans op buien een opvouwbaar regenjack. Bij lange ritten in de regen zijn droge reservehandschoenen fijn. De tool zet het voor je op een rij, en je kunt alles als paklijst kopiëren."}},{"@type":"Question","name":"Hoe voorkom ik dat ik het te warm of te koud krijg?","acceptedAnswer":{"@type":"Answer","text":"Start met het gevoel dat je het een beetje koud hebt: na tien minuten trappen ben je op temperatuur. Kies lagen die uit kunnen, zoals armstukken, kniestukken en een gilet. Twijfel je bij handen en voeten? Kies dan warmer; koude vingers en tenen bederven een rit het snelst."}}]}]}</script>
 </head>
@@ -61,7 +61,7 @@
       <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
       <p class="pagina-km" data-km-tool="kledingadvies">KM 06</p>
       <p class="pagina-teller" data-teller="kledingadvies" hidden></p>
-      <h1 class="kop-l">Kleding<span class="groen">advies</span></h1>
+      <h1 class="kop-l">Kleding<wbr><span class="groen">advies</span></h1>
       <p class="pagina-sub">Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.</p>
     </section>
     <div class="kl-scope">
@@ -185,6 +185,21 @@
   </div>
 </div>
     </div>
+    <section class="vg" id="vraagGorilla" data-tool="kledingadvies" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Vraag de <span class="groen">Gorilla</span></h2>
+          <p>Stel je vraag in gewone taal. Kan de gorilla de tool voor je invullen, dan doet hij dat meteen.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Je vraag aan de gorilla" placeholder="Stel je vraag">
+        <button class="knop knop--actie" type="submit">Vraag</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Voorbeeldvragen"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">Nooit meer te warm of te koud</h2>
 <p>Je staat om half negen bij de voordeur. Het is 7 graden, er staat een frisse wind en vanmiddag wordt het 14. Lange broek of kniestukken? Jack of gilet? Wie te warm vertrekt, zweet zich na een kwartier nat en bevriest daarna in de afdaling. Wie te koud vertrekt, krijgt die eerste uren gewoon niet meer warm. Daarom deze kledingadvies-tool.</p>
@@ -240,6 +255,7 @@
 
   <script src="/assets/js/site.js?v=b7405aa5"></script>
   <script src="/assets/js/kledingadvies.js?v=83a9bdd2"></script>
+  <script src="/assets/js/vraag-gorilla.js?v=a5297e69"></script>
   <script src="/assets/js/teller.js?v=7ce63e18"></script>
 </body>
 </html>
