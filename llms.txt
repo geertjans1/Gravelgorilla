@@ -2,7 +2,7 @@
 
 > Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.
 
-Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.
+Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke banden, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.
 
 ## Tools
 
@@ -12,6 +12,7 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke 
 - [Ultra-eventkiezer](https://gravelgorilla.nl/tools/ultra-eventkiezer/): Kalender met 80 ultra gravel- en bikepacking-events in 2026 en 2027. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.
 - [Profielsticker](https://gravelgorilla.nl/tools/profielsticker/): Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.
 - [Kledingadvies](https://gravelgorilla.nl/tools/kledingadvies/): Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.
+- [Gravelbanden Kiezer](https://gravelgorilla.nl/tools/gravelbanden-kiezer/): Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.
 
 ## Over
 

@@ -1,0 +1,85 @@
+<div class="gb-wrap">
+  <div class="gb-raster">
+
+    <!-- ===== Invoer ===== -->
+    <section class="gb-kaart" aria-labelledby="gbKopInvoer">
+      <h2 class="gb-kop" id="gbKopInvoer"><span class="gb-stap">1</span> Waar en hoe rijd je?</h2>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbOndergrond">Ondergrond</label><output id="gbOndergrondUit">Gemengd</output></div>
+        <input type="range" id="gbOndergrond" min="0" max="4" step="1" value="2" aria-valuetext="Gemengd">
+        <div class="gb-schaal" data-voor="#gbOndergrond">
+          <button type="button" data-stand="0">Asfalt</button><button type="button" data-stand="1">Hardpack</button><button type="button" data-stand="2">Gemengd</button><button type="button" data-stand="3">Los gravel</button><button type="button" data-stand="4">Zand &amp; modder</button>
+        </div>
+      </div>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbStijl">Rijstijl</label><output id="gbStijlUit">Training</output></div>
+        <input type="range" id="gbStijl" min="0" max="4" step="1" value="2" aria-valuetext="Training">
+        <div class="gb-schaal" data-voor="#gbStijl">
+          <button type="button" data-stand="0">Race</button><button type="button" data-stand="1">Snel</button><button type="button" data-stand="2">Training</button><button type="button" data-stand="3">Toer</button><button type="button" data-stand="4">Bikepacking</button>
+        </div>
+      </div>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbWeer">Weer</label><output id="gbWeerUit">Wisselend</output></div>
+        <input type="range" id="gbWeer" min="0" max="2" step="1" value="1" aria-valuetext="Wisselend">
+        <div class="gb-schaal gb-schaal--3" data-voor="#gbWeer">
+          <button type="button" data-stand="0">Droog</button><button type="button" data-stand="1">Wisselend</button><button type="button" data-stand="2">Nat</button>
+        </div>
+      </div>
+
+      <h2 class="gb-kop"><span class="gb-stap">2</span> Je fiets en je wensen</h2>
+      <label class="gb-veld">
+        <span class="gb-label">Hoe breed mag de band in je frame?</span>
+        <select id="gbFrame">
+          <option value="0">Weet ik niet</option>
+          <option value="35">Tot 35 mm</option>
+          <option value="38">Tot 38 mm</option>
+          <option value="40">Tot 40 mm</option>
+          <option value="42">Tot 42 mm</option>
+          <option value="45">Tot 45 mm</option>
+          <option value="50">Tot 50 mm</option>
+          <option value="57">55 mm of breder</option>
+        </select>
+        <span class="gb-klein">Staat in de specificaties van je fiets ("max. bandenbreedte"). Houd een paar millimeter ruimte voor modder.</span>
+      </label>
+      <div class="gb-veld">
+        <span class="gb-label">Wat vind je het belangrijkst?</span>
+        <div class="gb-chips" data-veld="prioriteit">
+          <button type="button" data-waarde="balans" class="is-aan" aria-pressed="true">Goede balans</button>
+          <button type="button" data-waarde="snelheid" aria-pressed="false">Snelheid</button>
+          <button type="button" data-waarde="grip" aria-pressed="false">Grip</button>
+          <button type="button" data-waarde="lek" aria-pressed="false">Lekbescherming</button>
+        </div>
+      </div>
+      <div class="gb-veld">
+        <span class="gb-label">Budget per band</span>
+        <div class="gb-chips" data-veld="budget">
+          <button type="button" data-waarde="1" aria-pressed="false">Voordelig</button>
+          <button type="button" data-waarde="2" aria-pressed="false">Tot middenklasse</button>
+          <button type="button" data-waarde="3" class="is-aan" aria-pressed="true">Maakt niet uit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Advies ===== -->
+    <aside class="gb-advies" aria-live="polite" aria-labelledby="gbKopAdvies">
+      <h2 class="gb-kop gb-kop--licht" id="gbKopAdvies">Jouw bandenadvies</h2>
+      <div class="gb-samenvatting">
+        <div><span class="gb-klein-licht">Bandbreedte</span><strong id="gbBreedte">40 – 45 mm</strong></div>
+        <div><span class="gb-klein-licht">Profiel</span><strong id="gbProfiel">Allround</strong></div>
+      </div>
+      <p class="gb-uitleg" id="gbUitleg"></p>
+      <p class="gb-tip">Tip: rijd tubeless. Dan kun je met minder bandenspanning rijden voor meer grip en comfort, en dicht de melk kleine gaatjes vanzelf.</p>
+    </aside>
+  </div>
+
+  <!-- ===== Banden ===== -->
+  <section class="gb-resultaat" aria-labelledby="gbKopBanden">
+    <h2 class="gb-kop" id="gbKopBanden"><span class="gb-stap">3</span> Banden die bij je passen</h2>
+    <p class="gb-aantal" id="gbAantal"></p>
+    <ol class="gb-lijst" id="gbLijst"></ol>
+    <p class="gb-bron">Breedtes en gewichten zijn opgaven van de fabrikanten (700c, peildatum oktober 2026); controleer de maat bij aankoop. Veel banden bestaan ook in 650b. Profiel, scores en prijsklasse zijn een inschatting van Gravel Gorilla. De rolweerstandstests zijn van <a href="https://www.bicyclerollingresistance.com/cx-gravel-reviews" target="_blank" rel="noopener">bicyclerollingresistance.com</a>; wij linken er alleen naar.</p>
+  </section>
+</div>

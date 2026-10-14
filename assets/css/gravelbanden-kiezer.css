@@ -1,0 +1,81 @@
+/* =========================================================
+   Gravel Gorilla — Gravelbanden Kiezer (alles binnen .gb-scope)
+   ========================================================= */
+.gb-wrap { max-width: var(--breed); margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 40px; }
+.gb-raster { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: start; }
+
+.gb-kaart { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 22px; padding: clamp(20px, 3vw, 30px); display: grid; gap: 22px; }
+.gb-kop { display: flex; align-items: center; gap: 12px; font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.gb-stap { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--groen); color: #fff; font-size: 1.1rem; flex-shrink: 0; box-shadow: inset 0 0 0 2px var(--groen), inset 0 0 0 4px #F4F1EA; }
+.gb-label { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-weight: 600; font-size: .95rem; }
+.gb-label output { font-family: var(--kopfont); font-size: 1.35rem; font-weight: 600; color: var(--groen-tekst); text-transform: uppercase; }
+.gb-veld { display: grid; gap: 9px; }
+.gb-klein { font-size: .82rem; color: var(--tekst-zacht); }
+
+/* schuifjes met klikbare schaal */
+.gb-schuif { display: grid; gap: 6px; }
+.gb-scope input[type="range"] { width: 100%; accent-color: var(--groen); height: 28px; cursor: pointer; margin: 0; }
+.gb-schaal { display: grid; grid-template-columns: repeat(5, 1fr); font-size: .8rem; }
+.gb-schaal--3 { grid-template-columns: repeat(3, 1fr); }
+.gb-schaal button { font: inherit; background: none; border: 0; padding: 2px 0; color: var(--tekst-zacht); cursor: pointer; text-align: center; }
+.gb-schaal button:first-child { text-align: left; }
+.gb-schaal button:last-child { text-align: right; }
+.gb-schaal button:hover { color: var(--groen-tekst); }
+
+.gb-scope select { font: inherit; color: var(--tekst); background: var(--achtergrond); border: 1.5px solid var(--lijn); border-radius: 10px; padding: 11px 13px; width: 100%; }
+.gb-scope select:focus { outline: none; border-color: var(--groen); }
+.gb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.gb-chips button { font: inherit; font-size: .93rem; font-weight: 500; padding: 9px 15px; border-radius: 999px; cursor: pointer; background: transparent; color: var(--tekst); border: 1.5px solid var(--lijn); transition: background .2s, border-color .2s, color .2s; }
+.gb-chips button:hover { border-color: var(--tekst); }
+.gb-chips button.is-aan { background: var(--tekst); border-color: var(--tekst); color: var(--achtergrond); }
+
+/* ---------- Advies ---------- */
+.gb-advies { position: sticky; top: 86px; display: grid; gap: 16px; background: var(--diepgroen); color: #F4F1EA; border-radius: 24px; padding: clamp(22px, 3vw, 32px); }
+.gb-kop--licht { color: #F4F1EA; }
+.gb-samenvatting { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.gb-samenvatting > div { background: rgba(244,241,234,.08); border-radius: 14px; padding: 14px 16px; }
+.gb-klein-licht { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: #9AA098; font-weight: 600; }
+.gb-samenvatting strong { display: block; font-family: var(--kopfont); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.05; margin-top: 4px; }
+.gb-uitleg { font-size: .97rem; color: rgba(244,241,234,.85); line-height: 1.55; }
+.gb-tip { font-size: .9rem; color: #FFD2B8; border-left: 3px solid var(--actie); padding-left: 12px; }
+
+/* ---------- Resultaten ---------- */
+.gb-resultaat { margin-top: 30px; }
+.gb-aantal { color: var(--tekst-zacht); margin: 8px 0 18px; }
+.gb-lijst { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.gb-band { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; transition: border-color .3s, transform .3s var(--zacht); }
+.gb-band:hover { border-color: var(--groen); transform: translateY(-3px); }
+.gb-band--top { border: 2px solid var(--groen); }
+.gb-band__kop { display: flex; gap: 14px; align-items: center; }
+.gb-band__match { flex-shrink: 0; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: var(--groen); color: #fff; font-family: var(--kopfont); font-weight: 700; font-size: 1.25rem; }
+.gb-band--top .gb-band__match { background: var(--actie); color: #15181A; }
+.gb-band__merk { font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--tekst-zacht); }
+.gb-band h3 { font-size: 1.45rem; line-height: 1.05; }
+.gb-band__type { color: var(--tekst-zacht); font-size: .95rem; }
+.gb-band__specs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.gb-chip { font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; background: var(--achtergrond-2); }
+.gb-chip--maat { background: var(--groen); color: #fff; }
+.gb-ook { font-size: .82rem; color: var(--tekst-zacht); }
+.gb-band__meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .9rem; }
+.gb-band__meta small { color: var(--tekst-zacht); }
+.gb-prijs { font-weight: 700; letter-spacing: .05em; margin-left: auto; }
+.gb-grijs { color: var(--lijn); }
+.gb-band__waarom { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: .92rem; }
+.gb-band__waarom li::marker { color: var(--groen); content: "✓  "; }
+.gb-band__links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: .88rem; padding-top: 10px; border-top: 1px solid var(--lijn); }
+.gb-band__links a { color: var(--groen-tekst); font-weight: 600; }
+.gb-band__links a:hover { text-decoration: underline; }
+.gb-knop { flex-basis: 100%; text-align: center; padding: 9px 14px; border-radius: 10px; background: var(--actie); color: #15181A !important; }
+.gb-knop:hover { background: var(--actie-hover); text-decoration: none !important; }
+.gb-leeg { padding: 30px; text-align: center; color: var(--tekst-zacht); grid-column: 1 / -1; }
+.gb-bron { margin-top: 22px; font-size: .82rem; color: var(--tekst-zacht); max-width: 70em; }
+.gb-bron a { color: var(--groen-tekst); text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .gb-raster { grid-template-columns: 1fr; }
+  .gb-advies { position: static; }
+}
+@media (max-width: 480px) {
+  .gb-schaal { font-size: .68rem; }
+  .gb-lijst { grid-template-columns: 1fr; }
+}

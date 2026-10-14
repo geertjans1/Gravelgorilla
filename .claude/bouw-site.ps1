@@ -25,7 +25,7 @@ function JsonLd($obj) { '  <script type="application/ld+json">' + (ConvertTo-Jso
 $organisatie = [ordered]@{ '@type' = 'Organization'; '@id' = "$site/#organisatie"; name = 'Gravel Gorilla'; url = "$site/"
   logo = "$site/assets/img/icon-192.png"; email = 'info@gravelgorilla.nl'
   founder = [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/" }
-  description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies.' }
+  description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies.' }
 
 function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "") {
   $extraCss = ($css | ForEach-Object { "  <link rel=""stylesheet"" href=""/assets/css/$_"">" }) -join "`n"
@@ -156,13 +156,21 @@ $tools = @(
     seoTitel = 'Wat trek ik aan op de fiets? Kledingadvies | Gravel Gorilla'
     sub = 'Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.'; beschrijving = 'Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.'
     naamKort = 'Kledingadvies'; kort = 'Te warm of te koud? Zie per lichaamsdeel wat je aantrekt, met de weersverwachting voor jouw rit.'
-    filter = 'plannen'; plaatje = 'jas'; label = 'Nieuw'
+    filter = 'plannen'; plaatje = 'jas'
     soort = 'kiezer'; scope = 'kl-scope'; uitlegKop = 'Nooit meer te warm of te koud' }
+  [ordered]@{ slug = 'gravelbanden-kiezer'; km = '07'; kop = 'Gravelbanden <span class="groen">Kiezer</span>'; titel = 'Gravelbanden Kiezer'
+    seoTitel = 'Welke gravelband past bij jou? Bandenkiezer | Gravel Gorilla'
+    sub = 'Schuif je ondergrond, rijstijl en weer aan en zie welke breedte, welk profiel en welke banden bij je passen.'; beschrijving = 'Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.'
+    naamKort = 'Banden Kiezer'; kort = 'Ondergrond, rijstijl en weer instellen, en zien welke breedte, welk profiel en welke banden passen.'
+    filter = 'kiezen'; plaatje = 'band'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'gb-scope'; uitlegKop = 'Zo kies je de juiste gravelband' }
 )
 
 # Kleine plaatjes die oppoppen als je over een bordje in de wegwijzer beweegt
 $spaken = (0..9 | ForEach-Object { '<line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(' + ($_ * 36) + ' 50 50)"/>' }) -join ''
+$noppen = (0..17 | ForEach-Object { '<rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(' + ($_ * 20) + ' 50 50)"/>' }) -join ''
 $plaatjes = @{
+  band    = '<svg viewBox="0 0 100 100" width="100" height="100">' + $noppen + '<circle cx="50" cy="50" r="36" fill="none" stroke="#15181A" stroke-width="9"/><circle cx="50" cy="50" r="29" fill="none" stroke="#2F8F3E" stroke-width="3"/><circle cx="50" cy="50" r="6" fill="#FF6B2C"/></svg>'
   quiz    = '<svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="20" width="72" height="8" rx="4" fill="#E3DDCF"/><rect x="14" y="20" width="46" height="8" rx="4" fill="#FF6B2C"/><rect x="14" y="40" width="72" height="14" rx="5" fill="#2F8F3E"/><rect x="14" y="60" width="72" height="14" rx="5" fill="none" stroke="#15181A" stroke-width="2"/><rect x="14" y="80" width="50" height="6" rx="3" fill="#C9C2B2"/></svg>'
   meter   = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M15 70 A35 35 0 0 1 85 70" fill="none" stroke="#E3DDCF" stroke-width="9" stroke-linecap="round"/><path d="M15 70 A35 35 0 0 1 72 42" fill="none" stroke="#2F8F3E" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="70" x2="68" y2="44" stroke="#15181A" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="70" r="6" fill="#FF6B2C"/></svg>'
   wiel    = '<svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="#15181A" stroke-width="8" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="33" fill="none" stroke="#C9C2B2" stroke-width="2"/>' + $spaken + '<circle cx="50" cy="50" r="6" fill="#2F8F3E"/></svg>'
@@ -193,6 +201,10 @@ foreach ($t in $tools) {
     }
     'blok' {
       $tool = "    <div class=""tool-vak"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
+      if ($t.slug -eq 'bandenspanning-calculator') {
+        # komt iemand uit de bandenkiezer (?breedte=45), zet dan meteen die bandbreedte klaar
+        $tool += "`n    <script>(function () { var b = new URLSearchParams(location.search).get(""breedte""), s = document.getElementById(""ggWidth""); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event(""input"", { bubbles: true })); } })();</script>"
+      }
     }
     'venster' {
       # versienummer van de tool, zodat browsers een nieuwe versie meteen ophalen
@@ -293,7 +305,7 @@ $pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Go
       <a href="/" class="terug">← Home</a>
       <p class="pagina-km">Gebouwd door een gravelrijder</p>
       <h1 class="kop-l">Over <span class="groen">ons</span></h1>
-      <p class="pagina-sub">Van frustratie naar zes tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
+      <p class="pagina-sub">Van frustratie naar zeven tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
     </section>
     <section class="maker" id="geert" aria-labelledby="maker-kop">
       <div class="maker__beeld" aria-hidden="true"><img src="/assets/img/logo-icon.svg" alt="" width="120" height="120"></div>
@@ -306,7 +318,7 @@ $pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Go
       </div>
     </section>
     <section class="cijfers" aria-label="Het verhaal in cijfers">
-      <div class="cijfer"><strong>6</strong><span>gratis interactieve tools</span></div>
+      <div class="cijfer"><strong>7</strong><span>gratis interactieve tools</span></div>
       <div class="cijfer"><strong>147</strong><span>gravelbikes in de kiezer</span></div>
       <div class="cijfer"><strong>21</strong><span>e-gravelbikes vergeleken</span></div>
       <div class="cijfer"><strong>13</strong><span>merken naast elkaar</span></div>
@@ -474,7 +486,7 @@ Schrijf "index.html" $voorpagina
 
 # ---------- llms.txt: korte samenvatting van de site voor AI-zoekmachines ----------
 $llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
-  "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
+  "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke banden, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
   (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
   "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n"
 Schrijf "llms.txt" $llms
@@ -518,7 +530,7 @@ RewriteRule ^(.*/)?feed/?$ / [R=301,L]
 RewriteRule ^(uncategorized|materiaal)/ /#wegwijzer [R=301,L,NE]
 RewriteRule ^blog/?$ /#wegwijzer [R=301,L,NE]
 RewriteRule ^(gravelbike|gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike|welke-gravelbike-budget|beste-prijs-kwaliteit-verhouding-gravelbike)/?$ /tools/gravelbike-kiezer/ [R=301,L]
-RewriteRule ^beste-gravelbanden/?$ /tools/bandenspanning-calculator/ [R=301,L]
+RewriteRule ^beste-gravelbanden/?$ /tools/gravelbanden-kiezer/ [R=301,L]
 RewriteRule ^(zadeltassen-bikepacken-avontuur-fietstassen|de-10-spectaculairste-gravelbestemmingen)/?$ /tools/ultra-eventkiezer/ [R=301,L]
 RewriteRule ^fietsverlichting-budgetverlichting-merkverlichting/?$ / [R=301,L]
 RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301,L]
