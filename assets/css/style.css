@@ -326,3 +326,24 @@ button { font: inherit; color: inherit; }
 }
 @media (max-width: 640px) { .snelkeuze__begin span { display: block; margin: 4px 0 0; } }
 .deel.is-aan .snelfiets__grond { stroke: var(--groen); stroke-dasharray: 8 6; }
+
+/* ---------- Taalmenu (NL / EN / DE) ---------- */
+.taal { position: relative; }
+.taal__knop { display: flex; align-items: center; gap: 7px; height: 42px; padding: 0 12px; border-radius: 999px; border: 1.5px solid var(--lijn); background: transparent; color: var(--tekst); font: inherit; font-weight: 600; font-size: .85rem; cursor: pointer; transition: border-color .2s; }
+.taal__knop:hover, .taal.is-open .taal__knop { border-color: var(--tekst); }
+.vlag { width: 20px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.12); flex-shrink: 0; display: block; }
+.taal__pijl { width: 10px; height: 7px; transition: transform .2s; }
+.taal.is-open .taal__pijl { transform: rotate(180deg); }
+.taal__lijst { position: absolute; right: 0; top: calc(100% + 8px); list-style: none; margin: 0; padding: 6px; min-width: 170px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.15); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .2s, transform .2s var(--zacht), visibility .2s; z-index: 60; }
+.taal.is-open .taal__lijst { opacity: 1; visibility: visible; transform: none; }
+.taal__lijst a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px; font-size: .95rem; font-weight: 500; color: var(--tekst); }
+.taal__lijst a:hover { background: var(--achtergrond-2); }
+.taal__lijst a[aria-current] { font-weight: 700; color: var(--groen-tekst); }
+.taal__lijst a[aria-current]::after { content: "✓"; margin-left: auto; }
+@media (max-width: 640px) { .taal { margin-left: auto; } .taal ~ .thema-knop { margin-left: 0; } .taal__knop { padding: 0 10px; } }
+
+/* melding bij een tool die nog niet vertaald is */
+.tool-melding { max-width: var(--breed); margin: 0 auto 18px; padding: 12px clamp(16px, 4vw, 40px); font-size: .95rem; color: var(--tekst-zacht); }
+.tool-melding::before { content: "🌍 "; }
+@media (max-width: 640px) { .brand__word { white-space: nowrap; } .taal__knop { gap: 6px; padding: 0 10px; } .taal__pijl { display: none; } }
+@media (max-width: 430px) { .taal__knop > span { display: none; } .taal__knop { width: 42px; padding: 0; justify-content: center; } }

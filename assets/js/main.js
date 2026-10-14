@@ -40,13 +40,28 @@ document.querySelectorAll(".filter").forEach(knop => {
 zoekveld.addEventListener("input", toonBordjes);
 
 /* ---------- Gorilla-tips ---------- */
-const TIPS = [
+// (de eerste Nederlandse tip zet het bouwscript ook vast in de pagina; Engels en Duits staan in inhoud/talen/*.psd1)
+const TIPS_NL = [
   { tekst: "Rijd je veel zand? Een bredere band met wat minder spanning zakt minder weg dan een smalle, harde band.", link: "/tools/bandenspanning-calculator/" },
   { tekst: "Tubeless? Kijk elke paar maanden of er nog genoeg melk in je band zit. Die droogt langzaam op.", link: "/tools/bandenspanning-calculator/" },
-  { tekst: "Twijfel je tussen twee framematen? Kijk niet alleen naar de maat, maar ook naar stack en reach.", link: "/tools/gravelbike-kiezer/" },
-  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/tools/profielsticker/" },
+  { tekst: "Twijfel je tussen twee framematen? Kijk niet alleen naar de maat, maar ook naar stack en reach.", link: "/tools/maatbepaler/" },
+  { tekst: "Begin je net? Plan je eerste rit van 30 à 40 km op bekend terrein. Het gaat om plezier, niet om snelheid.", link: "/tools/gravelroutes/" },
   { tekst: "Na een modderrit eerst je ketting schoonmaken en smeren. Dat scheelt je later een nieuwe aandrijving.", link: "/tools/gravelbike-kiezer/" }
 ];
+const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
+const TIPS = TAAL === "en" ? [
+  { tekst: "Riding a lot of sand? A wider tyre with a bit less pressure sinks in less than a narrow, hard tyre.", link: "/en/tools/bandenspanning-calculator/" },
+  { tekst: "Tubeless? Check every few months whether there's still enough sealant in your tyre. It slowly dries out.", link: "/en/tools/bandenspanning-calculator/" },
+  { tekst: "In doubt between two frame sizes? Don't just look at the size, but also at stack and reach.", link: "/en/tools/maatbepaler/" },
+  { tekst: "Just starting? Plan your first ride of 30 to 40 km on familiar ground. It's about fun, not speed.", link: "/en/tools/gravelroutes/" },
+  { tekst: "After a muddy ride, clean and lube your chain first. That saves you a new drivetrain later.", link: "/en/tools/gravelbike-kiezer/" }
+] : TAAL === "de" ? [
+  { tekst: "Viel Sand unterwegs? Ein breiterer Reifen mit etwas weniger Druck sinkt weniger ein als ein schmaler, harter Reifen.", link: "/de/tools/bandenspanning-calculator/" },
+  { tekst: "Tubeless? Prüf alle paar Monate, ob noch genug Dichtmilch im Reifen ist. Sie trocknet langsam aus.", link: "/de/tools/bandenspanning-calculator/" },
+  { tekst: "Zwischen zwei Rahmengrößen? Schau nicht nur auf die Größe, sondern auch auf Stack und Reach.", link: "/de/tools/maatbepaler/" },
+  { tekst: "Gerade erst angefangen? Plan deine erste Fahrt mit 30 bis 40 km auf bekanntem Terrain. Es geht um Spaß, nicht um Tempo.", link: "/de/tools/gravelroutes/" },
+  { tekst: "Nach einer Matschfahrt zuerst die Kette putzen und ölen. Das erspart dir später einen neuen Antrieb.", link: "/de/tools/gravelbike-kiezer/" }
+] : TIPS_NL;
 let tip = 0;
 const tipTekst = document.getElementById("tipTekst");
 const tipNummer = document.getElementById("tipNummer");

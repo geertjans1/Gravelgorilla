@@ -1,0 +1,119 @@
+<div class="kl-wrap">
+  <div class="kl-raster">
+
+    <!-- ===== Input ===== -->
+    <div class="kl-invoer">
+      <section class="kl-kaart" aria-labelledby="klKopWeer">
+        <h2 class="kl-kop" id="klKopWeer"><span class="kl-stap">1</span> The weather</h2>
+
+        <div class="kl-modus" role="group" aria-label="How do you want to enter the weather?">
+          <button type="button" class="kl-modusknop is-aan" data-modus="zelf" aria-pressed="true">Enter it myself</button>
+          <button type="button" class="kl-modusknop" data-modus="ophalen" aria-pressed="false">Get weather</button>
+        </div>
+
+        <div class="kl-ophalen" id="klOphalen" hidden>
+          <label class="kl-veld">
+            <span class="kl-label">Where are you riding?</span>
+            <input type="text" id="klPlaats" placeholder="E.g. Maastricht, Arnhem or Bruges" autocomplete="off">
+          </label>
+          <div class="kl-twee">
+            <label class="kl-veld">
+              <span class="kl-label">Date</span>
+              <input type="date" id="klDatum">
+            </label>
+            <label class="kl-veld">
+              <span class="kl-label">Start time</span>
+              <select id="klUur"></select>
+            </label>
+          </div>
+          <button type="button" class="knop knop--actie" id="klHaal">Get weather</button>
+          <p class="kl-status" id="klWeerStatus" aria-live="polite"></p>
+          <div class="kl-keuzes" id="klKeuzes"></div>
+          <p class="kl-klein">Only your place name and date go to Open-Meteo, a free weather service, to fetch the forecast.</p>
+        </div>
+
+        <div class="kl-veld">
+          <div class="kl-label">Temperature at the start <output id="klTempUit" for="klTemp">12 °C</output></div>
+          <input type="range" id="klTemp" min="-10" max="35" step="1" value="12" aria-label="Temperature in degrees">
+          <div class="kl-schaal" aria-hidden="true"><span>-10</span><span>0</span><span>10</span><span>20</span><span>35 °C</span></div>
+        </div>
+        <div class="kl-veld">
+          <div class="kl-label">Rain</div>
+          <div class="kl-chips" data-veld="neerslag">
+            <button type="button" data-waarde="droog" class="is-aan" aria-pressed="true">Dry</button>
+            <button type="button" data-waarde="buien" aria-pressed="false">Chance of showers</button>
+            <button type="button" data-waarde="regen" aria-pressed="false">Rain</button>
+          </div>
+        </div>
+        <div class="kl-veld">
+          <div class="kl-label">Wind</div>
+          <div class="kl-chips" data-veld="wind">
+            <button type="button" data-waarde="weinig" class="is-aan" aria-pressed="true">Light</button>
+            <button type="button" data-waarde="matig" aria-pressed="false">Moderate</button>
+            <button type="button" data-waarde="stevig" aria-pressed="false">Strong</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="kl-kaart" aria-labelledby="klKopRit">
+        <h2 class="kl-kop" id="klKopRit"><span class="kl-stap">2</span> You and your ride</h2>
+        <div class="kl-veld">
+          <div class="kl-label">How long are you riding?</div>
+          <div class="kl-chips" data-veld="duur">
+            <button type="button" data-waarde="kort" aria-pressed="false">Up to 1.5 hours</button>
+            <button type="button" data-waarde="middel" class="is-aan" aria-pressed="true">1.5 – 3 hours</button>
+            <button type="button" data-waarde="lang" aria-pressed="false">3 – 5 hours</button>
+            <button type="button" data-waarde="ultra" aria-pressed="false">Longer</button>
+          </div>
+        </div>
+        <div class="kl-veld">
+          <div class="kl-label">How hard are you going?</div>
+          <div class="kl-chips" data-veld="tempo">
+            <button type="button" data-waarde="rustig" aria-pressed="false">Easy touring</button>
+            <button type="button" data-waarde="stevig" class="is-aan" aria-pressed="true">Solid pace</button>
+            <button type="button" data-waarde="wedstrijd" aria-pressed="false">Race</button>
+          </div>
+        </div>
+        <div class="kl-veld">
+          <div class="kl-label">How are you?</div>
+          <div class="kl-chips" data-veld="gevoel">
+            <button type="button" data-waarde="koud" aria-pressed="false">I get cold quickly</button>
+            <button type="button" data-waarde="normaal" class="is-aan" aria-pressed="true">Normal</button>
+            <button type="button" data-waarde="warm" aria-pressed="false">I get warm quickly</button>
+          </div>
+        </div>
+        <div class="kl-veld">
+          <div class="kl-label">Surface</div>
+          <div class="kl-chips" data-veld="grond">
+            <button type="button" data-waarde="droog" class="is-aan" aria-pressed="true">Dry</button>
+            <button type="button" data-waarde="nat" aria-pressed="false">Wet and muddy</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== Advice ===== -->
+    <aside class="kl-advies" aria-labelledby="klKopAdvies">
+      <h2 class="kl-kop kl-kop--licht" id="klKopAdvies">Your clothing advice</h2>
+      <div class="kl-gevoel">
+        <p class="kl-gevoel__klein">Dress as if it's</p>
+        <p class="kl-gevoel__groot" id="klEff" aria-live="polite">12 °C</p>
+        <p class="kl-gevoel__uitleg" id="klEffUitleg"></p>
+        <div class="kl-thermo" aria-hidden="true"><i id="klThermoStip"></i></div>
+        <div class="kl-thermo__schaal" aria-hidden="true"><span>freezing</span><span>chilly</span><span>pleasant</span><span>hot</span></div>
+      </div>
+      <ul class="kl-zones" id="klZones"></ul>
+      <div class="kl-blok">
+        <h3>In your back pocket</h3>
+        <ul class="kl-lijst" id="klZak"></ul>
+      </div>
+      <div class="kl-blok">
+        <h3>Tips for this ride</h3>
+        <ul class="kl-lijst kl-lijst--tips" id="klTips"></ul>
+      </div>
+      <button type="button" class="kl-kopieer" id="klKopieer">Copy as packing list</button>
+      <p class="kl-status" id="klKopieerStatus" aria-live="polite"></p>
+    </aside>
+
+  </div>
+</div>

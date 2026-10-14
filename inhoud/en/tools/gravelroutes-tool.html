@@ -1,0 +1,68 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Map and filters ===== -->
+    <section class="wb-kaart" aria-labelledby="grKopInvoer">
+      <h2 class="wb-kop" id="grKopInvoer"><span class="wb-stap">1</span> Where do you want to ride?</h2>
+      <div class="gr-kaart" id="grKaart" role="group" aria-label="Choose a province"></div>
+      <span class="wb-klein">Tap a province to see only the routes there. The number is the number of routes. Tap again to turn the filter off.</span>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> What kind of route?</h2>
+      <div class="wb-veld">
+        <span class="wb-label">Country</span>
+        <div class="wb-chips" data-veld="land">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">Both</button>
+          <button type="button" data-waarde="NL" aria-pressed="false">Netherlands</button>
+          <button type="button" data-waarde="BE" aria-pressed="false">Belgium</button>
+        </div>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">Distance</span>
+        <div class="wb-chips" data-veld="lengte">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">All</button>
+          <button type="button" data-waarde="kort" aria-pressed="false">Up to 30 km</button>
+          <button type="button" data-waarde="middel" aria-pressed="false">30 – 60 km</button>
+          <button type="button" data-waarde="lang" aria-pressed="false">60 – 100 km</button>
+          <button type="button" data-waarde="extra" aria-pressed="false">100 km or more</button>
+        </div>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">How do you find the way?</span>
+        <div class="wb-chips" data-veld="nav">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">Doesn't matter</button>
+          <button type="button" data-waarde="bord" aria-pressed="false">Signposted</button>
+          <button type="button" data-waarde="gpx" aria-pressed="false">With GPX</button>
+        </div>
+      </div>
+      <label class="wb-veld">
+        <span class="wb-label">Search by place or name</span>
+        <input type="search" id="grZoek" class="gr-zoek" placeholder="E.g. Maastricht, Kempen or Drenthe">
+      </label>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="grKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="grKopAdvies">Found</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Routes</span><strong id="grAantal">0</strong></div>
+        <div><span class="wb-klein-licht">Together</span><strong id="grKm">0 km</strong></div>
+      </div>
+      <p class="wb-uitleg">In <b id="grFilterTekst">the Netherlands and Belgium</b>.</p>
+      <p class="wb-uitleg">You follow signposted routes via posts or arrows. For a GPX route you download the file at the source and put it on your bike computer or phone.</p>
+      <p class="wb-tip">Note: stay on the trails of the route, and check the source page whether you need a permit (vignet) or route contribution. Seasonal rules sometimes apply in nature areas.</p>
+      <div class="wb-knoppen"><button type="button" class="wb-knop gr-wis" id="grWis">Clear all filters</button></div>
+    </aside>
+  </div>
+
+  <!-- ===== Routes ===== -->
+  <section class="wb-resultaat" aria-labelledby="grKopRoutes">
+    <div class="gr-kopregel">
+      <h2 class="wb-kop" id="grKopRoutes"><span class="wb-stap">3</span> The routes</h2>
+      <label class="gr-sorteer">Sort by
+        <select id="grSorteer"><option value="km">Shortest first</option><option value="lang">Longest first</option><option value="naam">Name</option></select>
+      </label>
+    </div>
+    <ol class="gr-lijst" id="grLijst"></ol>
+    <p class="wb-bron">Sources (checked in October 2026): the official gravel routes on <a href="https://www.mtbroutes.nl/routes" target="_blank" rel="noopener">mtbroutes.nl</a>, <a href="https://www.drenthe.nl/" target="_blank" rel="noopener">Drenthe.nl</a>, the Green Divide on Komoot and the <a href="https://sporza.be/nl/categorie/onverhard/routes/" target="_blank" rel="noopener">Sporza Onverhard routes</a> in Flanders. The source pages are mostly in Dutch. Wallonia and the other Dutch provinces will follow as soon as we have found reliable routes. Know a great gravel route with an official source? <a href="/contact/">Tell the gorilla</a>.</p>
+  </section>
+</div>

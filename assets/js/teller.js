@@ -7,7 +7,9 @@
    ========================================================= */
 (function () {
   var adres = "/api/teller.php";
-  function getal(n) { return n.toLocaleString("nl-NL"); }
+  var taal = (document.documentElement.lang || "nl").slice(0, 2);
+  function T(nl, en, de) { return taal === "en" ? en : taal === "de" ? de : nl; }
+  function getal(n) { return n.toLocaleString(taal === "en" ? "en-GB" : taal === "de" ? "de-DE" : "nl-NL"); }
 
   var opPagina = document.querySelector("[data-teller]");
   if (opPagina) {
@@ -15,7 +17,7 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || typeof d.aantal !== "number") return;
-        opPagina.textContent = (d.aantal === 1 ? "1 keer" : "Al " + getal(d.aantal) + " keer") + " gebruikt";
+        opPagina.textContent = d.aantal === 1 ? T("1 keer gebruikt", "Used once", "1-mal genutzt") : T("Al " + getal(d.aantal) + " keer gebruikt", "Used " + getal(d.aantal) + " times", "Schon " + getal(d.aantal) + "-mal genutzt");
         opPagina.hidden = false;
       })
       .catch(function () {})
@@ -55,7 +57,7 @@
         bijBordjes.forEach(function (b) {
           var n = d[b.dataset.tellerTool];
           if (typeof n !== "number") return;
-          b.textContent = getal(n) + "× gebruikt";
+          b.textContent = getal(n) + T("× gebruikt", "× used", "× genutzt");
           b.hidden = false;
         });
         sorteerBordjes(d);
@@ -97,7 +99,7 @@
       var naam = koploper.li.querySelector(".bordje__naam");
       var label = document.createElement("span");
       label.className = "bordje__label";
-      label.textContent = "Meest gebruikt";
+      label.textContent = T("Meest gebruikt", "Most used", "Meistgenutzt");
       if (naam) naam.insertBefore(label, naam.querySelector(".bordje__label"));
     }
 

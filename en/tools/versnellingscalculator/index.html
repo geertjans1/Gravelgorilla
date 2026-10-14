@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
+  <title>Gravel bike gear calculator: chainring and cassette | Gravel Gorilla</title>
+  <meta name="description" content="Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.">
+  <link rel="canonical" href="https://gravelgorilla.nl/en/tools/versnellingscalculator/">
+  <link rel="alternate" hreflang="nl" href="https://gravelgorilla.nl/tools/versnellingscalculator/">
+  <link rel="alternate" hreflang="en" href="https://gravelgorilla.nl/en/tools/versnellingscalculator/">
+  <link rel="alternate" hreflang="de" href="https://gravelgorilla.nl/de/tools/versnellingscalculator/">
+  <link rel="alternate" hreflang="x-default" href="https://gravelgorilla.nl/tools/versnellingscalculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gravel bike gear calculator: chainring and cassette | Gravel Gorilla">
+  <meta property="og:description" content="Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.">
+  <meta property="og:url" content="https://gravelgorilla.nl/en/tools/versnellingscalculator/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/deelplaatje.png?v=7e972f3e">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Gravel Gorilla">
+  <link rel="icon" href="/favicon.ico?v=9d82fb64" sizes="48x48">
+  <link rel="icon" href="/assets/img/logo-icon.svg?v=8a9212c0" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/icon-192.png?v=bb1fc487" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=99bca353">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=ce9cc21d">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
+  <link rel="stylesheet" href="/assets/css/werkbank.css?v=dc685c85">
+  <link rel="stylesheet" href="/assets/css/versnellingscalculator.css?v=e9aa0e78">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/en/tools/versnellingscalculator/#tool","name":"Gear Calculator","url":"https://gravelgorilla.nl/en/tools/versnellingscalculator/","description":"Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/en/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Gear Calculator","item":"https://gravelgorilla.nl/en/tools/versnellingscalculator/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/en/tools/versnellingscalculator/#faq","mainEntity":[{"@type":"Question","name":"Which chainring is best for a gravel bike?","acceptedAnswer":{"@type":"Answer","text":"With 1×, 40 teeth is the most popular choice: a good balance between climbing and speed. If you ride a lot in the hills or with luggage, 38 or even 36 is nicer. If you mainly ride fast and flat, 42 or 44 suits. Put your options side by side in the calculator to see the difference."}},{"@type":"Question","name":"What does development mean?","acceptedAnswer":{"@type":"Answer","text":"Development (or roll-out) is how many metres your bike moves forward with one turn of the pedals. A small development (for example 2 metres) is light pedalling, handy uphill. A large development (8 metres or more) is heavy pedalling, for speed. It depends on your chainring, your rear sprocket and the circumference of your wheel with tyre."}},{"@type":"Question","name":"How steep can I climb with my gears?","acceptedAnswer":{"@type":"Answer","text":"That depends on your lowest gear, your weight with bike and luggage, your power and your cadence. As an example: with 40 front and 42 rear, 90 kilos in total, 200 watts and 75 rpm you ride about 7 percent seated. Short, steeper sections work standing or at a lower cadence, but you can\u0027t keep that up for long. The calculator works it out for you."}},{"@type":"Question","name":"What\u0027s the difference between a 10–44 and an 11–42 cassette?","acceptedAnswer":{"@type":"Answer","text":"A 10–44 has both a smaller sprocket (10) and a bigger one (44): you get a harder top gear and a lighter climbing gear. An 11–42 has less range. Note: a cassette with a 10-tooth sprocket only fits a matching freehub, and not every derailleur can handle a large sprocket."}},{"@type":"Question","name":"Does any cassette fit my bike?","acceptedAnswer":{"@type":"Answer","text":"No. Your derailleur must handle the biggest sprocket, your freehub must fit (such as Shimano HG, Microspline or SRAM XDR) and the number of speeds must match your shifters and chain. Check the specifications of your components or ask your bike shop before you order anything."}}]}]}</script>
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <a href="/en/" class="brand" aria-label="Gravel Gorilla, to the homepage">
+      <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Main menu">
+      <a href="/en/#wegwijzer">Tools</a>
+      <a href="/en/over-ons/">About us</a>
+    </nav>
+    <div class="taal" id="taalKeuze">
+      <button class="taal__knop" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Choose your language: English"><svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg><span>EN</span><svg class="taal__pijl" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <ul class="taal__lijst">
+        <li><a href="/tools/versnellingscalculator/" hreflang="nl" lang="nl"><svg class="vlag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#fff"/><rect width="9" height="2" fill="#AE1C28"/></svg><span>Nederlands</span></a></li>
+        <li><a href="/en/tools/versnellingscalculator/" hreflang="en" lang="en" aria-current="true"><svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg><span>English</span></a></li>
+        <li><a href="/de/tools/versnellingscalculator/" hreflang="de" lang="de"><svg class="vlag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="3" fill="#FFCE00"/><rect width="5" height="2" fill="#DD0000"/><rect width="5" height="1" fill="#000"/></svg><span>Deutsch</span></a></li>
+      </ul>
+    </div>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Dark mode on or off" title="Night ride on/off">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/en/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start the finder</a>
+    <button class="bar__menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main>
+    <section class="pagina-kop">
+      <a href="/en/#wegwijzer" class="terug">← Back to all tools</a>
+      <p class="pagina-km" data-km-tool="versnellingscalculator">KM 11</p>
+      <p class="pagina-teller" data-teller="versnellingscalculator" hidden></p>
+      <h1 class="kop-l">Gear <span class="groen">Calculator</span></h1>
+      <p class="pagina-sub">Choose your chainring and cassette and see your lowest gear, your top speed and how steep you can still climb. Compare two setups.</p>
+    </section>
+    <div class="wb-scope vs-scope">
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Input ===== -->
+    <section class="wb-kaart" aria-labelledby="vsKopInvoer">
+      <h2 class="wb-kop" id="vsKopInvoer"><span class="wb-stap">1</span> Your gears</h2>
+      <div class="vs-opstellingen">
+        <div class="vs-opstelling vs-opstelling--a">
+          <span class="vs-letter">A</span>
+          <label class="wb-veld"><span class="wb-label">Chainring</span><select id="vsVoorA"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterA"></select></label>
+        </div>
+        <div class="vs-opstelling vs-opstelling--b">
+          <span class="vs-letter">B</span>
+          <label class="wb-veld"><span class="wb-label">Chainring</span><select id="vsVoorB"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterB"></select></label>
+        </div>
+      </div>
+      <span class="wb-klein">Compare your current gears (A) with another setup (B). Choose "No comparison" at B if you only want to see one.</span>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> You, your wheels and the climb</h2>
+      <div class="wb-twee">
+        <label class="wb-veld"><span class="wb-label">Wheel size</span>
+          <select id="vsWiel"><option value="622">700c (28 inch)</option><option value="584">650b (27.5 inch)</option></select>
+        </label>
+        <label class="wb-veld"><span class="wb-label">Tyre width</span>
+          <select id="vsBand"><option>35</option><option>38</option><option selected>40</option><option>42</option><option>45</option><option>47</option><option>50</option></select>
+        </label>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsCadans">Cadence uphill</label><output id="vsCadansUit">75 rpm</output></div>
+        <input type="range" id="vsCadans" min="55" max="100" step="1" value="75">
+        <span class="wb-klein">How many times per minute your pedals go round when you climb. Most riders are around 70 to 85.</span>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsGewicht">Weight: you, bike and luggage</label><output id="vsGewichtUit">90 kg</output></div>
+        <input type="range" id="vsGewicht" min="55" max="160" step="1" value="90">
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsVermogen">Power you can hold uphill</label><output id="vsVermogenUit">200 watts</output></div>
+        <input type="range" id="vsVermogen" min="100" max="400" step="5" value="200">
+        <span class="wb-klein">Don't know? Recreational about 150 watts, trained 200 to 250, strong 300 or more.</span>
+      </div>
+    </section>
+
+    <!-- ===== Advice ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="vsKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="vsKopAdvies">Your lowest gear</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Steepest climb (A)</span><strong id="vsKlimA">12 %</strong></div>
+        <div><span class="wb-klein-licht">Steepest climb (B)</span><strong id="vsKlimB">–</strong></div>
+        <div><span class="wb-klein-licht">Lowest gear (A)</span><strong id="vsLaagA">–</strong></div>
+        <div><span class="wb-klein-licht">Top speed (A)</span><strong id="vsTopA">–</strong></div>
+      </div>
+      <p class="wb-uitleg" id="vsUitleg"></p>
+      <p class="wb-tip" id="vsTip"></p>
+    </aside>
+  </div>
+
+  <!-- ===== Ladder and table ===== -->
+  <section class="wb-resultaat" aria-labelledby="vsKopLadder">
+    <h2 class="wb-kop" id="vsKopLadder"><span class="wb-stap">3</span> All your gears in a row</h2>
+    <p class="wb-aantal" id="vsLadderUitleg">Each dot is a gear: how fast you go at your chosen cadence.</p>
+    <div class="vs-ladder" id="vsLadder"></div>
+    <div class="vs-tabellen" id="vsTabellen"></div>
+    <p class="wb-bron">The steepest climb is an estimate of what you can hold seated at your chosen cadence. We calculate with your weight, your power, your cadence in the lowest gear, rolling resistance on gravel and a bit of air resistance. Development = how many metres your bike moves forward per pedal revolution. For the cassettes the largest and smallest sprockets are exact; the sprockets in between are approximate.</p>
+  </section>
+</div>
+    </div>
+    <section class="vg" id="vraagGorilla" data-tool="versnellingscalculator" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Ask the <span class="groen">Gorilla</span></h2>
+          <p>Ask your question in plain English. If the gorilla can fill in the tool for you, he does it right away.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Your question for the gorilla" placeholder="Ask your question">
+        <button class="knop knop--actie" type="submit">Ask</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Example questions"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
+    <article class="lees tool-uitleg">
+      <h2 class="tool-uitleg-kop">The right gear for every climb</h2>
+<p>Halfway up a steep gravel climb, with luggage, and you're already in your lowest gear. That's when you want to know: should I have taken a smaller chainring? Or a cassette with a bigger sprocket? This calculator works it out before you buy anything. You see how light your lowest gear is, how fast you can still pedal downhill and, most importantly, how steep a climb you can still ride.</p>
+<h3>How does it work?</h3>
+<p>Choose your chainring and your cassette (A) and optionally another setup to compare (B). Enter your wheel size and tyre width, your cadence uphill, your weight with bike and luggage and the power you can hold uphill. Per setup you see all your gears in a row, the speed in each gear and the steepest climb you can still ride seated in your lowest gear.</p>
+<h3>1× or 2×?</h3>
+<ul>
+<li><strong>1× (one chainring):</strong> simple, light and less maintenance. With a large cassette (10–44 or bigger) you have enough range for most gravel rides. The jumps between gears are bigger, though.</li>
+<li><strong>2× (two chainrings):</strong> more range and smaller jumps. Nice if you also ride fast on tarmac and do steep climbs with luggage.</li>
+</ul>
+<h3>What is a good lowest gear?</h3>
+<p>For flat gravel rides almost anything is fine. In the Ardennes, hilly regions or with bikepacking luggage, you want a lowest gear lighter than 1:1: the chainring smaller than the biggest sprocket at the back, for example 40 front and 44 or more at the rear. A rule of thumb: if in your lowest gear at your normal cadence you can ride 8 to 10 percent seated, you'll manage most climbs. Steeper bits you do standing or at a lower cadence.</p>
+
+    </article>
+    <section class="lees tool-faq" aria-labelledby="faq-kop">
+      <h2 class="tool-uitleg-kop" id="faq-kop">Frequently asked questions</h2>
+      <h3>Which chainring is best for a gravel bike?</h3>
+      <p>With 1×, 40 teeth is the most popular choice: a good balance between climbing and speed. If you ride a lot in the hills or with luggage, 38 or even 36 is nicer. If you mainly ride fast and flat, 42 or 44 suits. Put your options side by side in the calculator to see the difference.</p>
+      <h3>What does development mean?</h3>
+      <p>Development (or roll-out) is how many metres your bike moves forward with one turn of the pedals. A small development (for example 2 metres) is light pedalling, handy uphill. A large development (8 metres or more) is heavy pedalling, for speed. It depends on your chainring, your rear sprocket and the circumference of your wheel with tyre.</p>
+      <h3>How steep can I climb with my gears?</h3>
+      <p>That depends on your lowest gear, your weight with bike and luggage, your power and your cadence. As an example: with 40 front and 42 rear, 90 kilos in total, 200 watts and 75 rpm you ride about 7 percent seated. Short, steeper sections work standing or at a lower cadence, but you can't keep that up for long. The calculator works it out for you.</p>
+      <h3>What's the difference between a 10–44 and an 11–42 cassette?</h3>
+      <p>A 10–44 has both a smaller sprocket (10) and a bigger one (44): you get a harder top gear and a lighter climbing gear. An 11–42 has less range. Note: a cassette with a 10-tooth sprocket only fits a matching freehub, and not every derailleur can handle a large sprocket.</p>
+      <h3>Does any cassette fit my bike?</h3>
+      <p>No. Your derailleur must handle the biggest sprocket, your freehub must fit (such as Shimano HG, Microspline or SRAM XDR) and the number of speeds must match your shifters and chain. Check the specifications of your components or ask your bike shop before you order anything.</p>
+    </section>
+    <section class="andere-tools" aria-labelledby="andere-kop">
+      <h2 class="kop-l" id="andere-kop">Other <span class="groen">tools</span></h2>
+      <div class="andere-raster">
+        <a href="/en/tools/gravelbike-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbike-kiezer">KM 01</span><strong>Gravel Bike Finder</strong><span>A few questions about how and where you ride, and you see which of 147 gravel bikes suit you.</span></a>
+        <a href="/en/tools/bandenspanning-calculator/" class="ander"><span class="ander__km" data-km-tool="bandenspanning-calculator">KM 02</span><strong>Tyre Pressure Calculator</strong><span>The right pressure for your weight, tyre width and surface. Front and rear separately.</span></a>
+        <a href="/en/tools/gravelwielen-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelwielen-kiezer">KM 03</span><strong>Gravel Wheel Finder</strong><span>Light, tough or fast? Find the wheelset that suits your bike and riding style.</span></a>
+        <a href="/en/tools/ultra-eventkiezer/" class="ander"><span class="ander__km" data-km-tool="ultra-eventkiezer">KM 04</span><strong>Ultra Event Finder</strong><span>Which ultra gravel event suits your experience, fitness and calendar? You get a shortlist.</span></a>
+        <a href="/en/tools/profielsticker/" class="ander"><span class="ander__km" data-km-tool="profielsticker">KM 05</span><strong>Profile Sticker</strong><span>From GPX to a sticker for your top tube: climbs, stops, power and when to eat.</span></a>
+        <a href="/en/tools/kledingadvies/" class="ander"><span class="ander__km" data-km-tool="kledingadvies">KM 06</span><strong>Clothing Advice</strong><span>Too warm or too cold? See what to wear for each body part, with the forecast for your ride.</span></a>
+        <a href="/en/tools/gravelbanden-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbanden-kiezer">KM 07</span><strong>Gravel Tyre Finder</strong><span>Set surface, riding style and weather, and see which width, tread and tyres fit.</span></a>
+        <a href="/en/tools/maatbepaler/" class="ander"><span class="ander__km" data-km-tool="maatbepaler">KM 08</span><strong>Frame Size Finder</strong><span>Enter your height and inseam and see which frame size and saddle height fit. Also between two sizes.</span></a>
+        <a href="/en/tools/paklijst-bikepacking/" class="ander"><span class="ander__km" data-km-tool="paklijst-bikepacking">KM 09</span><strong>Bikepacking Packing List</strong><span>A checklist per trip length and season, with the weight of your luggage.</span></a>
+        <a href="/en/tools/gravelroutes/" class="ander"><span class="ander__km" data-km-tool="gravelroutes">KM 10</span><strong>Gravel Routes in the Netherlands and Belgium</strong><span>Signposted gravel routes and GPX routes in the Netherlands and Flanders, by province and distance.</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">The gorilla shows the way.<br>You ride.</p>
+      <nav aria-label="Footer">
+        <a href="/en/#wegwijzer">Tools</a><a href="/en/over-ons/">About us</a><a href="/en/contact/">Contact</a><a href="/en/privacy/">Privacy</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · made by Geert Jans, gravel rider · no cookies, no ads</p>
+  </footer>
+
+  <script src="/assets/js/site.js?v=8069af02"></script>
+  <script src="/assets/js/versnellingscalculator.js?v=64da430d"></script>
+  <script src="/assets/js/vraag-gorilla.js?v=67f5eb00"></script>
+  <script src="/assets/js/teller.js?v=0609dda3"></script>
+</body>
+</html>

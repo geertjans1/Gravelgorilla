@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
+  <title>Gravel bike tyre pressure calculator | Gravel Gorilla</title>
+  <meta name="description" content="Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.">
+  <link rel="canonical" href="https://gravelgorilla.nl/en/tools/bandenspanning-calculator/">
+  <link rel="alternate" hreflang="nl" href="https://gravelgorilla.nl/tools/bandenspanning-calculator/">
+  <link rel="alternate" hreflang="en" href="https://gravelgorilla.nl/en/tools/bandenspanning-calculator/">
+  <link rel="alternate" hreflang="de" href="https://gravelgorilla.nl/de/tools/bandenspanning-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://gravelgorilla.nl/tools/bandenspanning-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gravel bike tyre pressure calculator | Gravel Gorilla">
+  <meta property="og:description" content="Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.">
+  <meta property="og:url" content="https://gravelgorilla.nl/en/tools/bandenspanning-calculator/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/deelplaatje.png?v=7e972f3e">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Gravel Gorilla">
+  <link rel="icon" href="/favicon.ico?v=9d82fb64" sizes="48x48">
+  <link rel="icon" href="/assets/img/logo-icon.svg?v=8a9212c0" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/icon-192.png?v=bb1fc487" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=99bca353">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=ce9cc21d">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/#tool","name":"Tyre Pressure Calculator","url":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/","description":"Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/en/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Tyre Pressure Calculator","item":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is a good tyre pressure for a gravel bike?","acceptedAnswer":{"@type":"Answer","text":"That depends on your weight, the width of your tyre and the surface. As an example: for a 75 kg rider on 40 mm tubeless tyres on mixed surfaces, the calculator comes to about 1.8 bar front and 2.0 bar rear. Heavier, narrower tyres or inner tubes mean more pressure; wider tyres or loose sand mean less."}},{"@type":"Question","name":"Why should my front tyre be softer than my rear?","acceptedAnswer":{"@type":"Answer","text":"Your rear wheel carries most of your weight. A front tyre with about 10 percent less pressure gives more grip in corners and more comfort in your hands, without the front washing out."}},{"@type":"Question","name":"Tubeless or inner tube: does it matter for pressure?","acceptedAnswer":{"@type":"Answer","text":"Yes. With an inner tube the calculator adds an extra correction. A tyre that\u0027s too soft with an inner tube pinch-flats more easily: a puncture because the tube gets squeezed against the rim, for example when you hit a tree root."}},{"@type":"Question","name":"Which tyres does the calculator work for?","acceptedAnswer":{"@type":"Answer","text":"For tyres from 28 to 55 mm wide, on 700c and 650b wheels, for riders from 45 to 130 kg including gear. You choose the surface (smooth, mixed or rough) and whether you ride tubeless or with inner tubes. You get the advice in bar and psi."}},{"@type":"Question","name":"How do I measure my tyre pressure?","acceptedAnswer":{"@type":"Answer","text":"With a pump with a good gauge, or with a separate digital gauge. Tyres slowly lose air, especially tubeless ones. So check the pressure before every ride and fine-tune by feel after the first kilometres."}}]}]}</script>
+</head>
+<body>
+
+  <header class="bar" id="bar">
+    <a href="/en/" class="brand" aria-label="Gravel Gorilla, to the homepage">
+      <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Main menu">
+      <a href="/en/#wegwijzer">Tools</a>
+      <a href="/en/over-ons/">About us</a>
+    </nav>
+    <div class="taal" id="taalKeuze">
+      <button class="taal__knop" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Choose your language: English"><svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg><span>EN</span><svg class="taal__pijl" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <ul class="taal__lijst">
+        <li><a href="/tools/bandenspanning-calculator/" hreflang="nl" lang="nl"><svg class="vlag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#fff"/><rect width="9" height="2" fill="#AE1C28"/></svg><span>Nederlands</span></a></li>
+        <li><a href="/en/tools/bandenspanning-calculator/" hreflang="en" lang="en" aria-current="true"><svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg><span>English</span></a></li>
+        <li><a href="/de/tools/bandenspanning-calculator/" hreflang="de" lang="de"><svg class="vlag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="3" fill="#FFCE00"/><rect width="5" height="2" fill="#DD0000"/><rect width="5" height="1" fill="#000"/></svg><span>Deutsch</span></a></li>
+      </ul>
+    </div>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Dark mode on or off" title="Night ride on/off">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/en/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start the finder</a>
+    <button class="bar__menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <main>
+    <section class="pagina-kop">
+      <a href="/en/#wegwijzer" class="terug">← Back to all tools</a>
+      <p class="pagina-km" data-km-tool="bandenspanning-calculator">KM 02</p>
+      <p class="pagina-teller" data-teller="bandenspanning-calculator" hidden></p>
+      <h1 class="kop-l">Tyre Pressure <span class="groen">Calculator</span></h1>
+      <p class="pagina-sub">The right pressure for your weight, tyre width and surface. Front and rear separately, in bar and psi.</p>
+    </section>
+    <div class="tool-vak">
+<div class="ggcalc">
+  <div class="ggcalc-card">
+    <span class="ggcalc-bolt ggcalc-bolt-tl" aria-hidden="true"></span>
+    <span class="ggcalc-bolt ggcalc-bolt-tr" aria-hidden="true"></span>
+
+    <div class="ggcalc-head">
+      <p class="ggcalc-eyebrow">GravelGorilla · Tools</p>
+      <h2 class="ggcalc-title">Tyre pressure calculator</h2>
+      <p class="ggcalc-sub">Set your front and rear tyre for your weight, tyre and surface.</p>
+    </div>
+
+    <div class="ggcalc-body">
+      <div class="ggcalc-inputs">
+
+        <div class="ggcalc-field">
+          <div class="ggcalc-field-label-row">
+            <label for="ggRider">Rider weight + gear</label>
+            <span class="ggcalc-field-value" id="ggRiderVal">75 kg</span>
+          </div>
+          <input type="range" id="ggRider" min="45" max="130" step="1" value="75">
+        </div>
+
+        <div class="ggcalc-field">
+          <div class="ggcalc-field-label-row">
+            <label for="ggWidth">Tyre size (width)</label>
+            <span class="ggcalc-field-value" id="ggWidthVal">40 mm</span>
+          </div>
+          <input type="range" id="ggWidth" min="28" max="55" step="1" value="40">
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Wheel size</label></p>
+          <div class="ggcalc-segmented" data-group="wheel" role="group" aria-label="Wheel size">
+            <button type="button" class="ggcalc-seg is-active" data-value="700c">700c</button>
+            <button type="button" class="ggcalc-seg" data-value="650b">650b</button>
+          </div>
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Surface</label></p>
+          <div class="ggcalc-segmented" data-group="terrain" role="group" aria-label="Surface">
+            <button type="button" class="ggcalc-seg" data-value="glad">Smooth</button>
+            <button type="button" class="ggcalc-seg is-active" data-value="gemengd">Mixed</button>
+            <button type="button" class="ggcalc-seg" data-value="ruw">Rough</button>
+          </div>
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Valve</label></p>
+          <div class="ggcalc-segmented" data-group="valve" role="group" aria-label="Valve">
+            <button type="button" class="ggcalc-seg is-active" data-value="tubeless">Tubeless</button>
+            <button type="button" class="ggcalc-seg" data-value="tube">Inner tube</button>
+          </div>
+        </div>
+
+        <button type="button" class="ggcalc-advanced-toggle" id="ggAdvToggle" aria-expanded="false">
+          Advanced <span aria-hidden="true">▾</span>
+        </button>
+
+        <div class="ggcalc-field ggcalc-advanced" id="ggAdvPanel" hidden>
+          <div class="ggcalc-field-label-row">
+            <label for="ggBike">Bike weight (incl. bottles/bag)</label>
+            <span class="ggcalc-field-value" id="ggBikeVal">9 kg</span>
+          </div>
+          <input type="range" id="ggBike" min="7" max="16" step="0.5" value="9">
+        </div>
+
+      </div>
+
+      <div class="ggcalc-gauges">
+        <div class="ggcalc-gauge">
+          <p class="ggcalc-gauge-label">Front</p>
+          <svg viewBox="0 0 200 130" aria-hidden="true">
+            <defs>
+              <linearGradient id="ggcalcGradFront" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#55643E"/>
+                <stop offset="55%" stop-color="#B7A66B"/>
+                <stop offset="100%" stop-color="#B14B2C"/>
+              </linearGradient>
+            </defs>
+            <path d="M30,110 A70,70 0 1 1 170,110" fill="none" stroke="url(#ggcalcGradFront)" stroke-width="14" stroke-linecap="round"/>
+            <g class="ggcalc-ticks">
+              <line x1="20" y1="110" x2="10" y2="110"/>
+              <line x1="43.4" y1="53.4" x2="36.4" y2="46.4"/>
+              <line x1="100" y1="30" x2="100" y2="20"/>
+              <line x1="156.6" y1="53.4" x2="163.6" y2="46.4"/>
+              <line x1="180" y1="110" x2="190" y2="110"/>
+            </g>
+            <text x="18" y="126" class="ggcalc-gauge-minmax">15</text>
+            <text x="182" y="126" class="ggcalc-gauge-minmax" text-anchor="end">55</text>
+            <polygon id="ggFrontNeedle" points="97,110 103,110 100,45" fill="#202B1B" transform="rotate(-90 100 110)"/>
+            <circle cx="100" cy="110" r="7" fill="#B14B2C" stroke="#202B1B" stroke-width="1.5"/>
+          </svg>
+          <div class="ggcalc-readout" aria-live="polite">
+            <span class="ggcalc-psi" id="ggFrontPsi">&#8212;</span><span class="ggcalc-unit">psi</span>
+            <div class="ggcalc-bar" id="ggFrontBar">&#8212; bar</div>
+          </div>
+        </div>
+
+        <div class="ggcalc-gauge">
+          <p class="ggcalc-gauge-label">Rear</p>
+          <svg viewBox="0 0 200 130" aria-hidden="true">
+            <defs>
+              <linearGradient id="ggcalcGradRear" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#55643E"/>
+                <stop offset="55%" stop-color="#B7A66B"/>
+                <stop offset="100%" stop-color="#B14B2C"/>
+              </linearGradient>
+            </defs>
+            <path d="M30,110 A70,70 0 1 1 170,110" fill="none" stroke="url(#ggcalcGradRear)" stroke-width="14" stroke-linecap="round"/>
+            <g class="ggcalc-ticks">
+              <line x1="20" y1="110" x2="10" y2="110"/>
+              <line x1="43.4" y1="53.4" x2="36.4" y2="46.4"/>
+              <line x1="100" y1="30" x2="100" y2="20"/>
+              <line x1="156.6" y1="53.4" x2="163.6" y2="46.4"/>
+              <line x1="180" y1="110" x2="190" y2="110"/>
+            </g>
+            <text x="18" y="126" class="ggcalc-gauge-minmax">15</text>
+            <text x="182" y="126" class="ggcalc-gauge-minmax" text-anchor="end">55</text>
+            <polygon id="ggRearNeedle" points="97,110 103,110 100,45" fill="#202B1B" transform="rotate(-90 100 110)"/>
+            <circle cx="100" cy="110" r="7" fill="#B14B2C" stroke="#202B1B" stroke-width="1.5"/>
+          </svg>
+          <div class="ggcalc-readout" aria-live="polite">
+            <span class="ggcalc-psi" id="ggRearPsi">&#8212;</span><span class="ggcalc-unit">psi</span>
+            <div class="ggcalc-bar" id="ggRearBar">&#8212; bar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="ggcalc-warning is-hidden" id="ggWarning">This result is outside the usual range for gravel tyres — check the maximum on the sidewall of your tyre.</p>
+
+    <p class="ggcalc-tip"><strong>Tip:</strong> this is a good starting point, not a law set in stone. Ride it, fine-tune by feel and never go above the maximum pressure printed on the sidewall of your tyre.</p>
+  </div>
+</div>
+
+<style>
+.ggcalc, .ggcalc *, .ggcalc *::before, .ggcalc *::after { box-sizing: border-box; }
+
+.ggcalc {
+  --ink: #202B1B;
+  --stone: #EDE7D9;
+  --moss: #55643E;
+  --moss-dark: #3E4A2C;
+  --rust: #B14B2C;
+  --gravel: #8B8371;
+  --card: #FBF9F3;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2rem auto;
+}
+
+.ggcalc-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid rgba(32,43,27,0.12);
+  border-radius: 6px;
+  padding: 2rem 1.75rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(32,43,27,0.06), 0 8px 24px rgba(32,43,27,0.06);
+}
+
+.ggcalc-bolt {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gravel);
+  opacity: 0.5;
+  top: 14px;
+}
+.ggcalc-bolt-tl { left: 14px; }
+.ggcalc-bolt-tr { right: 14px; }
+
+.ggcalc-eyebrow {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 0 0 0.4rem;
+}
+
+.ggcalc-title {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+}
+
+.ggcalc-sub {
+  margin: 0 0 1.5rem;
+  color: var(--gravel);
+  font-size: 0.95rem;
+}
+
+.ggcalc-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 680px) {
+  .ggcalc-body { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
+.ggcalc-field { margin-bottom: 1.25rem; }
+.ggcalc-field:last-child { margin-bottom: 0; }
+
+.ggcalc-field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ggcalc-field-value {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-weight: 700;
+  color: var(--rust);
+}
+
+.ggcalc-inputs input[type="range"] {
+  width: 100%;
+  accent-color: var(--rust);
+  height: 4px;
+}
+.ggcalc-inputs input[type="range"]:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 4px;
+}
+
+.ggcalc-segmented {
+  display: flex;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ggcalc-seg {
+  flex: 1;
+  padding: 0.5rem 0.4rem;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  cursor: pointer;
+}
+.ggcalc-seg:last-child { border-right: none; }
+.ggcalc-seg.is-active { background: var(--moss); color: var(--card); }
+.ggcalc-seg:focus-visible { outline: 2px solid var(--rust); outline-offset: -2px; }
+
+.ggcalc-advanced-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--moss-dark);
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+.ggcalc-advanced-toggle:focus-visible { outline: 2px solid var(--rust); }
+
+.ggcalc-advanced { margin-top: 1rem; }
+
+.ggcalc-gauges {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.ggcalc-gauge {
+  flex: 1;
+  text-align: center;
+  background: var(--stone);
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem 1rem;
+}
+
+.ggcalc-gauge-label {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gravel);
+  margin: 0 0 0.25rem;
+}
+
+.ggcalc-gauge svg { width: 100%; height: auto; display: block; }
+
+.ggcalc-ticks line { stroke: var(--ink); stroke-width: 2; opacity: 0.55; }
+.ggcalc-gauge-minmax {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  fill: var(--gravel);
+}
+
+.ggcalc-readout { margin-top: 0.25rem; }
+.ggcalc-psi {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--ink);
+}
+.ggcalc-unit {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--gravel);
+  margin-left: 0.15rem;
+}
+.ggcalc-bar {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--rust);
+}
+
+.ggcalc-warning {
+  margin: 1.25rem 0 0;
+  padding: 0.6rem 0.8rem;
+  background: #F4E3DA;
+  border-left: 3px solid var(--rust);
+  font-size: 0.85rem;
+  border-radius: 3px;
+}
+.ggcalc-warning.is-hidden { display: none; }
+
+.ggcalc-tip {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--gravel);
+  border-top: 1px solid rgba(32,43,27,0.1);
+  padding-top: 1rem;
+}
+.ggcalc-tip strong { color: var(--ink); }
+</style>
+
+<script>
+(function () {
+  var GAUGE_MIN = 15, GAUGE_MAX = 55, HARD_MAX = 60;
+
+  var state = { rider: 75, bike: 9, width: 40, wheel: '700c', terrain: 'gemengd', valve: 'tubeless' };
+
+  var el = {
+    rider: document.getElementById('ggRider'),
+    riderVal: document.getElementById('ggRiderVal'),
+    bike: document.getElementById('ggBike'),
+    bikeVal: document.getElementById('ggBikeVal'),
+    width: document.getElementById('ggWidth'),
+    widthVal: document.getElementById('ggWidthVal'),
+    advToggle: document.getElementById('ggAdvToggle'),
+    advPanel: document.getElementById('ggAdvPanel'),
+    warning: document.getElementById('ggWarning'),
+    frontPsi: document.getElementById('ggFrontPsi'),
+    frontBar: document.getElementById('ggFrontBar'),
+    frontNeedle: document.getElementById('ggFrontNeedle'),
+    rearPsi: document.getElementById('ggRearPsi'),
+    rearBar: document.getElementById('ggRearBar'),
+    rearNeedle: document.getElementById('ggRearNeedle')
+  };
+
+  function clamp(n, min, max) { return Math.min(max, Math.max(min, n)); }
+  function round(n, step) { return Math.round(n / step) * step; }
+  function fmt(n) { return n.toFixed(1).replace('.', document.documentElement.lang === 'en' ? '.' : ','); }
+
+  function calc() {
+    var total = state.rider + state.bike;
+    var base = 30 * (total / 85) * Math.pow(40 / state.width, 1.5);
+
+    var terrainFactor = { glad: 1.15, gemengd: 1.0, ruw: 0.85 }[state.terrain];
+    var wheelFactor = state.wheel === '650b' ? 1.05 : 1.0;
+    var valveFactor = state.valve === 'tube' ? 1.15 : 1.0;
+
+    var rawRear = base * terrainFactor * wheelFactor * valveFactor;
+    var rawFront = rawRear * 0.90;
+
+    var outOfRange = rawRear > HARD_MAX || rawRear < GAUGE_MIN || rawFront > HARD_MAX || rawFront < GAUGE_MIN;
+    el.warning.classList.toggle('is-hidden', !outOfRange);
+
+    var rear = round(clamp(rawRear, GAUGE_MIN, HARD_MAX), 0.5);
+    var front = round(clamp(rawFront, GAUGE_MIN, HARD_MAX), 0.5);
+
+    updateGauge(front, el.frontPsi, el.frontBar, el.frontNeedle);
+    updateGauge(rear, el.rearPsi, el.rearBar, el.rearNeedle);
+  }
+
+  function updateGauge(psi, psiEl, barEl, needleEl) {
+    psiEl.textContent = fmt(psi);
+    barEl.textContent = fmt(psi / 14.5038) + ' bar';
+    var frac = clamp((psi - GAUGE_MIN) / (GAUGE_MAX - GAUGE_MIN), 0, 1);
+    var deg = frac * 180 - 90;
+    needleEl.setAttribute('transform', 'rotate(' + deg + ' 100 110)');
+  }
+
+  el.rider.addEventListener('input', function () {
+    state.rider = +el.rider.value;
+    el.riderVal.textContent = state.rider + ' kg';
+    calc();
+  });
+
+  el.bike.addEventListener('input', function () {
+    state.bike = +el.bike.value;
+    el.bikeVal.textContent = state.bike + ' kg';
+    calc();
+  });
+
+  el.width.addEventListener('input', function () {
+    state.width = +el.width.value;
+    el.widthVal.textContent = state.width + ' mm';
+    calc();
+  });
+
+  el.advToggle.addEventListener('click', function () {
+    var expanded = el.advToggle.getAttribute('aria-expanded') === 'true';
+    el.advToggle.setAttribute('aria-expanded', String(!expanded));
+    el.advPanel.hidden = expanded;
+  });
+
+  document.querySelectorAll('.ggcalc-segmented').forEach(function (group) {
+    var key = group.getAttribute('data-group');
+    group.querySelectorAll('.ggcalc-seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('.ggcalc-seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        state[key] = btn.getAttribute('data-value');
+        calc();
+      });
+    });
+  });
+
+  calc();
+})();
+</script>
+    </div>
+    <script>(function () { var b = new URLSearchParams(location.search).get("breedte"), s = document.getElementById("ggWidth"); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event("input", { bubbles: true })); } })();</script>
+    <section class="vg" id="vraagGorilla" data-tool="bandenspanning-calculator" aria-labelledby="vg-kop">
+      <div class="vg__kop">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
+        <div>
+          <h2 id="vg-kop">Ask the <span class="groen">Gorilla</span></h2>
+          <p>Ask your question in plain English. If the gorilla can fill in the tool for you, he does it right away.</p>
+        </div>
+      </div>
+      <form class="vg__rij" autocomplete="off">
+        <input class="vg__invoer" type="text" aria-label="Your question for the gorilla" placeholder="Ask your question">
+        <button class="knop knop--actie" type="submit">Ask</button>
+      </form>
+      <div class="vg__voorbeelden" aria-label="Example questions"></div>
+      <div class="vg__antwoord" aria-live="polite" hidden></div>
+    </section>
+    <article class="lees tool-uitleg">
+      <h2 class="tool-uitleg-kop">About this calculator</h2>
+<p>Too much tyre pressure and you rattle over every root. You lose grip as soon as it gets loose and every bump goes straight through your hands. Too little and you pinch-flat yourself, or you drag a soft, slow tyre along. The difference between right and wrong is usually a few tenths of a bar. Yet hardly anyone actually stops to work it out.</p>
+<p>Our tyre pressure calculator does the maths for you. Enter your weight, including luggage, the width of your tyre (from a fast 28 mm to a wide 55 mm), your wheel size, valve type and the surface you ride on. You immediately get advice per wheel in both psi and bar. Your front tyre automatically gets about 10% less than your rear, because that gives just enough grip in corners without the front washing out. Outside the usual range for gravel tyres? Then the tool warns you. Better that than leaving the car park with far too much or too little air.</p>
+<p>On sandy forest trails you need that advice more than anywhere. From smooth "champagne gravel" to a deep strip of loose sand in a dry summer: every surface asks for a different pressure. The same trails can also be full of roots and hidden holes, which punish a tyre that's too soft with a hit against the rim. Set the surface to "rough", enter your tyre width and weight, and the calculator balances that contrast for you. Still riding with inner tubes? Then the tool adds an extra correction, because a pinch flat from a hard hit on a root is not a pleasant break in your ride.</p>
+<p>Set it before you leave, fine-tune by feel in the first kilometres, and you no longer have to guess on the way.</p>
+
+    </article>
+    <section class="lees tool-faq" aria-labelledby="faq-kop">
+      <h2 class="tool-uitleg-kop" id="faq-kop">Frequently asked questions</h2>
+      <h3>What is a good tyre pressure for a gravel bike?</h3>
+      <p>That depends on your weight, the width of your tyre and the surface. As an example: for a 75 kg rider on 40 mm tubeless tyres on mixed surfaces, the calculator comes to about 1.8 bar front and 2.0 bar rear. Heavier, narrower tyres or inner tubes mean more pressure; wider tyres or loose sand mean less.</p>
+      <h3>Why should my front tyre be softer than my rear?</h3>
+      <p>Your rear wheel carries most of your weight. A front tyre with about 10 percent less pressure gives more grip in corners and more comfort in your hands, without the front washing out.</p>
+      <h3>Tubeless or inner tube: does it matter for pressure?</h3>
+      <p>Yes. With an inner tube the calculator adds an extra correction. A tyre that's too soft with an inner tube pinch-flats more easily: a puncture because the tube gets squeezed against the rim, for example when you hit a tree root.</p>
+      <h3>Which tyres does the calculator work for?</h3>
+      <p>For tyres from 28 to 55 mm wide, on 700c and 650b wheels, for riders from 45 to 130 kg including gear. You choose the surface (smooth, mixed or rough) and whether you ride tubeless or with inner tubes. You get the advice in bar and psi.</p>
+      <h3>How do I measure my tyre pressure?</h3>
+      <p>With a pump with a good gauge, or with a separate digital gauge. Tyres slowly lose air, especially tubeless ones. So check the pressure before every ride and fine-tune by feel after the first kilometres.</p>
+    </section>
+    <section class="andere-tools" aria-labelledby="andere-kop">
+      <h2 class="kop-l" id="andere-kop">Other <span class="groen">tools</span></h2>
+      <div class="andere-raster">
+        <a href="/en/tools/gravelbike-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbike-kiezer">KM 01</span><strong>Gravel Bike Finder</strong><span>A few questions about how and where you ride, and you see which of 147 gravel bikes suit you.</span></a>
+        <a href="/en/tools/gravelwielen-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelwielen-kiezer">KM 03</span><strong>Gravel Wheel Finder</strong><span>Light, tough or fast? Find the wheelset that suits your bike and riding style.</span></a>
+        <a href="/en/tools/ultra-eventkiezer/" class="ander"><span class="ander__km" data-km-tool="ultra-eventkiezer">KM 04</span><strong>Ultra Event Finder</strong><span>Which ultra gravel event suits your experience, fitness and calendar? You get a shortlist.</span></a>
+        <a href="/en/tools/profielsticker/" class="ander"><span class="ander__km" data-km-tool="profielsticker">KM 05</span><strong>Profile Sticker</strong><span>From GPX to a sticker for your top tube: climbs, stops, power and when to eat.</span></a>
+        <a href="/en/tools/kledingadvies/" class="ander"><span class="ander__km" data-km-tool="kledingadvies">KM 06</span><strong>Clothing Advice</strong><span>Too warm or too cold? See what to wear for each body part, with the forecast for your ride.</span></a>
+        <a href="/en/tools/gravelbanden-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbanden-kiezer">KM 07</span><strong>Gravel Tyre Finder</strong><span>Set surface, riding style and weather, and see which width, tread and tyres fit.</span></a>
+        <a href="/en/tools/maatbepaler/" class="ander"><span class="ander__km" data-km-tool="maatbepaler">KM 08</span><strong>Frame Size Finder</strong><span>Enter your height and inseam and see which frame size and saddle height fit. Also between two sizes.</span></a>
+        <a href="/en/tools/paklijst-bikepacking/" class="ander"><span class="ander__km" data-km-tool="paklijst-bikepacking">KM 09</span><strong>Bikepacking Packing List</strong><span>A checklist per trip length and season, with the weight of your luggage.</span></a>
+        <a href="/en/tools/gravelroutes/" class="ander"><span class="ander__km" data-km-tool="gravelroutes">KM 10</span><strong>Gravel Routes in the Netherlands and Belgium</strong><span>Signposted gravel routes and GPX routes in the Netherlands and Flanders, by province and distance.</span></a>
+        <a href="/en/tools/versnellingscalculator/" class="ander"><span class="ander__km" data-km-tool="versnellingscalculator">KM 11</span><strong>Gear Calculator</strong><span>Compare chainring and cassette: your lowest gear and how steep you can still climb.</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">The gorilla shows the way.<br>You ride.</p>
+      <nav aria-label="Footer">
+        <a href="/en/#wegwijzer">Tools</a><a href="/en/over-ons/">About us</a><a href="/en/contact/">Contact</a><a href="/en/privacy/">Privacy</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · made by Geert Jans, gravel rider · no cookies, no ads</p>
+  </footer>
+
+  <script src="/assets/js/site.js?v=8069af02"></script>
+  <script src="/assets/js/vraag-gorilla.js?v=67f5eb00"></script>
+  <script src="/assets/js/teller.js?v=0609dda3"></script>
+</body>
+</html>

@@ -27,12 +27,88 @@ $organisatie = [ordered]@{ '@type' = 'Organization'; '@id' = "$site/#organisatie
   founder = [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/" }
   description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike en framemaat kiezen, gravelbanden, bandenspanning, wielen, versnellingen, gravelroutes, ultra-events, bikepacking-paklijst, profielstickers en kledingadvies.' }
 
-function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "") {
+# ---------- Talen ----------
+# Nederlands staat in de hoofdmap, Engels in /en/ en Duits in /de/. Vaste teksten per taal: inhoud/talen/<taal>.psd1.
+# Vertaalde inhoud (uitleg, vragen, tools, pagina's): inhoud/en/... en inhoud/de/... Ontbreekt een vertaling, dan valt de pagina terug op het Nederlands.
+$talen = @('nl', 'en', 'de') | ForEach-Object { Import-PowerShellDataFile "$root\inhoud\talen\$_.psd1" }
+$nl = $talen[0]
+$vlaggen = @{
+  nl = '<svg class="vlag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#fff"/><rect width="9" height="2" fill="#AE1C28"/></svg>'
+  en = '<svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg>'
+  de = '<svg class="vlag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="3" fill="#FFCE00"/><rect width="5" height="2" fill="#DD0000"/><rect width="5" height="1" fill="#000"/></svg>'
+}
+# taalvrij pad (bijv. /tools/maatbepaler/) → adres in een taal
+function TaalPad($L, [string]$pad) { "$($L.pre)$pad" }
+# interne links in een stuk HTML naar de juiste taal laten wijzen (/tools/... → /en/tools/...)
+function Prefix([string]$html, $L) {
+  if (-not $L.pre) { return $html }
+  [regex]::Replace($html, '(href|action)="/(?!assets/|api/|en/|de/|favicon|/)', "`$1=""$($L.pre)/")
+}
+function TaalMenu($L, [string]$pad) {
+  $lijst = ($talen | ForEach-Object {
+    $huidig = if ($_.taal -eq $L.taal) { ' aria-current="true"' } else { '' }
+    "        <li><a href=""$(TaalPad $_ $pad)"" hreflang=""$($_.taal)"" lang=""$($_.taal)""$huidig>$($vlaggen[$_.taal])<span>$($_.naam)</span></a></li>"
+  }) -join "`n"
+@"
+    <div class="taal" id="taalKeuze">
+      <button class="taal__knop" type="button" aria-haspopup="true" aria-expanded="false" aria-label="$($L.ui.taalAria): $($L.naam)">$($vlaggen[$L.taal])<span>$($L.kort)</span><svg class="taal__pijl" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <ul class="taal__lijst">
+$lijst
+      </ul>
+    </div>
+"@
+}
+function Alternatieven([string]$pad) {
+  if ($pad -like "*404*") { return "" }
+  (($talen | ForEach-Object { "  <link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $pad)"">" }) -join "`n") + "`n  <link rel=""alternate"" hreflang=""x-default"" href=""$site$pad"">"
+}
+function Balk($L, [string]$pad) {
+  $u = $L.ui; $p = $L.pre
+@"
+  <header class="bar" id="bar">
+    <a href="$p/" class="brand" aria-label="$($u.brandAria)">
+      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="$($u.menuAria)">
+      <a href="$p/#wegwijzer">$($u.tools)</a>
+      <a href="$p/over-ons/">$($u.overOns)</a>
+    </nav>
+$(TaalMenu $L $pad)
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="$($u.themaAria)" title="$($u.themaTitel)">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="$p/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">$($u.startKiezer)</a>
+    <button class="bar__menu" aria-label="$($u.menuOpen)" aria-expanded="false"><span></span><span></span></button>
+  </header>
+"@
+}
+function VoetHtml($L) {
+  $u = $L.ui; $p = $L.pre
+@"
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">$($u.voetSlot)</p>
+      <nav aria-label="$($u.voetNav)">
+        <a href="$p/#wegwijzer">$($u.tools)</a><a href="$p/over-ons/">$($u.overOns)</a><a href="$p/contact/">$($u.contact)</a><a href="$p/privacy/">$($u.privacy)</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">$($u.voetKlein)</p>
+  </footer>
+"@
+}
+
+# $pad is het taalvrije pad (bijv. /over-ons/); het echte adres wordt /en/over-ons/ enz.
+function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "", $L = $nl) {
   $extraCss = ($css | ForEach-Object { "  <link rel=""stylesheet"" href=""/assets/css/$_"">" }) -join "`n"
   $ogBeeld = if ($beeld) { "$site$beeld" } else { "$site/assets/img/deelplaatje.png" }
+  $adres = TaalPad $L $pad
 @"
 <!doctype html>
-<html lang="nl">
+<html lang="$($L.taal)">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,16 +116,17 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
   <title>$(Html $titel)</title>
   <meta name="description" content="$(Html $beschrijving)">
-  <link rel="canonical" href="$site$pad">
+  <link rel="canonical" href="$site$adres">
+$(Alternatieven $pad)
   <meta property="og:type" content="$soort">
   <meta property="og:title" content="$(Html $titel)">
   <meta property="og:description" content="$(Html $beschrijving)">
-  <meta property="og:url" content="$site$pad">
+  <meta property="og:url" content="$site$adres">
   <meta property="og:image" content="$ogBeeld">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:locale" content="nl_NL">
+  <meta property="og:locale" content="$($L.ogLocale)">
   <meta property="og:site_name" content="Gravel Gorilla">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
@@ -73,41 +150,16 @@ $schema
 </head>
 <body>
 
-  <header class="bar" id="bar">
-    <a href="/" class="brand" aria-label="Gravel Gorilla, naar de homepage">
-      <img src="/assets/img/logo-icon.svg" alt="" width="36" height="36">
-      <span class="brand__word">Gravel <b>Gorilla</b></span>
-    </a>
-    <nav class="bar__links" aria-label="Hoofdmenu">
-      <a href="/#wegwijzer">Tools</a>
-      <a href="/over-ons/">Over ons</a>
-    </nav>
-    <button class="thema-knop" id="themaKnop" type="button" aria-label="Donkere modus aan of uit" title="Nachtrit aan/uit">
-      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
-      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-    </button>
-    <a href="/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Start de kiezer</a>
-    <button class="bar__menu" aria-label="Menu openen" aria-expanded="false"><span></span><span></span></button>
-  </header>
+$(Balk $L $pad)
 
 "@
 }
 
-function Voet([string[]]$js = @()) {
+function Voet([string[]]$js = @(), $L = $nl) {
   $extraJs = ($js | ForEach-Object { "  <script src=""/assets/js/$_""></script>" }) -join "`n"
 @"
 
-  <footer class="voet">
-    <div class="voet__band" aria-hidden="true"></div>
-    <div class="voet__binnen">
-      <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
-      <nav aria-label="Voet">
-        <a href="/#wegwijzer">Tools</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a>
-      </nav>
-    </div>
-    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
-    <p class="voet__klein">© 2026 Gravel Gorilla · gemaakt door Geert Jans, gravelrijder · geen cookies, geen advertenties</p>
-  </footer>
+$(VoetHtml $L)
 
   <script src="/assets/js/site.js"></script>
 $extraJs
@@ -151,7 +203,7 @@ $tools = @(
     sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
     naamKort = 'Profielsticker'; kort = 'Van GPX naar sticker voor je bovenbuis: klimmen, posten, wattage en wanneer je moet eten.'
     filter = 'plannen'; plaatje = 'profiel'
-    soort = 'venster'; uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
+    soort = 'venster'; talen = @('nl'); uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
   [ordered]@{ slug = 'kledingadvies'; km = '06'; kop = 'Kleding<wbr><span class="groen">advies</span>'; titel = 'Kledingadvies'
     seoTitel = 'Wat trek ik aan op de fiets? Kledingadvies | Gravel Gorilla'
     sub = 'Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.'; beschrijving = 'Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.'
@@ -208,8 +260,8 @@ $plaatjes = @{
 }
 
 # Veelgestelde vragen van een tool lezen uit inhoud/tools/<naam>-faq.html (paren van <h3>vraag</h3><p>antwoord</p>)
-function LeesFaq([string]$slug) {
-  $bestand = "$root\inhoud\tools\$slug-faq.html"
+function LeesFaq([string]$rel) {
+  $bestand = "$root\$rel"
   if (-not (Test-Path $bestand)) { return @() }
   $tekst = [IO.File]::ReadAllText($bestand, [Text.Encoding]::UTF8)
   @([regex]::Matches($tekst, '(?s)<h3>(.*?)</h3>\s*<p>(.*?)</p>') | ForEach-Object {
@@ -218,29 +270,54 @@ function LeesFaq([string]$slug) {
 }
 function KaleTekst([string]$s) { [Net.WebUtility]::HtmlDecode(([regex]::Replace($s, '<[^>]+>', ''))).Trim() }
 
-foreach ($t in $tools) {
+# de tools met de teksten in een bepaalde taal (ontbreekt een vertaling, dan het Nederlands)
+function ToolsIn($L) {
+  $tools | ForEach-Object {
+    $t = [ordered]@{}; foreach ($k in $_.Keys) { $t[$k] = $_[$k] }
+    if ($L.taal -ne 'nl') {
+      $t.label = $null
+      $v = $L.tools[$_.slug]
+      if ($v) { foreach ($k in $v.Keys) { $t[$k] = $v[$k] } }
+    }
+    $t
+  }
+}
+# vertaald bestand als het er is, anders het Nederlandse; zegt ook of het vertaald is
+function Bron($L, [string]$rel) {
+  if ($L.taal -ne 'nl' -and (Test-Path "$root\inhoud\$($L.taal)\$rel")) { return @{ pad = "inhoud\$($L.taal)\$rel"; vertaald = $true } }
+  @{ pad = "inhoud\$rel"; vertaald = ($L.taal -eq 'nl') }
+}
+
+foreach ($L in $talen) {
+$toolsHier = @(ToolsIn $L)
+foreach ($t in $toolsHier) {
   $pad = "/tools/$($t.slug)/"
   $css = @(); $js = @(); $subId = ''
+  $toolBron = Bron $L "tools\$($t.slug)-tool.html"
+  # nog niet vertaalde tool: een korte melding erboven
+  #   (een toolvenster zoals de profielsticker vertaalt zichzelf; welke talen het kan staat in $t.talen)
+  $vertaald = if ($t.soort -eq 'venster') { @($t.talen) -contains $L.taal } else { $toolBron.vertaald }
+  $melding = if (-not $vertaald) { "    <p class=""tool-melding"">$($L.ui.alleenNl)</p>`n" } else { '' }
   switch ($t.soort) {
     'kiezer' {
       $scope = if ($t.scope) { $t.scope } else { 'gk-scope' }
       $css = @("$($t.slug).css"); $js = @("$($t.slug).js"); if ($scope -eq 'gk-scope') { $subId = ' id="gk-sub-text"' }
       if ($scope -match 'wb-scope') { $css = @('werkbank.css') + $css }   # de nieuwe tools delen hun basisopmaak
-      $tool = "    <div class=""$scope"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
+      $tool = $melding + "    <div class=""$scope"">`n" + (Prefix (Lees $toolBron.pad) $L) + "    </div>"
     }
     'blok' {
-      $tool = "    <div class=""tool-vak"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
+      $tool = $melding + "    <div class=""tool-vak"">`n" + (Prefix (Lees $toolBron.pad) $L) + "    </div>"
       if ($t.slug -eq 'bandenspanning-calculator') {
         # komt iemand uit de bandenkiezer (?breedte=45), zet dan meteen die bandbreedte klaar
         $tool += "`n    <script>(function () { var b = new URLSearchParams(location.search).get(""breedte""), s = document.getElementById(""ggWidth""); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event(""input"", { bubbles: true })); } })();</script>"
       }
     }
     'venster' {
-      # versienummer van de tool, zodat browsers een nieuwe versie meteen ophalen
+      # versienummer van de tool, zodat browsers een nieuwe versie meteen ophalen; de taal gaat mee in het adres
       $toolVersie = ([Security.Cryptography.MD5]::Create().ComputeHash([IO.File]::ReadAllBytes("$root\tools\$($t.slug)\tool.html")) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
-      $tool = @"
+      $tool = $melding + @"
     <div class="tool-vak">
-      <div class="tool-frame"><iframe src="tool.html?v=$toolVersie" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
+      <div class="tool-frame"><iframe src="/tools/$($t.slug)/tool.html?v=$toolVersie&amp;taal=$($L.taal)" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
     </div>
     <script>
       /* het venster groeit mee met de inhoud van de tool */
@@ -264,7 +341,8 @@ foreach ($t in $tools) {
 "@
     }
   }
-  $uitleg = Lees "inhoud\tools\$($t.slug)-uitleg.html"
+  $uitleg = Prefix (Lees (Bron $L "tools\$($t.slug)-uitleg.html").pad) $L
+  $u = $L.ui
 
   # Vraag de Gorilla onder de tool (de gravelbike- en wielenkiezer hebben er zelf al een in de tool)
   $gorillaHtml = ''
@@ -275,53 +353,55 @@ foreach ($t in $tools) {
       <div class="vg__kop">
         <img src="/assets/img/logo-icon.svg" alt="" width="56" height="56">
         <div>
-          <h2 id="vg-kop">Vraag de <span class="groen">Gorilla</span></h2>
-          <p>Stel je vraag in gewone taal. Kan de gorilla de tool voor je invullen, dan doet hij dat meteen.</p>
+          <h2 id="vg-kop">$($u.vgKop)</h2>
+          <p>$($u.vgUitleg)</p>
         </div>
       </div>
       <form class="vg__rij" autocomplete="off">
-        <input class="vg__invoer" type="text" aria-label="Je vraag aan de gorilla" placeholder="Stel je vraag">
-        <button class="knop knop--actie" type="submit">Vraag</button>
+        <input class="vg__invoer" type="text" aria-label="$($u.vgAria)" placeholder="$($u.vgPlek)">
+        <button class="knop knop--actie" type="submit">$($u.vgKnop)</button>
       </form>
-      <div class="vg__voorbeelden" aria-label="Voorbeeldvragen"></div>
+      <div class="vg__voorbeelden" aria-label="$($u.vgVoorbeelden)"></div>
       <div class="vg__antwoord" aria-live="polite" hidden></div>
     </section>
 "@
   }
 
   # veelgestelde vragen
-  $faq = @(LeesFaq $t.slug)
+  $faq = @(LeesFaq (Bron $L "tools\$($t.slug)-faq.html").pad)
   $faqHtml = ''
   if ($faq.Count) {
-    $faqHtml = "    <section class=""lees tool-faq"" aria-labelledby=""faq-kop"">`n      <h2 class=""tool-uitleg-kop"" id=""faq-kop"">Veelgestelde vragen</h2>`n" +
-      (($faq | ForEach-Object { "      <h3>$($_.vraag)</h3>`n      <p>$($_.antwoord)</p>" }) -join "`n") + "`n    </section>"
+    $faqHtml = "    <section class=""lees tool-faq"" aria-labelledby=""faq-kop"">`n      <h2 class=""tool-uitleg-kop"" id=""faq-kop"">$($u.faqKop)</h2>`n" +
+      (($faq | ForEach-Object { "      <h3>$($_.vraag)</h3>`n      <p>$(Prefix $_.antwoord $L)</p>" }) -join "`n") + "`n    </section>"
   }
 
   # andere tools (interne links)
-  $anderen = ($tools | Where-Object { $_.slug -ne $t.slug } | ForEach-Object {
-    "        <a href=""/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"" data-km-tool=""$($_.slug)"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
+  $anderen = ($toolsHier | Where-Object { $_.slug -ne $t.slug } | ForEach-Object {
+    "        <a href=""$($L.pre)/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"" data-km-tool=""$($_.slug)"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
   }) -join "`n"
 
   # gestructureerde informatie: webtool + broodkruimel + vragen
+  $adres = "$site$(TaalPad $L $pad)"
+  $org = [ordered]@{}; foreach ($k in $organisatie.Keys) { $org[$k] = $organisatie[$k] }; if ($L.orgBeschrijving) { $org.description = $L.orgBeschrijving }
   $schemaObj = [ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
-    [ordered]@{ '@type' = 'WebApplication'; '@id' = "$site$pad#tool"; name = $t.titel; url = "$site$pad"; description = $t.beschrijving
-      applicationCategory = 'SportsApplication'; operatingSystem = 'Web'; inLanguage = 'nl'; isAccessibleForFree = $true
+    [ordered]@{ '@type' = 'WebApplication'; '@id' = "$adres#tool"; name = $t.titel; url = $adres; description = $t.beschrijving
+      applicationCategory = 'SportsApplication'; operatingSystem = 'Web'; inLanguage = $L.taal; isAccessibleForFree = $true
       offers = [ordered]@{ '@type' = 'Offer'; price = '0'; priceCurrency = 'EUR' }; publisher = @{ '@id' = "$site/#organisatie" } }
     [ordered]@{ '@type' = 'BreadcrumbList'; itemListElement = @(
-      [ordered]@{ '@type' = 'ListItem'; position = 1; name = 'Gravel Gorilla'; item = "$site/" }
-      [ordered]@{ '@type' = 'ListItem'; position = 2; name = 'Tools'; item = "$site/#wegwijzer" }
-      [ordered]@{ '@type' = 'ListItem'; position = 3; name = $t.titel; item = "$site$pad" }) }
-    $organisatie
+      [ordered]@{ '@type' = 'ListItem'; position = 1; name = 'Gravel Gorilla'; item = "$site$($L.pre)/" }
+      [ordered]@{ '@type' = 'ListItem'; position = 2; name = $u.broodTools; item = "$site$($L.pre)/#wegwijzer" }
+      [ordered]@{ '@type' = 'ListItem'; position = 3; name = $t.titel; item = $adres }) }
+    $org
   ) }
   if ($faq.Count) {
-    $schemaObj['@graph'] += [ordered]@{ '@type' = 'FAQPage'; '@id' = "$site$pad#faq"; mainEntity = @($faq | ForEach-Object {
+    $schemaObj['@graph'] += [ordered]@{ '@type' = 'FAQPage'; '@id' = "$adres#faq"; mainEntity = @($faq | ForEach-Object {
       [ordered]@{ '@type' = 'Question'; name = (KaleTekst $_.vraag); acceptedAnswer = [ordered]@{ '@type' = 'Answer'; text = (KaleTekst $_.antwoord) } } }) }
   }
 
-  $pagina = (Kop $t.seoTitel $t.beschrijving $pad $css "" "website" (JsonLd $schemaObj)) + @"
+  $pagina = (Kop $t.seoTitel $t.beschrijving $pad $css "" "website" (JsonLd $schemaObj) $L) + @"
   <main>
     <section class="pagina-kop">
-      <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
+      <a href="$($L.pre)/#wegwijzer" class="terug">$($u.terugTools)</a>
       <p class="pagina-km" data-km-tool="$($t.slug)">KM $($t.km)</p>
       <p class="pagina-teller" data-teller="$($t.slug)" hidden></p>
       <h1 class="kop-l">$($t.kop)</h1>
@@ -335,15 +415,17 @@ $uitleg
     </article>
 $faqHtml
     <section class="andere-tools" aria-labelledby="andere-kop">
-      <h2 class="kop-l" id="andere-kop">Andere <span class="groen">tools</span></h2>
+      <h2 class="kop-l" id="andere-kop">$($u.andereKop)</h2>
       <div class="andere-raster">
 $anderen
       </div>
     </section>
   </main>
-"@ + (Voet (@($js) + 'teller.js'))
-  Schrijf "tools\$($t.slug)\index.html" $pagina
-  "tool: $pad"
+"@ + (Voet (@($js) + 'teller.js') $L)
+  $map = if ($L.taal -eq 'nl') { "tools\$($t.slug)" } else { "$($L.taal)\tools\$($t.slug)" }
+  Schrijf "$map\index.html" $pagina
+  "tool: $(TaalPad $L $pad)"
+}
 }
 
 # ---------- Over ons ----------
@@ -479,6 +561,25 @@ $pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt gee
 Schrijf "privacy\index.html" $pagina
 "pagina: /privacy/"
 
+# ---------- Over ons, contact en privacy in de andere talen ----------
+# De inhoud staat in inhoud/<taal>/pagina/<naam>.html, titel en beschrijving in inhoud/talen/<taal>.psd1 (paginas).
+foreach ($L in ($talen | Where-Object { $_.taal -ne 'nl' })) {
+  foreach ($naam in 'over-ons', 'contact', 'privacy') {
+    $bron = "inhoud\$($L.taal)\pagina\$naam.html"
+    if (-not (Test-Path "$root\$bron")) { continue }
+    $info = $L.paginas[$naam]
+    $inhoud = (Lees $bron).Replace('{{AANTAL}}', [string]$tools.Count).Replace('{{AANTALWOORD}}', [string]$L.getallen[$tools.Count]).Replace('{{MAIL}}', $ContactMail)
+    $soortPagina = @{ 'over-ons' = 'AboutPage'; contact = 'ContactPage'; privacy = 'WebPage' }[$naam]
+    $org = [ordered]@{}; foreach ($k in $organisatie.Keys) { $org[$k] = $organisatie[$k] }; $org.description = $L.orgBeschrijving
+    $schemaPagina = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+      [ordered]@{ '@type' = $soortPagina; url = "$site$($L.pre)/$naam/"; name = $info.titel; inLanguage = $L.taal; about = @{ '@id' = "$site/#organisatie" } }
+      $org) })
+    $pagina = (Kop $info.titel $info.beschrijving "/$naam/" @() "" "website" $schemaPagina $L) + (Prefix $inhoud $L) + (Voet @() $L)
+    Schrijf "$($L.taal)\$naam\index.html" $pagina
+    "pagina: $($L.pre)/$naam/"
+  }
+}
+
 # ---------- Pagina niet gevonden ----------
 $pagina = (Kop "Pagina niet gevonden — Gravel Gorilla" "Deze pagina bestaat niet (meer)." "/404.html") + @"
   <main class="niet-gevonden">
@@ -493,56 +594,98 @@ Schrijf "404.html" $pagina
 
 # ---------- Homepage: wegwijzer, eerste tip en gestructureerde informatie als gewone HTML ----------
 # (zoekmachines en AI-bots zien zo alle tools, ook als ze geen JavaScript uitvoeren)
-$voorpagina = Lees "index.html"
-$i = 0
-$bordjesHtml = ($tools | ForEach-Object {
-  $label = if ($_.label) { "<span class=""bordje__label"">$(Html $_.label)</span>" } else { '' }
-  $zoek = (Html ("$($_.naamKort) $($_.titel) $($_.kort) $($_.filter)".ToLower()))
-  $li = @"
+# index.html is de Nederlandse bron. De Engelse en Duitse homepage (/en/, /de/) worden daaruit gemaakt met de
+# vertaallijst "home" in inhoud/talen/<taal>.psd1. Pas je een tekst op de homepage aan, pas dan ook die lijst aan:
+# het script meldt het als een tekst niet meer gevonden wordt.
+$bronHome = Lees "index.html"
+$main = Lees "assets\js\main.js"
+foreach ($L in $talen) {
+  $toolsHier = @(ToolsIn $L)
+  $voorpagina = $bronHome
+  # menubalk (met taalmenu) en voet uit de gedeelde onderdelen
+  $voorpagina = [regex]::Replace($voorpagina, '(?s)  <header class="bar" id="bar">.*?</header>', { param($m) Balk $L '/' })
+  $voorpagina = [regex]::Replace($voorpagina, '(?s)  <footer class="voet">.*?</footer>', { param($m) VoetHtml $L })
+
+  $i = 0
+  $bordjesHtml = ($toolsHier | ForEach-Object {
+    $label = if ($_.label) { "<span class=""bordje__label"">$(Html $_.label)</span>" } else { '' }
+    $soortTekst = $L.ui.filters[$_.filter]
+    $zoek = (Html ("$($_.naamKort) $($_.titel) $($_.kort) $soortTekst".ToLower()))
+    $li = @"
         <li class="bordje" data-soort="$($_.filter)" data-zoek="$zoek" style="--v:$($i * 80)ms">
-          <a href="/tools/$($_.slug)/">
+          <a href="$($L.pre)/tools/$($_.slug)/">
             <span class="bordje__km" aria-label="Kilometer $($_.km)"><span class="bordje__bord"><small>KM</small>$($_.km)</span></span>
             <span class="bordje__naam">$(Html $_.naamKort)$label</span>
             <span class="bordje__uitleg">$(Html $_.kort)<span class="bordje__teller" data-teller-tool="$($_.slug)" hidden></span></span>
-            <span class="bordje__soort">$($_.filter)</span>
+            <span class="bordje__soort">$soortTekst</span>
             <span class="bordje__pijl" aria-hidden="true">→</span>
             <span class="bordje__kijk" aria-hidden="true">$($plaatjes[$_.plaatje])</span>
           </a>
         </li>
 "@
-  $i++
-  $li
-}) -join "`n"
-$voorpagina = [regex]::Replace($voorpagina, '(?s)(<ol class="bordjes" id="bordjes">).*?(</ol>)', { param($m) $m.Groups[1].Value + "`n" + $bordjesHtml + "`n      " + $m.Groups[2].Value })
+    $i++
+    $li
+  }) -join "`n"
+  $voorpagina = [regex]::Replace($voorpagina, '(?s)(<ol class="bordjes" id="bordjes">).*?(</ol>)', { param($m) $m.Groups[1].Value + "`n" + $bordjesHtml + "`n      " + $m.Groups[2].Value })
 
-# eerste gorilla-tip vast in de pagina (de rest wisselt via main.js)
-$main = Lees "assets\js\main.js"
-$eersteTip = [regex]::Match($main, '\{ tekst: "([^"]+)", link: "([^"]+)" \}')
-if ($eersteTip.Success) {
-  $voorpagina = [regex]::Replace($voorpagina, '(?s)(<blockquote class="tips__tekst" id="tipTekst"[^>]*>).*?(</blockquote>)', { param($m) $m.Groups[1].Value + '“' + $eersteTip.Groups[1].Value + '”' + $m.Groups[2].Value })
-  $voorpagina = [regex]::Replace($voorpagina, '<a href="[^"]*" class="tips__link" id="tipLink">', '<a href="' + $eersteTip.Groups[2].Value + '" class="tips__link" id="tipLink">')
-}
+  # eerste gorilla-tip vast in de pagina (de rest wisselt via main.js)
+  if ($L.taal -eq 'nl') {
+    $m1 = [regex]::Match($main, '\{ tekst: "([^"]+)", link: "([^"]+)" \}')
+    $tip = if ($m1.Success) { @{ tekst = $m1.Groups[1].Value; link = $m1.Groups[2].Value } } else { $null }
+  } else { $tip = $L.eersteTip }
+  if ($tip) {
+    $voorpagina = [regex]::Replace($voorpagina, '(?s)(<blockquote class="tips__tekst" id="tipTekst"[^>]*>).*?(</blockquote>)', { param($m) $m.Groups[1].Value + '“' + $tip.tekst + '”' + $m.Groups[2].Value })
+    $voorpagina = [regex]::Replace($voorpagina, '<a href="[^"]*" class="tips__link" id="tipLink">', '<a href="' + $tip.link + '" class="tips__link" id="tipLink">')
+  }
 
-# gestructureerde informatie: website, organisatie en de lijst met tools
-$homeSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
-  [ordered]@{ '@type' = 'WebSite'; '@id' = "$site/#website"; name = 'Gravel Gorilla'; url = "$site/"; inLanguage = 'nl'; publisher = @{ '@id' = "$site/#organisatie" } }
-  $organisatie
-  [ordered]@{ '@type' = 'ItemList'; name = 'Gratis tools voor gravelrijders'; itemListElement = @($tools | ForEach-Object -Begin { $n = 0 } -Process {
-    $n++; [ordered]@{ '@type' = 'ListItem'; position = $n; name = $_.titel; url = "$site/tools/$($_.slug)/"; description = $_.kort } }) }
-) })
-if ($voorpagina -match '<!--SCHEMA-->') {
-  $voorpagina = [regex]::Replace($voorpagina, '(?s)<!--SCHEMA-->.*?<!--/SCHEMA-->', { param($m) "<!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->" })
-} else {
-  $voorpagina = $voorpagina.Replace('</head>', "  <!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->`n</head>")
+  # gestructureerde informatie: website, organisatie en de lijst met tools
+  $org = [ordered]@{}; foreach ($k in $organisatie.Keys) { $org[$k] = $organisatie[$k] }; if ($L.orgBeschrijving) { $org.description = $L.orgBeschrijving }
+  $homeSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+    [ordered]@{ '@type' = 'WebSite'; '@id' = "$site/#website"; name = 'Gravel Gorilla'; url = "$site$($L.pre)/"; inLanguage = $L.taal; publisher = @{ '@id' = "$site/#organisatie" } }
+    $org
+    [ordered]@{ '@type' = 'ItemList'; name = $L.lijstNaam; itemListElement = @($toolsHier | ForEach-Object -Begin { $n = 0 } -Process {
+      $n++; [ordered]@{ '@type' = 'ListItem'; position = $n; name = $_.titel; url = "$site$($L.pre)/tools/$($_.slug)/"; description = $_.kort } }) }
+  ) })
+  if ($voorpagina -match '<!--SCHEMA-->') {
+    $voorpagina = [regex]::Replace($voorpagina, '(?s)<!--SCHEMA-->.*?<!--/SCHEMA-->', { param($m) "<!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->" })
+  } else {
+    $voorpagina = $voorpagina.Replace('</head>', "  <!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->`n</head>")
+  }
+  # links naar de andere talen (voor Google)
+  $talenHtml = "<!--TALEN-->`n$(Alternatieven '/')`n  <!--/TALEN-->"
+  if ($voorpagina -match '<!--TALEN-->') {
+    $voorpagina = [regex]::Replace($voorpagina, '(?s)<!--TALEN-->.*?<!--/TALEN-->', { param($m) $talenHtml })
+  } else {
+    $voorpagina = [regex]::Replace($voorpagina, '(<link rel="canonical"[^>]*>)', { param($m) $m.Groups[1].Value + "`n  " + $talenHtml })
+  }
+
+  if ($L.taal -eq 'nl') {
+    Schrijf "index.html" $voorpagina
+  } else {
+    foreach ($paar in $L.home) {
+      if ($voorpagina.Contains($paar[0])) { $voorpagina = $voorpagina.Replace($paar[0], $paar[1]) }
+      else { "LET OP: homepage $($L.taal): tekst niet gevonden, vertaling bijwerken: $($paar[0])" }
+    }
+    $voorpagina = $voorpagina.Replace('<html lang="nl">', "<html lang=""$($L.taal)"">")
+    $voorpagina = $voorpagina.Replace('<link rel="canonical" href="https://gravelgorilla.nl/">', "<link rel=""canonical"" href=""$site$($L.pre)/"">")
+    $voorpagina = $voorpagina.Replace('<meta property="og:url" content="https://gravelgorilla.nl/">', "<meta property=""og:url"" content=""$site$($L.pre)/"">")
+    $voorpagina = $voorpagina.Replace('<meta property="og:locale" content="nl_NL">', "<meta property=""og:locale"" content=""$($L.ogLocale)"">")
+    # interne links in de pagina zelf (niet in het taalmenu) naar deze taal
+    $voorpagina = [regex]::Replace($voorpagina, '(?s)<main>.*</main>', { param($m) Prefix $m.Value $L })
+    Schrijf "$($L.taal)\index.html" $voorpagina
+  }
 }
-Schrijf "index.html" $voorpagina
-"homepage: wegwijzer ($($tools.Count) tools), eerste tip en schema als HTML"
+"homepage: wegwijzer ($($tools.Count) tools), eerste tip en schema als HTML, in $($talen.Count) talen"
 
 # ---------- llms.txt: korte samenvatting van de site voor AI-zoekmachines ----------
 $llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
   "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en framemaat, welke banden, wielen en versnellingen, welke bandenspanning, waar je kunt graveln, welk ultra-event, wat je meeneemt en aantrekt, en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
   (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
-  "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n"
+  "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n" +
+  (($talen | Where-Object { $_.taal -ne 'nl' } | ForEach-Object {
+    $L = $_
+    "`n## $($L.naam) ($site$($L.pre)/)`n`n> $($L.orgBeschrijving)`n`n" + ((ToolsIn $L | ForEach-Object { "- [$($_.titel)]($site$($L.pre)/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") + "`n"
+  }) -join '')
 Schrijf "llms.txt" $llms
 "llms.txt: klaar"
 
@@ -550,12 +693,16 @@ Schrijf "llms.txt" $llms
 $vandaag = Get-Date -Format 'yyyy-MM-dd'
 $adressen = @(@('/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag), @('/privacy/', $vandaag))
 $adressen += $tools | ForEach-Object { ,@("/tools/$($_.slug)/", $vandaag) }
-$xml = "<?xml version=""1.0"" encoding=""UTF-8""?>`n<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"">`n"
-$xml += ($adressen | ForEach-Object { "  <url><loc>$site$($_[0])</loc><lastmod>$($_[1])</lastmod></url>" }) -join "`n"
-$xml += "`n</urlset>`n"
+# elke pagina in elke taal, met de links naar dezelfde pagina in de andere talen (hreflang)
+$xml = "<?xml version=""1.0"" encoding=""UTF-8""?>`n<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"" xmlns:xhtml=""http://www.w3.org/1999/xhtml"">`n"
+$regels = foreach ($a in $adressen) {
+  $alt = (($talen | ForEach-Object { "<xhtml:link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $a[0])""/>" }) -join '') + "<xhtml:link rel=""alternate"" hreflang=""x-default"" href=""$site$($a[0])""/>"
+  foreach ($L in $talen) { "  <url><loc>$site$(TaalPad $L $a[0])</loc><lastmod>$($a[1])</lastmod>$alt</url>" }
+}
+$xml += ($regels -join "`n") + "`n</urlset>`n"
 Schrijf "sitemap.xml" $xml
 Schrijf "robots.txt" "User-agent: *`nAllow: /`n`nSitemap: $site/sitemap.xml`n"
-"sitemap: $($adressen.Count) adressen"
+"sitemap: $(@($regels).Count) adressen ($($adressen.Count) pagina's in $($talen.Count) talen)"
 
 # ---------- .htaccess: instellingen voor de webserver van Cloud86 ----------
 $htaccess = @'

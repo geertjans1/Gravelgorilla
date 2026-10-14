@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
+  <title>Gravelbike finden, Reifendruck und mehr | Gravel Gorilla</title>
+  <meta name="description" content="Kostenlose Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Reifendruck und Übersetzung berechnen, Gravelrouten, Packliste, Kleidungsberater und mehr.">
+  <link rel="canonical" href="https://gravelgorilla.nl/de/">
+  <!--TALEN-->
+  <link rel="alternate" hreflang="nl" href="https://gravelgorilla.nl/">
+  <link rel="alternate" hreflang="en" href="https://gravelgorilla.nl/en/">
+  <link rel="alternate" hreflang="de" href="https://gravelgorilla.nl/de/">
+  <link rel="alternate" hreflang="x-default" href="https://gravelgorilla.nl/">
+  <!--/TALEN-->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gravel Gorilla: Lass dir vom Gorilla helfen">
+  <meta property="og:description" content="Kostenlose Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Reifendruck und Übersetzung berechnen, Gravelrouten, Packliste, Kleidungsberater und mehr.">
+  <meta property="og:url" content="https://gravelgorilla.nl/de/">
+  <meta property="og:image" content="https://gravelgorilla.nl/assets/img/deelplaatje.png?v=7e972f3e">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Gravel Gorilla">
+  <link rel="icon" href="/favicon.ico?v=9d82fb64" sizes="48x48">
+  <link rel="icon" href="/assets/img/logo-icon.svg?v=8a9212c0" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/icon-192.png?v=bb1fc487" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=99bca353">
+  <!-- Kies meteen het juiste thema (licht/donker), zodat de pagina niet eerst wit flitst -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("gg-thema"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "donker" : "licht";
+      document.documentElement.setAttribute("data-thema", t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=ce9cc21d">
+  <!--SCHEMA-->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://gravelgorilla.nl/#website","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/de/","inLanguage":"de","publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Unabhängige niederländische Website mit kostenlosen Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Gravelreifen, Reifendruck, Laufräder, Übersetzung, Gravelrouten, Ultra-Events, Bikepacking-Packliste, Profilsticker und Kleidungsberater."},{"@type":"ItemList","name":"Kostenlose Tools für Gravelfahrer","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravelbike-Finder","url":"https://gravelgorilla.nl/de/tools/gravelbike-kiezer/","description":"Ein paar Fragen dazu, wie und wo du fährst, und du siehst, welche von 147 Gravelbikes zu dir passen."},{"@type":"ListItem","position":2,"name":"Reifendruck-Rechner","url":"https://gravelgorilla.nl/de/tools/bandenspanning-calculator/","description":"Der richtige Druck für dein Gewicht, deine Reifenbreite und den Untergrund. Vorne und hinten getrennt."},{"@type":"ListItem","position":3,"name":"Gravel-Laufrad-Finder","url":"https://gravelgorilla.nl/de/tools/gravelwielen-kiezer/","description":"Leicht, robust oder schnell? Finde den Laufradsatz, der zu deinem Rad und Fahrstil passt."},{"@type":"ListItem","position":4,"name":"Ultra-Event-Finder","url":"https://gravelgorilla.nl/de/tools/ultra-eventkiezer/","description":"Welches Ultra-Gravel-Event passt zu deiner Erfahrung, Form und Planung? Du bekommst eine Auswahl."},{"@type":"ListItem","position":5,"name":"Profilsticker","url":"https://gravelgorilla.nl/de/tools/profielsticker/","description":"Vom GPX zum Sticker fürs Oberrohr: Anstiege, Stopps, Leistung und wann du essen musst."},{"@type":"ListItem","position":6,"name":"Kleidungsberater","url":"https://gravelgorilla.nl/de/tools/kledingadvies/","description":"Zu warm oder zu kalt? Sieh für jede Körperpartie, was du anziehst, mit der Vorhersage für deine Tour."},{"@type":"ListItem","position":7,"name":"Gravelreifen-Finder","url":"https://gravelgorilla.nl/de/tools/gravelbanden-kiezer/","description":"Untergrund, Fahrstil und Wetter einstellen und sehen, welche Breite, welches Profil und welche Reifen passen."},{"@type":"ListItem","position":8,"name":"Rahmengrößen-Rechner","url":"https://gravelgorilla.nl/de/tools/maatbepaler/","description":"Körpergröße und Schrittlänge eingeben und sehen, welche Rahmengröße und Sattelhöhe passen. Auch zwischen zwei Größen."},{"@type":"ListItem","position":9,"name":"Bikepacking-Packliste","url":"https://gravelgorilla.nl/de/tools/paklijst-bikepacking/","description":"Eine Checkliste nach Tourdauer und Jahreszeit, mit dem Gewicht deines Gepäcks."},{"@type":"ListItem","position":10,"name":"Gravelrouten in den Niederlanden und Belgien","url":"https://gravelgorilla.nl/de/tools/gravelroutes/","description":"Ausgeschilderte Gravelrouten und GPX-Routen in den Niederlanden und Flandern, nach Provinz und Länge."},{"@type":"ListItem","position":11,"name":"Übersetzungsrechner","url":"https://gravelgorilla.nl/de/tools/versnellingscalculator/","description":"Kettenblatt und Kassette vergleichen: dein leichtester Gang und wie steil du noch hochkommst."}]}]}</script>
+  <!--/SCHEMA-->
+</head>
+<body>
+
+  <!-- ===== Bovenbalk ===== -->
+  <header class="bar" id="bar">
+    <a href="/de/" class="brand" aria-label="Gravel Gorilla, zur Startseite">
+      <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="36" height="36">
+      <span class="brand__word">Gravel <b>Gorilla</b></span>
+    </a>
+    <nav class="bar__links" aria-label="Hauptmenü">
+      <a href="/de/#wegwijzer">Tools</a>
+      <a href="/de/over-ons/">Über uns</a>
+    </nav>
+    <div class="taal" id="taalKeuze">
+      <button class="taal__knop" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen: Deutsch"><svg class="vlag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="3" fill="#FFCE00"/><rect width="5" height="2" fill="#DD0000"/><rect width="5" height="1" fill="#000"/></svg><span>DE</span><svg class="taal__pijl" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 L6 6.5 L11 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <ul class="taal__lijst">
+        <li><a href="/" hreflang="nl" lang="nl"><svg class="vlag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="6" fill="#21468B"/><rect width="9" height="4" fill="#fff"/><rect width="9" height="2" fill="#AE1C28"/></svg><span>Nederlands</span></a></li>
+        <li><a href="/en/" hreflang="en" lang="en"><svg class="vlag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="2.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg><span>English</span></a></li>
+        <li><a href="/de/" hreflang="de" lang="de" aria-current="true"><svg class="vlag" viewBox="0 0 5 3" aria-hidden="true"><rect width="5" height="3" fill="#FFCE00"/><rect width="5" height="2" fill="#DD0000"/><rect width="5" height="1" fill="#000"/></svg><span>Deutsch</span></a></li>
+      </ul>
+    </div>
+    <button class="thema-knop" id="themaKnop" type="button" aria-label="Dunkelmodus ein oder aus" title="Nachtfahrt an/aus">
+      <svg class="icon-zon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      <svg class="icon-maan" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </button>
+    <a href="/de/tools/gravelbike-kiezer/" class="knop knop--actie knop--klein">Zum Bike-Finder</a>
+    <button class="bar__menu" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- ===== Opening: kop links, rollende band rechts ===== -->
+    <section class="opening">
+      <div class="opening__tekst">
+        <h1 class="kop-xl">
+          <span class="regel"><span>Lass dir vom</span></span>
+          <span class="regel"><span class="groen">Gorilla helfen.</span></span>
+        </h1>
+        <p class="opening__intro verschijn" style="--v:300ms">Unsicher bei Gravelbike, Laufrädern, Reifendruck oder Kleidung? Der Gorilla rechnet es für dich aus. Kostenlos und ehrlich, ohne dass dir jemand etwas verkaufen will.</p>
+
+        <!-- Snelkeuze: kies uit het lijstje of wijs op de fiets aan wat je wilt weten. -->
+        <div class="snelkeuze verschijn" style="--v:420ms">
+          <p class="snelkeuze__begin">Ich möchte… <span>wähle aus oder zeig es am Rad</span></p>
+          <ol class="snelkeuze__opties">
+            <li><a href="/de/tools/gravelbike-kiezer/" data-deel="fiets"><span>1</span>ein Gravelbike finden</a></li>
+            <li><a href="/de/tools/bandenspanning-calculator/" data-deel="spanning"><span>2</span>meinen Reifendruck wissen</a></li>
+            <li><a href="/de/tools/gravelwielen-kiezer/" data-deel="wielen"><span>3</span>die richtigen Laufräder finden</a></li>
+            <li><a href="/de/tools/gravelbanden-kiezer/" data-deel="banden"><span>4</span>die richtigen Reifen wählen</a></li>
+            <li><a href="/de/tools/ultra-eventkiezer/" data-deel="ultra"><span>5</span>ein Ultra-Event finden</a></li>
+            <li><a href="/de/tools/profielsticker/" data-deel="sticker"><span>6</span>einen Profilsticker machen</a></li>
+            <li><a href="/de/tools/kledingadvies/" data-deel="kleding"><span>7</span>wissen, was ich anziehe</a></li>
+            <li><a href="/de/tools/maatbepaler/" data-deel="maat"><span>8</span>meine Rahmengröße wissen</a></li>
+            <li><a href="/de/tools/paklijst-bikepacking/" data-deel="paklijst"><span>9</span>wissen, was ich einpacke</a></li>
+            <li><a href="/de/tools/gravelroutes/" data-deel="routes"><span>10</span>eine Gravelroute finden</a></li>
+            <li><a href="/de/tools/versnellingscalculator/" data-deel="versnelling"><span>11</span>meine Übersetzung berechnen</a></li>
+          </ol>
+          <div class="snelfiets">
+            <svg viewBox="0 0 600 350" aria-hidden="true" focusable="false">
+              <a href="/de/tools/gravelroutes/" class="deel" data-deel="routes" tabindex="-1">
+                <path class="snelfiets__grond" d="M10 340 H590"/><g fill="currentColor" opacity=".35"><circle cx="70" cy="346" r="3"/><circle cx="196" cy="347" r="2.5"/><circle cx="388" cy="346" r="3.5"/><circle cx="520" cy="347" r="2.5"/><circle cx="250" cy="345" r="2"/></g>
+                <g class="punt" transform="translate(404 326)" style="--d:1350ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">10</text></g>
+              </a>
+              <a href="/de/tools/gravelbanden-kiezer/" class="deel" data-deel="banden" tabindex="-1">
+                <g fill="none" stroke="currentColor"><circle cx="130" cy="240" r="91" stroke-width="12"/><circle cx="470" cy="240" r="91" stroke-width="12"/><circle cx="130" cy="240" r="98" stroke-width="4" stroke-dasharray="3 6"/><circle cx="470" cy="240" r="98" stroke-width="4" stroke-dasharray="3 6"/></g>
+              </a>
+              <a href="/de/tools/gravelwielen-kiezer/" class="deel" data-deel="wielen" tabindex="-1">
+                <g fill="none" stroke="currentColor"><circle cx="130" cy="240" r="80" stroke-width="5"/><circle cx="470" cy="240" r="80" stroke-width="5"/><g stroke-width="1.6" opacity=".7"><line x1="130" y1="240" x2="130" y2="162" transform="rotate(8 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(38 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(68 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(98 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(128 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(158 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(188 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(218 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(248 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(278 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(308 130 240)"/><line x1="130" y1="240" x2="130" y2="162" transform="rotate(338 130 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(8 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(38 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(68 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(98 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(128 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(158 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(188 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(218 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(248 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(278 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(308 470 240)"/><line x1="470" y1="240" x2="470" y2="162" transform="rotate(338 470 240)"/></g><circle cx="130" cy="240" r="7" fill="currentColor"/><circle cx="470" cy="240" r="7" fill="currentColor"/></g>
+              </a>
+              <a href="/de/tools/gravelbike-kiezer/" class="deel" data-deel="fiets" tabindex="-1">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M130 240 L290 250 L262 118 Z" stroke-width="7"/>
+                  <path d="M262 118 L432 110 M290 250 L442 152" stroke-width="9"/>
+                  <path d="M432 110 L442 152 M442 152 Q452 200 470 240" stroke-width="8"/>
+                  <path d="M262 118 L255 90 M432 110 L434 98 L466 94 M466 94 Q492 92 494 112 Q496 132 478 138" stroke-width="5"/>
+                  <path d="M226 88 Q252 80 280 85 L276 92 Q252 89 230 94 Z" fill="currentColor" stroke-width="3"/>
+                  <path d="M290 250 L306 292 M294 292 H322" stroke-width="5"/>
+                </g>
+              </a>
+              <a href="/de/tools/bandenspanning-calculator/" class="deel" data-deel="spanning" tabindex="-1">
+                <path d="M510 171 L503 183" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="507" y="163" width="8" height="10" rx="2" fill="currentColor" transform="rotate(30 511 168)"/>
+                <g class="punt" transform="translate(532 152)" style="--d:150ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">2</text></g>
+              </a>
+              <a href="/de/tools/profielsticker/" class="deel deel--sticker" data-deel="sticker" tabindex="-1">
+                <g transform="translate(347 114) rotate(-2.5)"><rect x="-36" y="-10" width="72" height="20" rx="4" class="sticker__vlak"/><path d="M-30 6 L-20 1 L-12 4 L-4 -5 L4 0 L12 -6 L20 2 L30 -2" fill="none" stroke="#2F8F3E" stroke-width="2.5" stroke-linejoin="round"/></g>
+                <g class="punt" transform="translate(347 82)" style="--d:900ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">6</text></g>
+              </a>
+              <a href="/de/tools/ultra-eventkiezer/" class="deel" data-deel="ultra" tabindex="-1">
+                <path d="M250 96 Q246 112 254 118 Q220 124 192 110 Q180 102 188 93 Q222 90 250 96 Z" fill="currentColor"/><path d="M226 92 L222 120 M206 92 L202 115" stroke="var(--achtergrond)" stroke-width="2.5"/>
+                <g class="punt" transform="translate(196 70)" style="--d:750ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">5</text></g>
+              </a>
+              <a href="/de/tools/kledingadvies/" class="deel" data-deel="kleding" tabindex="-1">
+                <g transform="translate(452 92)"><path d="M-20 0 Q-20 -24 2 -24 Q22 -24 22 0 Z" fill="currentColor"/><path d="M20 -1 Q36 -2 42 5 L20 5 Z" fill="currentColor"/><path d="M-2 -24 V0" stroke="var(--actie)" stroke-width="4"/></g>
+                <g class="punt" transform="translate(492 50)" style="--d:1050ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">7</text></g>
+              </a>
+              <a href="/de/tools/gravelbike-kiezer/" class="deel" data-deel="fiets" tabindex="-1"><g class="punt" transform="translate(372 210)" style="--d:0ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">1</text></g></a>
+              <a href="/de/tools/gravelwielen-kiezer/" class="deel" data-deel="wielen" tabindex="-1"><g class="punt" transform="translate(92 196)" style="--d:300ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">3</text></g></a>
+              <a href="/de/tools/gravelbanden-kiezer/" class="deel" data-deel="banden" tabindex="-1"><g class="punt" transform="translate(546 314)" style="--d:450ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">4</text></g></a>
+              <a href="/de/tools/versnellingscalculator/" class="deel" data-deel="versnelling" tabindex="-1">
+                <g fill="none" stroke="currentColor"><circle cx="290" cy="250" r="19" stroke-width="4"/><circle cx="290" cy="250" r="23" stroke-width="3" stroke-dasharray="2.5 3.5"/><circle cx="130" cy="240" r="15" stroke-width="3"/><circle cx="130" cy="240" r="18" stroke-width="2.5" stroke-dasharray="2 3"/></g>
+                <g class="punt" transform="translate(258 286)" style="--d:1500ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">11</text></g>
+              </a>
+              <a href="/de/tools/maatbepaler/" class="deel" data-deel="maat" tabindex="-1">
+                <g stroke="var(--actie)" stroke-linecap="round"><path d="M236 86 V250" stroke-width="3"/><path d="M229 86 H243 M229 250 H243 M231 127 H241 M231 168 H241 M231 209 H241" stroke-width="2.5"/></g>
+                <g class="punt" transform="translate(212 168)" style="--d:1200ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">8</text></g>
+              </a>
+              <a href="/de/tools/paklijst-bikepacking/" class="deel" data-deel="paklijst" tabindex="-1">
+                <g transform="translate(508 112)"><rect x="-11" y="-20" width="22" height="40" rx="10" fill="currentColor"/><path d="M-11 -8 H11 M-11 8 H11" stroke="var(--achtergrond)" stroke-width="2.5"/></g>
+                <g class="punt" transform="translate(546 104)" style="--d:1250ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">9</text></g>
+              </a>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Het logo, groot. De tandwielrand en de tekst draaien mee als je scrolt. -->
+      <div class="opening__band" aria-hidden="true">
+        <svg viewBox="-16 -16 432 432" class="band">
+          <defs>
+            <path id="tekstcirkel" d="M200,200 m-190,0 a190,190 0 1,1 380,0 a190,190 0 1,1 -380,0"/>
+          </defs>
+          <g class="band__draai">
+            <!-- tandwielrand uit het logo: draait mee als je scrolt -->
+            <g transform="translate(200 200) scale(1.55) translate(-100 -100)">
+              <circle cx="100" cy="100" r="107" fill="var(--band)"/>
+              <circle cx="100" cy="100" r="83" fill="none" stroke="#f3f2f2" stroke-width="16"/>
+              <polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(0 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(12.857142857142858 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(25.714285714285715 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(38.57142857142857 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(51.42857142857143 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(64.28571428571429 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(77.14285714285714 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(90 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(102.85714285714286 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(115.71428571428572 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(128.57142857142858 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(141.42857142857144 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(154.28571428571428 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(167.14285714285714 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(180 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(192.85714285714286 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(205.71428571428572 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(218.57142857142858 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(231.42857142857144 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(244.2857142857143 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(257.14285714285717 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(270 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(282.8571428571429 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(295.7142857142857 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(308.57142857142856 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(321.42857142857144 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(334.2857142857143 100 100)"/><polygon points="93,0 107,0 108.5,12 91.5,12" fill="#f3f2f2" transform="rotate(347.14285714285717 100 100)"/>
+            </g>
+            <text class="band__tekst"><textPath href="#tekstcirkel" textLength="1186" lengthAdjust="spacing">GRAVEL GORILLA  ·  LASS DIR VOM GORILLA HELFEN  ·  GRATIS GRAVELTOOLS  ·</textPath></text>
+          </g>
+          <!-- gorilla uit het logo: blijft rechtop staan -->
+          <g transform="translate(200 200) scale(1.55) translate(-100 -100)">
+            <circle cx="100" cy="100" r="75.5" fill="#2F8F3E"/>
+            <g transform="translate(100 104) scale(0.92) translate(-100 -100)"><path d="M100.0 26.0 Q111.2 21.1 127.5 24.3 Q116.9 34.1 120.5 36.8 Q132.2 34.2 146.6 40.2 Q134.5 45.6 136.8 49.4 Q149.0 49.5 162.9 57.5 Q148.9 59.6 149.6 64.0 Q161.6 67.4 173.0 79.0 Q158.3 76.9 157.4 81.4 Q168.1 88.1 176.0 102.6 Q162.3 96.1 160.0 100.0 Q168.0 109.7 171.5 126.0 Q161.0 115.7 157.7 118.7 Q161.9 130.3 160.5 147.2 Q154.6 134.7 150.5 136.7 Q153.0 151.4 147.4 170.2 Q143.3 152.4 138.1 152.5 Q135.2 166.6 123.6 182.0 Q125.7 165.0 120.7 163.8 Q113.1 175.2 97.1 184.7 Q104.4 170.4 100.0 168.0 Q89.1 176.7 97.6 184.9 Q82.7 167.5 79.3 163.8 Q65.8 169.8 71.4 180.3 Q63.7 157.2 61.9 152.5 Q46.8 154.9 48.4 166.9 Q49.5 141.8 49.5 136.7 Q37.4 133.2 36.8 143.2 Q41.5 123.2 42.3 118.7 Q31.6 111.9 27.0 121.4 Q37.7 103.9 40.0 100.0 Q32.0 90.3 24.0 97.8 Q39.2 84.4 42.6 81.4 Q38.3 69.8 28.4 74.5 Q46.3 65.9 50.4 64.0 Q50.5 52.1 40.0 53.7 Q58.8 50.2 63.2 49.4 Q67.7 38.9 57.6 37.9 Q75.9 39.2 80.4 39.5 Q88.1 32.0 79.2 29.2 Q95.9 34.6 100.0 36.0 Z" fill="#15181A" stroke="#f3f2f2" stroke-width="7" paint-order="stroke" stroke-linejoin="round"/><path d="M74 58 Q88 64 93 80 L96 77 Q90 60 78 54 Z" fill="#f3f2f2"/><path d="M126 58 Q112 64 107 80 L104 77 Q110 60 122 54 Z" fill="#f3f2f2"/><path d="M48 92 Q56 102 54 116 L50 113 Q52 102 45 96 Z" fill="#f3f2f2"/><path d="M152 92 Q144 102 146 116 L150 113 Q148 102 155 96 Z" fill="#f3f2f2"/><path d="M52 102 Q74 82 100 96 Q126 78 148 96 L144 102 Q124 90 100 104 Q76 94 56 108 Z" fill="#f3f2f2"/><g class="ogen" style="transform-box:fill-box;transform-origin:center"><ellipse cx="78" cy="108" rx="8" ry="4.6" fill="#f3f2f2"/><circle cx="80.5" cy="108.4" r="3.4" fill="#15181A"/></g><g class="ogen" style="transform-box:fill-box;transform-origin:center"><ellipse cx="122" cy="105" rx="8" ry="4.6" fill="#f3f2f2"/><circle cx="124.5" cy="105.4" r="3.4" fill="#15181A"/></g><path d="M56 114 Q64 120 70 138 Q58 132 52 118 Z" fill="#f3f2f2"/><path d="M144 114 Q136 120 130 138 Q142 132 148 118 Z" fill="#f3f2f2"/><path d="M95 104 Q93 114 92 123" fill="none" stroke="#f3f2f2" stroke-linecap="round" stroke-width="2.5"/><path d="M105 104 Q107 114 108 123" fill="none" stroke="#f3f2f2" stroke-linecap="round" stroke-width="2.5"/><path d="M74 146 Q100 136 126 142 Q132 158 112 164 Q100 167 88 164 Q70 158 74 146 Z" fill="#f3f2f2"/><path d="M84 132 Q88 122 100 124 Q112 122 116 132 Q118 141 108 141 Q100 137 92 141 Q82 141 84 132 Z" fill="#15181A" stroke="#f3f2f2" stroke-width="3" stroke-linejoin="round"/><path d="M88 137 Q92 131 96 136" fill="none" stroke="#f3f2f2" stroke-linecap="round" stroke-width="2.5"/><path d="M104 136 Q108 131 112 137" fill="none" stroke="#f3f2f2" stroke-linecap="round" stroke-width="2.5"/><path d="M82 152 Q104 166 122 146" fill="none" stroke="#15181A" stroke-width="5.5" stroke-linecap="round"/><path d="M120 146 Q126 147 126 153" fill="none" stroke="#15181A" stroke-width="3" stroke-linecap="round"/></g>
+          </g>
+        </svg>
+        <!-- bandenspoor dat uit de band wegloopt -->
+        <svg class="spoor" viewBox="0 0 60 400" preserveAspectRatio="none"><path d="M30 0 V400" stroke="var(--band)" stroke-width="22" stroke-dasharray="8 10"/></svg>
+      </div>
+    </section>
+
+    <!-- ===== Hoogteprofiel: tekent zichzelf terwijl je scrolt, en is meteen een routekaart van de pagina ===== -->
+    <nav class="profiel" aria-label="Route über diese Seite">
+     <div class="profiel__vak">
+      <svg viewBox="0 0 1200 150" preserveAspectRatio="none" class="profiel__lijn" aria-hidden="true">
+        <path class="profiel__vlak" d="M0 120 C80 118 120 90 200 95 C300 100 330 40 420 45 C520 50 540 110 640 105 C740 100 760 30 860 25 C960 20 1000 90 1080 85 C1140 82 1170 70 1200 68 V150 H0Z"/>
+        <defs><clipPath id="profielKlemPad"><rect id="profielKlem" x="-10" y="-40" width="0" height="230"/></clipPath></defs>
+        <path class="profiel__pad" id="profielPad" clip-path="url(#profielKlemPad)" d="M0 120 C80 118 120 90 200 95 C300 100 330 40 420 45 C520 50 540 110 640 105 C740 100 760 30 860 25 C960 20 1000 90 1080 85 C1140 82 1170 70 1200 68"/>
+      </svg>
+      <span class="profiel__vlag profiel__vlag--start" style="--x:0%;--y:80%" aria-hidden="true">Start</span>
+      <span class="profiel__stijging" style="--x:27%;--y:66%" aria-hidden="true">7%</span>
+      <span class="profiel__stijging" style="--x:64%;--y:62%" aria-hidden="true">11%</span>
+      <a href="#wegwijzer" class="profiel__punt" style="--x:35%;--y:30%"><i></i><span><small>Gipfel</small>Wegweiser</span></a>
+      <a href="#tips" class="profiel__punt profiel__punt--onder" style="--x:53.3%;--y:70%"><i></i><span><small>Verpflegung</small>Gorilla-Tipps</span></a>
+      <a href="/de/over-ons/" class="profiel__punt" style="--x:71.7%;--y:16.7%"><i></i><span><small>Gipfel</small>Über uns</span></a>
+      <a href="/de/contact/" class="profiel__punt profiel__punt--finish" style="--x:100%;--y:45.3%"><i></i><span><small>Ziel</small>Kontakt</span></a>
+      <span class="profiel__renner" id="profielRenner" aria-hidden="true"><img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="40" height="40"></span>
+     </div>
+     <div class="profiel__as" aria-hidden="true"><span>KM 0</span><span>KM 10</span><span>KM 20</span><span>KM 30</span><span>KM 40</span></div>
+    </nav>
+
+    <!-- ===== Wegwijzer: alle tools als bordjes onder elkaar ===== -->
+    <section class="wegwijzer" id="wegwijzer">
+      <div class="wegwijzer__kop">
+        <h2 class="kop-l verschijn">Wohin<br>willst du?</h2>
+        <div class="wegwijzer__zoek verschijn" style="--v:120ms">
+          <div class="filters" role="group" aria-label="Tools filtern">
+            <button class="filter is-aan" data-filter="alle" aria-pressed="true">Alle</button>
+            <button class="filter" data-filter="kiezen" aria-pressed="false">Wählen</button>
+            <button class="filter" data-filter="berekenen" aria-pressed="false">Berechnen</button>
+            <button class="filter" data-filter="plannen" aria-pressed="false">Planen</button>
+          </div>
+          <label class="zoekveld">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="zoekTool" placeholder="Tool suchen" aria-label="Tool suchen">
+          </label>
+        </div>
+      </div>
+
+      <!-- De bordjes maakt .claude/bouw-site.ps1; assets/js/teller.js zet ze op volgorde van gebruik -->
+      <ol class="bordjes" id="bordjes">
+        <li class="bordje" data-soort="kiezen" data-zoek="gravelbike-finder gravelbike-finder ein paar fragen dazu, wie und wo du f&#228;hrst, und du siehst, welche von 147 gravelbikes zu dir passen. w&#228;hlen" style="--v:0ms">
+          <a href="/de/tools/gravelbike-kiezer/">
+            <span class="bordje__km" aria-label="Kilometer 01"><span class="bordje__bord"><small>KM</small>01</span></span>
+            <span class="bordje__naam">Gravelbike-Finder</span>
+            <span class="bordje__uitleg">Ein paar Fragen dazu, wie und wo du f&#228;hrst, und du siehst, welche von 147 Gravelbikes zu dir passen.<span class="bordje__teller" data-teller-tool="gravelbike-kiezer" hidden></span></span>
+            <span class="bordje__soort">wählen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="20" width="72" height="8" rx="4" fill="#E3DDCF"/><rect x="14" y="20" width="46" height="8" rx="4" fill="#FF6B2C"/><rect x="14" y="40" width="72" height="14" rx="5" fill="#2F8F3E"/><rect x="14" y="60" width="72" height="14" rx="5" fill="none" stroke="#15181A" stroke-width="2"/><rect x="14" y="80" width="50" height="6" rx="3" fill="#C9C2B2"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="berekenen" data-zoek="reifendruck reifendruck-rechner der richtige druck f&#252;r dein gewicht, deine reifenbreite und den untergrund. vorne und hinten getrennt. berechnen" style="--v:80ms">
+          <a href="/de/tools/bandenspanning-calculator/">
+            <span class="bordje__km" aria-label="Kilometer 02"><span class="bordje__bord"><small>KM</small>02</span></span>
+            <span class="bordje__naam">Reifendruck</span>
+            <span class="bordje__uitleg">Der richtige Druck f&#252;r dein Gewicht, deine Reifenbreite und den Untergrund. Vorne und hinten getrennt.<span class="bordje__teller" data-teller-tool="bandenspanning-calculator" hidden></span></span>
+            <span class="bordje__soort">berechnen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><path d="M15 70 A35 35 0 0 1 85 70" fill="none" stroke="#E3DDCF" stroke-width="9" stroke-linecap="round"/><path d="M15 70 A35 35 0 0 1 72 42" fill="none" stroke="#2F8F3E" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="70" x2="68" y2="44" stroke="#15181A" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="70" r="6" fill="#FF6B2C"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="kiezen" data-zoek="laufrad-finder gravel-laufrad-finder leicht, robust oder schnell? finde den laufradsatz, der zu deinem rad und fahrstil passt. w&#228;hlen" style="--v:160ms">
+          <a href="/de/tools/gravelwielen-kiezer/">
+            <span class="bordje__km" aria-label="Kilometer 03"><span class="bordje__bord"><small>KM</small>03</span></span>
+            <span class="bordje__naam">Laufrad-Finder</span>
+            <span class="bordje__uitleg">Leicht, robust oder schnell? Finde den Laufradsatz, der zu deinem Rad und Fahrstil passt.<span class="bordje__teller" data-teller-tool="gravelwielen-kiezer" hidden></span></span>
+            <span class="bordje__soort">wählen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="#15181A" stroke-width="8" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="33" fill="none" stroke="#C9C2B2" stroke-width="2"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(0 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(36 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(72 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(108 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(144 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(180 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(216 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(252 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(288 50 50)"/><line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(324 50 50)"/><circle cx="50" cy="50" r="6" fill="#2F8F3E"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="plannen" data-zoek="ultra-event-finder ultra-event-finder welches ultra-gravel-event passt zu deiner erfahrung, form und planung? du bekommst eine auswahl. planen" style="--v:240ms">
+          <a href="/de/tools/ultra-eventkiezer/">
+            <span class="bordje__km" aria-label="Kilometer 04"><span class="bordje__bord"><small>KM</small>04</span></span>
+            <span class="bordje__naam">Ultra-Event-Finder</span>
+            <span class="bordje__uitleg">Welches Ultra-Gravel-Event passt zu deiner Erfahrung, Form und Planung? Du bekommst eine Auswahl.<span class="bordje__teller" data-teller-tool="ultra-eventkiezer" hidden></span></span>
+            <span class="bordje__soort">planen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="96" height="96"><path d="M28 86V16" stroke="#15181A" stroke-width="4" stroke-linecap="round"/><path d="M30 18h46l-9 14 9 14H30z" fill="#2F8F3E"/><g fill="#F4F1EA"><rect x="38" y="22" width="7" height="7"/><rect x="52" y="22" width="7" height="7"/><rect x="45" y="29" width="7" height="7"/><rect x="59" y="29" width="7" height="7"/><rect x="38" y="36" width="7" height="7"/><rect x="52" y="36" width="7" height="7"/></g></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="plannen" data-zoek="profilsticker profilsticker vom gpx zum sticker f&#252;rs oberrohr: anstiege, stopps, leistung und wann du essen musst. planen" style="--v:320ms">
+          <a href="/de/tools/profielsticker/">
+            <span class="bordje__km" aria-label="Kilometer 05"><span class="bordje__bord"><small>KM</small>05</span></span>
+            <span class="bordje__naam">Profilsticker</span>
+            <span class="bordje__uitleg">Vom GPX zum Sticker f&#252;rs Oberrohr: Anstiege, Stopps, Leistung und wann du essen musst.<span class="bordje__teller" data-teller-tool="profielsticker" hidden></span></span>
+            <span class="bordje__soort">planen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><rect x="8" y="30" width="84" height="40" rx="6" fill="#15181A"/><path d="M14 62 L28 50 L38 55 L52 38 L64 47 L76 36 L86 62 Z" fill="#2F8F3E"/><rect x="14" y="62" width="30" height="4" fill="#9AA098"/><rect x="44" y="62" width="42" height="4" fill="#F4F1EA"/><circle cx="52" cy="38" r="3.5" fill="#FF6B2C"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="plannen" data-zoek="kleidungsberater kleidungsberater zu warm oder zu kalt? sieh f&#252;r jede k&#246;rperpartie, was du anziehst, mit der vorhersage f&#252;r deine tour. planen" style="--v:400ms">
+          <a href="/de/tools/kledingadvies/">
+            <span class="bordje__km" aria-label="Kilometer 06"><span class="bordje__bord"><small>KM</small>06</span></span>
+            <span class="bordje__naam">Kleidungsberater</span>
+            <span class="bordje__uitleg">Zu warm oder zu kalt? Sieh f&#252;r jede K&#246;rperpartie, was du anziehst, mit der Vorhersage f&#252;r deine Tour.<span class="bordje__teller" data-teller-tool="kledingadvies" hidden></span></span>
+            <span class="bordje__soort">planen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="96" height="96"><path d="M34 18 18 28l7 16 7-4v42h36V40l7 4 7-16-16-10a16 16 0 0 1-32 0z" fill="#2F8F3E"/><path d="M50 30v52" stroke="#14361E" stroke-width="3"/><circle cx="50" cy="44" r="2.5" fill="#F4F1EA"/><circle cx="50" cy="56" r="2.5" fill="#F4F1EA"/><path d="M70 14c4 4 4 9 0 13M78 10c6 6 6 15 0 21" fill="none" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="kiezen" data-zoek="reifen-finder gravelreifen-finder untergrund, fahrstil und wetter einstellen und sehen, welche breite, welches profil und welche reifen passen. w&#228;hlen" style="--v:480ms">
+          <a href="/de/tools/gravelbanden-kiezer/">
+            <span class="bordje__km" aria-label="Kilometer 07"><span class="bordje__bord"><small>KM</small>07</span></span>
+            <span class="bordje__naam">Reifen-Finder</span>
+            <span class="bordje__uitleg">Untergrund, Fahrstil und Wetter einstellen und sehen, welche Breite, welches Profil und welche Reifen passen.<span class="bordje__teller" data-teller-tool="gravelbanden-kiezer" hidden></span></span>
+            <span class="bordje__soort">wählen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(0 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(20 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(40 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(80 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(100 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(140 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(160 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(180 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(200 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(220 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(240 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(260 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(280 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(300 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(320 50 50)"/><rect x="47" y="6" width="6" height="9" rx="1.5" fill="#15181A" transform="rotate(340 50 50)"/><circle cx="50" cy="50" r="36" fill="none" stroke="#15181A" stroke-width="9"/><circle cx="50" cy="50" r="29" fill="none" stroke="#2F8F3E" stroke-width="3"/><circle cx="50" cy="50" r="6" fill="#FF6B2C"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="berekenen" data-zoek="gr&#246;&#223;enrechner rahmengr&#246;&#223;en-rechner k&#246;rpergr&#246;&#223;e und schrittl&#228;nge eingeben und sehen, welche rahmengr&#246;&#223;e und sattelh&#246;he passen. auch zwischen zwei gr&#246;&#223;en. berechnen" style="--v:560ms">
+          <a href="/de/tools/maatbepaler/">
+            <span class="bordje__km" aria-label="Kilometer 08"><span class="bordje__bord"><small>KM</small>08</span></span>
+            <span class="bordje__naam">Gr&#246;&#223;enrechner<span class="bordje__label">Neu</span></span>
+            <span class="bordje__uitleg">K&#246;rpergr&#246;&#223;e und Schrittl&#228;nge eingeben und sehen, welche Rahmengr&#246;&#223;e und Sattelh&#246;he passen. Auch zwischen zwei Gr&#246;&#223;en.<span class="bordje__teller" data-teller-tool="maatbepaler" hidden></span></span>
+            <span class="bordje__soort">berechnen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><path d="M20 78 L48 30 L80 30 M48 30 L60 78 L20 78 M60 78 L80 30" fill="none" stroke="#15181A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M44 30 L40 16 M32 16 H50" stroke="#15181A" stroke-width="5" stroke-linecap="round"/><path d="M88 14 V86" stroke="#FF6B2C" stroke-width="4"/><path d="M82 14 H94 M82 86 H94 M84 32 H92 M84 50 H92 M84 68 H92" stroke="#FF6B2C" stroke-width="3"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="plannen" data-zoek="packliste bikepacking-packliste eine checkliste nach tourdauer und jahreszeit, mit dem gewicht deines gep&#228;cks. planen" style="--v:640ms">
+          <a href="/de/tools/paklijst-bikepacking/">
+            <span class="bordje__km" aria-label="Kilometer 09"><span class="bordje__bord"><small>KM</small>09</span></span>
+            <span class="bordje__naam">Packliste<span class="bordje__label">Neu</span></span>
+            <span class="bordje__uitleg">Eine Checkliste nach Tourdauer und Jahreszeit, mit dem Gewicht deines Gep&#228;cks.<span class="bordje__teller" data-teller-tool="paklijst-bikepacking" hidden></span></span>
+            <span class="bordje__soort">planen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="26" width="72" height="56" rx="12" fill="#2F8F3E"/><path d="M36 26 V18 Q36 12 42 12 H58 Q64 12 64 18 V26" fill="none" stroke="#15181A" stroke-width="5"/><path d="M30 48 l6 6 l12 -12 M30 66 l6 6 l12 -12" fill="none" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56 48 H72 M56 66 H72" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="26" r="9" fill="#FF6B2C"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="plannen" data-zoek="gravelrouten gravelrouten in den niederlanden und belgien ausgeschilderte gravelrouten und gpx-routen in den niederlanden und flandern, nach provinz und l&#228;nge. planen" style="--v:720ms">
+          <a href="/de/tools/gravelroutes/">
+            <span class="bordje__km" aria-label="Kilometer 10"><span class="bordje__bord"><small>KM</small>10</span></span>
+            <span class="bordje__naam">Gravelrouten<span class="bordje__label">Neu</span></span>
+            <span class="bordje__uitleg">Ausgeschilderte Gravelrouten und GPX-Routen in den Niederlanden und Flandern, nach Provinz und L&#228;nge.<span class="bordje__teller" data-teller-tool="gravelroutes" hidden></span></span>
+            <span class="bordje__soort">planen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><path d="M12 24 L36 14 L64 24 L88 14 V76 L64 86 L36 76 L12 86 Z" fill="#E3DDCF" stroke="#15181A" stroke-width="4" stroke-linejoin="round"/><path d="M36 14 V76 M64 24 V86" stroke="#15181A" stroke-width="3"/><path d="M20 66 Q34 40 50 52 T80 30" fill="none" stroke="#2F8F3E" stroke-width="5" stroke-dasharray="7 5" stroke-linecap="round"/><circle cx="80" cy="30" r="7" fill="#FF6B2C"/></svg></span>
+          </a>
+        </li>
+        <li class="bordje" data-soort="berekenen" data-zoek="&#252;bersetzung &#252;bersetzungsrechner kettenblatt und kassette vergleichen: dein leichtester gang und wie steil du noch hochkommst. berechnen" style="--v:800ms">
+          <a href="/de/tools/versnellingscalculator/">
+            <span class="bordje__km" aria-label="Kilometer 11"><span class="bordje__bord"><small>KM</small>11</span></span>
+            <span class="bordje__naam">&#220;bersetzung<span class="bordje__label">Neu</span></span>
+            <span class="bordje__uitleg">Kettenblatt und Kassette vergleichen: dein leichtester Gang und wie steil du noch hochkommst.<span class="bordje__teller" data-teller-tool="versnellingscalculator" hidden></span></span>
+            <span class="bordje__soort">berechnen</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true"><svg viewBox="0 0 100 100" width="100" height="100"><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(0 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(30 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(60 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(90 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(120 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(150 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(180 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(210 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(240 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(270 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(300 50 50)"/><rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="32" fill="#15181A"/><circle cx="50" cy="50" r="22" fill="#2F8F3E"/><circle cx="50" cy="50" r="8" fill="#FF6B2C"/><circle cx="50" cy="50" r="3" fill="#15181A"/></svg></span>
+          </a>
+        </li>
+      </ol>
+      <p class="bordjes__leeg" id="bordjesLeeg" hidden>Hier endet der Weg. Versuch ein anderes Wort, oder <a href="/de/contact/">sag dem Gorilla</a>, welches Tool dir fehlt.</p>
+    </section>
+
+    <!-- ===== Gorilla-tips: één grote tip tegelijk ===== -->
+    <section class="tips" id="tips">
+      <div class="tips__kaart verschijn">
+        <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="72" height="72" class="tips__gorilla">
+        <div class="tips__inhoud">
+          <p class="tips__label">Gorilla-Tipp <span id="tipNummer">01</span></p>
+          <blockquote class="tips__tekst" id="tipTekst" aria-live="polite">“Viel Sand unterwegs? Ein breiterer Reifen mit etwas weniger Druck sinkt weniger ein als ein schmaler, harter Reifen.”</blockquote>
+          <div class="tips__knoppen">
+            <button class="rond" id="tipVorige" aria-label="Vorheriger Tipp">←</button>
+            <button class="rond" id="tipVolgende" aria-label="Nächster Tipp">→</button>
+            <a href="/de/tools/bandenspanning-calculator/" class="tips__link" id="tipLink">Zum Tool</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Voet: groot woordmerk ===== -->
+  <footer class="voet">
+    <div class="voet__band" aria-hidden="true"></div>
+    <div class="voet__binnen">
+      <p class="voet__slot">Der Gorilla zeigt den Weg.<br>Du fährst.</p>
+      <nav aria-label="Fußzeile">
+        <a href="/de/#wegwijzer">Tools</a><a href="/de/over-ons/">Über uns</a><a href="/de/contact/">Kontakt</a><a href="/de/privacy/">Datenschutz</a>
+      </nav>
+    </div>
+    <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · gemacht von Geert Jans, Gravelfahrer · keine Cookies, keine Werbung</p>
+  </footer>
+
+  <script src="/assets/js/site.js?v=8069af02"></script>
+  <script src="/assets/js/main.js?v=cf59f233"></script>
+  <script src="/assets/js/teller.js?v=0609dda3"></script>
+</body>
+</html>

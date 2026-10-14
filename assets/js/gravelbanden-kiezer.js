@@ -68,11 +68,61 @@
     { m: "Tufo", n: "Gravel Swampero", p: 4, b: [36, 40, 44], prijs: 2, s: [2, 5, 5, 3], test: "tufo-gravel-swampero", t: "Modderband: hoge noppen voor nat en zacht terrein." }
   ];
 
-  const PROFIEL = ["Slick", "Semi-slick", "Allround", "Grof profiel", "Modderprofiel"];
+  /* ---------- Taal van de pagina (nl, en, de) ---------- */
+  const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
+  const T = (nl, en, de) => (TAAL === "en" ? en : TAAL === "de" ? de : nl);
+  const PRE = TAAL === "nl" ? "" : "/" + TAAL;
+  // korte typering per band in het Engels en Duits
+  const TYPERING = {
+    "G-One RS Pro": ["Fast racer with a fine tread for dry, flat gravel.", "Schneller Racer mit feinem Profil für trockenen, flachen Schotter."],
+    "G-One RS": ["Fast semi-slick for hardpack and tarmac.", "Schneller Semi-Slick für festen Schotter und Asphalt."],
+    "G-One R Pro": ["Fast all-rounder that still grips on loose gravel.", "Schneller Allrounder, der auch auf losem Schotter noch greift."],
+    "G-One RX Pro": ["For rough and loose terrain, with sturdy side knobs.", "Für raues und loses Gelände, mit kräftigen Seitenstollen."],
+    "G-One Allround": ["The classic all-rounder with round knobs.", "Der klassische Allrounder mit runden Noppen."],
+    "G-One Overland": ["Tough and puncture-resistant: made for bikepacking and long tours.", "Robust und pannensicher: gemacht für Bikepacking und lange Touren."],
+    "G-One Ultrabite": ["Big knobs for sand, mud and wet forest.", "Grobe Stollen für Sand, Matsch und nassen Wald."],
+    "Terra Speed": ["Light and fast on hardpack, a popular race choice.", "Leicht und schnell auf festem Schotter, beliebte Rennwahl."],
+    "Terra Trail": ["More knobs for loose gravel and forest tracks.", "Mehr Stollen für losen Schotter und Waldwege."],
+    "Terra Hardpack": ["Wide, fast tyre for bikepacking on firm tracks.", "Breiter, schneller Reifen fürs Bikepacking auf festen Wegen."],
+    "Terra Adventure": ["Tough and wide: for rough terrain and heavy luggage.", "Robust und breit: für raues Gelände und schweres Gepäck."],
+    "Cinturato Gravel H": ["For hard, dry ground: fast and durable.", "Für harten, trockenen Boden: schnell und langlebig."],
+    "Cinturato Gravel M": ["All-rounder for changing surfaces.", "Allrounder für wechselnden Untergrund."],
+    "Cinturato Gravel S": ["For soft ground: sand, mud and wet forest tracks.", "Für weichen Boden: Sand, Matsch und nasse Waldwege."],
+    "Cinturato Gravel RC": ["Race tyre for mixed, dry terrain.", "Rennreifen für gemischtes, trockenes Gelände."],
+    "Terreno T50": ["Vittoria's all-rounder: midway between speed and grip.", "Vittorias Allrounder: in der Mitte zwischen Tempo und Grip."],
+    "GravelKing SS": ["Smooth centre strip with knobs on the sides.", "Glatte Mittellauffläche mit Stollen an den Seiten."],
+    "GravelKing SK": ["One of the best-known all-round gravel tyres.", "Einer der bekanntesten Allround-Gravelreifen."],
+    "GravelKing X1": ["Fast with a low, dense tread for mixed gravel.", "Schnell mit niedrigem, dichtem Profil für gemischten Schotter."],
+    "GravelKing (slick)": ["Smooth tyre for lots of tarmac and firm cycle paths.", "Glatter Reifen für viel Asphalt und feste Radwege."],
+    "Riddler": ["Fast centre strip with big knobs on the edge.", "Schnelle Mittellauffläche mit großen Stollen am Rand."],
+    "Venture": ["Durable all-rounder for adventure and bikepacking.", "Langlebiger Allrounder für Abenteuer und Bikepacking."],
+    "Raddler": ["Fast tyre with a dense centre strip.", "Schneller Reifen mit dichter Mittellauffläche."],
+    "Resolute": ["Lots of grip in loose and wet terrain.", "Viel Grip in losem und nassem Gelände."],
+    "Rambler": ["Light all-rounder for all conditions.", "Leichter Allrounder für alle Bedingungen."],
+    "Receptor": ["Semi-slick for lots of tarmac and firm tracks.", "Semi-Slick für viel Asphalt und feste Wege."],
+    "Reaver": ["Maxxis' fastest tyre for dry race gravel.", "Der schnellste Maxxis-Reifen für trockenen Renn-Schotter."],
+    "Pathfinder Pro": ["Smooth centre strip and cornering grip: a popular racer.", "Glatte Mitte und Grip in der Kurve: ein beliebter Racer."],
+    "Tracer Pro": ["Race tyre for loose and rough gravel.", "Rennreifen für losen und rauen Schotter."],
+    "Getaway": ["Supple handmade tyre for fast rides.", "Geschmeidiger handgemachter Reifen für schnelle Touren."],
+    "Gravel Grinder": ["Handmade all-rounder, supple and comfortable.", "Handgemachter Allrounder, geschmeidig und komfortabel."],
+    "Strada Bianca": ["Almost smooth: for tarmac and tidy gravel roads.", "Fast glatt: für Asphalt und gepflegte Schotterstraßen."],
+    "Power Adventure": ["Fast and durable for all-road and dry tracks.", "Schnell und langlebig für Allroad und trockene Wege."],
+    "XPLR Slick": ["Smooth race tyre for fast, dry gravel races.", "Glatter Rennreifen für schnelle, trockene Gravelrennen."],
+    "XPLR Inter": ["Fast centre strip with knobs for mixed terrain.", "Schnelle Mitte mit Stollen für gemischtes Gelände."],
+    "Touareg": ["For rough, rocky and loose tracks.", "Für raue, felsige und lose Wege."],
+    "Caracal Race": ["Fast race tyre with a low tread.", "Schneller Rennreifen mit niedrigem Profil."],
+    "Aventura": ["Affordable all-rounder from the Dutch brand.", "Günstiger Allrounder der niederländischen Marke."],
+    "Gravel Speedero": ["Fast tyre for dry gravel.", "Schneller Reifen für trockenen Schotter."],
+    "Gravel Thundero": ["Light all-rounder for changing terrain.", "Leichter Allrounder für wechselndes Gelände."],
+    "Gravel Swampero": ["Mud tyre: tall knobs for wet and soft terrain.", "Matschreifen: hohe Stollen für nasses und weiches Gelände."]
+  };
+  if (TAAL !== "nl") BANDEN.forEach(b => { const v = TYPERING[b.n]; if (v) b.t = v[TAAL === "en" ? 0 : 1]; });
+
+  const PROFIEL = [T("Slick", "Slick", "Slick"), T("Semi-slick", "Semi-slick", "Semi-Slick"), T("Allround", "All-round", "Allround"), T("Grof profiel", "Aggressive tread", "Grobes Profil"), T("Modderprofiel", "Mud tread", "Matschprofil")];
   window.GG_BANDEN = { BANDEN, PROFIEL, MERKEN }; // voor Vraag de Gorilla
-  const ONDERGROND = ["Asfalt", "Hardpack", "Gemengd", "Los gravel", "Zand en modder"];
-  const STIJL = ["Race", "Snel", "Training", "Toer", "Bikepacking"];
-  const WEER = ["Droog", "Wisselend", "Nat"];
+  const ONDERGROND = [T("Asfalt", "Tarmac", "Asphalt"), T("Hardpack", "Hardpack", "Fester Schotter"), T("Gemengd", "Mixed", "Gemischt"), T("Los gravel", "Loose gravel", "Loser Schotter"), T("Zand en modder", "Sand and mud", "Sand und Matsch")];
+  const STIJL = [T("Race", "Race", "Rennen"), T("Snel", "Fast", "Schnell"), T("Training", "Training", "Training"), T("Toer", "Touring", "Tour"), T("Bikepacking", "Bikepacking", "Bikepacking")];
+  const WEER = [T("Droog", "Dry", "Trocken"), T("Wisselend", "Changeable", "Wechselhaft"), T("Nat", "Wet", "Nass")];
 
   /* ---------- Invoer ---------- */
   const S = { ondergrond: 2, stijl: 2, weer: 1, frame: 0, prioriteit: "balans", budget: 3 };
@@ -115,14 +165,15 @@
 
   function redenen(r, a) {
     const b = r.band, uit = [];
-    if (b.s[0] >= 4 && S.stijl <= 2) uit.push("Rolt snel, fijn voor jouw " + STIJL[S.stijl].toLowerCase() + "-tempo");
-    if (b.s[1] >= 4 && S.ondergrond >= 3) uit.push("Veel grip op " + ONDERGROND[S.ondergrond].toLowerCase());
-    if (b.s[2] >= 4 && (S.weer === 2 || S.ondergrond === 4)) uit.push("Houdt grip in nat weer en modder");
-    if (b.s[3] >= 4 && (S.stijl >= 3 || S.prioriteit === "lek")) uit.push("Robuust en lekbestendig");
-    if (Math.abs(b.p - a.ideaal) === 0) uit.push(PROFIEL[b.p] + ": precies het profiel dat bij je ondergrond past");
-    if (r.breedte >= a.van && r.breedte <= a.tot) uit.push("Leverbaar in " + r.breedte + " mm, binnen jouw advies");
-    else uit.push("Dichtstbijzijnde maat is " + r.breedte + " mm");
-    if (b.prijs === 1) uit.push("Voordelig geprijsd");
+    const stijl = STIJL[S.stijl].toLowerCase(), grond = ONDERGROND[S.ondergrond].toLowerCase();
+    if (b.s[0] >= 4 && S.stijl <= 2) uit.push(T("Rolt snel, fijn voor jouw " + stijl + "-tempo", "Rolls fast, nice for your " + stijl + " pace", "Rollt schnell, gut für dein Tempo (" + STIJL[S.stijl] + ")"));
+    if (b.s[1] >= 4 && S.ondergrond >= 3) uit.push(T("Veel grip op " + grond, "Lots of grip on " + grond, "Viel Grip auf " + ONDERGROND[S.ondergrond]));
+    if (b.s[2] >= 4 && (S.weer === 2 || S.ondergrond === 4)) uit.push(T("Houdt grip in nat weer en modder", "Keeps its grip in wet weather and mud", "Hält Grip bei Nässe und Matsch"));
+    if (b.s[3] >= 4 && (S.stijl >= 3 || S.prioriteit === "lek")) uit.push(T("Robuust en lekbestendig", "Tough and puncture-resistant", "Robust und pannensicher"));
+    if (Math.abs(b.p - a.ideaal) === 0) uit.push(PROFIEL[b.p] + T(": precies het profiel dat bij je ondergrond past", ": exactly the tread that suits your surface", ": genau das Profil, das zu deinem Untergrund passt"));
+    if (r.breedte >= a.van && r.breedte <= a.tot) uit.push(T("Leverbaar in " + r.breedte + " mm, binnen jouw advies", "Available in " + r.breedte + " mm, within your advice", "Erhältlich in " + r.breedte + " mm, innerhalb deiner Empfehlung"));
+    else uit.push(T("Dichtstbijzijnde maat is " + r.breedte + " mm", "Closest size is " + r.breedte + " mm", "Nächste Größe ist " + r.breedte + " mm"));
+    if (b.prijs === 1) uit.push(T("Voordelig geprijsd", "Good value", "Günstig"));
     return uit.slice(0, 3);
   }
 
@@ -138,32 +189,37 @@
     $("#gbBreedte").textContent = breedteTekst;
     $("#gbProfiel").textContent = PROFIEL[a.ideaal];
     const uitleg = [];
-    uitleg.push(["Op asfalt rolt een smallere, gladde band het snelst.", "Hardpack is vast en vlak: een snelle band met weinig profiel is genoeg.", "Op wisselende ondergrond wil je een allrounder: snel op de vaste stukken, grip op de losse.", "Op los gravel geeft een bredere band met meer profiel controle en comfort.", "In zand en modder drijft een brede band beter, en grove noppen geven grip."][S.ondergrond]);
-    if (S.stijl === 4) uitleg.push("Met bagage draag je meer gewicht: kies breder en robuuster.");
-    else if (S.stijl === 0) uitleg.push("Voor racen telt elke watt: zo smal en licht als de ondergrond toelaat.");
-    if (S.weer === 2) uitleg.push("Bij nat weer helpt meer profiel tegen wegglijden.");
-    if (S.frame) uitleg.push("Je frame past banden tot " + S.frame + " mm: daar houden we rekening mee.");
+    uitleg.push([
+      T("Op asfalt rolt een smallere, gladde band het snelst.", "On tarmac a narrower, smooth tyre rolls fastest.", "Auf Asphalt rollt ein schmalerer, glatter Reifen am schnellsten."),
+      T("Hardpack is vast en vlak: een snelle band met weinig profiel is genoeg.", "Hardpack is firm and flat: a fast tyre with little tread is enough.", "Fester Schotter ist hart und eben: Ein schneller Reifen mit wenig Profil reicht."),
+      T("Op wisselende ondergrond wil je een allrounder: snel op de vaste stukken, grip op de losse.", "On mixed surfaces you want an all-rounder: fast on the firm sections, grip on the loose ones.", "Auf wechselndem Untergrund willst du einen Allrounder: schnell auf festen Abschnitten, Grip auf losen."),
+      T("Op los gravel geeft een bredere band met meer profiel controle en comfort.", "On loose gravel a wider tyre with more tread gives control and comfort.", "Auf losem Schotter gibt ein breiterer Reifen mit mehr Profil Kontrolle und Komfort."),
+      T("In zand en modder drijft een brede band beter, en grove noppen geven grip.", "In sand and mud a wide tyre floats better, and big knobs give grip.", "In Sand und Matsch schwimmt ein breiter Reifen besser auf, und grobe Stollen geben Grip.")][S.ondergrond]);
+    if (S.stijl === 4) uitleg.push(T("Met bagage draag je meer gewicht: kies breder en robuuster.", "With luggage you carry more weight: go wider and tougher.", "Mit Gepäck trägst du mehr Gewicht: Wähle breiter und robuster."));
+    else if (S.stijl === 0) uitleg.push(T("Voor racen telt elke watt: zo smal en licht als de ondergrond toelaat.", "For racing every watt counts: as narrow and light as the surface allows.", "Beim Rennen zählt jedes Watt: so schmal und leicht, wie der Untergrund erlaubt."));
+    if (S.weer === 2) uitleg.push(T("Bij nat weer helpt meer profiel tegen wegglijden.", "In wet weather more tread helps against slipping.", "Bei Nässe hilft mehr Profil gegen Wegrutschen."));
+    if (S.frame) uitleg.push(T("Je frame past banden tot " + S.frame + " mm: daar houden we rekening mee.", "Your frame takes tyres up to " + S.frame + " mm: we take that into account.", "Dein Rahmen passt für Reifen bis " + S.frame + " mm: Das berücksichtigen wir."));
     $("#gbUitleg").textContent = uitleg.join(" ");
 
     let lijst = BANDEN.filter(b => b.prijs <= S.budget).map(b => scoor(b, a)).filter(Boolean).sort((x, y) => y.score - x.score);
     const top = lijst.slice(0, 6);
-    $("#gbAantal").textContent = lijst.length + " banden passen bij je frame en budget. Dit zijn de " + top.length + " beste:";
+    $("#gbAantal").textContent = T(lijst.length + " banden passen bij je frame en budget. Dit zijn de " + top.length + " beste:", lijst.length + " tyres fit your frame and budget. These are the " + top.length + " best:", lijst.length + " Reifen passen zu Rahmen und Budget. Das sind die " + top.length + " besten:");
     $("#gbLijst").innerHTML = top.length ? top.map((r, i) => {
       const b = r.band;
       const andere = b.b.filter(x => x !== r.breedte && (!S.frame || x <= S.frame));
-      const gewicht = b.g ? '<span>± ' + b.g[0] + ' g <small>(' + b.g[1] + ' mm, fabrieksopgave)</small></span>' : "";
+      const gewicht = b.g ? '<span>± ' + b.g[0] + ' g <small>(' + b.g[1] + T(" mm, fabrieksopgave", " mm, manufacturer's figure", " mm, Herstellerangabe") + ')</small></span>' : "";
       return '<li class="gb-band' + (i === 0 ? " gb-band--top" : "") + '">' +
         '<div class="gb-band__kop"><span class="gb-band__match">' + r.score + '%</span><div><span class="gb-band__merk">' + b.m + '</span><h3>' + b.n + '</h3></div></div>' +
         '<p class="gb-band__type">' + b.t + "</p>" +
-        '<div class="gb-band__specs"><span class="gb-chip">' + PROFIEL[b.p] + '</span><span class="gb-chip gb-chip--maat">Kies ' + r.breedte + " mm</span>" +
-        (andere.length ? '<span class="gb-ook">ook ' + andere.join(", ") + " mm</span>" : "") + "</div>" +
-        '<div class="gb-band__meta">' + gewicht + '<span class="gb-prijs" title="Prijsklasse (indicatie)">' + euro(b.prijs) + "</span></div>" +
+        '<div class="gb-band__specs"><span class="gb-chip">' + PROFIEL[b.p] + '</span><span class="gb-chip gb-chip--maat">' + T("Kies ", "Choose ", "Wähle ") + r.breedte + " mm</span>" +
+        (andere.length ? '<span class="gb-ook">' + T("ook ", "also ", "auch ") + andere.join(", ") + " mm</span>" : "") + "</div>" +
+        '<div class="gb-band__meta">' + gewicht + '<span class="gb-prijs" title="' + T("Prijsklasse (indicatie)", "Price class (indication)", "Preisklasse (Richtwert)") + '">' + euro(b.prijs) + "</span></div>" +
         '<ul class="gb-band__waarom">' + redenen(r, a).map(x => "<li>" + x + "</li>").join("") + "</ul>" +
-        '<div class="gb-band__links"><a href="/tools/bandenspanning-calculator/?breedte=' + r.breedte + '" class="gb-knop">Bandenspanning voor ' + r.breedte + " mm →</a>" +
-        '<a href="' + MERKEN[b.m] + '" target="_blank" rel="noopener">Site van ' + b.m + " ↗</a>" +
-        (b.test ? '<a href="https://www.bicyclerollingresistance.com/cx-gravel-reviews/' + b.test + '" target="_blank" rel="noopener">Rolweerstandstest ↗</a>' : "") +
+        '<div class="gb-band__links"><a href="' + PRE + '/tools/bandenspanning-calculator/?breedte=' + r.breedte + '" class="gb-knop">' + T("Bandenspanning voor ", "Tyre pressure for ", "Reifendruck für ") + r.breedte + " mm →</a>" +
+        '<a href="' + MERKEN[b.m] + '" target="_blank" rel="noopener">' + T("Site van ", "Website of ", "Website von ") + b.m + " ↗</a>" +
+        (b.test ? '<a href="https://www.bicyclerollingresistance.com/cx-gravel-reviews/' + b.test + '" target="_blank" rel="noopener">' + T("Rolweerstandstest", "Rolling resistance test", "Rollwiderstandstest") + " ↗</a>" : "") +
         "</div></li>";
-    }).join("") : '<li class="gb-leeg">Geen band gevonden die in je frame past. Kies een ruimere maximale breedte of een hoger budget.</li>';
+    }).join("") : '<li class="gb-leeg">' + T("Geen band gevonden die in je frame past. Kies een ruimere maximale breedte of een hoger budget.", "No tyre found that fits your frame. Choose a larger maximum width or a higher budget.", "Kein Reifen gefunden, der in deinen Rahmen passt. Wähle eine größere Maximalbreite oder ein höheres Budget.") + "</li>";
   }
 
   /* ---------- Schuifjes en keuzes ---------- */

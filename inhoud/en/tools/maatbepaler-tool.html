@@ -1,0 +1,66 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Input ===== -->
+    <section class="wb-kaart" aria-labelledby="mbKopInvoer">
+      <h2 class="wb-kop" id="mbKopInvoer"><span class="wb-stap">1</span> Your measurements</h2>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbLengte">Height</label><output id="mbLengteUit">178 cm</output></div>
+        <input type="range" id="mbLengte" min="150" max="205" step="1" value="178">
+      </div>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbBinnenbeen">Inseam</label><output id="mbBinnenbeenUit">83 cm</output></div>
+        <input type="range" id="mbBinnenbeen" min="65" max="100" step="1" value="83">
+        <span class="wb-klein">How to measure: stand barefoot with your back against the wall, clamp a thick book between your legs as if it were a saddle and measure from the top of the book to the floor.</span>
+      </div>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Your build and riding style</h2>
+      <div class="wb-veld">
+        <span class="wb-label">Upper body and arms</span>
+        <div class="wb-chips" data-veld="romp">
+          <button type="button" data-waarde="kort" aria-pressed="false">Rather short</button>
+          <button type="button" data-waarde="normaal" class="is-aan" aria-pressed="true">Average</button>
+          <button type="button" data-waarde="lang" aria-pressed="false">Rather long</button>
+        </div>
+        <span class="wb-klein">Not sure? Leave it on average. Long arms and a long upper body fit better on a longer frame.</span>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">How do you want to sit?</span>
+        <div class="wb-chips" data-veld="stijl">
+          <button type="button" data-waarde="sportief" aria-pressed="false">Sporty and stretched</button>
+          <button type="button" data-waarde="allround" class="is-aan" aria-pressed="true">All-round</button>
+          <button type="button" data-waarde="comfort" aria-pressed="false">Comfortable and upright</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Advice ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="mbKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="mbKopAdvies">Your frame size</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Size</span><strong id="mbMaat">M</strong></div>
+        <div><span class="wb-klein-licht">Frame size</span><strong id="mbCm">53 – 54</strong></div>
+        <div><span class="wb-klein-licht">Saddle height</span><strong id="mbZadel">73 cm</strong></div>
+        <div><span class="wb-klein-licht">Stack / reach</span><strong id="mbGeo">575 / 385</strong></div>
+      </div>
+      <p class="wb-uitleg" id="mbUitleg"></p>
+      <ul class="mb-redenen" id="mbRedenen"></ul>
+      <p class="wb-tip">Tip: every manufacturer measures slightly differently. Always compare your size with the brand's size chart, and take a test ride if in doubt.</p>
+    </aside>
+  </div>
+
+  <!-- ===== All sizes ===== -->
+  <section class="wb-resultaat" aria-labelledby="mbKopTabel">
+    <h2 class="wb-kop" id="mbKopTabel"><span class="wb-stap">3</span> All sizes in a row</h2>
+    <p class="wb-aantal">Guide values for gravel bikes. Your size is highlighted.</p>
+    <div class="mb-tabelvak">
+      <table class="wb-tabel">
+        <thead><tr><th>Size</th><th>Frame size</th><th>Rider height</th><th class="wb-getal">Stack</th><th class="wb-getal">Reach</th></tr></thead>
+        <tbody id="mbTabel"></tbody>
+      </table>
+    </div>
+    <p class="wb-bron">Saddle height following the rule of thumb inseam × 0.883, measured from the centre of the bottom bracket to the top of the saddle. Stack and reach are averages of common gravel bikes; per brand they can differ by a few centimetres. Not a bike fit: if you feel pain or discomfort, get properly fitted.</p>
+  </section>
+</div>

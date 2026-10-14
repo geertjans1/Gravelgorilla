@@ -61,6 +61,31 @@
     { n: "Beernem", p: ["WV"], land: "BE", km: 32, nav: "gpx", bron: SPORZA, u: "https://sporza.be/nl/2025/04/24/ontdek-net-als-bavo-de-onverhard-gravelroute-in-beernem-32-km~1745488342829/" },
     { n: "Driedaagse Onverhard-bikepackroute", p: [], land: "BE", km: 333, nav: "gpx", bron: SPORZA, u: "https://sporza.be/nl/2025/09/22/klaar-voor-een-heus-bikepack-avontuur-ontdek-de-driedaagse-onverhard-route-333-km~1758536959767/", noot: "Drie dagen door Vlaanderen, met overnachtingen." }
   ];
+  // ---------- teksten in de taal van de pagina ----------
+  const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
+  const T = (nl, en, de) => (TAAL === "en" ? en : TAAL === "de" ? de : nl);
+  const NAMEN = {
+    "Haspengouw vanuit Diepenbeek": ["Haspengouw from Diepenbeek", "Haspengau ab Diepenbeek"], "Voerstreek vanuit Riemst": ["Voerstreek from Riemst", "Voerstreek ab Riemst"],
+    "Marathonroute aan de Kust": ["Marathon route on the coast", "Marathonroute an der Küste"], "Driedaagse Onverhard-bikepackroute": ["Three-day Onverhard bikepacking route", "Dreitägige Onverhard-Bikepacking-Route"],
+    "Gravelnetwerk Noorderkempen (4 routes)": ["Noorderkempen gravel network (4 routes)", "Gravelnetz Noorderkempen (4 Routen)"], "Graaf Graveldag Herentals (3 routes)": ["Graaf Graveldag Herentals (3 routes)", "Graaf Graveldag Herentals (3 Routen)"],
+    "Heuvelland (met de Kemmelberg)": ["Heuvelland (with the Kemmelberg)", "Heuvelland (mit dem Kemmelberg)"]
+  };
+  const NOTEN = {
+    "Langs de Posbank. Kijk op de bronpagina of je een vignet nodig hebt.": ["Along the Posbank. Check the source page whether you need a permit (vignet).", "Entlang der Posbank. Prüf auf der Quellseite, ob du eine Vignette brauchst."],
+    "Start bij Buitencentrum De Poort in Ruinen.": ["Starts at visitor centre De Poort in Ruinen.", "Start am Besucherzentrum De Poort in Ruinen."],
+    "Start in Veenhuizen. Schelpenpaden, zandwegen en kasseien langs de Essen van Norg.": ["Starts in Veenhuizen. Shell paths, sandy tracks and cobbles past the Essen van Norg.", "Start in Veenhuizen. Muschelwege, Sandwege und Kopfsteinpflaster entlang der Essen van Norg."],
+    "Van station Naarden-Bussum over de Utrechtse Heuvelrug en de Veluwe naar Zwolle. Meerdaags of in stukken.": ["From Naarden-Bussum station over the Utrechtse Heuvelrug and the Veluwe to Zwolle. Over several days or in sections.", "Vom Bahnhof Naarden-Bussum über die Utrechtse Heuvelrug und die Veluwe nach Zwolle. Mehrtägig oder in Etappen."],
+    "Start bij Demerstrand in Diepenbeek. Ongeveer een kwart onverhard.": ["Starts at Demerstrand in Diepenbeek. About a quarter unpaved.", "Start am Demerstrand in Diepenbeek. Etwa ein Viertel unbefestigt."],
+    "Start bij station As, door Nationaal Park Hoge Kempen.": ["Starts at As station, through Hoge Kempen National Park.", "Start am Bahnhof As, durch den Nationalpark Hoge Kempen."],
+    "Drie dagen door Vlaanderen, met overnachtingen.": ["Three days through Flanders, with overnight stays.", "Drei Tage durch Flandern, mit Übernachtungen."]
+  };
+  if (TAAL !== "nl") {
+    const i = TAAL === "en" ? 0 : 1;
+    ROUTES.forEach(r => {
+      if (NAMEN[r.n]) r.n = NAMEN[r.n][i]; else r.n = r.n.replace(" en ", T(" en ", " and ", " und "));
+      if (r.noot && NOTEN[r.noot]) r.noot = NOTEN[r.noot][i];
+    });
+  }
   window.GG_ROUTES = ROUTES; // voor Vraag de Gorilla
 
   // tegelkaart: kolom, rij
@@ -72,6 +97,11 @@
     HE: ["Henegouwen", 0, 6, "BE"], VB: ["Vlaams-Brabant", 1, 6, "BE"], WB: ["Waals-Brabant", 2, 6, "BE"], LU: ["Luik", 3, 6, "BE"],
     NA: ["Namen", 1, 7, "BE"], LX: ["Luxemburg", 2, 7, "BE"]
   };
+  // provincienamen in de taal van de pagina
+  const PROVNAAM = { NH: ["North Holland", "Nordholland"], ZH: ["South Holland", "Südholland"], ZE: ["Zeeland", "Seeland"], NB: ["North Brabant", "Nordbrabant"],
+    WV: ["West Flanders", "Westflandern"], OVB: ["East Flanders", "Ostflandern"], AN: ["Antwerp", "Antwerpen"], HE: ["Hainaut", "Hennegau"], VB: ["Flemish Brabant", "Flämisch-Brabant"],
+    WB: ["Walloon Brabant", "Wallonisch-Brabant"], LU: ["Liège", "Lüttich"], NA: ["Namur", "Namur"], LX: ["Luxembourg", "Luxemburg"] };
+  if (TAAL !== "nl") Object.keys(PROVNAAM).forEach(k => { PROV[k][0] = PROVNAAM[k][TAAL === "en" ? 0 : 1]; });
   // in de routes heet Oost-Vlaanderen ook "OV", net als Overijssel: bij Belgische routes wordt dat OVB
   ROUTES.forEach(r => { if (r.land === "BE") r.p = r.p.map(p => (p === "OV" ? "OVB" : p)); });
 
@@ -94,7 +124,7 @@
       '<button type="button" class="gr-tegel gr-tegel--' + land.toLowerCase() + (S.prov === code ? " is-aan" : "") + (telling[code] ? "" : " is-leeg") +
       '" style="grid-column:' + (c + 1) + (breed ? " / span " + breed : "") + ";grid-row:" + (r + 1) +'" data-prov="' + code + '" aria-pressed="' + (S.prov === code) + '" title="' + naam + '">' +
       "<b>" + naam.replace(" (NL)", "").replace(" (BE)", "") + "</b><span>" + (telling[code] || 0) + "</span></button>").join("") +
-      '<span class="gr-grens" aria-hidden="true">Nederland ↑ · België ↓</span>';
+      '<span class="gr-grens" aria-hidden="true">' + T("Nederland ↑ · België ↓", "Netherlands ↑ · Belgium ↓", "Niederlande ↑ · Belgien ↓") + '</span>';
   }
 
   function lijst() {
@@ -103,16 +133,16 @@
     uit.sort(op);
     $("#grAantal").textContent = uit.length;
     $("#grKm").textContent = Math.round(uit.reduce((t, r) => t + r.km, 0)).toLocaleString("nl-NL") + " km";
-    $("#grFilterTekst").textContent = (S.prov ? PROV[S.prov][0] : S.land === "NL" ? "Nederland" : S.land === "BE" ? "België" : "Nederland en België") +
-      (S.lengte !== "alle" ? ", " + { kort: "korter dan 30 km", middel: "30 tot 60 km", lang: "60 tot 100 km", extra: "100 km of meer" }[S.lengte] : "") +
-      (S.nav === "bord" ? ", bewegwijzerd" : S.nav === "gpx" ? ", met GPX" : "");
+    $("#grFilterTekst").textContent = (S.prov ? PROV[S.prov][0] : S.land === "NL" ? T("Nederland", "the Netherlands", "den Niederlanden") : S.land === "BE" ? T("België", "Belgium", "Belgien") : T("Nederland en België", "the Netherlands and Belgium", "den Niederlanden und Belgien")) +
+      (S.lengte !== "alle" ? ", " + { kort: T("korter dan 30 km", "shorter than 30 km", "kürzer als 30 km"), middel: T("30 tot 60 km", "30 to 60 km", "30 bis 60 km"), lang: T("60 tot 100 km", "60 to 100 km", "60 bis 100 km"), extra: T("100 km of meer", "100 km or more", "100 km oder mehr") }[S.lengte] : "") +
+      (S.nav === "bord" ? T(", bewegwijzerd", ", signposted", ", ausgeschildert") : S.nav === "gpx" ? T(", met GPX", ", with GPX", ", mit GPX") : "");
     $("#grLijst").innerHTML = uit.length ? uit.map(r =>
       '<li class="gr-route"><div class="gr-route__km"><strong>' + nl(r.km) + (r.tot ? "–" + r.tot : "") + "</strong><span>km</span></div>" +
-      '<div class="gr-route__tekst"><h3>' + r.n + "</h3><p>" + (r.p.length ? r.p.map(p => PROV[p][0]).join(" · ") : "Vlaanderen") + " · " + (r.land === "NL" ? "Nederland" : "België") + "</p>" +
+      '<div class="gr-route__tekst"><h3>' + r.n + "</h3><p>" + (r.p.length ? r.p.map(p => PROV[p][0]).join(" · ") : T("Vlaanderen", "Flanders", "Flandern")) + " · " + (r.land === "NL" ? T("Nederland", "Netherlands", "Niederlande") : T("België", "Belgium", "Belgien")) + "</p>" +
       (r.noot ? '<p class="gr-route__noot">' + r.noot + "</p>" : "") +
-      '<div class="gr-route__onder"><span class="gr-badge gr-badge--' + r.nav + '">' + (r.nav === "bord" ? "Bewegwijzerd" : "GPX-route") + "</span>" +
-      '<a href="' + r.u + '" target="_blank" rel="noopener">Route bij ' + r.bron + " ↗</a></div></div></li>").join("")
-      : '<li class="wb-leeg">Geen routes met deze keuzes. Zet een filter uit of kies een andere provincie.</li>';
+      '<div class="gr-route__onder"><span class="gr-badge gr-badge--' + r.nav + '">' + (r.nav === "bord" ? T("Bewegwijzerd", "Signposted", "Ausgeschildert") : T("GPX-route", "GPX route", "GPX-Route")) + "</span>" +
+      '<a href="' + r.u + '" target="_blank" rel="noopener">' + T("Route bij ", "Route at ", "Route bei ") + r.bron + " ↗</a></div></div></li>").join("")
+      : '<li class="wb-leeg">' + T("Geen routes met deze keuzes. Zet een filter uit of kies een andere provincie.", "No routes with these choices. Turn off a filter or choose another province.", "Keine Routen mit dieser Auswahl. Schalte einen Filter aus oder wähle eine andere Provinz.") + "</li>";
   }
 
   function toon() { kaart(); lijst(); }

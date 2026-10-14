@@ -1,0 +1,68 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Input ===== -->
+    <section class="wb-kaart" aria-labelledby="vsKopInvoer">
+      <h2 class="wb-kop" id="vsKopInvoer"><span class="wb-stap">1</span> Your gears</h2>
+      <div class="vs-opstellingen">
+        <div class="vs-opstelling vs-opstelling--a">
+          <span class="vs-letter">A</span>
+          <label class="wb-veld"><span class="wb-label">Chainring</span><select id="vsVoorA"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterA"></select></label>
+        </div>
+        <div class="vs-opstelling vs-opstelling--b">
+          <span class="vs-letter">B</span>
+          <label class="wb-veld"><span class="wb-label">Chainring</span><select id="vsVoorB"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterB"></select></label>
+        </div>
+      </div>
+      <span class="wb-klein">Compare your current gears (A) with another setup (B). Choose "No comparison" at B if you only want to see one.</span>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> You, your wheels and the climb</h2>
+      <div class="wb-twee">
+        <label class="wb-veld"><span class="wb-label">Wheel size</span>
+          <select id="vsWiel"><option value="622">700c (28 inch)</option><option value="584">650b (27.5 inch)</option></select>
+        </label>
+        <label class="wb-veld"><span class="wb-label">Tyre width</span>
+          <select id="vsBand"><option>35</option><option>38</option><option selected>40</option><option>42</option><option>45</option><option>47</option><option>50</option></select>
+        </label>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsCadans">Cadence uphill</label><output id="vsCadansUit">75 rpm</output></div>
+        <input type="range" id="vsCadans" min="55" max="100" step="1" value="75">
+        <span class="wb-klein">How many times per minute your pedals go round when you climb. Most riders are around 70 to 85.</span>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsGewicht">Weight: you, bike and luggage</label><output id="vsGewichtUit">90 kg</output></div>
+        <input type="range" id="vsGewicht" min="55" max="160" step="1" value="90">
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsVermogen">Power you can hold uphill</label><output id="vsVermogenUit">200 watts</output></div>
+        <input type="range" id="vsVermogen" min="100" max="400" step="5" value="200">
+        <span class="wb-klein">Don't know? Recreational about 150 watts, trained 200 to 250, strong 300 or more.</span>
+      </div>
+    </section>
+
+    <!-- ===== Advice ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="vsKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="vsKopAdvies">Your lowest gear</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Steepest climb (A)</span><strong id="vsKlimA">12 %</strong></div>
+        <div><span class="wb-klein-licht">Steepest climb (B)</span><strong id="vsKlimB">–</strong></div>
+        <div><span class="wb-klein-licht">Lowest gear (A)</span><strong id="vsLaagA">–</strong></div>
+        <div><span class="wb-klein-licht">Top speed (A)</span><strong id="vsTopA">–</strong></div>
+      </div>
+      <p class="wb-uitleg" id="vsUitleg"></p>
+      <p class="wb-tip" id="vsTip"></p>
+    </aside>
+  </div>
+
+  <!-- ===== Ladder and table ===== -->
+  <section class="wb-resultaat" aria-labelledby="vsKopLadder">
+    <h2 class="wb-kop" id="vsKopLadder"><span class="wb-stap">3</span> All your gears in a row</h2>
+    <p class="wb-aantal" id="vsLadderUitleg">Each dot is a gear: how fast you go at your chosen cadence.</p>
+    <div class="vs-ladder" id="vsLadder"></div>
+    <div class="vs-tabellen" id="vsTabellen"></div>
+    <p class="wb-bron">The steepest climb is an estimate of what you can hold seated at your chosen cadence. We calculate with your weight, your power, your cadence in the lowest gear, rolling resistance on gravel and a bit of air resistance. Development = how many metres your bike moves forward per pedal revolution. For the cassettes the largest and smallest sprockets are exact; the sprockets in between are approximate.</p>
+  </section>
+</div>

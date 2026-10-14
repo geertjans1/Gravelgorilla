@@ -31,3 +31,11 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 
 ## Huisstijl
 Bone `#F4F1EA`, Ink `#15181A`, Gorilla Green `#2F8F3E`, Deep Green `#14361E`, Trail Orange `#FF6B2C` (alleen voor actie). Koppen Oswald (hoofdletters), tekst Inter. Donkere modus via `data-thema="donker"`. Niet lijken op gravello.nl.
+
+## Talen (NL / EN / DE)
+- Nederlands staat in de hoofdmap, Engels in `/en/`, Duits in `/de/`. Taalmenu met vlaggetjes rechtsboven (in `Balk` in `bouw-site.ps1`, werking in `site.js`).
+- Vaste teksten (menu, knoppen, toolnamen, homepage-vertaallijst, paginatitels): `inhoud/talen/<taal>.psd1` (UTF-8 **met** BOM).
+- Vertaalde inhoud: `inhoud/en/...` en `inhoud/de/...` (zelfde bestandsnamen als `inhoud/...`). Ontbreekt een vertaling, dan toont de pagina de Nederlandse tool met een korte melding.
+- Homepage: `index.html` is de Nederlandse bron; `/en/` en `/de/` worden gemaakt met de lijst `home` in de psd1. **Pas je een tekst op de homepage aan, pas dan ook die lijst aan** (het bouwscript meldt "LET OP" als een tekst niet meer gevonden wordt).
+- Scripts van tools lezen de taal uit `<html lang>` en kiezen hun teksten met `T(nl, en, de)`. Een Nederlandse tekst wijzigen in een tool? Pas de Engelse en Duitse mee aan.
+- `inhoud/<taal>/tools/bandenspanning-calculator-tool.html` is een vertaalde kopie: wijzigingen aan de Nederlandse calculator daar ook doorvoeren.

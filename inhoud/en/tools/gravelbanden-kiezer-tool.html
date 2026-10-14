@@ -1,0 +1,85 @@
+<div class="gb-wrap">
+  <div class="gb-raster">
+
+    <!-- ===== Input ===== -->
+    <section class="gb-kaart" aria-labelledby="gbKopInvoer">
+      <h2 class="gb-kop" id="gbKopInvoer"><span class="gb-stap">1</span> Where and how do you ride?</h2>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbOndergrond">Surface</label><output id="gbOndergrondUit">Mixed</output></div>
+        <input type="range" id="gbOndergrond" min="0" max="4" step="1" value="2" aria-valuetext="Mixed">
+        <div class="gb-schaal" data-voor="#gbOndergrond">
+          <button type="button" data-stand="0">Tarmac</button><button type="button" data-stand="1">Hardpack</button><button type="button" data-stand="2">Mixed</button><button type="button" data-stand="3">Loose gravel</button><button type="button" data-stand="4">Sand &amp; mud</button>
+        </div>
+      </div>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbStijl">Riding style</label><output id="gbStijlUit">Training</output></div>
+        <input type="range" id="gbStijl" min="0" max="4" step="1" value="2" aria-valuetext="Training">
+        <div class="gb-schaal" data-voor="#gbStijl">
+          <button type="button" data-stand="0">Race</button><button type="button" data-stand="1">Fast</button><button type="button" data-stand="2">Training</button><button type="button" data-stand="3">Touring</button><button type="button" data-stand="4">Bikepacking</button>
+        </div>
+      </div>
+
+      <div class="gb-schuif">
+        <div class="gb-label"><label for="gbWeer">Weather</label><output id="gbWeerUit">Changeable</output></div>
+        <input type="range" id="gbWeer" min="0" max="2" step="1" value="1" aria-valuetext="Changeable">
+        <div class="gb-schaal gb-schaal--3" data-voor="#gbWeer">
+          <button type="button" data-stand="0">Dry</button><button type="button" data-stand="1">Changeable</button><button type="button" data-stand="2">Wet</button>
+        </div>
+      </div>
+
+      <h2 class="gb-kop"><span class="gb-stap">2</span> Your bike and your wishes</h2>
+      <label class="gb-veld">
+        <span class="gb-label">How wide a tyre does your frame take?</span>
+        <select id="gbFrame">
+          <option value="0">I don't know</option>
+          <option value="35">Up to 35 mm</option>
+          <option value="38">Up to 38 mm</option>
+          <option value="40">Up to 40 mm</option>
+          <option value="42">Up to 42 mm</option>
+          <option value="45">Up to 45 mm</option>
+          <option value="50">Up to 50 mm</option>
+          <option value="57">55 mm or wider</option>
+        </select>
+        <span class="gb-klein">It's in your bike's specifications ("max. tyre width"). Keep a few millimetres of clearance for mud.</span>
+      </label>
+      <div class="gb-veld">
+        <span class="gb-label">What matters most to you?</span>
+        <div class="gb-chips" data-veld="prioriteit">
+          <button type="button" data-waarde="balans" class="is-aan" aria-pressed="true">Good balance</button>
+          <button type="button" data-waarde="snelheid" aria-pressed="false">Speed</button>
+          <button type="button" data-waarde="grip" aria-pressed="false">Grip</button>
+          <button type="button" data-waarde="lek" aria-pressed="false">Puncture protection</button>
+        </div>
+      </div>
+      <div class="gb-veld">
+        <span class="gb-label">Budget per tyre</span>
+        <div class="gb-chips" data-veld="budget">
+          <button type="button" data-waarde="1" aria-pressed="false">Budget</button>
+          <button type="button" data-waarde="2" aria-pressed="false">Up to mid-range</button>
+          <button type="button" data-waarde="3" class="is-aan" aria-pressed="true">Doesn't matter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Advice ===== -->
+    <aside class="gb-advies" aria-live="polite" aria-labelledby="gbKopAdvies">
+      <h2 class="gb-kop gb-kop--licht" id="gbKopAdvies">Your tyre advice</h2>
+      <div class="gb-samenvatting">
+        <div><span class="gb-klein-licht">Tyre width</span><strong id="gbBreedte">40 – 45 mm</strong></div>
+        <div><span class="gb-klein-licht">Tread</span><strong id="gbProfiel">All-round</strong></div>
+      </div>
+      <p class="gb-uitleg" id="gbUitleg"></p>
+      <p class="gb-tip">Tip: ride tubeless. Then you can run lower tyre pressure for more grip and comfort, and the sealant plugs small holes by itself.</p>
+    </aside>
+  </div>
+
+  <!-- ===== Tyres ===== -->
+  <section class="gb-resultaat" aria-labelledby="gbKopBanden">
+    <h2 class="gb-kop" id="gbKopBanden"><span class="gb-stap">3</span> Tyres that suit you</h2>
+    <p class="gb-aantal" id="gbAantal"></p>
+    <ol class="gb-lijst" id="gbLijst"></ol>
+    <p class="gb-bron">Widths and weights are manufacturer figures (700c, as of October 2026); check the size when buying. Many tyres also come in 650b. Tread, scores and price class are Gravel Gorilla's estimate. The rolling resistance tests are from <a href="https://www.bicyclerollingresistance.com/cx-gravel-reviews" target="_blank" rel="noopener">bicyclerollingresistance.com</a>; we only link to them.</p>
+  </section>
+</div>

@@ -1,0 +1,444 @@
+<div class="ggcalc">
+  <div class="ggcalc-card">
+    <span class="ggcalc-bolt ggcalc-bolt-tl" aria-hidden="true"></span>
+    <span class="ggcalc-bolt ggcalc-bolt-tr" aria-hidden="true"></span>
+
+    <div class="ggcalc-head">
+      <p class="ggcalc-eyebrow">GravelGorilla · Tools</p>
+      <h2 class="ggcalc-title">Tyre pressure calculator</h2>
+      <p class="ggcalc-sub">Set your front and rear tyre for your weight, tyre and surface.</p>
+    </div>
+
+    <div class="ggcalc-body">
+      <div class="ggcalc-inputs">
+
+        <div class="ggcalc-field">
+          <div class="ggcalc-field-label-row">
+            <label for="ggRider">Rider weight + gear</label>
+            <span class="ggcalc-field-value" id="ggRiderVal">75 kg</span>
+          </div>
+          <input type="range" id="ggRider" min="45" max="130" step="1" value="75">
+        </div>
+
+        <div class="ggcalc-field">
+          <div class="ggcalc-field-label-row">
+            <label for="ggWidth">Tyre size (width)</label>
+            <span class="ggcalc-field-value" id="ggWidthVal">40 mm</span>
+          </div>
+          <input type="range" id="ggWidth" min="28" max="55" step="1" value="40">
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Wheel size</label></p>
+          <div class="ggcalc-segmented" data-group="wheel" role="group" aria-label="Wheel size">
+            <button type="button" class="ggcalc-seg is-active" data-value="700c">700c</button>
+            <button type="button" class="ggcalc-seg" data-value="650b">650b</button>
+          </div>
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Surface</label></p>
+          <div class="ggcalc-segmented" data-group="terrain" role="group" aria-label="Surface">
+            <button type="button" class="ggcalc-seg" data-value="glad">Smooth</button>
+            <button type="button" class="ggcalc-seg is-active" data-value="gemengd">Mixed</button>
+            <button type="button" class="ggcalc-seg" data-value="ruw">Rough</button>
+          </div>
+        </div>
+
+        <div class="ggcalc-field">
+          <p class="ggcalc-field-label-row"><label>Valve</label></p>
+          <div class="ggcalc-segmented" data-group="valve" role="group" aria-label="Valve">
+            <button type="button" class="ggcalc-seg is-active" data-value="tubeless">Tubeless</button>
+            <button type="button" class="ggcalc-seg" data-value="tube">Inner tube</button>
+          </div>
+        </div>
+
+        <button type="button" class="ggcalc-advanced-toggle" id="ggAdvToggle" aria-expanded="false">
+          Advanced <span aria-hidden="true">▾</span>
+        </button>
+
+        <div class="ggcalc-field ggcalc-advanced" id="ggAdvPanel" hidden>
+          <div class="ggcalc-field-label-row">
+            <label for="ggBike">Bike weight (incl. bottles/bag)</label>
+            <span class="ggcalc-field-value" id="ggBikeVal">9 kg</span>
+          </div>
+          <input type="range" id="ggBike" min="7" max="16" step="0.5" value="9">
+        </div>
+
+      </div>
+
+      <div class="ggcalc-gauges">
+        <div class="ggcalc-gauge">
+          <p class="ggcalc-gauge-label">Front</p>
+          <svg viewBox="0 0 200 130" aria-hidden="true">
+            <defs>
+              <linearGradient id="ggcalcGradFront" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#55643E"/>
+                <stop offset="55%" stop-color="#B7A66B"/>
+                <stop offset="100%" stop-color="#B14B2C"/>
+              </linearGradient>
+            </defs>
+            <path d="M30,110 A70,70 0 1 1 170,110" fill="none" stroke="url(#ggcalcGradFront)" stroke-width="14" stroke-linecap="round"/>
+            <g class="ggcalc-ticks">
+              <line x1="20" y1="110" x2="10" y2="110"/>
+              <line x1="43.4" y1="53.4" x2="36.4" y2="46.4"/>
+              <line x1="100" y1="30" x2="100" y2="20"/>
+              <line x1="156.6" y1="53.4" x2="163.6" y2="46.4"/>
+              <line x1="180" y1="110" x2="190" y2="110"/>
+            </g>
+            <text x="18" y="126" class="ggcalc-gauge-minmax">15</text>
+            <text x="182" y="126" class="ggcalc-gauge-minmax" text-anchor="end">55</text>
+            <polygon id="ggFrontNeedle" points="97,110 103,110 100,45" fill="#202B1B" transform="rotate(-90 100 110)"/>
+            <circle cx="100" cy="110" r="7" fill="#B14B2C" stroke="#202B1B" stroke-width="1.5"/>
+          </svg>
+          <div class="ggcalc-readout" aria-live="polite">
+            <span class="ggcalc-psi" id="ggFrontPsi">&#8212;</span><span class="ggcalc-unit">psi</span>
+            <div class="ggcalc-bar" id="ggFrontBar">&#8212; bar</div>
+          </div>
+        </div>
+
+        <div class="ggcalc-gauge">
+          <p class="ggcalc-gauge-label">Rear</p>
+          <svg viewBox="0 0 200 130" aria-hidden="true">
+            <defs>
+              <linearGradient id="ggcalcGradRear" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#55643E"/>
+                <stop offset="55%" stop-color="#B7A66B"/>
+                <stop offset="100%" stop-color="#B14B2C"/>
+              </linearGradient>
+            </defs>
+            <path d="M30,110 A70,70 0 1 1 170,110" fill="none" stroke="url(#ggcalcGradRear)" stroke-width="14" stroke-linecap="round"/>
+            <g class="ggcalc-ticks">
+              <line x1="20" y1="110" x2="10" y2="110"/>
+              <line x1="43.4" y1="53.4" x2="36.4" y2="46.4"/>
+              <line x1="100" y1="30" x2="100" y2="20"/>
+              <line x1="156.6" y1="53.4" x2="163.6" y2="46.4"/>
+              <line x1="180" y1="110" x2="190" y2="110"/>
+            </g>
+            <text x="18" y="126" class="ggcalc-gauge-minmax">15</text>
+            <text x="182" y="126" class="ggcalc-gauge-minmax" text-anchor="end">55</text>
+            <polygon id="ggRearNeedle" points="97,110 103,110 100,45" fill="#202B1B" transform="rotate(-90 100 110)"/>
+            <circle cx="100" cy="110" r="7" fill="#B14B2C" stroke="#202B1B" stroke-width="1.5"/>
+          </svg>
+          <div class="ggcalc-readout" aria-live="polite">
+            <span class="ggcalc-psi" id="ggRearPsi">&#8212;</span><span class="ggcalc-unit">psi</span>
+            <div class="ggcalc-bar" id="ggRearBar">&#8212; bar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="ggcalc-warning is-hidden" id="ggWarning">This result is outside the usual range for gravel tyres — check the maximum on the sidewall of your tyre.</p>
+
+    <p class="ggcalc-tip"><strong>Tip:</strong> this is a good starting point, not a law set in stone. Ride it, fine-tune by feel and never go above the maximum pressure printed on the sidewall of your tyre.</p>
+  </div>
+</div>
+
+<style>
+.ggcalc, .ggcalc *, .ggcalc *::before, .ggcalc *::after { box-sizing: border-box; }
+
+.ggcalc {
+  --ink: #202B1B;
+  --stone: #EDE7D9;
+  --moss: #55643E;
+  --moss-dark: #3E4A2C;
+  --rust: #B14B2C;
+  --gravel: #8B8371;
+  --card: #FBF9F3;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2rem auto;
+}
+
+.ggcalc-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid rgba(32,43,27,0.12);
+  border-radius: 6px;
+  padding: 2rem 1.75rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(32,43,27,0.06), 0 8px 24px rgba(32,43,27,0.06);
+}
+
+.ggcalc-bolt {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gravel);
+  opacity: 0.5;
+  top: 14px;
+}
+.ggcalc-bolt-tl { left: 14px; }
+.ggcalc-bolt-tr { right: 14px; }
+
+.ggcalc-eyebrow {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 0 0 0.4rem;
+}
+
+.ggcalc-title {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+}
+
+.ggcalc-sub {
+  margin: 0 0 1.5rem;
+  color: var(--gravel);
+  font-size: 0.95rem;
+}
+
+.ggcalc-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 680px) {
+  .ggcalc-body { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
+.ggcalc-field { margin-bottom: 1.25rem; }
+.ggcalc-field:last-child { margin-bottom: 0; }
+
+.ggcalc-field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ggcalc-field-value {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-weight: 700;
+  color: var(--rust);
+}
+
+.ggcalc-inputs input[type="range"] {
+  width: 100%;
+  accent-color: var(--rust);
+  height: 4px;
+}
+.ggcalc-inputs input[type="range"]:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 4px;
+}
+
+.ggcalc-segmented {
+  display: flex;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ggcalc-seg {
+  flex: 1;
+  padding: 0.5rem 0.4rem;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  cursor: pointer;
+}
+.ggcalc-seg:last-child { border-right: none; }
+.ggcalc-seg.is-active { background: var(--moss); color: var(--card); }
+.ggcalc-seg:focus-visible { outline: 2px solid var(--rust); outline-offset: -2px; }
+
+.ggcalc-advanced-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--moss-dark);
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+.ggcalc-advanced-toggle:focus-visible { outline: 2px solid var(--rust); }
+
+.ggcalc-advanced { margin-top: 1rem; }
+
+.ggcalc-gauges {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.ggcalc-gauge {
+  flex: 1;
+  text-align: center;
+  background: var(--stone);
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem 1rem;
+}
+
+.ggcalc-gauge-label {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gravel);
+  margin: 0 0 0.25rem;
+}
+
+.ggcalc-gauge svg { width: 100%; height: auto; display: block; }
+
+.ggcalc-ticks line { stroke: var(--ink); stroke-width: 2; opacity: 0.55; }
+.ggcalc-gauge-minmax {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  fill: var(--gravel);
+}
+
+.ggcalc-readout { margin-top: 0.25rem; }
+.ggcalc-psi {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--ink);
+}
+.ggcalc-unit {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--gravel);
+  margin-left: 0.15rem;
+}
+.ggcalc-bar {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--rust);
+}
+
+.ggcalc-warning {
+  margin: 1.25rem 0 0;
+  padding: 0.6rem 0.8rem;
+  background: #F4E3DA;
+  border-left: 3px solid var(--rust);
+  font-size: 0.85rem;
+  border-radius: 3px;
+}
+.ggcalc-warning.is-hidden { display: none; }
+
+.ggcalc-tip {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--gravel);
+  border-top: 1px solid rgba(32,43,27,0.1);
+  padding-top: 1rem;
+}
+.ggcalc-tip strong { color: var(--ink); }
+</style>
+
+<script>
+(function () {
+  var GAUGE_MIN = 15, GAUGE_MAX = 55, HARD_MAX = 60;
+
+  var state = { rider: 75, bike: 9, width: 40, wheel: '700c', terrain: 'gemengd', valve: 'tubeless' };
+
+  var el = {
+    rider: document.getElementById('ggRider'),
+    riderVal: document.getElementById('ggRiderVal'),
+    bike: document.getElementById('ggBike'),
+    bikeVal: document.getElementById('ggBikeVal'),
+    width: document.getElementById('ggWidth'),
+    widthVal: document.getElementById('ggWidthVal'),
+    advToggle: document.getElementById('ggAdvToggle'),
+    advPanel: document.getElementById('ggAdvPanel'),
+    warning: document.getElementById('ggWarning'),
+    frontPsi: document.getElementById('ggFrontPsi'),
+    frontBar: document.getElementById('ggFrontBar'),
+    frontNeedle: document.getElementById('ggFrontNeedle'),
+    rearPsi: document.getElementById('ggRearPsi'),
+    rearBar: document.getElementById('ggRearBar'),
+    rearNeedle: document.getElementById('ggRearNeedle')
+  };
+
+  function clamp(n, min, max) { return Math.min(max, Math.max(min, n)); }
+  function round(n, step) { return Math.round(n / step) * step; }
+  function fmt(n) { return n.toFixed(1).replace('.', document.documentElement.lang === 'en' ? '.' : ','); }
+
+  function calc() {
+    var total = state.rider + state.bike;
+    var base = 30 * (total / 85) * Math.pow(40 / state.width, 1.5);
+
+    var terrainFactor = { glad: 1.15, gemengd: 1.0, ruw: 0.85 }[state.terrain];
+    var wheelFactor = state.wheel === '650b' ? 1.05 : 1.0;
+    var valveFactor = state.valve === 'tube' ? 1.15 : 1.0;
+
+    var rawRear = base * terrainFactor * wheelFactor * valveFactor;
+    var rawFront = rawRear * 0.90;
+
+    var outOfRange = rawRear > HARD_MAX || rawRear < GAUGE_MIN || rawFront > HARD_MAX || rawFront < GAUGE_MIN;
+    el.warning.classList.toggle('is-hidden', !outOfRange);
+
+    var rear = round(clamp(rawRear, GAUGE_MIN, HARD_MAX), 0.5);
+    var front = round(clamp(rawFront, GAUGE_MIN, HARD_MAX), 0.5);
+
+    updateGauge(front, el.frontPsi, el.frontBar, el.frontNeedle);
+    updateGauge(rear, el.rearPsi, el.rearBar, el.rearNeedle);
+  }
+
+  function updateGauge(psi, psiEl, barEl, needleEl) {
+    psiEl.textContent = fmt(psi);
+    barEl.textContent = fmt(psi / 14.5038) + ' bar';
+    var frac = clamp((psi - GAUGE_MIN) / (GAUGE_MAX - GAUGE_MIN), 0, 1);
+    var deg = frac * 180 - 90;
+    needleEl.setAttribute('transform', 'rotate(' + deg + ' 100 110)');
+  }
+
+  el.rider.addEventListener('input', function () {
+    state.rider = +el.rider.value;
+    el.riderVal.textContent = state.rider + ' kg';
+    calc();
+  });
+
+  el.bike.addEventListener('input', function () {
+    state.bike = +el.bike.value;
+    el.bikeVal.textContent = state.bike + ' kg';
+    calc();
+  });
+
+  el.width.addEventListener('input', function () {
+    state.width = +el.width.value;
+    el.widthVal.textContent = state.width + ' mm';
+    calc();
+  });
+
+  el.advToggle.addEventListener('click', function () {
+    var expanded = el.advToggle.getAttribute('aria-expanded') === 'true';
+    el.advToggle.setAttribute('aria-expanded', String(!expanded));
+    el.advPanel.hidden = expanded;
+  });
+
+  document.querySelectorAll('.ggcalc-segmented').forEach(function (group) {
+    var key = group.getAttribute('data-group');
+    group.querySelectorAll('.ggcalc-seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('.ggcalc-seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        state[key] = btn.getAttribute('data-value');
+        calc();
+      });
+    });
+  });
+
+  calc();
+})();
+</script>

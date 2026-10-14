@@ -23,3 +23,35 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en fram
 - [Over Gravel Gorilla](https://gravelgorilla.nl/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.
 - [Contact](https://gravelgorilla.nl/contact/): info@gravelgorilla.nl
 - [Privacyverklaring](https://gravelgorilla.nl/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.
+
+## English (https://gravelgorilla.nl/en/)
+
+> Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice.
+
+- [Gravel Bike Finder](https://gravelgorilla.nl/en/tools/gravelbike-kiezer/): Which gravel bike suits you? Five short questions and you get an honest Match Score with the reasons, from 147 models by 13 brands. Free.
+- [Tyre Pressure Calculator](https://gravelgorilla.nl/en/tools/bandenspanning-calculator/): Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.
+- [Gravel Wheel Finder](https://gravelgorilla.nl/en/tools/gravelwielen-kiezer/): Which gravel wheels suit you? Find the wheelset for your bike, budget and riding style. Carbon or aluminium, 700c or 650b: honest advice from over 100 wheelsets.
+- [Ultra Event Finder](https://gravelgorilla.nl/en/tools/ultra-eventkiezer/): Calendar with 80 ultra gravel and bikepacking events in 2026 and 2027. Filter by month, country, distance, surface and bike and find the event that suits you.
+- [Profile Sticker](https://gravelgorilla.nl/en/tools/profielsticker/): Make a free profile sticker from your GPX for your top tube or handlebar: elevation profile, climbs, surface, stops, power and when to eat. Print or download.
+- [Clothing Advice](https://gravelgorilla.nl/en/tools/kledingadvies/): What to wear on your gravel bike? Free clothing advice based on temperature, wind, rain, ride length and pace, with the weather forecast for your location.
+- [Gravel Tyre Finder](https://gravelgorilla.nl/en/tools/gravelbanden-kiezer/): Which gravel tyre should you choose? Set surface, riding style and weather and get advice on width and tread, plus the best matching tyres from over 40 models.
+- [Frame Size Finder](https://gravelgorilla.nl/en/tools/maatbepaler/): Which gravel bike frame size do you need? Calculate your size from your height and inseam, plus saddle height, stack and reach. With advice if you are between two sizes.
+- [Bikepacking Packing List](https://gravelgorilla.nl/en/tools/paklijst-bikepacking/): Bikepacking packing list that adapts to your trip: choose length, season, sleeping and resupply and tick off what you take. With weight, copy and print.
+- [Gravel Routes in the Netherlands and Belgium](https://gravelgorilla.nl/en/tools/gravelroutes/): Gravel routes in the Netherlands and Belgium: signposted routes and GPX routes per province, filtered by distance. With links to the official source.
+- [Gear Calculator](https://gravelgorilla.nl/en/tools/versnellingscalculator/): Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.
+
+## Deutsch (https://gravelgorilla.nl/de/)
+
+> Unabhängige niederländische Website mit kostenlosen Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Gravelreifen, Reifendruck, Laufräder, Übersetzung, Gravelrouten, Ultra-Events, Bikepacking-Packliste, Profilsticker und Kleidungsberater.
+
+- [Gravelbike-Finder](https://gravelgorilla.nl/de/tools/gravelbike-kiezer/): Welches Gravelbike passt zu dir? Fünf kurze Fragen und du bekommst einen ehrlichen Match-Score mit Begründung, aus 147 Modellen von 13 Marken. Kostenlos.
+- [Reifendruck-Rechner](https://gravelgorilla.nl/de/tools/bandenspanning-calculator/): Berechne den richtigen Reifendruck für dein Gravelbike: nach Gewicht, Reifenbreite, Laufradgröße und Untergrund. Vorder- und Hinterreifen getrennt, in bar und psi.
+- [Gravel-Laufrad-Finder](https://gravelgorilla.nl/de/tools/gravelwielen-kiezer/): Welche Gravel-Laufräder passen zu dir? Finde den Laufradsatz für dein Rad, Budget und deinen Fahrstil. Carbon oder Alu, 700c oder 650b: ehrliche Beratung aus über 100 Laufradsätzen.
+- [Ultra-Event-Finder](https://gravelgorilla.nl/de/tools/ultra-eventkiezer/): Kalender mit 80 Ultra-Gravel- und Bikepacking-Events 2026 und 2027. Filtere nach Monat, Land, Distanz, Untergrund und Rad und finde das passende Event.
+- [Profilsticker](https://gravelgorilla.nl/de/tools/profielsticker/): Erstelle kostenlos einen Profilsticker aus deinem GPX für Oberrohr oder Lenker: Höhenprofil, Anstiege, Untergrund, Stopps, Leistung und Essenszeiten. Drucken oder herunterladen.
+- [Kleidungsberater](https://gravelgorilla.nl/de/tools/kledingadvies/): Was ziehst du auf dem Gravelbike an? Kostenlose Kleidungsberatung nach Temperatur, Wind, Regen, Tourdauer und Tempo, mit der Wettervorhersage für deinen Ort.
+- [Gravelreifen-Finder](https://gravelgorilla.nl/de/tools/gravelbanden-kiezer/): Welchen Gravelreifen wählst du? Stell Untergrund, Fahrstil und Wetter ein und erhalte eine Empfehlung zu Breite und Profil, plus die passendsten Reifen aus über 40 Modellen.
+- [Rahmengrößen-Rechner](https://gravelgorilla.nl/de/tools/maatbepaler/): Welche Rahmengröße brauchst du beim Gravelbike? Berechne deine Größe aus Körpergröße und Schrittlänge, plus Sattelhöhe, Stack und Reach. Mit Rat, wenn du zwischen zwei Größen liegst.
+- [Bikepacking-Packliste](https://gravelgorilla.nl/de/tools/paklijst-bikepacking/): Bikepacking-Packliste, die sich an deine Tour anpasst: wähle Dauer, Jahreszeit, Schlafen und Versorgung und hake ab, was du mitnimmst. Mit Gewicht, Kopieren und Drucken.
+- [Gravelrouten in den Niederlanden und Belgien](https://gravelgorilla.nl/de/tools/gravelroutes/): Gravelrouten in den Niederlanden und Belgien: ausgeschilderte Routen und GPX-Routen nach Provinz, filterbar nach Länge. Mit Links zur offiziellen Quelle.
+- [Übersetzungsrechner](https://gravelgorilla.nl/de/tools/versnellingscalculator/): Welches Kettenblatt und welche Kassette fürs Gravelbike? Berechne leichtesten Gang, Höchstgeschwindigkeit und die steilste Steigung, die du schaffst, und vergleiche zwei Setups.

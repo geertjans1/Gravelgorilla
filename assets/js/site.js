@@ -27,3 +27,17 @@ document.getElementById("themaKnop").addEventListener("click", () => {
   document.documentElement.setAttribute("data-thema", nieuw);
   try { localStorage.setItem("gg-thema", nieuw); } catch (e) {}
 });
+
+/* ---------- Taalmenu (NL / EN / DE) ---------- */
+const taal = document.getElementById("taalKeuze");
+if (taal) {
+  const knop = taal.querySelector(".taal__knop");
+  const zet = open => { taal.classList.toggle("is-open", open); knop.setAttribute("aria-expanded", open); };
+  knop.addEventListener("click", e => { e.stopPropagation(); zet(!taal.classList.contains("is-open")); });
+  document.addEventListener("click", e => { if (!taal.contains(e.target)) zet(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
+  // houd de plek op de pagina vast (#anker) als je van taal wisselt
+  taal.querySelectorAll(".taal__lijst a").forEach(a => a.addEventListener("click", () => {
+    if (location.hash) a.href = a.href.split("#")[0] + location.hash;
+  }));
+}

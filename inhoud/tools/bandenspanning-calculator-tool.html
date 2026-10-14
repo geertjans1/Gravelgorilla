@@ -372,7 +372,7 @@
 
   function clamp(n, min, max) { return Math.min(max, Math.max(min, n)); }
   function round(n, step) { return Math.round(n / step) * step; }
-  function fmt(n) { return n.toFixed(1).replace('.', ','); }
+  function fmt(n) { return n.toFixed(1).replace('.', document.documentElement.lang === 'en' ? '.' : ','); }
 
   function calc() {
     var total = state.rider + state.bike;

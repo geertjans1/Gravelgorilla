@@ -1,0 +1,66 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Eingabe ===== -->
+    <section class="wb-kaart" aria-labelledby="mbKopInvoer">
+      <h2 class="wb-kop" id="mbKopInvoer"><span class="wb-stap">1</span> Deine Maße</h2>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbLengte">Körpergröße</label><output id="mbLengteUit">178 cm</output></div>
+        <input type="range" id="mbLengte" min="150" max="205" step="1" value="178">
+      </div>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbBinnenbeen">Schrittlänge</label><output id="mbBinnenbeenUit">83 cm</output></div>
+        <input type="range" id="mbBinnenbeen" min="65" max="100" step="1" value="83">
+        <span class="wb-klein">So misst du: Stell dich barfuß mit dem Rücken an die Wand, klemm ein dickes Buch wie einen Sattel zwischen die Beine und miss von der Oberkante des Buchs bis zum Boden.</span>
+      </div>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Dein Körperbau und Fahrstil</h2>
+      <div class="wb-veld">
+        <span class="wb-label">Oberkörper und Arme</span>
+        <div class="wb-chips" data-veld="romp">
+          <button type="button" data-waarde="kort" aria-pressed="false">Eher kurz</button>
+          <button type="button" data-waarde="normaal" class="is-aan" aria-pressed="true">Durchschnittlich</button>
+          <button type="button" data-waarde="lang" aria-pressed="false">Eher lang</button>
+        </div>
+        <span class="wb-klein">Unsicher? Lass es auf durchschnittlich. Lange Arme und ein langer Oberkörper passen besser auf einen längeren Rahmen.</span>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">Wie willst du sitzen?</span>
+        <div class="wb-chips" data-veld="stijl">
+          <button type="button" data-waarde="sportief" aria-pressed="false">Sportlich und gestreckt</button>
+          <button type="button" data-waarde="allround" class="is-aan" aria-pressed="true">Allround</button>
+          <button type="button" data-waarde="comfort" aria-pressed="false">Bequem und aufrecht</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Empfehlung ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="mbKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="mbKopAdvies">Deine Rahmengröße</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Größe</span><strong id="mbMaat">M</strong></div>
+        <div><span class="wb-klein-licht">Rahmengröße</span><strong id="mbCm">53 – 54</strong></div>
+        <div><span class="wb-klein-licht">Sattelhöhe</span><strong id="mbZadel">73 cm</strong></div>
+        <div><span class="wb-klein-licht">Stack / Reach</span><strong id="mbGeo">575 / 385</strong></div>
+      </div>
+      <p class="wb-uitleg" id="mbUitleg"></p>
+      <ul class="mb-redenen" id="mbRedenen"></ul>
+      <p class="wb-tip">Tipp: Jeder Hersteller misst etwas anders. Leg deine Größe immer neben die Größentabelle der Marke und mach im Zweifel eine Probefahrt.</p>
+    </aside>
+  </div>
+
+  <!-- ===== Alle Größen ===== -->
+  <section class="wb-resultaat" aria-labelledby="mbKopTabel">
+    <h2 class="wb-kop" id="mbKopTabel"><span class="wb-stap">3</span> Alle Größen im Überblick</h2>
+    <p class="wb-aantal">Richtwerte für Gravelbikes. Deine Größe ist markiert.</p>
+    <div class="mb-tabelvak">
+      <table class="wb-tabel">
+        <thead><tr><th>Größe</th><th>Rahmengröße</th><th>Körpergröße</th><th class="wb-getal">Stack</th><th class="wb-getal">Reach</th></tr></thead>
+        <tbody id="mbTabel"></tbody>
+      </table>
+    </div>
+    <p class="wb-bron">Sattelhöhe nach der Faustregel Schrittlänge × 0,883, gemessen von der Mitte des Tretlagers bis zur Oberkante des Sattels. Stack und Reach sind Durchschnittswerte gängiger Gravelbikes; je nach Marke können sie ein paar Zentimeter abweichen. Kein Bikefitting: Hast du Schmerzen oder Beschwerden, lass dich richtig einstellen.</p>
+  </section>
+</div>

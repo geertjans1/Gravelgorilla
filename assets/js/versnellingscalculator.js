@@ -7,6 +7,10 @@
   const wortel = document.querySelector(".vs-scope");
   if (!wortel) return;
   const $ = s => wortel.querySelector(s);
+  // taal van de pagina (nl, en of de)
+  const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
+  const T = (nl, en, de) => (TAAL === "en" ? en : TAAL === "de" ? de : nl);
+  const KMU = T(" km/u", " km/h", " km/h");
 
   const VOOR = [
     { id: "36", naam: "36 (1×)", t: [36] }, { id: "38", naam: "38 (1×)", t: [38] }, { id: "40", naam: "40 (1×)", t: [40] },
@@ -30,7 +34,7 @@
   const S = { voorA: "40", achterA: "11-42", voorB: "geen", achterB: "10-44", wiel: 622, band: 40, cadans: 75, gewicht: 90, vermogen: 200 };
 
   function vul(sel, lijst, waarde, metGeen) {
-    $(sel).innerHTML = (metGeen ? '<option value="geen">Geen vergelijking</option>' : "") +
+    $(sel).innerHTML = (metGeen ? '<option value="geen">' + T("Geen vergelijking", "No comparison", "Kein Vergleich") + '</option>' : "") +
       lijst.map(x => '<option value="' + x.id + '"' + (x.id === waarde ? " selected" : "") + ">" + x.naam + "</option>").join("");
   }
   vul("#vsVoorA", VOOR, S.voorA); vul("#vsAchterA", ACHTER, S.achterA);
@@ -60,12 +64,12 @@
     return { v, a, gears, laag, hoog, klim: steilste(vLaag), ontwikkelingLaag: laag.r * omtrek(), top: kmu(hoog.r, 100), bereik: Math.round(hoog.r / laag.r * 100) };
   }
 
-  const nl = (x, d) => x.toFixed(d).replace(".", ",");
+  const nl = (x, d) => x.toFixed(d).replace(".", TAAL === "en" ? "." : ",");
 
   function toon() {
-    $("#vsCadansUit").textContent = S.cadans + " rpm";
+    $("#vsCadansUit").textContent = S.cadans + T(" rpm", " rpm", " U/min");
     $("#vsGewichtUit").textContent = S.gewicht + " kg";
-    $("#vsVermogenUit").textContent = S.vermogen + " watt";
+    $("#vsVermogenUit").textContent = S.vermogen + T(" watt", " watts", " Watt");
     wortel.querySelector(".vs-opstelling--b").classList.toggle("is-uit", S.voorB === "geen");
 
     const A = opstelling(S.voorA, S.achterA);
@@ -73,35 +77,46 @@
     $("#vsKlimA").textContent = nl(A.klim, 0) + " %";
     $("#vsKlimB").textContent = B ? nl(B.klim, 0) + " %" : "–";
     $("#vsLaagA").textContent = A.laag.c + " × " + A.laag.z;
-    $("#vsTopA").textContent = nl(A.top, 0) + " km/u";
+    $("#vsTopA").textContent = nl(A.top, 0) + KMU;
 
-    let uitleg = "In je lichtste verzet (" + A.laag.c + " voor, " + A.laag.z + " achter) ga je bij " + S.cadans + " rpm " + nl(kmu(A.laag.r, S.cadans), 1) +
-      " km/u. Met " + S.vermogen + " watt en " + S.gewicht + " kg kom je zo zittend een helling van ongeveer " + nl(A.klim, 0) + " % op.";
+    const vLaag = nl(kmu(A.laag.r, S.cadans), 1), klimA = nl(A.klim, 0);
+    let uitleg = T("In je lichtste verzet (" + A.laag.c + " voor, " + A.laag.z + " achter) ga je bij " + S.cadans + " rpm " + vLaag + " km/u. Met " + S.vermogen + " watt en " + S.gewicht + " kg kom je zo zittend een helling van ongeveer " + klimA + " % op.",
+      "In your lowest gear (" + A.laag.c + " front, " + A.laag.z + " rear) you ride " + vLaag + " km/h at " + S.cadans + " rpm. With " + S.vermogen + " watts and " + S.gewicht + " kg you climb a gradient of about " + klimA + " % seated.",
+      "Im leichtesten Gang (" + A.laag.c + " vorne, " + A.laag.z + " hinten) fährst du bei " + S.cadans + " U/min " + vLaag + " km/h. Mit " + S.vermogen + " Watt und " + S.gewicht + " kg schaffst du so sitzend eine Steigung von etwa " + klimA + " %.");
     if (B) {
-      const verschil = Math.round((1 - B.laag.r / A.laag.r) * 100);
-      uitleg += " Opstelling B is in het lichtste verzet " + Math.abs(verschil) + " % " + (verschil > 0 ? "lichter" : verschil < 0 ? "zwaarder" : "gelijk") +
-        (verschil !== 0 ? ": daarmee haal je ongeveer " + nl(B.klim, 0) + " %." : ".") +
-        " Topsnelheid bij 100 rpm: A " + nl(A.top, 0) + " km/u, B " + nl(B.top, 0) + " km/u.";
+      const verschil = Math.round((1 - B.laag.r / A.laag.r) * 100), v = Math.abs(verschil), klimB = nl(B.klim, 0);
+      const richting = verschil > 0 ? T("lichter", "lighter", "leichter") : verschil < 0 ? T("zwaarder", "heavier", "schwerer") : T("gelijk", "the same", "gleich");
+      uitleg += T(" Opstelling B is in het lichtste verzet " + v + " % " + richting + (verschil !== 0 ? ": daarmee haal je ongeveer " + klimB + " %." : ".") + " Topsnelheid bij 100 rpm: A " + nl(A.top, 0) + " km/u, B " + nl(B.top, 0) + " km/u.",
+        " Setup B is " + v + " % " + richting + " in the lowest gear" + (verschil !== 0 ? ": with it you ride about " + klimB + " %." : ".") + " Top speed at 100 rpm: A " + nl(A.top, 0) + " km/h, B " + nl(B.top, 0) + " km/h.",
+        " Setup B ist im leichtesten Gang " + v + " % " + richting + (verschil !== 0 ? ": damit schaffst du etwa " + klimB + " %." : ".") + " Höchstgeschwindigkeit bei 100 U/min: A " + nl(A.top, 0) + " km/h, B " + nl(B.top, 0) + " km/h.");
     }
     $("#vsUitleg").textContent = uitleg;
     $("#vsTip").textContent = A.klim < 6
-      ? "Tip: met dit lichtste verzet wordt het zwoegen op steile stukken. Een kleiner voorblad of een cassette met een groter tandwiel helpt het meest, zeker met bagage."
+      ? T("Tip: met dit lichtste verzet wordt het zwoegen op steile stukken. Een kleiner voorblad of een cassette met een groter tandwiel helpt het meest, zeker met bagage.",
+          "Tip: with this lowest gear, steep sections will be a grind. A smaller chainring or a cassette with a bigger sprocket helps most, especially with luggage.",
+          "Tipp: Mit diesem leichtesten Gang wird es an steilen Stücken mühsam. Ein kleineres Kettenblatt oder eine Kassette mit größerem Ritzel hilft am meisten, vor allem mit Gepäck.")
       : A.top < 45
-        ? "Tip: je hebt lichte verzetten, maar op snelle afdalingen of in een groep spin je er al snel uit. Een groter voorblad geeft meer topsnelheid."
-        : "Tip: een goede balans. Twijfel je over bikepacking? Zet je gewicht met bagage erbij, dan zie je of je de steile stukken nog fietsend haalt.";
+        ? T("Tip: je hebt lichte verzetten, maar op snelle afdalingen of in een groep spin je er al snel uit. Een groter voorblad geeft meer topsnelheid.",
+            "Tip: you have light gears, but on fast descents or in a group you'll quickly spin out. A bigger chainring gives more top speed.",
+            "Tipp: Du hast leichte Gänge, aber auf schnellen Abfahrten oder in der Gruppe trittst du schnell ins Leere. Ein größeres Kettenblatt bringt mehr Höchstgeschwindigkeit.")
+        : T("Tip: een goede balans. Twijfel je over bikepacking? Zet je gewicht met bagage erbij, dan zie je of je de steile stukken nog fietsend haalt.",
+            "Tip: a good balance. Thinking about bikepacking? Add your luggage to your weight to see whether you can still ride the steep sections.",
+            "Tipp: eine gute Balance. Denkst du an Bikepacking? Rechne dein Gepäck zum Gewicht dazu, dann siehst du, ob du die steilen Stücke noch fahrend schaffst.");
 
     // ladder: elk verzet als bolletje op een snelheidsas
     const max = Math.max(60, Math.ceil((B ? Math.max(A.top, B.top) : A.top) * S.cadans / 100 / 10) * 10);
     const rij = (o, letter) => '<div class="vs-rij"><span class="vs-rij__naam">' + letter + '</span><div class="vs-rij__as">' +
-      o.gears.map(g => { const s = kmu(g.r, S.cadans); return '<span class="vs-bol' + (o.v.t.length > 1 && g.c === o.v.t[1] ? " vs-bol--klein" : "") + '" style="left:' + (s / max * 100) + '%" title="' + g.c + "×" + g.z + ": " + nl(s, 1) + ' km/u"></span>'; }).join("") +
+      o.gears.map(g => { const s = kmu(g.r, S.cadans); return '<span class="vs-bol' + (o.v.t.length > 1 && g.c === o.v.t[1] ? " vs-bol--klein" : "") + '" style="left:' + (s / max * 100) + '%" title="' + g.c + "×" + g.z + ": " + nl(s, 1) + KMU + '"></span>'; }).join("") +
       "</div></div>";
     const schaal = '<div class="vs-schaal">' + Array.from({ length: max / 10 + 1 }, (_, i) => '<span style="left:' + (i * 10 / max * 100) + '%">' + i * 10 + "</span>").join("") + "</div>";
     $("#vsLadder").innerHTML = rij(A, "A") + (B ? rij(B, "B") : "") + schaal;
-    $("#vsLadderUitleg").textContent = "Elk bolletje is een versnelling: hoe hard je gaat (km/u) bij " + S.cadans + " rpm." +
-      (A.v.t.length > 1 || (B && B.v.t.length > 1) ? " Lichte bolletjes horen bij het kleine voorblad." : "");
+    const twee = A.v.t.length > 1 || (B && B.v.t.length > 1);
+    $("#vsLadderUitleg").textContent = T("Elk bolletje is een versnelling: hoe hard je gaat (km/u) bij " + S.cadans + " rpm." + (twee ? " Lichte bolletjes horen bij het kleine voorblad." : ""),
+      "Each dot is a gear: how fast you go (km/h) at " + S.cadans + " rpm." + (twee ? " Light dots belong to the small chainring." : ""),
+      "Jeder Punkt ist ein Gang: wie schnell du bei " + S.cadans + " U/min fährst (km/h)." + (twee ? " Helle Punkte gehören zum kleinen Kettenblatt." : ""));
 
-    const tabel = (o, letter) => '<div class="vs-tabel"><h3>Opstelling ' + letter + ": " + o.v.naam + ", " + o.a.naam + '</h3><div class="vs-tabelvak"><table class="wb-tabel"><thead><tr><th>Voor × achter</th><th class="wb-getal">Ontwikkeling</th><th class="wb-getal">Snelheid</th><th class="wb-getal">Steilste klim</th></tr></thead><tbody>' +
-      o.gears.map(g => { const s = kmu(g.r, S.cadans); return "<tr><td>" + g.c + " × " + g.z + '</td><td class="wb-getal">' + nl(g.r * omtrek(), 2) + ' m</td><td class="wb-getal">' + nl(s, 1) + ' km/u</td><td class="wb-getal">' + nl(steilste(s / 3.6), 0) + " %</td></tr>"; }).join("") +
+    const tabel = (o, letter) => '<div class="vs-tabel"><h3>' + T("Opstelling ", "Setup ", "Setup ") + letter + ": " + o.v.naam + ", " + o.a.naam + '</h3><div class="vs-tabelvak"><table class="wb-tabel"><thead><tr><th>' + T("Voor × achter", "Front × rear", "Vorne × hinten") + '</th><th class="wb-getal">' + T("Ontwikkeling", "Development", "Entfaltung") + '</th><th class="wb-getal">' + T("Snelheid", "Speed", "Tempo") + '</th><th class="wb-getal">' + T("Steilste klim", "Steepest climb", "Max. Steigung") + "</th></tr></thead><tbody>" +
+      o.gears.map(g => { const s = kmu(g.r, S.cadans); return "<tr><td>" + g.c + " × " + g.z + '</td><td class="wb-getal">' + nl(g.r * omtrek(), 2) + ' m</td><td class="wb-getal">' + nl(s, 1) + KMU + '</td><td class="wb-getal">' + nl(steilste(s / 3.6), 0) + " %</td></tr>"; }).join("") +
       "</tbody></table></div></div>";
     $("#vsTabellen").innerHTML = tabel(A, "A") + (B ? tabel(B, "B") : "");
   }

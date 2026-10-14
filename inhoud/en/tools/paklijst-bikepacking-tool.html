@@ -1,0 +1,78 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Input ===== -->
+    <section class="wb-kaart" aria-labelledby="pkKopInvoer">
+      <h2 class="wb-kop" id="pkKopInvoer"><span class="wb-stap">1</span> Your trip</h2>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="pkDuur">How long are you going?</label><output id="pkDuurUit">2 – 3 nights</output></div>
+        <input type="range" id="pkDuur" min="0" max="3" step="1" value="1">
+        <div class="wb-schaal wb-schaal--4" data-voor="#pkDuur">
+          <button type="button" data-stand="0">1 night</button><button type="button" data-stand="1">2 – 3 nights</button><button type="button" data-stand="2">A week</button><button type="button" data-stand="3">Longer</button>
+        </div>
+      </div>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="pkSeizoen">Season</label><output id="pkSeizoenUit">Spring or autumn</output></div>
+        <input type="range" id="pkSeizoen" min="0" max="2" step="1" value="1">
+        <div class="wb-schaal wb-schaal--3" data-voor="#pkSeizoen">
+          <button type="button" data-stand="0">Summer</button><button type="button" data-stand="1">Spring or autumn</button><button type="button" data-stand="2">Winter</button>
+        </div>
+      </div>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Sleeping and eating</h2>
+      <div class="wb-veld">
+        <span class="wb-label">Where do you sleep?</span>
+        <div class="wb-chips" data-veld="slapen">
+          <button type="button" data-waarde="tent" class="is-aan" aria-pressed="true">In a tent</button>
+          <button type="button" data-waarde="bivak" aria-pressed="false">Tarp or bivvy bag</button>
+          <button type="button" data-waarde="binnen" aria-pressed="false">Hotel, B&amp;B or hut</button>
+        </div>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">Can you easily buy food and water on the way?</span>
+        <div class="wb-chips" data-veld="bevoorrading">
+          <button type="button" data-waarde="veel" class="is-aan" aria-pressed="true">Yes, plenty of shops</button>
+          <button type="button" data-waarde="weinig" aria-pressed="false">No, it's remote</button>
+        </div>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">Will you cook yourself?</span>
+        <div class="wb-chips" data-veld="koken">
+          <button type="button" data-waarde="nee" class="is-aan" aria-pressed="true">No</button>
+          <button type="button" data-waarde="ja" aria-pressed="false">Yes, a hot meal or coffee</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="pkKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="pkKopAdvies">Your packing list</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Items</span><strong id="pkAantal">0</strong></div>
+        <div><span class="wb-klein-licht">Weight, roughly</span><strong id="pkGewicht">0 kg</strong></div>
+      </div>
+      <div>
+        <span class="wb-klein-licht" id="pkVoortgangTekst">0 of 0 packed</span>
+        <div class="wb-balk" style="margin-top:8px"><span id="pkVoortgang" style="width:0%"></span></div>
+      </div>
+      <p class="wb-uitleg" id="pkUitleg"></p>
+      <p class="wb-tip" id="pkTip"></p>
+      <div class="wb-knoppen pk-knoppen">
+        <button type="button" class="wb-knop wb-knop--actie" id="pkKopieer">Copy as a list</button>
+        <button type="button" class="wb-knop pk-knop-licht" id="pkPrint">Print</button>
+        <button type="button" class="wb-knop pk-knop-licht" id="pkWis">Clear ticks</button>
+      </div>
+      <p class="wb-melding pk-melding" id="pkMelding"></p>
+    </aside>
+  </div>
+
+  <!-- ===== List ===== -->
+  <section class="wb-resultaat" aria-labelledby="pkKopLijst">
+    <h2 class="wb-kop" id="pkKopLijst"><span class="wb-stap">3</span> Tick off and pack</h2>
+    <p class="wb-aantal">Tick off what's in your bags. Your ticks are saved on this device.</p>
+    <div class="pk-groepen" id="pkLijst"></div>
+    <p class="wb-bron">Weights are averages of common lightweight gear. Your gear may be lighter or heavier. Clothing you wear on the bike is not in the list.</p>
+  </section>
+</div>

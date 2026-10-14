@@ -1,0 +1,68 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Eingabe ===== -->
+    <section class="wb-kaart" aria-labelledby="vsKopInvoer">
+      <h2 class="wb-kop" id="vsKopInvoer"><span class="wb-stap">1</span> Deine Gänge</h2>
+      <div class="vs-opstellingen">
+        <div class="vs-opstelling vs-opstelling--a">
+          <span class="vs-letter">A</span>
+          <label class="wb-veld"><span class="wb-label">Kettenblatt</span><select id="vsVoorA"></select></label>
+          <label class="wb-veld"><span class="wb-label">Kassette</span><select id="vsAchterA"></select></label>
+        </div>
+        <div class="vs-opstelling vs-opstelling--b">
+          <span class="vs-letter">B</span>
+          <label class="wb-veld"><span class="wb-label">Kettenblatt</span><select id="vsVoorB"></select></label>
+          <label class="wb-veld"><span class="wb-label">Kassette</span><select id="vsAchterB"></select></label>
+        </div>
+      </div>
+      <span class="wb-klein">Vergleiche deine jetzigen Gänge (A) mit einem anderen Setup (B). Wähle bei B „Kein Vergleich", wenn du nur eines sehen willst.</span>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Du, deine Laufräder und der Anstieg</h2>
+      <div class="wb-twee">
+        <label class="wb-veld"><span class="wb-label">Laufradgröße</span>
+          <select id="vsWiel"><option value="622">700c (28 Zoll)</option><option value="584">650b (27,5 Zoll)</option></select>
+        </label>
+        <label class="wb-veld"><span class="wb-label">Reifenbreite</span>
+          <select id="vsBand"><option>35</option><option>38</option><option selected>40</option><option>42</option><option>45</option><option>47</option><option>50</option></select>
+        </label>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsCadans">Trittfrequenz bergauf</label><output id="vsCadansUit">75 U/min</output></div>
+        <input type="range" id="vsCadans" min="55" max="100" step="1" value="75">
+        <span class="wb-klein">Wie oft pro Minute sich deine Pedale drehen, wenn du kletterst. Die meisten Fahrer liegen bei 70 bis 85.</span>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsGewicht">Gewicht: du, Rad und Gepäck</label><output id="vsGewichtUit">90 kg</output></div>
+        <input type="range" id="vsGewicht" min="55" max="160" step="1" value="90">
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsVermogen">Leistung, die du bergauf lange hältst</label><output id="vsVermogenUit">200 Watt</output></div>
+        <input type="range" id="vsVermogen" min="100" max="400" step="5" value="200">
+        <span class="wb-klein">Weißt du es nicht? Freizeitfahrer etwa 150 Watt, trainiert 200 bis 250, stark 300 oder mehr.</span>
+      </div>
+    </section>
+
+    <!-- ===== Empfehlung ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="vsKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="vsKopAdvies">Dein leichtester Gang</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Max. Steigung (A)</span><strong id="vsKlimA">12 %</strong></div>
+        <div><span class="wb-klein-licht">Max. Steigung (B)</span><strong id="vsKlimB">–</strong></div>
+        <div><span class="wb-klein-licht">Leichtester Gang (A)</span><strong id="vsLaagA">–</strong></div>
+        <div><span class="wb-klein-licht">Höchsttempo (A)</span><strong id="vsTopA">–</strong></div>
+      </div>
+      <p class="wb-uitleg" id="vsUitleg"></p>
+      <p class="wb-tip" id="vsTip"></p>
+    </aside>
+  </div>
+
+  <!-- ===== Leiter und Tabelle ===== -->
+  <section class="wb-resultaat" aria-labelledby="vsKopLadder">
+    <h2 class="wb-kop" id="vsKopLadder"><span class="wb-stap">3</span> Alle Gänge im Überblick</h2>
+    <p class="wb-aantal" id="vsLadderUitleg">Jeder Punkt ist ein Gang: wie schnell du bei deiner Trittfrequenz fährst.</p>
+    <div class="vs-ladder" id="vsLadder"></div>
+    <div class="vs-tabellen" id="vsTabellen"></div>
+    <p class="wb-bron">Die maximale Steigung ist eine Schätzung dessen, was du sitzend bei deiner gewählten Trittfrequenz halten kannst. Wir rechnen mit deinem Gewicht, deiner Leistung, deiner Trittfrequenz im leichtesten Gang, dem Rollwiderstand auf Schotter und etwas Luftwiderstand. Entfaltung = wie viele Meter dein Rad pro Kurbelumdrehung vorwärtskommt. Bei den Kassetten sind das größte und kleinste Ritzel exakt; die Ritzel dazwischen sind Näherungswerte.</p>
+  </section>
+</div>
