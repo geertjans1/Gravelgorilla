@@ -247,7 +247,7 @@ foreach ($t in $tools) {
 
   # andere tools (interne links)
   $anderen = ($tools | Where-Object { $_.slug -ne $t.slug } | ForEach-Object {
-    "        <a href=""/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
+    "        <a href=""/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"" data-km-tool=""$($_.slug)"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
   }) -join "`n"
 
   # gestructureerde informatie: webtool + broodkruimel + vragen
@@ -270,7 +270,7 @@ foreach ($t in $tools) {
   <main>
     <section class="pagina-kop">
       <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
-      <p class="pagina-km">KM $($t.km)</p>
+      <p class="pagina-km" data-km-tool="$($t.slug)">KM $($t.km)</p>
       <p class="pagina-teller" data-teller="$($t.slug)" hidden></p>
       <h1 class="kop-l">$($t.kop)</h1>
       <p class="pagina-sub"$subId>$(Html $t.sub)</p>

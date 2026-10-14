@@ -1,6 +1,6 @@
 /* =========================================================
    Gravel Gorilla — gebruiksteller
-   - Op een tool-pagina: telt 1 op en toont "128 keer gebruikt".
+   - Op een tool-pagina: telt 1 op, toont "128 keer gebruikt" en zet de KM-nummers op de plek in de ranglijst.
    - Op de homepage: toont bij elk bordje in de wegwijzer hoe vaak de tool is gebruikt
      en zet de bordjes op volgorde: de vaakst gebruikte tool bovenaan.
    Lukt het niet (bijv. geen verbinding), dan blijft de teller gewoon onzichtbaar.
@@ -18,7 +18,32 @@
         opPagina.textContent = (d.aantal === 1 ? "1 keer" : "Al " + getal(d.aantal) + " keer") + " gebruikt";
         opPagina.hidden = false;
       })
+      .catch(function () {})
+      .then(function () { return fetch(adres); })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (d) { if (d) zetRanglijstKm(d); })
       .catch(function () {});
+  }
+
+  /* Op een tool-pagina: het KM-nummer (bovenaan en bij "Andere tools") wordt de plek in de ranglijst,
+     net als op de homepage. "Andere tools" komt ook op die volgorde te staan. */
+  function zetRanglijstKm(stand) {
+    var namen = Object.keys(stand);
+    var rang = namen.slice().sort(function (a, b) { return stand[b] - stand[a] || namen.indexOf(a) - namen.indexOf(b); });
+    function km(tool) { var p = rang.indexOf(tool); return p < 0 ? null : "KM " + String(p + 1).padStart(2, "0"); }
+
+    document.querySelectorAll("[data-km-tool]").forEach(function (el) {
+      var tekst = km(el.dataset.kmTool);
+      if (tekst) el.textContent = tekst;
+    });
+
+    var anderen = [].slice.call(document.querySelectorAll(".ander"));
+    if (anderen.length > 1) {
+      var bak = anderen[0].parentNode;
+      anderen.sort(function (a, b) {
+        return rang.indexOf(a.querySelector("[data-km-tool]").dataset.kmTool) - rang.indexOf(b.querySelector("[data-km-tool]").dataset.kmTool);
+      }).forEach(function (a) { bak.appendChild(a); });
+    }
   }
 
   var bijBordjes = document.querySelectorAll("[data-teller-tool]");
