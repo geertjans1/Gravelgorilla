@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=9e98b79c">
+  <link rel="stylesheet" href="/assets/css/style.css?v=d97522d3">
   <!--SCHEMA-->
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://gravelgorilla.nl/#website","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","inLanguage":"nl","publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies."},{"@type":"ItemList","name":"Gratis tools voor gravelrijders","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravelbike Kiezer","url":"https://gravelgorilla.nl/tools/gravelbike-kiezer/","description":"Een paar vragen over hoe en waar je rijdt, en je ziet welke van 147 gravelbikes bij je passen."},{"@type":"ListItem","position":2,"name":"Bandenspanning Calculator","url":"https://gravelgorilla.nl/tools/bandenspanning-calculator/","description":"De juiste spanning voor jouw gewicht, bandbreedte en ondergrond. Voor en achter apart."},{"@type":"ListItem","position":3,"name":"Gravelwielen Kiezer","url":"https://gravelgorilla.nl/tools/gravelwielen-kiezer/","description":"Licht, stevig of juist snel? Vind de wielset die bij je fiets en rijstijl past."},{"@type":"ListItem","position":4,"name":"Ultra-eventkiezer","url":"https://gravelgorilla.nl/tools/ultra-eventkiezer/","description":"Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist."},{"@type":"ListItem","position":5,"name":"Profielsticker","url":"https://gravelgorilla.nl/tools/profielsticker/","description":"Van GPX naar sticker voor je bovenbuis: klimmen, posten, wattage en wanneer je moet eten."},{"@type":"ListItem","position":6,"name":"Kledingadvies","url":"https://gravelgorilla.nl/tools/kledingadvies/","description":"Te warm of te koud? Zie per lichaamsdeel wat je aantrekt, met de weersverwachting voor jouw rit."},{"@type":"ListItem","position":7,"name":"Gravelbanden Kiezer","url":"https://gravelgorilla.nl/tools/gravelbanden-kiezer/","description":"Ondergrond, rijstijl en weer instellen, en zien welke breedte, welk profiel en welke banden passen."}]}]}</script>
   <!--/SCHEMA-->
@@ -69,9 +69,18 @@
         </h1>
         <p class="opening__intro verschijn" style="--v:300ms">Twijfel je over een gravelbike, wielen, bandenspanning of wat je aantrekt? De gorilla rekent het voor je uit. Gratis en eerlijk, zonder dat iemand je iets probeert te verkopen.</p>
 
-        <!-- Snelkeuze: wijs op de fiets aan wat je wilt weten. Lijstje eronder voor toetsenbord en schermlezer. -->
+        <!-- Snelkeuze: kies uit het lijstje of wijs op de fiets aan wat je wilt weten. -->
         <div class="snelkeuze verschijn" style="--v:420ms">
-          <p class="snelkeuze__begin">Ik wil… <span>wijs het aan op de fiets</span></p>
+          <p class="snelkeuze__begin">Ik wil… <span>kies, of wijs het aan op de fiets</span></p>
+          <ol class="snelkeuze__opties">
+            <li><a href="/tools/gravelbike-kiezer/" data-deel="fiets"><span>1</span>een gravelbike kiezen</a></li>
+            <li><a href="/tools/bandenspanning-calculator/" data-deel="spanning"><span>2</span>mijn bandenspanning weten</a></li>
+            <li><a href="/tools/gravelwielen-kiezer/" data-deel="wielen"><span>3</span>de juiste wielen vinden</a></li>
+            <li><a href="/tools/gravelbanden-kiezer/" data-deel="banden"><span>4</span>de juiste banden kiezen</a></li>
+            <li><a href="/tools/ultra-eventkiezer/" data-deel="ultra"><span>5</span>een ultra-event vinden</a></li>
+            <li><a href="/tools/profielsticker/" data-deel="sticker"><span>6</span>een profielsticker maken</a></li>
+            <li><a href="/tools/kledingadvies/" data-deel="kleding"><span>7</span>weten wat ik aantrek</a></li>
+          </ol>
           <div class="snelfiets">
             <svg viewBox="0 0 600 350" aria-hidden="true" focusable="false">
               <path class="snelfiets__grond" d="M10 340 H590"/>
@@ -112,15 +121,6 @@
               <a href="/tools/gravelbanden-kiezer/" class="deel" data-deel="banden" tabindex="-1"><g class="punt" transform="translate(546 314)" style="--d:450ms"><circle class="punt__golf" r="12"/><circle class="punt__kern" r="13"/><text y="5">4</text></g></a>
             </svg>
           </div>
-          <ol class="snelkeuze__opties">
-            <li><a href="/tools/gravelbike-kiezer/" data-deel="fiets"><span>1</span>een gravelbike kiezen</a></li>
-            <li><a href="/tools/bandenspanning-calculator/" data-deel="spanning"><span>2</span>mijn bandenspanning weten</a></li>
-            <li><a href="/tools/gravelwielen-kiezer/" data-deel="wielen"><span>3</span>de juiste wielen vinden</a></li>
-            <li><a href="/tools/gravelbanden-kiezer/" data-deel="banden"><span>4</span>de juiste banden kiezen</a></li>
-            <li><a href="/tools/ultra-eventkiezer/" data-deel="ultra"><span>5</span>een ultra-event vinden</a></li>
-            <li><a href="/tools/profielsticker/" data-deel="sticker"><span>6</span>een profielsticker maken</a></li>
-            <li><a href="/tools/kledingadvies/" data-deel="kleding"><span>7</span>weten wat ik aantrek</a></li>
-          </ol>
         </div>
       </div>
 

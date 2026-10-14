@@ -289,7 +289,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Snelkeuze-fiets: wijs aan wat je wilt weten ---------- */
 .snelkeuze__begin span { font-family: var(--tekstfont); text-transform: none; font-size: .95rem; font-weight: 500; color: var(--tekst-zacht); margin-left: 6px; }
-.snelfiets { margin: 4px 0 14px; }
+.snelfiets { margin: 18px 0 0; }
 .snelfiets svg { display: block; width: 100%; height: auto; overflow: visible; }
 .snelfiets__grond { stroke: var(--lijn); stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; }
 .deel { color: var(--tekst); cursor: pointer; transition: color .25s; }
@@ -324,3 +324,4 @@ button { font: inherit; color: inherit; }
   .profiel__renner { width: 28px; height: 28px; margin: -27px 0 0 -14px; }
   .profiel__vlag { font-size: .65rem; }
 }
+@media (max-width: 640px) { .snelkeuze__begin span { display: block; margin: 4px 0 0; } }
