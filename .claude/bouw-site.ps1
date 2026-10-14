@@ -41,7 +41,10 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <meta property="og:image" content="$ogBeeld">
   <meta property="og:locale" content="nl_NL">
   <meta property="og:site_name" content="Gravel Gorilla">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <script>
     (function () {
       var t = null;
