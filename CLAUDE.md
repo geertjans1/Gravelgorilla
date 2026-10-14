@@ -10,7 +10,7 @@ Statische site voor gravelgorilla.nl. Eigenaar: Geert (geen ontwikkelaar): leg a
 
 ## Versienummers (cache) — ALTIJD
 Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring gezorgd.
-- Na **elke** wijziging aan css, js, een tool of een pagina: draai `.claude/bouw-site.ps1`. Dat zet automatisch `?v=<code>` achter alle `/assets/css` en `/assets/js` links en achter `tool.html` in de toolvensters.
+- Na **elke** wijziging aan css, js, een tool of een pagina: draai `.claude/bouw-site.ps1`. Dat zet automatisch `?v=<code>` achter alle `/assets/css`, `/assets/js` en `/assets/img` links, `/favicon.ico` en achter `tool.html` in de toolvensters.
 - Nieuw bestand dat via een link wordt geladen (css/js in `assets/`, een nieuw toolvenster)? Controleer dat het een `?v=` krijgt. Nieuwe soort link die het bouwscript nog niet kent? Breid de versienummer-stap in `bouw-site.ps1` uit.
 - HTML-pagina's krijgen `Cache-Control: no-cache` via `.htaccess` (ook uit `bouw-site.ps1`).
 - Controleer na het live zetten dat de nieuwe `?v=` live in de pagina staat.
@@ -22,6 +22,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 - Veelgestelde vragen per tool: `inhoud/tools/<naam>-faq.html` (paren `<h3>vraag</h3><p>antwoord</p>`), worden ook FAQ-schema.
 - SEO: elke pagina krijgt schema (JSON-LD), deelplaatje `assets/img/deelplaatje.png` (ontwerp in `.claude/deelplaatje.html`), `llms.txt` wordt gegenereerd.
 - Kiezers: `.claude/kiezer-importeren.ps1` (gravelbike/wielen), `.claude/ultra-importeren.ps1`.
+- Logo: bron in `.claude/logo/` (svg + png 512). Nieuw logo? Vervang `assets/img/logo-icon.svg`, draai `.claude/maak-favicons.ps1`, pas het grote logo in `index.html` (opening__band) aan en maak het deelplaatje opnieuw.
 - Profielsticker: bron is `inhoud/bron/profielsticker.html` (daar aanpassen), daarna `.claude/profielsticker-importeren.ps1`.
 - Server-scripts (PHP): `api/teller.php` (gebruiksteller), `api/osm.php` (tussenstation OpenStreetMap). Gegevens staan buiten `httpdocs`.
 - PowerShell-scripts met niet-ASCII tekens opslaan als UTF-8 **met** BOM (Windows PowerShell 5.1).
