@@ -1,0 +1,33 @@
+<!-- Ontwerp van het deelplaatje (assets/img/deelplaatje.png, 1200x630). Opnieuw maken: "C:Program Files (x86)MicrosoftEdgeApplicationmsedge.exe" --headless=new --hide-scrollbars --allow-file-access-from-files --window-size=1200,630 --virtual-time-budget=8000 --screenshot=<pad>ssetsimgdeelplaatje.png file:///<pad>/.claude/deelplaatje.html -->
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@500;600&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #F4F1EA; font-family: Inter, sans-serif; color: #15181A; position: relative; }
+  .rand { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: repeating-linear-gradient(90deg, #2F8F3E 0 18px, #14361E 18px 32px); }
+  .lijnen { position: absolute; inset: 0; opacity: .5; background: repeating-radial-gradient(ellipse at 88% 18%, transparent 0 34px, #E3DDCF 34px 36px); }
+  .inhoud { position: absolute; inset: 0 0 26px 0; display: grid; grid-template-columns: 1fr 380px; align-items: center; padding: 0 70px; gap: 40px; }
+  .merk { font-family: Oswald; font-weight: 600; font-size: 30px; letter-spacing: .06em; text-transform: uppercase; }
+  .merk b { color: #2F8F3E; font-weight: 600; }
+  h1 { font-family: Oswald; font-weight: 700; text-transform: uppercase; font-size: 96px; line-height: .92; margin: 18px 0 22px; }
+  h1 span { color: #2F8F3E; }
+  p { font-size: 27px; font-weight: 500; margin: 0 0 26px; color: #3A3F3B; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips span { font-size: 19px; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 2px solid #D9D3C5; background: #FBF9F4; }
+  .chips span:first-child { background: #FF6B2C; border-color: #FF6B2C; }
+  .logo { width: 380px; height: 380px; }
+</style></head>
+<body>
+  <div class="lijnen"></div>
+  <div class="inhoud">
+    <div>
+      <div class="merk">Gravel <b>Gorilla</b></div>
+      <h1>Laat de gorilla<br><span>je helpen.</span></h1>
+      <p>Gratis tools voor gravelrijders</p>
+      <div class="chips"><span>Gravelbike kiezen</span><span>Bandenspanning</span><span>Wielen</span><span>Ultra-events</span><span>Profielsticker</span><span>Kledingadvies</span></div>
+    </div>
+    <img class="logo" src="file:///C:/Users/Geert/Projecten/Gravelgorilla/assets/img/logo-icon.svg" alt="">
+  </div>
+  <div class="rand"></div>
+</body></html>

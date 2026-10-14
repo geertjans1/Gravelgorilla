@@ -5,6 +5,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Eén officieel adres: www.gravelgorilla.nl gaat naar gravelgorilla.nl
+RewriteCond %{HTTP_HOST} ^www\.gravelgorilla\.nl$ [NC]
+RewriteRule ^(.*)$ https://gravelgorilla.nl/$1 [R=301,L]
+
 # Hulpbestanden uit GitHub (scripts, werkmappen) zijn niet voor bezoekers
 RewriteRule (^|/)(\.claude|\.git|inhoud|_bron)(/|$) - [F,L]
 RewriteRule \.(ps1|md|json|gitignore)$ - [F,L]

@@ -1,5 +1,5 @@
 ﻿# Bouwt alle vervolgpagina's van de site uit de map inhoud/:
-#   /tools/<naam>/ (4 tools), /over-ons/, /contact/,
+#   /tools/<naam>/ (alle tools), /over-ons/, /contact/, de wegwijzer en het schema op de homepage, llms.txt,
 #   404.html, sitemap.xml, robots.txt, .htaccess. (De blogs zijn in oktober 2026 verwijderd.)
 # Opnieuw draaien kan altijd: alle pagina's worden dan opnieuw gemaakt.
 param(
@@ -20,9 +20,15 @@ function Schrijf([string]$pad, [string]$inhoud) {
 }
 
 # ---------- Gedeelde stukken: kop, bovenbalk en voet ----------
-function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website") {
+# Gestructureerde informatie (schema.org) voor Google en AI-zoekmachines
+function JsonLd($obj) { '  <script type="application/ld+json">' + (ConvertTo-Json $obj -Depth 12 -Compress) + '</script>' }
+$organisatie = [ordered]@{ '@type' = 'Organization'; '@id' = "$site/#organisatie"; name = 'Gravel Gorilla'; url = "$site/"
+  logo = "$site/assets/img/icon-192.png"; email = 'info@gravelgorilla.nl'
+  description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies.' }
+
+function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "") {
   $extraCss = ($css | ForEach-Object { "  <link rel=""stylesheet"" href=""/assets/css/$_"">" }) -join "`n"
-  $ogBeeld = if ($beeld) { "$site$beeld" } else { "$site/assets/img/logo-icon.svg" }
+  $ogBeeld = if ($beeld) { "$site$beeld" } else { "$site/assets/img/deelplaatje.png" }
 @"
 <!doctype html>
 <html lang="nl">
@@ -39,6 +45,9 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <meta property="og:description" content="$(Html $beschrijving)">
   <meta property="og:url" content="$site$pad">
   <meta property="og:image" content="$ogBeeld">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta property="og:locale" content="nl_NL">
   <meta property="og:site_name" content="Gravel Gorilla">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -59,6 +68,7 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/pagina.css">
 $extraCss
+$schema
 </head>
 <body>
 
@@ -106,26 +116,70 @@ $extraJs
 }
 
 # ---------- De tools ----------
+# Dit is de enige lijst met tools. Hieruit worden gemaakt: de tool-pagina's, de wegwijzer op de homepage,
+# "Andere tools", de sitemap, llms.txt en de gestructureerde informatie.
+#   seoTitel  = titel in Google (met de woorden waar mensen op zoeken, liefst max. ~60 tekens)
+#   naamKort / kort / filter / plaatje / label = het bordje in de wegwijzer (filter: kiezen, berekenen of plannen)
 $tools = @(
   [ordered]@{ slug = 'gravelbike-kiezer'; km = '01'; kop = 'Gravelbike <span class="groen">Kiezer</span>'; titel = 'Gravelbike Kiezer'
-    sub = 'Vind de gravelbike die bij je past.'; beschrijving = 'Vind in vijf korte vragen de gravelbike die bij je past. Een eerlijke Match Score met de redenen erbij, uit 147 modellen. Gratis en onafhankelijk.'
+    seoTitel = 'Welke gravelbike past bij mij? Gratis kiezer | Gravel Gorilla'
+    sub = 'Vind de gravelbike die bij je past.'; beschrijving = 'Welke gravelbike past bij jou? Vijf korte vragen en je ziet een eerlijke Match Score met de redenen erbij, uit 147 modellen van 13 merken. Gratis.'
+    naamKort = 'Gravelbike Kiezer'; kort = 'Een paar vragen over hoe en waar je rijdt, en je ziet welke van 147 gravelbikes bij je passen.'
+    filter = 'kiezen'; plaatje = 'quiz'; label = 'Meest gebruikt'
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'bandenspanning-calculator'; km = '02'; kop = 'Banden&shy;spanning <span class="groen">Calculator</span>'; titel = 'Bandenspanning Calculator'
+    seoTitel = 'Bandenspanning gravelbike berekenen | Gravel Gorilla'
     sub = 'De juiste spanning voor jouw gewicht, bandbreedte en ondergrond. Voor en achter apart, in bar en psi.'; beschrijving = 'Bereken de juiste bandenspanning voor je gravelbike: op basis van je gewicht, bandbreedte, wielmaat en ondergrond. Voor- en achterband apart, in bar en psi.'
+    naamKort = 'Bandenspanning'; kort = 'De juiste spanning voor jouw gewicht, bandbreedte en ondergrond. Voor en achter apart.'
+    filter = 'berekenen'; plaatje = 'meter'
     soort = 'blok'; uitlegKop = 'Waarom een paar tienden bar uitmaken' }
   [ordered]@{ slug = 'gravelwielen-kiezer'; km = '03'; kop = 'Gravelwielen <span class="groen">Kiezer</span>'; titel = 'Gravelwielen Kiezer'
-    sub = 'Licht, stevig of juist snel? Vind de wielset die past bij je fiets en rijstijl.'; beschrijving = 'Vind de gravelwielset die bij je fiets, budget en rijstijl past. Carbon of aluminium, 700c of 650b: eerlijk advies uit ruim 100 wielsets.'
+    seoTitel = 'Gravelwielen kiezen: welke wielset past? | Gravel Gorilla'
+    sub = 'Licht, stevig of juist snel? Vind de wielset die past bij je fiets en rijstijl.'; beschrijving = 'Welke gravelwielen passen bij jou? Vind de wielset voor je fiets, budget en rijstijl. Carbon of aluminium, 700c of 650b: eerlijk advies uit ruim 100 wielsets.'
+    naamKort = 'Wielen Kiezer'; kort = 'Licht, stevig of juist snel? Vind de wielset die bij je fiets en rijstijl past.'
+    filter = 'kiezen'; plaatje = 'wiel'
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
-    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Vind het ultra gravel-event dat bij je past. Beantwoord een paar vragen over ervaring, conditie, terrein en tijd en krijg een shortlist met events.'
+    seoTitel = 'Ultra gravel events 2026–2027 kiezen | Gravel Gorilla'
+    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 80 ultra gravel- en bikepacking-events in 2026 en 2027. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
+    naamKort = 'Ultra-eventkiezer'; kort = 'Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist.'
+    filter = 'plannen'; plaatje = 'vlag'
     soort = 'kiezer'; scope = 'ue-scope'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'profielsticker'; km = '05'; kop = 'Profiel<span class="groen">sticker</span>'; titel = 'Profielsticker'
-    sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor op je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
+    seoTitel = 'Profielsticker maken van je GPX (gratis) | Gravel Gorilla'
+    sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
+    naamKort = 'Profielsticker'; kort = 'Van GPX naar sticker voor je bovenbuis: klimmen, posten, wattage en wanneer je moet eten.'
+    filter = 'plannen'; plaatje = 'profiel'
     soort = 'venster'; uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
   [ordered]@{ slug = 'kledingadvies'; km = '06'; kop = 'Kleding<span class="groen">advies</span>'; titel = 'Kledingadvies'
+    seoTitel = 'Wat trek ik aan op de fiets? Kledingadvies | Gravel Gorilla'
     sub = 'Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.'; beschrijving = 'Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.'
+    naamKort = 'Kledingadvies'; kort = 'Te warm of te koud? Zie per lichaamsdeel wat je aantrekt, met de weersverwachting voor jouw rit.'
+    filter = 'plannen'; plaatje = 'jas'; label = 'Nieuw'
     soort = 'kiezer'; scope = 'kl-scope'; uitlegKop = 'Nooit meer te warm of te koud' }
 )
+
+# Kleine plaatjes die oppoppen als je over een bordje in de wegwijzer beweegt
+$spaken = (0..9 | ForEach-Object { '<line x1="50" y1="50" x2="50" y2="18" stroke="#9AA098" stroke-width="1.4" transform="rotate(' + ($_ * 36) + ' 50 50)"/>' }) -join ''
+$plaatjes = @{
+  quiz    = '<svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="20" width="72" height="8" rx="4" fill="#E3DDCF"/><rect x="14" y="20" width="46" height="8" rx="4" fill="#FF6B2C"/><rect x="14" y="40" width="72" height="14" rx="5" fill="#2F8F3E"/><rect x="14" y="60" width="72" height="14" rx="5" fill="none" stroke="#15181A" stroke-width="2"/><rect x="14" y="80" width="50" height="6" rx="3" fill="#C9C2B2"/></svg>'
+  meter   = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M15 70 A35 35 0 0 1 85 70" fill="none" stroke="#E3DDCF" stroke-width="9" stroke-linecap="round"/><path d="M15 70 A35 35 0 0 1 72 42" fill="none" stroke="#2F8F3E" stroke-width="9" stroke-linecap="round"/><line x1="50" y1="70" x2="68" y2="44" stroke="#15181A" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="70" r="6" fill="#FF6B2C"/></svg>'
+  wiel    = '<svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="#15181A" stroke-width="8" stroke-dasharray="4 4"/><circle cx="50" cy="50" r="33" fill="none" stroke="#C9C2B2" stroke-width="2"/>' + $spaken + '<circle cx="50" cy="50" r="6" fill="#2F8F3E"/></svg>'
+  jas     = '<svg viewBox="0 0 100 100" width="96" height="96"><path d="M34 18 18 28l7 16 7-4v42h36V40l7 4 7-16-16-10a16 16 0 0 1-32 0z" fill="#2F8F3E"/><path d="M50 30v52" stroke="#14361E" stroke-width="3"/><circle cx="50" cy="44" r="2.5" fill="#F4F1EA"/><circle cx="50" cy="56" r="2.5" fill="#F4F1EA"/><path d="M70 14c4 4 4 9 0 13M78 10c6 6 6 15 0 21" fill="none" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/></svg>'
+  profiel = '<svg viewBox="0 0 100 100" width="100" height="100"><rect x="8" y="30" width="84" height="40" rx="6" fill="#15181A"/><path d="M14 62 L28 50 L38 55 L52 38 L64 47 L76 36 L86 62 Z" fill="#2F8F3E"/><rect x="14" y="62" width="30" height="4" fill="#9AA098"/><rect x="44" y="62" width="42" height="4" fill="#F4F1EA"/><circle cx="52" cy="38" r="3.5" fill="#FF6B2C"/></svg>'
+  vlag    = '<svg viewBox="0 0 100 100" width="96" height="96"><path d="M28 86V16" stroke="#15181A" stroke-width="4" stroke-linecap="round"/><path d="M30 18h46l-9 14 9 14H30z" fill="#2F8F3E"/><g fill="#F4F1EA"><rect x="38" y="22" width="7" height="7"/><rect x="52" y="22" width="7" height="7"/><rect x="45" y="29" width="7" height="7"/><rect x="59" y="29" width="7" height="7"/><rect x="38" y="36" width="7" height="7"/><rect x="52" y="36" width="7" height="7"/></g></svg>'
+}
+
+# Veelgestelde vragen van een tool lezen uit inhoud/tools/<naam>-faq.html (paren van <h3>vraag</h3><p>antwoord</p>)
+function LeesFaq([string]$slug) {
+  $bestand = "$root\inhoud\tools\$slug-faq.html"
+  if (-not (Test-Path $bestand)) { return @() }
+  $tekst = [IO.File]::ReadAllText($bestand, [Text.Encoding]::UTF8)
+  @([regex]::Matches($tekst, '(?s)<h3>(.*?)</h3>\s*<p>(.*?)</p>') | ForEach-Object {
+    [ordered]@{ vraag = $_.Groups[1].Value.Trim(); antwoord = $_.Groups[2].Value.Trim() }
+  })
+}
+function KaleTekst([string]$s) { [Net.WebUtility]::HtmlDecode(([regex]::Replace($s, '<[^>]+>', ''))).Trim() }
 
 foreach ($t in $tools) {
   $pad = "/tools/$($t.slug)/"
@@ -169,7 +223,37 @@ foreach ($t in $tools) {
     }
   }
   $uitleg = Lees "inhoud\tools\$($t.slug)-uitleg.html"
-  $pagina = (Kop "$($t.titel) — Gravel Gorilla" $t.beschrijving $pad $css) + @"
+
+  # veelgestelde vragen
+  $faq = @(LeesFaq $t.slug)
+  $faqHtml = ''
+  if ($faq.Count) {
+    $faqHtml = "    <section class=""lees tool-faq"" aria-labelledby=""faq-kop"">`n      <h2 class=""tool-uitleg-kop"" id=""faq-kop"">Veelgestelde vragen</h2>`n" +
+      (($faq | ForEach-Object { "      <h3>$($_.vraag)</h3>`n      <p>$($_.antwoord)</p>" }) -join "`n") + "`n    </section>"
+  }
+
+  # andere tools (interne links)
+  $anderen = ($tools | Where-Object { $_.slug -ne $t.slug } | ForEach-Object {
+    "        <a href=""/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
+  }) -join "`n"
+
+  # gestructureerde informatie: webtool + broodkruimel + vragen
+  $schemaObj = [ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+    [ordered]@{ '@type' = 'WebApplication'; '@id' = "$site$pad#tool"; name = $t.titel; url = "$site$pad"; description = $t.beschrijving
+      applicationCategory = 'SportsApplication'; operatingSystem = 'Web'; inLanguage = 'nl'; isAccessibleForFree = $true
+      offers = [ordered]@{ '@type' = 'Offer'; price = '0'; priceCurrency = 'EUR' }; publisher = @{ '@id' = "$site/#organisatie" } }
+    [ordered]@{ '@type' = 'BreadcrumbList'; itemListElement = @(
+      [ordered]@{ '@type' = 'ListItem'; position = 1; name = 'Gravel Gorilla'; item = "$site/" }
+      [ordered]@{ '@type' = 'ListItem'; position = 2; name = 'Tools'; item = "$site/#wegwijzer" }
+      [ordered]@{ '@type' = 'ListItem'; position = 3; name = $t.titel; item = "$site$pad" }) }
+    $organisatie
+  ) }
+  if ($faq.Count) {
+    $schemaObj['@graph'] += [ordered]@{ '@type' = 'FAQPage'; '@id' = "$site$pad#faq"; mainEntity = @($faq | ForEach-Object {
+      [ordered]@{ '@type' = 'Question'; name = (KaleTekst $_.vraag); acceptedAnswer = [ordered]@{ '@type' = 'Answer'; text = (KaleTekst $_.antwoord) } } }) }
+  }
+
+  $pagina = (Kop $t.seoTitel $t.beschrijving $pad $css "" "website" (JsonLd $schemaObj)) + @"
   <main>
     <section class="pagina-kop">
       <a href="/#wegwijzer" class="terug">← Terug naar alle tools</a>
@@ -183,6 +267,13 @@ $tool
       <h2 class="tool-uitleg-kop">$(Html $t.uitlegKop)</h2>
 $uitleg
     </article>
+$faqHtml
+    <section class="andere-tools" aria-labelledby="andere-kop">
+      <h2 class="kop-l" id="andere-kop">Andere <span class="groen">tools</span></h2>
+      <div class="andere-raster">
+$anderen
+      </div>
+    </section>
   </main>
 "@ + (Voet (@($js) + 'teller.js'))
   Schrijf "tools\$($t.slug)\index.html" $pagina
@@ -190,7 +281,10 @@ $uitleg
 }
 
 # ---------- Over ons ----------
-$pagina = (Kop "Over ons — Gravel Gorilla" "Gravel Gorilla is gebouwd door een gravelrijder. Gratis tools en eerlijke uitleg, zonder dat iemand je iets probeert te verkopen." "/over-ons/") + @"
+$overSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+  [ordered]@{ '@type' = 'AboutPage'; url = "$site/over-ons/"; name = 'Over Gravel Gorilla'; inLanguage = 'nl'; about = @{ '@id' = "$site/#organisatie" } }
+  $organisatie) })
+$pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Gorilla is gebouwd door een gravelrijder: gratis tools voor gravelbikes, banden, wielen, events en kleding. Eerlijk, onafhankelijk en zonder account." "/over-ons/" @() "" "website" $overSchema) + @"
   <main>
     <section class="pagina-kop">
       <a href="/" class="terug">← Home</a>
@@ -233,7 +327,10 @@ Schrijf "over-ons\index.html" $pagina
 "pagina: /over-ons/"
 
 # ---------- Contact ----------
-$pagina = (Kop "Contact — Gravel Gorilla" "Een vraag, een tip of feedback op een tool? Stuur Gravel Gorilla een bericht." "/contact/") + @"
+$contactSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+  [ordered]@{ '@type' = 'ContactPage'; url = "$site/contact/"; name = 'Contact met Gravel Gorilla'; inLanguage = 'nl'; about = @{ '@id' = "$site/#organisatie" } }
+  $organisatie) })
+$pagina = (Kop "Contact | Gravel Gorilla" "Een vraag, een tip, een prijs die niet klopt of een idee voor een nieuwe gravel-tool? Mail Gravel Gorilla via info@gravelgorilla.nl. We lezen alles." "/contact/" @() "" "website" $contactSchema) + @"
   <main>
     <section class="pagina-kop">
       <a href="/" class="terug">← Home</a>
@@ -269,6 +366,61 @@ $pagina = (Kop "Pagina niet gevonden — Gravel Gorilla" "Deze pagina bestaat ni
 Schrijf "404.html" $pagina
 "pagina: 404.html"
 
+# ---------- Homepage: wegwijzer, eerste tip en gestructureerde informatie als gewone HTML ----------
+# (zoekmachines en AI-bots zien zo alle tools, ook als ze geen JavaScript uitvoeren)
+$voorpagina = Lees "index.html"
+$i = 0
+$bordjesHtml = ($tools | ForEach-Object {
+  $label = if ($_.label) { "<span class=""bordje__label"">$(Html $_.label)</span>" } else { '' }
+  $zoek = (Html ("$($_.naamKort) $($_.titel) $($_.kort) $($_.filter)".ToLower()))
+  $li = @"
+        <li class="bordje" data-soort="$($_.filter)" data-zoek="$zoek" style="--v:$($i * 80)ms">
+          <a href="/tools/$($_.slug)/">
+            <span class="bordje__km" aria-label="Kilometer $($_.km)"><span class="bordje__bord"><small>KM</small>$($_.km)</span></span>
+            <span class="bordje__naam">$(Html $_.naamKort)$label</span>
+            <span class="bordje__uitleg">$(Html $_.kort)<span class="bordje__teller" data-teller-tool="$($_.slug)" hidden></span></span>
+            <span class="bordje__soort">$($_.filter)</span>
+            <span class="bordje__pijl" aria-hidden="true">→</span>
+            <span class="bordje__kijk" aria-hidden="true">$($plaatjes[$_.plaatje])</span>
+          </a>
+        </li>
+"@
+  $i++
+  $li
+}) -join "`n"
+$voorpagina = [regex]::Replace($voorpagina, '(?s)(<ol class="bordjes" id="bordjes">).*?(</ol>)', { param($m) $m.Groups[1].Value + "`n" + $bordjesHtml + "`n      " + $m.Groups[2].Value })
+
+# eerste gorilla-tip vast in de pagina (de rest wisselt via main.js)
+$main = Lees "assets\js\main.js"
+$eersteTip = [regex]::Match($main, '\{ tekst: "([^"]+)", link: "([^"]+)" \}')
+if ($eersteTip.Success) {
+  $voorpagina = [regex]::Replace($voorpagina, '(?s)(<blockquote class="tips__tekst" id="tipTekst"[^>]*>).*?(</blockquote>)', { param($m) $m.Groups[1].Value + '“' + $eersteTip.Groups[1].Value + '”' + $m.Groups[2].Value })
+  $voorpagina = [regex]::Replace($voorpagina, '<a href="[^"]*" class="tips__link" id="tipLink">', '<a href="' + $eersteTip.Groups[2].Value + '" class="tips__link" id="tipLink">')
+}
+
+# gestructureerde informatie: website, organisatie en de lijst met tools
+$homeSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+  [ordered]@{ '@type' = 'WebSite'; '@id' = "$site/#website"; name = 'Gravel Gorilla'; url = "$site/"; inLanguage = 'nl'; publisher = @{ '@id' = "$site/#organisatie" } }
+  $organisatie
+  [ordered]@{ '@type' = 'ItemList'; name = 'Gratis tools voor gravelrijders'; itemListElement = @($tools | ForEach-Object -Begin { $n = 0 } -Process {
+    $n++; [ordered]@{ '@type' = 'ListItem'; position = $n; name = $_.titel; url = "$site/tools/$($_.slug)/"; description = $_.kort } }) }
+) })
+if ($voorpagina -match '<!--SCHEMA-->') {
+  $voorpagina = [regex]::Replace($voorpagina, '(?s)<!--SCHEMA-->.*?<!--/SCHEMA-->', { param($m) "<!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->" })
+} else {
+  $voorpagina = $voorpagina.Replace('</head>', "  <!--SCHEMA-->`n$homeSchema`n  <!--/SCHEMA-->`n</head>")
+}
+Schrijf "index.html" $voorpagina
+"homepage: wegwijzer ($($tools.Count) tools), eerste tip en schema als HTML"
+
+# ---------- llms.txt: korte samenvatting van de site voor AI-zoekmachines ----------
+$llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
+  "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
+  (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
+  "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n"
+Schrijf "llms.txt" $llms
+"llms.txt: klaar"
+
 # ---------- Sitemap, robots.txt ----------
 $vandaag = Get-Date -Format 'yyyy-MM-dd'
 $adressen = @(@('/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag))
@@ -288,6 +440,10 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# Eén officieel adres: www.gravelgorilla.nl gaat naar gravelgorilla.nl
+RewriteCond %{HTTP_HOST} ^www\.gravelgorilla\.nl$ [NC]
+RewriteRule ^(.*)$ https://gravelgorilla.nl/$1 [R=301,L]
 
 # Hulpbestanden uit GitHub (scripts, werkmappen) zijn niet voor bezoekers
 RewriteRule (^|/)(\.claude|\.git|inhoud|_bron)(/|$) - [F,L]

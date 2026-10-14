@@ -1,0 +1,19 @@
+# Gravel Gorilla
+
+> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.
+
+Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.
+
+## Tools
+
+- [Gravelbike Kiezer](https://gravelgorilla.nl/tools/gravelbike-kiezer/): Welke gravelbike past bij jou? Vijf korte vragen en je ziet een eerlijke Match Score met de redenen erbij, uit 147 modellen van 13 merken. Gratis.
+- [Bandenspanning Calculator](https://gravelgorilla.nl/tools/bandenspanning-calculator/): Bereken de juiste bandenspanning voor je gravelbike: op basis van je gewicht, bandbreedte, wielmaat en ondergrond. Voor- en achterband apart, in bar en psi.
+- [Gravelwielen Kiezer](https://gravelgorilla.nl/tools/gravelwielen-kiezer/): Welke gravelwielen passen bij jou? Vind de wielset voor je fiets, budget en rijstijl. Carbon of aluminium, 700c of 650b: eerlijk advies uit ruim 100 wielsets.
+- [Ultra-eventkiezer](https://gravelgorilla.nl/tools/ultra-eventkiezer/): Kalender met 80 ultra gravel- en bikepacking-events in 2026 en 2027. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.
+- [Profielsticker](https://gravelgorilla.nl/tools/profielsticker/): Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.
+- [Kledingadvies](https://gravelgorilla.nl/tools/kledingadvies/): Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.
+
+## Over
+
+- [Over Gravel Gorilla](https://gravelgorilla.nl/over-ons/): wie erachter zit en hoe de tools worden gemaakt en bijgehouden.
+- [Contact](https://gravelgorilla.nl/contact/): info@gravelgorilla.nl
