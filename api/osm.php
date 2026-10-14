@@ -21,7 +21,7 @@ const SERVERS = [
 const NAAM = 'GravelGorilla/1.0 (+https://gravelgorilla.nl; info@gravelgorilla.nl) profielsticker';
 const BEWAAR_DAGEN = 30;
 const MAX_TIJD = 75;          // seconden voor alle pogingen samen
-const PER_SERVER = 28;        // seconden per server
+const PER_SERVER = 15;        // seconden per server
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -68,6 +68,7 @@ foreach (SERVERS as $server) {
   ]);
   $antwoord = curl_exec($ch);
   $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  $curlFout = curl_error($ch);
   curl_close($ch);
 
   if ($status === 200 && $antwoord !== false) {
@@ -81,7 +82,7 @@ foreach (SERVERS as $server) {
     }
     $laatste = 'onvolledig antwoord';
   } else {
-    $laatste = 'server ' . ($status ?: 'onbereikbaar');
+    $laatste = parse_url($server, PHP_URL_HOST) . ': ' . ($status ?: 'onbereikbaar') . ($curlFout ? ' (' . $curlFout . ')' : '');
   }
 }
 
