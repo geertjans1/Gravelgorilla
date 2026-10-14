@@ -12,16 +12,16 @@
  * Alleen vragen in de vorm die de profielsticker gebruikt worden doorgegeven.
  */
 
-const SERVERS = [
-  'https://overpass-api.de/api/interpreter',
-  'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
-  'https://overpass.private.coffee/api/interpreter',
-  'https://overpass.kumi.systems/api/interpreter',
+// Volgorde van pogingen: [server, seconden, pauze vooraf in seconden]
+const POGINGEN = [
+  ['https://overpass-api.de/api/interpreter', 35, 0],
+  ['https://maps.mail.ru/osm/tools/overpass/api/interpreter', 20, 0],
+  ['https://overpass-api.de/api/interpreter', 30, 3],   // "te druk" is vaak na een paar seconden voorbij
+  ['https://overpass.private.coffee/api/interpreter', 15, 0],
 ];
 const NAAM = 'GravelGorilla/1.0 (+https://gravelgorilla.nl; info@gravelgorilla.nl) profielsticker';
 const BEWAAR_DAGEN = 30;
-const MAX_TIJD = 75;          // seconden voor alle pogingen samen
-const PER_SERVER = 15;        // seconden per server
+const MAX_TIJD = 95;          // seconden voor alle pogingen samen
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -52,8 +52,9 @@ if (is_file($bestand) && filemtime($bestand) > time() - BEWAAR_DAGEN * 86400) {
 }
 
 $start = time();
-$laatste = 'geen server bereikbaar';
-foreach (SERVERS as $server) {
+$fouten = [];
+foreach (POGINGEN as [$server, $seconden, $pauze]) {
+  if ($pauze) sleep($pauze);
   $over = MAX_TIJD - (time() - $start);
   if ($over < 5) break;
   $ch = curl_init($server);
@@ -64,12 +65,13 @@ foreach (SERVERS as $server) {
     CURLOPT_USERAGENT => NAAM,
     CURLOPT_HTTPHEADER => ['Accept: application/json'],
     CURLOPT_CONNECTTIMEOUT => 8,
-    CURLOPT_TIMEOUT => min(PER_SERVER, $over),
+    CURLOPT_TIMEOUT => min($seconden, $over),
   ]);
   $antwoord = curl_exec($ch);
   $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   $curlFout = curl_error($ch);
   curl_close($ch);
+  $naam = parse_url($server, PHP_URL_HOST);
 
   if ($status === 200 && $antwoord !== false) {
     $data = json_decode($antwoord, true);
@@ -77,13 +79,14 @@ foreach (SERVERS as $server) {
     if (is_array($data) && isset($data['elements']) && empty($data['remark'])) {
       @file_put_contents($bestand, $antwoord, LOCK_EX);
       header('X-GG-Cache: nieuw');
+      header('X-GG-Server: ' . $naam);
       echo $antwoord;
       exit;
     }
-    $laatste = 'onvolledig antwoord';
+    $fouten[] = $naam . ': onvolledig antwoord';
   } else {
-    $laatste = parse_url($server, PHP_URL_HOST) . ': ' . ($status ?: 'onbereikbaar') . ($curlFout ? ' (' . $curlFout . ')' : '');
+    $fouten[] = $naam . ': ' . ($status ?: 'geen antwoord') . ($curlFout ? ' (' . $curlFout . ')' : '');
   }
 }
 
-stop(503, 'OpenStreetMap is nu te druk (' . $laatste . ')');
+stop(503, 'OpenStreetMap is nu te druk (' . implode(' | ', $fouten) . ')');

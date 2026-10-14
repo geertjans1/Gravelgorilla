@@ -17,7 +17,7 @@ $aanpassingen = [ordered]@{
   "const OVERPASS_URLS = [`n  'https://overpass-api.de/api/interpreter'," =
     "const OVERPASS_URLS = [`n  '/api/osm.php',`n  'https://overpass-api.de/api/interpreter',`n  'https://maps.mail.ru/osm/tools/overpass/api/interpreter',"
   "const tm = setTimeout(() => ctl.abort(), 45000);" =
-    "const tm = setTimeout(() => ctl.abort(), idx === 0 ? 90000 : 20000); // eigen tussenstation probeert zelf meerdere servers"
+    "const tm = setTimeout(() => ctl.abort(), idx === 0 ? 110000 : 20000); // eigen tussenstation probeert zelf meerdere servers"
   "if (/bezet|429|50\d/.test(m)) return 'de kaartservers zijn nu erg druk';" =
     "if (/bezet|429|50\d|abort|afgebroken|time/i.test(m)) return 'de kaartservers van OpenStreetMap zijn nu erg druk';"
   "De ondergrond is niet veranderd. Probeer het zo nog eens, of teken hem zelf.';" =

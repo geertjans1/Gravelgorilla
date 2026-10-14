@@ -1249,7 +1249,7 @@ async function overpassFetch(query, signal) {
     if (attempt === n) await sleep(2500); // alle servers één keer geprobeerd: even wachten, dan nog een ronde
     const idx = (OSM_SERVER + attempt) % n;
     const ctl = new AbortController();
-    const tm = setTimeout(() => ctl.abort(), idx === 0 ? 90000 : 20000); // eigen tussenstation probeert zelf meerdere servers
+    const tm = setTimeout(() => ctl.abort(), idx === 0 ? 110000 : 20000); // eigen tussenstation probeert zelf meerdere servers
     const onAbort = () => ctl.abort();
     if (signal) signal.addEventListener('abort', onAbort, { once: true });
     try {
