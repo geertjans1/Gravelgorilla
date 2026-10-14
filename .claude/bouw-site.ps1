@@ -122,6 +122,9 @@ $tools = @(
   [ordered]@{ slug = 'profielsticker'; km = '05'; kop = 'Profiel<span class="groen">sticker</span>'; titel = 'Profielsticker'
     sub = 'Van GPX naar sticker voor je bovenbuis of stuur. Met de klimmen, je posten, je wattage en precies wanneer je moet eten.'; beschrijving = 'Maak gratis een profielsticker van je GPX voor op je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.'
     soort = 'venster'; uitlegKop = 'Nooit meer gokken wat er na de bocht komt' }
+  [ordered]@{ slug = 'kledingadvies'; km = '06'; kop = 'Kleding<span class="groen">advies</span>'; titel = 'Kledingadvies'
+    sub = 'Te warm of te koud? Vul het weer en je rit in en zie per lichaamsdeel wat je aantrekt, en wat er in je achterzak moet.'; beschrijving = 'Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.'
+    soort = 'kiezer'; scope = 'kl-scope'; uitlegKop = 'Nooit meer te warm of te koud' }
 )
 
 foreach ($t in $tools) {
@@ -193,10 +196,10 @@ $pagina = (Kop "Over ons — Gravel Gorilla" "Gravel Gorilla is gebouwd door een
       <a href="/" class="terug">← Home</a>
       <p class="pagina-km">Gebouwd door een gravelrijder</p>
       <h1 class="kop-l">Over <span class="groen">ons</span></h1>
-      <p class="pagina-sub">Van frustratie naar vijf tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
+      <p class="pagina-sub">Van frustratie naar zes tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
     </section>
     <section class="cijfers" aria-label="Het verhaal in cijfers">
-      <div class="cijfer"><strong>5</strong><span>gratis interactieve tools</span></div>
+      <div class="cijfer"><strong>6</strong><span>gratis interactieve tools</span></div>
       <div class="cijfer"><strong>147</strong><span>gravelbikes in de kiezer</span></div>
       <div class="cijfer"><strong>21</strong><span>e-gravelbikes vergeleken</span></div>
       <div class="cijfer"><strong>13</strong><span>merken naast elkaar</span></div>

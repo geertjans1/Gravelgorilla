@@ -1,0 +1,81 @@
+/* =========================================================
+   Gravel Gorilla — Kledingadvies (alles binnen .kl-scope)
+   ========================================================= */
+.kl-scope { --kl-koud: #3B6FB6; --kl-fris: #2F8F3E; --kl-warm: #FF6B2C; }
+.kl-wrap { max-width: var(--breed); margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 40px; }
+.kl-raster { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: start; }
+
+/* ---------- Kaarten met invoer ---------- */
+.kl-invoer { display: grid; gap: 18px; }
+.kl-kaart { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 22px; padding: clamp(20px, 3vw, 30px); display: grid; gap: 20px; }
+.kl-kop { display: flex; align-items: center; gap: 12px; font-size: clamp(1.5rem, 2.6vw, 1.9rem); }
+.kl-stap { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--groen); color: #fff; font-size: 1.1rem; flex-shrink: 0; box-shadow: inset 0 0 0 2px var(--groen), inset 0 0 0 4px #F4F1EA; }
+.kl-veld { display: grid; gap: 9px; }
+.kl-label { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-weight: 600; font-size: .95rem; }
+.kl-label output { font-family: var(--kopfont); font-size: 1.35rem; font-weight: 600; color: var(--groen-tekst); }
+.kl-twee { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.kl-scope input[type="text"], .kl-scope input[type="date"], .kl-scope select {
+  font: inherit; color: var(--tekst); background: var(--achtergrond); border: 1.5px solid var(--lijn); border-radius: 10px; padding: 11px 13px; width: 100%;
+}
+.kl-scope input[type="text"]:focus, .kl-scope input[type="date"]:focus, .kl-scope select:focus { outline: none; border-color: var(--groen); }
+:root[data-thema="donker"] .kl-scope input[type="date"] { color-scheme: dark; }
+.kl-scope input[type="range"] { width: 100%; accent-color: var(--groen); height: 26px; cursor: pointer; }
+.kl-schaal { display: flex; justify-content: space-between; font-size: .78rem; color: var(--tekst-zacht); margin-top: -4px; }
+
+/* keuzeknopjes */
+.kl-chips, .kl-modus { display: flex; flex-wrap: wrap; gap: 8px; }
+.kl-chips button, .kl-modusknop {
+  font: inherit; font-size: .93rem; font-weight: 500; padding: 9px 15px; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--tekst); border: 1.5px solid var(--lijn); transition: background .2s, border-color .2s, color .2s;
+}
+.kl-chips button:hover, .kl-modusknop:hover { border-color: var(--tekst); }
+.kl-chips button.is-aan { background: var(--tekst); border-color: var(--tekst); color: var(--achtergrond); }
+.kl-modus { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--achtergrond-2); padding: 4px; border-radius: 14px; }
+.kl-modusknop { border-color: transparent; border-radius: 10px; text-align: center; }
+.kl-modusknop.is-aan { background: var(--vlak); border-color: var(--lijn); font-weight: 600; }
+.kl-ophalen { display: grid; gap: 14px; padding: 18px; border-radius: 16px; background: var(--achtergrond); border: 1px dashed var(--lijn); }
+.kl-ophalen[hidden] { display: none; }
+.kl-ophalen .knop { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.kl-ophalen .knop:disabled { opacity: .6; cursor: wait; }
+.kl-status { font-size: .93rem; color: var(--groen-tekst); font-weight: 500; }
+.kl-status:empty { display: none; }
+.kl-klein { font-size: .82rem; color: var(--tekst-zacht); }
+
+/* ---------- Advies ---------- */
+.kl-advies {
+  position: sticky; top: 86px; display: grid; gap: 18px;
+  background: var(--diepgroen); color: #F4F1EA; border-radius: 24px; padding: clamp(22px, 3vw, 32px);
+}
+.kl-kop--licht { color: #F4F1EA; }
+.kl-gevoel { padding-bottom: 18px; border-bottom: 1px solid rgba(244,241,234,.18); }
+.kl-gevoel__klein { font-size: .9rem; color: #9AA098; text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
+.kl-gevoel__groot { font-family: var(--kopfont); font-weight: 700; font-size: clamp(3.4rem, 7vw, 4.8rem); line-height: 1; margin: 4px 0 8px; }
+.kl-gevoel__uitleg { font-size: .9rem; color: rgba(244,241,234,.75); min-height: 1.4em; }
+.kl-thermo { position: relative; height: 10px; border-radius: 999px; margin-top: 16px; background: linear-gradient(90deg, #6FA8E8 0%, #A7D3F5 22%, #7FC28A 45%, #F6C453 70%, #FF6B2C 100%); }
+.kl-thermo i { position: absolute; top: 50%; width: 22px; height: 22px; border-radius: 50%; background: #F4F1EA; border: 4px solid #15181A; transform: translate(-50%, -50%); transition: left .5s var(--zacht); }
+.kl-thermo__schaal { display: flex; justify-content: space-between; margin-top: 8px; font-size: .75rem; color: #9AA098; text-transform: uppercase; letter-spacing: .06em; }
+
+.kl-zones { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.kl-zone { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid rgba(244,241,234,.12); font-size: .97rem; line-height: 1.45; }
+.kl-zone:last-child { border-bottom: 0; }
+.kl-zone b { display: block; font-family: var(--kopfont); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; font-size: .85rem; color: #9AA098; }
+.kl-zone__ico { width: 40px; height: 40px; padding: 8px; border-radius: 10px; background: rgba(244,241,234,.1); fill: none; stroke: #F4F1EA; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.kl-zone__extra { display: block; margin-top: 3px; font-size: .88rem; color: #FFB27A; }
+
+.kl-blok h3 { font-size: 1.15rem; margin-bottom: 8px; color: #F4F1EA; }
+.kl-lijst { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: .95rem; color: rgba(244,241,234,.88); }
+.kl-lijst li::marker { color: var(--actie); }
+.kl-lijst--tips li::marker { content: "→  "; }
+.kl-kopieer { justify-self: start; font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 10px; border: 0; cursor: pointer; background: var(--actie); color: #15181A; transition: background .2s, transform .2s var(--zacht); }
+.kl-kopieer:hover { background: var(--actie-hover); transform: translateY(-2px); }
+.kl-advies .kl-status { color: #A8DDB2; }
+
+/* ---------- Telefoon en tablet ---------- */
+@media (max-width: 900px) {
+  .kl-raster { grid-template-columns: 1fr; }
+  .kl-advies { position: static; }
+}
+@media (max-width: 480px) {
+  .kl-twee { grid-template-columns: 1fr; }
+  .kl-chips button { flex: 1 1 auto; }
+}
