@@ -126,7 +126,7 @@ $tools = @(
     seoTitel = 'Welke gravelbike past bij mij? Gratis kiezer | Gravel Gorilla'
     sub = 'Vind de gravelbike die bij je past.'; beschrijving = 'Welke gravelbike past bij jou? Vijf korte vragen en je ziet een eerlijke Match Score met de redenen erbij, uit 147 modellen van 13 merken. Gratis.'
     naamKort = 'Gravelbike Kiezer'; kort = 'Een paar vragen over hoe en waar je rijdt, en je ziet welke van 147 gravelbikes bij je passen.'
-    filter = 'kiezen'; plaatje = 'quiz'; label = 'Meest gebruikt'
+    filter = 'kiezen'; plaatje = 'quiz'
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'bandenspanning-calculator'; km = '02'; kop = 'Banden&shy;spanning <span class="groen">Calculator</span>'; titel = 'Bandenspanning Calculator'
     seoTitel = 'Bandenspanning gravelbike berekenen | Gravel Gorilla'
