@@ -134,7 +134,7 @@ $tools = @(
     naamKort = 'Bandenspanning'; kort = 'De juiste spanning voor jouw gewicht, bandbreedte en ondergrond. Voor en achter apart.'
     filter = 'berekenen'; plaatje = 'meter'
     soort = 'blok'; uitlegKop = 'Waarom een paar tienden bar uitmaken' }
-  [ordered]@{ slug = 'gravelwielen-kiezer'; km = '03'; kop = 'Gravelwielen <span class="groen">Kiezer</span>'; titel = 'Gravelwielen Kiezer'
+  [ordered]@{ slug = 'gravelwielen-kiezer'; km = '03'; kop = 'Gravel&shy;wielen <span class="groen">Kiezer</span>'; titel = 'Gravelwielen Kiezer'
     seoTitel = 'Gravelwielen kiezen: welke wielset past? | Gravel Gorilla'
     sub = 'Licht, stevig of juist snel? Vind de wielset die past bij je fiets en rijstijl.'; beschrijving = 'Welke gravelwielen passen bij jou? Vind de wielset voor je fiets, budget en rijstijl. Carbon of aluminium, 700c of 650b: eerlijk advies uit ruim 100 wielsets.'
     naamKort = 'Wielen Kiezer'; kort = 'Licht, stevig of juist snel? Vind de wielset die bij je fiets en rijstijl past.'
@@ -158,7 +158,7 @@ $tools = @(
     naamKort = 'Kledingadvies'; kort = 'Te warm of te koud? Zie per lichaamsdeel wat je aantrekt, met de weersverwachting voor jouw rit.'
     filter = 'plannen'; plaatje = 'jas'
     soort = 'kiezer'; scope = 'kl-scope'; uitlegKop = 'Nooit meer te warm of te koud' }
-  [ordered]@{ slug = 'gravelbanden-kiezer'; km = '07'; kop = 'Gravelbanden <span class="groen">Kiezer</span>'; titel = 'Gravelbanden Kiezer'
+  [ordered]@{ slug = 'gravelbanden-kiezer'; km = '07'; kop = 'Gravel&shy;banden <span class="groen">Kiezer</span>'; titel = 'Gravelbanden Kiezer'
     seoTitel = 'Welke gravelband past bij jou? Bandenkiezer | Gravel Gorilla'
     sub = 'Schuif je ondergrond, rijstijl en weer aan en zie welke breedte, welk profiel en welke banden bij je passen.'; beschrijving = 'Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.'
     naamKort = 'Banden Kiezer'; kort = 'Ondergrond, rijstijl en weer instellen, en zien welke breedte, welk profiel en welke banden passen.'
