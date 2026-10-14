@@ -1,7 +1,7 @@
 # Maakt de favicons voor Google, browsers en telefoons uit het logo (PNG, 512x512):
 #   /favicon.ico (16, 32, 48 px), /assets/img/icon-192.png, /assets/img/apple-touch-icon.png (180 px)
 param(
-  [string]$Bron = "C:\Users\Geert\Claude\Projects\Gravelbike kiezer\gravelgorilla-logo-icon.png"
+  [string]$Bron = (Join-Path $PSScriptRoot "logo\gravelgorilla-logo-icon.png")
 )
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing
