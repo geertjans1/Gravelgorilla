@@ -239,16 +239,55 @@
   })();
 
   const meld = t => { $("#klWeerStatus").textContent = t; };
-  async function haalWeer() {
+  const plekNaam = p => p.name + (p.admin1 ? " (" + p.admin1 + (p.country_code && !["NL"].includes(p.country_code) ? ", " + p.country_code : "") + ")" : "");
+  let plekken = [];
+
+  // Plaatsen zoeken: de volgorde van de weerdienst aanhouden, maar plaatsen met precies de gezochte naam eerst.
+  const gelijk = (a, b) => a.trim().toLocaleLowerCase("nl") === b.trim().toLocaleLowerCase("nl");
+  async function zoekPlekken(naam) {
+    const geo = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=10&language=nl&name=" + encodeURIComponent(naam)).then(r => r.json());
+    const uniek = new Map();
+    for (const p of geo.results || []) {
+      const sleutel = p.name + "|" + (p.admin1 || "") + "|" + p.country_code;
+      if (!uniek.has(sleutel)) uniek.set(sleutel, p);
+    }
+    const lijst = Array.from(uniek.values());
+    return lijst.filter(p => gelijk(p.name, naam)).concat(lijst.filter(p => !gelijk(p.name, naam)));
+  }
+
+  // Andere plaatsen met dezelfde naam als knopjes tonen ("Bedoel je…?")
+  function toonKeuzes(gekozen) {
+    // alleen echte twijfelgevallen tonen: plaatsen met dezelfde naam, of alles als er geen precieze treffer was
+    const zoekterm = $("#klPlaats").value;
+    const exact = plekken.some(p => gelijk(p.name, zoekterm));
+    const anderen = plekken.filter(p => p !== gekozen && (!exact || gelijk(p.name, gekozen.name))).slice(0, 4);
+    const vak = $("#klKeuzes");
+    if (!anderen.length) { vak.innerHTML = ""; return; }
+    const naamgenoten = plekken.filter(p => gelijk(p.name, gekozen.name)).length > 1;
+    vak.innerHTML = "<span>" + (naamgenoten
+      ? "<b>Let op:</b> er zijn meer plaatsen die " + gekozen.name + " heten. Kies hieronder de juiste:"
+      : "Bedoel je een andere plek?") + "</span>" +
+      anderen.map(p => '<button type="button" data-plek="' + plekken.indexOf(p) + '">' + plekNaam(p) + "</button>").join("");
+  }
+  $("#klKeuzes").addEventListener("click", e => {
+    const knop = e.target.closest("button[data-plek]");
+    if (knop) haalWeer(plekken[Number(knop.dataset.plek)]);
+  });
+
+  async function haalWeer(gekozen) {
     const plaats = $("#klPlaats").value.trim();
-    if (!plaats) { meld("Vul eerst een plaats in."); $("#klPlaats").focus(); return; }
+    if (!gekozen && !plaats) { meld("Vul eerst een plaats in."); $("#klPlaats").focus(); return; }
     const knop = $("#klHaal");
     knop.disabled = true;
     meld("Weersverwachting ophalen…");
     try {
-      const geo = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=nl&name=" + encodeURIComponent(plaats)).then(r => r.json());
-      if (!geo.results || !geo.results.length) { meld("Die plaats kon ik niet vinden. Probeer een grotere plaats in de buurt."); return; }
-      const p = geo.results[0];
+      if (!gekozen || !(gekozen instanceof Object) || !gekozen.latitude) {
+        plekken = await zoekPlekken(plaats);
+        if (!plekken.length) { meld("Die plaats kon ik niet vinden. Gebieden zoals de Veluwe, de Maasduinen of de Ardennen kent de weerdienst niet: vul een dorp of stad in de buurt in, bijvoorbeeld Arcen of Bouillon."); $("#klKeuzes").innerHTML = ""; return; }
+        gekozen = plekken[0];
+      }
+      const p = gekozen;
+      toonKeuzes(p);
       const datum = $("#klDatum").value;
       const uur = Number($("#klUur").value);
       const eind = new Date(datum + "T12:00"); eind.setDate(eind.getDate() + 1);
@@ -277,7 +316,7 @@
       zetChip("wind", wind < 15 ? "weinig" : wind < 30 ? "matig" : "stevig");
       const dag = new Date(datum + "T12:00").toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
       const eindUur = (uur + n) % 24;
-      meld(p.name + (p.admin1 ? " (" + p.admin1 + ")" : "") + ", " + dag + " " + twee(uur) + ":00 – " + twee(eindUur) + ":00: " +
+      meld(plekNaam(p) + ", " + dag + " " + twee(uur) + ":00 – " + twee(eindUur) + ":00: " +
         (S.temp === S.tMax ? S.temp : S.temp + " tot " + S.tMax) + " °C, kans op neerslag " + kans + "%, wind tot " + Math.round(wind) + " km/u. Ingevuld hieronder.");
       toon();
     } catch (e) {
@@ -286,7 +325,7 @@
       knop.disabled = false;
     }
   }
-  $("#klHaal").addEventListener("click", haalWeer);
+  $("#klHaal").addEventListener("click", () => haalWeer());
   $("#klPlaats").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); haalWeer(); } });
 
   /* ---------- Kopiëren als paklijst ---------- */

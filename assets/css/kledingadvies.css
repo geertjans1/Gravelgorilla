@@ -79,3 +79,11 @@
   .kl-twee { grid-template-columns: 1fr; }
   .kl-chips button { flex: 1 1 auto; }
 }
+
+/* "Bedoel je een andere plek?" */
+.kl-keuzes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: .88rem; color: var(--tekst-zacht); }
+.kl-keuzes:empty { display: none; }
+.kl-keuzes span { margin-right: 4px; }
+.kl-keuzes button { font: inherit; font-size: .85rem; padding: 6px 12px; border-radius: 999px; border: 1.5px dashed var(--lijn); background: transparent; color: var(--tekst); cursor: pointer; }
+.kl-keuzes button:hover { border-style: solid; border-color: var(--groen); color: var(--groen-tekst); }
+.kl-keuzes b { color: var(--actie-hover); }
