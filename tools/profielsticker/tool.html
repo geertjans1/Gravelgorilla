@@ -1199,7 +1199,9 @@ function projectWaypoints(route, wpts) {
    =================================================================== */
 
 const OVERPASS_URLS = [
+  '/api/osm.php',
   'https://overpass-api.de/api/interpreter',
+  'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
   'https://overpass.private.coffee/api/interpreter'
 ];
@@ -1247,7 +1249,7 @@ async function overpassFetch(query, signal) {
     if (attempt === n) await sleep(2500); // alle servers één keer geprobeerd: even wachten, dan nog een ronde
     const idx = (OSM_SERVER + attempt) % n;
     const ctl = new AbortController();
-    const tm = setTimeout(() => ctl.abort(), 45000);
+    const tm = setTimeout(() => ctl.abort(), idx === 0 ? 90000 : 20000); // eigen tussenstation probeert zelf meerdere servers
     const onAbort = () => ctl.abort();
     if (signal) signal.addEventListener('abort', onAbort, { once: true });
     try {
@@ -3571,7 +3573,7 @@ function renderRouteCard() {
 function abortOsm() { if (S.osm && S.osm.ctl) { try { S.osm.ctl.abort(); } catch (e) { } } }
 function osmErrText(e) {
   const m = String(e && e.message || '');
-  if (/bezet|429|50\d/.test(m)) return 'de kaartservers zijn nu erg druk';
+  if (/bezet|429|50\d|abort|afgebroken|time/i.test(m)) return 'de kaartservers van OpenStreetMap zijn nu erg druk';
   if (/fetch|network|load failed|verbinding/i.test(m)) return 'geen verbinding met OpenStreetMap';
   return 'er ging iets mis bij OpenStreetMap';
 }
@@ -3624,7 +3626,7 @@ function renderOsm() {
     t = '<b>Weinig gevonden.</b> OpenStreetMap kende maar ' + fmt(o.coverage * 100) + '% van de wegen langs je route. Teken de ondergrond zelf hieronder.';
     b = 'Opnieuw proberen';
   } else if (o.status === 'error') {
-    t = '<b>Ondergrond ophalen lukte niet:</b> ' + o.msg + '. De ondergrond is niet veranderd. Probeer het zo nog eens, of teken hem zelf.';
+    t = '<b>Ondergrond ophalen lukte niet:</b> ' + o.msg + '. De ondergrond is niet veranderd. Probeer het over een kwartiertje nog eens, of teken hem zelf: kies hieronder asfalt, gravel of zand en sleep over de balk.';
     b = 'Opnieuw proberen';
   } else if (o.status === 'stopped') {
     t = 'Gestopt. Teken de ondergrond zelf, of haal hem alsnog op.';
