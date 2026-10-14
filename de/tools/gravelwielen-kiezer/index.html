@@ -76,14 +76,13 @@
       <h1 class="kop-l">Laufrad-<wbr><span class="groen">Finder</span></h1>
       <p class="pagina-sub" id="gk-sub-text">Leicht, robust oder schnell? Finde den Laufradsatz, der zu deinem Rad und Fahrstil passt.</p>
     </section>
-    <p class="tool-melding">Dieses Tool gibt es im Moment nur auf Niederländisch. Die deutsche Version ist unterwegs: Der Gorilla übersetzt gerade.</p>
     <div class="gk-scope">
 <div class="gk-wrap">
 
-  <nav class="gk-tabs" role="tablist" aria-label="Kiezer-modus">
-    <button class="gk-tab active" id="tabbtn-finder" role="tab" aria-selected="true" aria-controls="tab-finder" onclick="switchTab('finder')"><span class="gk-tab-ico">🦍</span> Vind mijn wielset</button>
-    <button class="gk-tab" id="tabbtn-compare" role="tab" aria-selected="false" aria-controls="tab-compare" onclick="switchTab('compare')"><span class="gk-tab-ico">🔍</span> Vergelijk alle wielsets</button>
-    <button class="gk-tab" id="tabbtn-gorilla" role="tab" aria-selected="false" aria-controls="tab-gorilla" onclick="switchTab('gorilla')"><span class="gk-tab-ico">🤖</span> Vraag de Gorilla</button>
+  <nav class="gk-tabs" role="tablist" aria-label="Modus">
+    <button class="gk-tab active" id="tabbtn-finder" role="tab" aria-selected="true" aria-controls="tab-finder" onclick="switchTab('finder')"><span class="gk-tab-ico">🦍</span> Meinen Laufradsatz finden</button>
+    <button class="gk-tab" id="tabbtn-compare" role="tab" aria-selected="false" aria-controls="tab-compare" onclick="switchTab('compare')"><span class="gk-tab-ico">🔍</span> Alle Laufradsätze vergleichen</button>
+    <button class="gk-tab" id="tabbtn-gorilla" role="tab" aria-selected="false" aria-controls="tab-gorilla" onclick="switchTab('gorilla')"><span class="gk-tab-ico">🤖</span> Frag den Gorilla</button>
   </nav>
 
   <!-- ===================== TAB 1: VIND MIJN WIELSET ===================== -->
@@ -105,65 +104,65 @@
         </svg>
       </span>
       <div>
-        <h2>De Gorilla wijst je de weg</h2>
-        <p>Beantwoord een paar korte vragen — hoe meer ervaring je hebt, hoe meer ik je laat meesturen. Ik reken voor elke wielset een eerlijke Match Score uit, met de redenen erbij, zodat je precies ziet waaróm een set bij je past.</p>
+        <h2>Der Gorilla zeigt dir den Weg</h2>
+        <p>Beantworte ein paar kurze Fragen — je mehr Erfahrung du hast, desto mehr darfst du mitsteuern. Für jeden Laufradsatz berechne ich einen ehrlichen Match Score mit Begründung, damit du genau siehst, <em>warum</em> ein Satz zu dir passt.</p>
       </div>
     </div>
 
     <div class="gk-fstep" id="fstep-level">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">1</span> Welke Gorilla ben jij?</div>
-      <div class="gk-fstep-sub">Hoe meer ervaring, hoe meer ik je richting high-end specs stuur. Geen goed of fout — kies wat het best past.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">1</span> Welcher Gorilla bist du?</div>
+      <div class="gk-fstep-sub">Je mehr Erfahrung, desto mehr lenke ich dich zu High-End-Ausstattung. Kein Richtig oder Falsch — wähle, was am besten passt.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','beginner',this)">🦍 Baby Gorilla<small>Mijn eerste upgrade</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','gemiddeld',this)">🦍 Trail Gorilla<small>Ik rij regelmatig gravel</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','gevorderd',this)">🦍 Alpha Gorilla<small>Ik wil merkbaar sneller worden</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','expert',this)">🦍 Race Gorilla<small>Ik zoek maximale prestaties</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','beginner',this)">🦍 Baby Gorilla<small>Mein erstes Upgrade</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','gemiddeld',this)">🦍 Trail Gorilla<small>Ich fahre regelmäßig Gravel</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','gevorderd',this)">🦍 Alpha Gorilla<small>Ich will spürbar schneller werden</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','expert',this)">🦍 Race Gorilla<small>Ich suche maximale Leistung</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-goal">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">2</span> Waarom wil je nieuwe wielen?</div>
-      <div class="gk-fstep-sub">De belangrijkste vraag: wat wil je vóelen op de fiets? Hier draait mijn advies om.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">2</span> Warum willst du neue Laufräder?</div>
+      <div class="gk-fstep-sub">Die wichtigste Frage: Was willst du auf dem Rad <em>spüren</em>? Darum dreht sich meine Empfehlung.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','faster',this)">🚀 Ik wil sneller<small>Vlotter &amp; sportiever</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','lighter',this)">⚖️ Ik wil lichter<small>Makkelijker klimmen &amp; versnellen</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','comfort',this)">🌲 Meer comfort<small>Demping &amp; grip op ruw terrein</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','bikepacking',this)">🏕️ Bikepacking<small>Bagage &amp; lange tochten</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','value',this)">💰 Beste prijs-kwaliteit<small>Meeste wiel voor je geld</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('goal','stronger',this)">🔧 Sterkere wielen<small>Stevig &amp; onderhoudsarm</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','faster',this)">🚀 Ich will schneller sein<small>Flotter &amp; sportlicher</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','lighter',this)">⚖️ Ich will leichter<small>Leichter klettern &amp; beschleunigen</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','comfort',this)">🌲 Mehr Komfort<small>Dämpfung &amp; Grip in rauem Gelände</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','bikepacking',this)">🏕️ Bikepacking<small>Gepäck &amp; lange Touren</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','value',this)">💰 Bestes Preis-Leistungs-Verhältnis<small>Meistes Laufrad fürs Geld</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('goal','stronger',this)">🔧 Stabilere Laufräder<small>Robust &amp; wartungsarm</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-compat">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">3</span> Welke groep rij je nu?</div>
-      <div class="gk-fstep-sub">Zo zorg ik dat de naaf op jouw cassette past — je hoeft niets te weten van HG, XDR of N3W. Ik zet een ✓ bij sets die meteen passen.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">3</span> Welche Gruppe fährst du jetzt?</div>
+      <div class="gk-fstep-sub">So sorge ich dafür, dass die Nabe auf deine Kassette passt — du musst nichts über HG, XDR oder N3W wissen. Sätze, die direkt passen, bekommen ein ✓.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('compat','grx',this)">Shimano GRX<small>Gravel-groep</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('compat','cues',this)">Shimano CUES / 105<small>Brede of instap-groep</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('compat','grx',this)">Shimano GRX<small>Gravel-Gruppe</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('compat','cues',this)">Shimano CUES / 105<small>Breite oder Einstiegsgruppe</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('compat','xplr',this)">SRAM XPLR<small>Gravel AXS</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('compat','rival',this)">SRAM Rival / Apex<small>Road/gravel AXS</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('compat','campagnolo',this)">Campagnolo<small>Ekar (N3W)</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('compat','unsure',this)">Weet ik niet<small>Toon alles</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('compat','unsure',this)">Weiß ich nicht<small>Alles zeigen</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-region">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">4</span> Waar rij je het meest?</div>
-      <div class="gk-fstep-sub">Dit kleurt mijn advies en geeft een kleine duw aan passende wielen — geen harde selectie.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">4</span> Wo fährst du am meisten?</div>
+      <div class="gk-fstep-sub">Das färbt meine Empfehlung und gibt passenden Laufrädern einen kleinen Schub — keine harte Auswahl.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','maasduinen',this)">🌲 Maasduinen<small>Zand &amp; bos</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','veluwe',this)">🌳 Veluwe<small>Bos &amp; zand</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','limburg',this)">⛰️ Zuid-Limburg<small>Heuvels</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','ardennen',this)">🏔️ Ardennen<small>Lange klimmen</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','overal',this)">🌍 Van alles wat<small>Maakt niet uit</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','maasduinen',this)">🌲 Maasduinen (NL)<small>Sand &amp; Wald</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','veluwe',this)">🌳 Veluwe (NL)<small>Wald &amp; Sand</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','limburg',this)">⛰️ Südlimburg<small>Hügel</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','ardennen',this)">🏔️ Ardennen<small>Lange Anstiege</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','overal',this)">🌍 Von allem etwas<small>Egal</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-budget">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">5</span> Wat is je budget?</div>
-      <div class="gk-fstep-sub">De richtprijs voor de complete wielset. Ik beloon sets die echt in jouw klasse vallen.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">5</span> Wie hoch ist dein Budget?</div>
+      <div class="gk-fstep-sub">Der Richtpreis für den kompletten Laufradsatz. Ich belohne Sätze, die wirklich in deine Klasse fallen.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b1',this)">Tot €750<small>Instap / aluminium</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b1',this)">Bis €750<small>Einstieg / Aluminium</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('budget','b2',this)">€750 – 1.500<small>Value carbon</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('budget','b3',this)">€1.500 – 2.500<small>Premium</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('budget','b4',this)">€2.500+<small>Top</small></button>
@@ -172,11 +171,11 @@
 
     <div class="gk-advice" id="finder-advice"></div>
     <div class="gk-finder-actions" id="finder-actions" style="display:none;">
-      <button type="button" class="gk-cmp-go" disabled onclick="openCompareModal()">⚖️ Vergelijk geselecteerde <span class="gk-cmp-n">0</span></button>
-      <button type="button" class="gk-fbtn-primary" onclick="finderToCompare()">🔍 Verfijn in de vergelijker</button>
-      <button type="button" class="gk-fbtn-ghost" onclick="resetFinder()">↺ Opnieuw beginnen</button>
+      <button type="button" class="gk-cmp-go" disabled onclick="openCompareModal()">⚖️ Auswahl vergleichen <span class="gk-cmp-n">0</span></button>
+      <button type="button" class="gk-fbtn-primary" onclick="finderToCompare()">🔍 Im Vergleich verfeinern</button>
+      <button type="button" class="gk-fbtn-ghost" onclick="resetFinder()">↺ Neu beginnen</button>
     </div>
-    <div class="gk-cmp-note">Je kunt maximaal 4 wielsets tegelijk vergelijken.</div>
+    <div class="gk-cmp-note">Du kannst höchstens 4 Laufradsätze gleichzeitig vergleichen.</div>
     <div class="gk-fcount" id="finder-count"></div>
     <div class="gk-ftop3" id="finder-top3"></div>
     <div class="gk-fgrid" id="finder-grid"></div>
@@ -186,18 +185,18 @@
   <section id="tab-compare" class="gk-tabpanel" role="tabpanel" aria-labelledby="tabbtn-compare">
   <div class="gk-topbar">
     <div class="gk-sort">
-      <label for="sort-sel">Sorteren op:</label>
+      <label for="sort-sel">Sortieren nach:</label>
       <select id="sort-sel" onchange="render()">
-        <option value="price-asc">Prijs laag–hoog</option>
-        <option value="price-desc">Prijs hoog–laag</option>
-        <option value="weight-asc">Gewicht laag–hoog</option>
-        <option value="depth-desc">Velghoogte diep–ondiep</option>
-        <option value="brand-asc">Merk A–Z</option>
+        <option value="price-asc">Preis niedrig–hoch</option>
+        <option value="price-desc">Preis hoch–niedrig</option>
+        <option value="weight-asc">Gewicht niedrig–hoch</option>
+        <option value="depth-desc">Felgenhöhe tief–flach</option>
+        <option value="brand-asc">Marke A–Z</option>
       </select>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-      <button class="gk-reset" onclick="resetFilters()">✕ Filters wissen</button>
-      <button class="gk-cmp-go" disabled onclick="openCompareModal()">⚖️ Vergelijk geselecteerde <span class="gk-cmp-n">0</span></button>
+      <button class="gk-reset" onclick="resetFilters()">✕ Filter löschen</button>
+      <button class="gk-cmp-go" disabled onclick="openCompareModal()">⚖️ Auswahl vergleichen <span class="gk-cmp-n">0</span></button>
     </div>
   </div>
 
@@ -205,7 +204,7 @@
     <div class="gk-filters-grid" id="gk-filters-basic">
 
       <div class="gk-filter-group">
-        <span class="gk-label">Materiaal <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Carbon velgen zijn lichter en stijver (en duurder); aluminium is betaalbaar, robuust en makkelijker te repareren.</span></span></span></span></span>
+        <span class="gk-label">Material <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Carbonfelgen sind leichter und steifer (und teurer); Aluminium ist bezahlbar, robust und leichter zu reparieren.</span></span></span></span></span>
         <div class="gk-chips" id="filter-material">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="carbon">Carbon</span>
@@ -214,7 +213,7 @@
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Prijsklasse <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het richtprijssegment van de wielset in euro's (bij benadering). Je kunt meerdere prijsklassen tegelijk aanvinken.</span></span></span></span></span>
+        <span class="gk-label">Preisklasse <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das ungefähre Richtpreissegment des Laufradsatzes in Euro. Du kannst mehrere Preisklassen gleichzeitig ankreuzen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-price">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">&lt; €600</span>
@@ -224,32 +223,32 @@
           <span class="gk-chip" data-val="5">€2.000 – 2.700</span>
           <span class="gk-chip" data-val="6">€2.700+</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Merk <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De fabrikant van de wielset. Je kunt meerdere merken tegelijk aanvinken om ze samen te vergelijken.</span></span></span></span></span>
+        <span class="gk-label">Marke <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Der Hersteller des Laufradsatzes. Du kannst mehrere Marken gleichzeitig ankreuzen, um sie zu vergleichen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-brand">
           <span class="gk-chip active" data-val="all">Alle</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Gebruik <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het karakter van de wielset. Aero / Race = diep &amp; snel. Allround = veelzijdig. Avontuur = breed, stevig en gemaakt voor dikke banden en bagage. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Einsatz <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Der Charakter des Laufradsatzes. Aero / Race = tief &amp; schnell. Allround = vielseitig. Abenteuer = breit, stabil und gemacht für breite Reifen und Gepäck. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-use">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="aero">Aero / Race</span>
           <span class="gk-chip" data-val="allround">Allround</span>
-          <span class="gk-chip" data-val="adventure">Avontuur</span>
+          <span class="gk-chip" data-val="adventure">Abenteuer</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
     </div><!-- /gk-filters-basic -->
 
     <button class="gk-adv-toggle" id="gk-adv-toggle" type="button" onclick="toggleAdv()" aria-expanded="false" aria-controls="gk-filters-adv">
-      <span class="gk-adv-label">🛠️ Meer filters</span>
+      <span class="gk-adv-label">🛠️ Mehr Filter</span>
       <span class="gk-adv-badge" id="gk-adv-badge">0</span>
       <span class="gk-adv-caret" aria-hidden="true">▾</span>
     </button>
@@ -257,7 +256,7 @@
     <div class="gk-filters-grid gk-filters-adv" id="gk-filters-adv" hidden>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Velghoogte <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De hoogte (diepte) van de velg in mm. Dieper = aerodynamischer en stijver, maar gevoeliger voor zijwind. Ondieper = lichter en rustiger bij wind. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Felgenhöhe <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Höhe der Felge in mm. Höher = aerodynamischer und steifer, aber empfindlicher bei Seitenwind. Flacher = leichter und ruhiger bei Wind. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-depth">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">≤ 30 mm</span>
@@ -265,22 +264,22 @@
           <span class="gk-chip" data-val="3">43 – 50 mm</span>
           <span class="gk-chip" data-val="4">&gt; 50 mm</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Binnenbreedte <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De interne velgbreedte in mm — bepaalt welke banden lekker breed uitstaan. Breder (25 mm+) past beter bij dikke gravelbanden; smaller is fijner voor snellere, smallere banden. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Innenbreite <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Felgeninnenbreite in mm — bestimmt, welche Reifen schön breit aufbauen. Breiter (25 mm+) passt besser zu breiten Gravelreifen; schmaler ist angenehmer für schnellere, schmalere Reifen. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-intw">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">≤ 23 mm</span>
           <span class="gk-chip" data-val="2">24 – 25 mm</span>
-          <span class="gk-chip" data-val="3">26 mm en breder</span>
+          <span class="gk-chip" data-val="3">26 mm und breiter</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Wielsetgewicht <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het opgegeven gewicht van de complete wielset (per paar). Lichter rolt vlotter en versnelt sneller; zwaarder is vaak steviger. Meerdere klassen mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Gewicht des Satzes <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das angegebene Gewicht des kompletten Laufradsatzes (pro Paar). Leichter rollt flotter und beschleunigt schneller; schwerer ist oft stabiler. Mehrere Klassen möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-weight">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">&lt; 1.350 g</span>
@@ -288,11 +287,11 @@
           <span class="gk-chip" data-val="3">1.500 – 1.650 g</span>
           <span class="gk-chip" data-val="4">&gt; 1.650 g</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Freehub (cassette) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het cassettelichaam dat de naaf aankan. Kies jouw groep: Shimano HG, SRAM XDR, Campagnolo N3W of Shimano Micro Spline. De meeste premiumsets zijn met meerdere bodies leverbaar.</span></span></span></span></span>
+        <span class="gk-label">Freilauf (Kassette) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Der Freilaufkörper, den die Nabe aufnimmt. Wähle deine Gruppe: Shimano HG, SRAM XDR, Campagnolo N3W oder Shimano Micro Spline. Die meisten Premiumsätze gibt es mit mehreren Freiläufen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-freehub">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="HG">Shimano HG</span>
@@ -303,7 +302,7 @@
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Velgtype <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Hooked velgen hebben een haakrand en werken met (vrijwel) alle tubeless banden. Hookless (haakloos) is licht en sterk, maar stelt eisen aan band en maximale bandenspanning.</span></span></span></span></span>
+        <span class="gk-label">Felgentyp <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Hooked-Felgen haben einen Hakenrand und funktionieren mit (nahezu) allen Tubeless-Reifen. Hookless (ohne Haken) ist leicht und stark, stellt aber Anforderungen an Reifen und maximalen Reifendruck.</span></span></span></span></span>
         <div class="gk-chips" id="filter-hook">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="hooked">Hooked</span>
@@ -312,7 +311,7 @@
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Wielmaat <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">700c is de standaard gravelmaat (snel, rolt makkelijk). 650b is kleiner en laat extra dikke banden toe — meer comfort en grip op ruig terrein. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Laufradgröße <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">700c ist die Standard-Gravelgröße (schnell, rollt leicht). 650b ist kleiner und erlaubt extra breite Reifen — mehr Komfort und Grip in rauem Gelände. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-size">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="700c">700c</span>
@@ -321,7 +320,7 @@
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Remmontage <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De montage van de remschijf op de naaf. Center Lock (borgring) is snel te (de)monteren; 6-bolt (zesgaats) is universeel. Met een adapter zijn ze meestal uitwisselbaar.</span></span></span></span></span>
+        <span class="gk-label">Bremsaufnahme <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Befestigung der Bremsscheibe an der Nabe. Center Lock (Verschlussring) ist schnell montiert; 6-Loch ist universell. Mit einem Adapter sind sie meist austauschbar.</span></span></span></span></span>
         <div class="gk-chips" id="filter-brake">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="centerlock">Center Lock</span>
@@ -333,50 +332,50 @@
   </div>
 
   <div class="gk-compare">
-    <button class="gk-compare-btn" id="gk-compare-btn" onclick="toggleCompare()" aria-expanded="false" aria-controls="gk-compare-panel">Bekijk de verschillen van de resultaten</button>
+    <button class="gk-compare-btn" id="gk-compare-btn" onclick="toggleCompare()" aria-expanded="false" aria-controls="gk-compare-panel">Unterschiede der Ergebnisse ansehen</button>
     <div class="gk-compare-panel" id="gk-compare-panel" aria-live="polite"></div>
   </div>
 
   <div class="gk-active-filters" id="active-filters"></div>
 
-  <div class="gk-cmp-note">Je kunt maximaal 4 wielsets tegelijk vergelijken.</div>
+  <div class="gk-cmp-note">Du kannst höchstens 4 Laufradsätze gleichzeitig vergleichen.</div>
   <span class="gk-count" id="result-count"></span>
 
   <div class="gk-grid" id="bike-grid"></div>
 
   <div class="gk-dealer collapsed gk-dealer-foot" id="gk-dealer">
     <div class="gk-dealer-title" onclick="toggleDealer()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDealer();}" aria-controls="gk-dealer-body" aria-expanded="false" id="gk-dealer-title">
-      <span class="gk-dealer-title-text">🛒 Waar koop je gravelwielen? Tips &amp; betrouwbare webshops</span>
-      <span class="gk-ai-toggle-label" id="gk-dealer-toggle-label">Klap uit</span>
+      <span class="gk-dealer-title-text">🛒 Wo kaufst du Gravellaufräder? Tipps &amp; zuverlässige Shops</span>
+      <span class="gk-ai-toggle-label" id="gk-dealer-toggle-label">Ausklappen</span>
       <span class="gk-ai-toggle" id="gk-dealer-toggle" aria-hidden="true">+</span>
     </div>
     <div class="gk-dealer-body" id="gk-dealer-body">
-      <div class="gk-dealer-desc">Elke wielset heeft een eigen <strong>"Bekijk &amp; bestel"</strong>-knop die naar de officiële merksite of een betrouwbare webshop leidt. Een paar tips voor het kopen van losse gravelwielen:</div>
+      <div class="gk-dealer-desc">Jeder Laufradsatz hat einen eigenen <strong>„Ansehen &amp; bestellen"</strong>-Button, der zur offiziellen Markenseite oder zu einem zuverlässigen Shop führt. Ein paar Tipps zum Kauf einzelner Gravellaufräder:</div>
       <div class="gk-dealer-note" style="display:block;">
-        • <strong>Geef je freehub door.</strong> Bij het bestellen kies je het cassettelichaam dat bij jouw groep past (Shimano HG, SRAM XDR, Campagnolo N3W of Micro Spline). Twijfel je? Kijk in stap 4 van "Vind mijn wielset".<br>
-        • <strong>Let op hookless.</strong> Hookless velgen werken alleen met goedgekeurde tubeless banden en een lagere maximale bandenspanning — check de bandcompatibiliteit van de fabrikant.<br>
-        • <strong>Direct-to-consumer merken</strong> (zoals Hunt, Scope, Winspace, Newmen) verkopen vooral via hun eigen site; grote merken (DT&nbsp;Swiss, Zipp, Shimano) ook via fietsspeciaalzaken en webshops als Mantel, Bike-Components, BIKE24 en Bike-Discount.
+        • <strong>Gib deinen Freilauf an.</strong> Bei der Bestellung wählst du den Freilaufkörper, der zu deiner Gruppe passt (Shimano HG, SRAM XDR, Campagnolo N3W oder Micro Spline). Unsicher? Schau in Schritt 3 von „Meinen Laufradsatz finden".<br>
+        • <strong>Achte auf Hookless.</strong> Hookless-Felgen funktionieren nur mit freigegebenen Tubeless-Reifen und einem niedrigeren maximalen Reifendruck — prüfe die Reifenkompatibilität des Herstellers.<br>
+        • <strong>Direktvertriebsmarken</strong> (wie Hunt, Scope, Winspace, Newmen) verkaufen vor allem über ihre eigene Seite; große Marken (DT&nbsp;Swiss, Zipp, Shimano) auch über Fahrradfachhändler und Shops wie Mantel, Bike-Components, BIKE24 und Bike-Discount.
       </div>
     </div>
   </div>
-  <button class="gk-sticky" id="gk-sticky" onclick="document.getElementById('bike-grid').scrollIntoView({behavior:'smooth',block:'start'})">🛞 <span id="gk-sticky-count">0</span> wielsets — bekijk resultaten</button>
+  <button class="gk-sticky" id="gk-sticky" onclick="document.getElementById('bike-grid').scrollIntoView({behavior:'smooth',block:'start'})">🛞 <span id="gk-sticky-count">0</span> Laufradsätze — Ergebnisse ansehen</button>
   </section>
 
   <!-- ===================== TAB 3: VRAAG DE GORILLA ===================== -->
   <section id="tab-gorilla" class="gk-tabpanel" role="tabpanel" aria-labelledby="tabbtn-gorilla">
     <div class="gk-ai" id="gk-ai-inline">
-      <div class="gk-ai-title"><span class="gk-ai-title-text">🤖 Vraag de Gorilla</span></div>
-      <div class="gk-ai-desc" id="gk-ai-desc">Stel een vraag in gewone taal en krijg een aanbeveling op basis van alle wielsets — bijvoorbeeld over prijs, gewicht, velghoogte of gebruik.</div>
+      <div class="gk-ai-title"><span class="gk-ai-title-text">🤖 Frag den Gorilla</span></div>
+      <div class="gk-ai-desc" id="gk-ai-desc">Stell eine Frage in normaler Sprache und bekomme eine Empfehlung auf Basis aller Laufradsätze — zum Beispiel zu Preis, Gewicht, Felgenhöhe oder Einsatz.</div>
       <div class="gk-ai-row">
-        <input class="gk-ai-input" id="ai-input" type="text" placeholder="Bijv. Wat is de lichtste carbon wielset onder de 1500 euro?" onkeydown="if(event.key==='Enter')askAI()">
-        <button class="gk-ai-btn" onclick="askAI()">Vraag</button>
+        <input class="gk-ai-input" id="ai-input" type="text" placeholder="Z. B. Welcher ist der leichteste Carbon-Laufradsatz unter 1500 Euro?" onkeydown="if(event.key==='Enter')askAI()">
+        <button class="gk-ai-btn" onclick="askAI()">Fragen</button>
       </div>
       <div class="gk-ai-ex">
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Beste wielset voor de Maasduinen</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Wielupgrade voor mijn Canyon Grail</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Beste wielset onder €1000</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Wielset voor Unbound</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Lichtste wielset voor bikepacking</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Bester Laufradsatz für die Maasduinen</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Laufrad-Upgrade für mein Canyon Grail</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Bester Laufradsatz unter €1000</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Laufradsatz für Unbound</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Leichtester Laufradsatz für Bikepacking</span>
       </div>
       <div class="gk-ai-answer" id="ai-answer"></div>
     </div>
@@ -384,10 +383,10 @@
 </div>
 
 <div class="gk-live" id="gk-live">
-  <div class="gk-live-head" id="gk-live-head" role="button" tabindex="0" aria-controls="gk-live-body" aria-expanded="true" title="Klik om in-/uit te klappen">
-    <span class="gk-live-title">In selectie</span>
+  <div class="gk-live-head" id="gk-live-head" role="button" tabindex="0" aria-controls="gk-live-body" aria-expanded="true" title="Klicken zum Ein-/Ausklappen">
+    <span class="gk-live-title">In der Auswahl</span>
     <span class="gk-live-count" id="gk-live-count">0</span>
-    <span class="gk-live-toggle-label" id="gk-live-toggle-label">Klap in</span>
+    <span class="gk-live-toggle-label" id="gk-live-toggle-label">Einklappen</span>
     <span class="gk-live-toggle" id="gk-live-toggle" aria-hidden="true">–</span>
   </div>
   <div class="gk-live-body" id="gk-live-body"></div>
@@ -396,9 +395,9 @@
 
 <div class="gk-modal-ov" id="cmp-modal" onclick="if(event.target===this)closeCompareModal()">
   <div class="gk-modal">
-    <button class="gk-modal-x" onclick="closeCompareModal()" aria-label="Sluiten">×</button>
-    <h2>⚖️ Wielsets vergelijken</h2>
-    <div class="gk-modal-sub">De aangevinkte sets overzichtelijk naast elkaar — groen = beste waarde per rij.</div>
+    <button class="gk-modal-x" onclick="closeCompareModal()" aria-label="Schließen">×</button>
+    <h2>⚖️ Laufradsätze vergleichen</h2>
+    <div class="gk-modal-sub">Die angekreuzten Sätze übersichtlich nebeneinander — grün = bester Wert pro Zeile.</div>
     <div id="cmp-modal-body"></div>
   </div>
 </div>
@@ -452,7 +451,7 @@
   </footer>
 
   <script src="/assets/js/site.js?v=8069af02"></script>
-  <script src="/assets/js/gravelwielen-kiezer.js?v=77401827"></script>
+  <script src="/assets/js/gravelwielen-kiezer.de.js?v=99da3593"></script>
   <script src="/assets/js/teller.js?v=0609dda3"></script>
 </body>
 </html>
