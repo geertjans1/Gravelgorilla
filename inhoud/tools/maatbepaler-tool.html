@@ -1,0 +1,66 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Invoer ===== -->
+    <section class="wb-kaart" aria-labelledby="mbKopInvoer">
+      <h2 class="wb-kop" id="mbKopInvoer"><span class="wb-stap">1</span> Jouw maten</h2>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbLengte">Lichaamslengte</label><output id="mbLengteUit">178 cm</output></div>
+        <input type="range" id="mbLengte" min="150" max="205" step="1" value="178">
+      </div>
+
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="mbBinnenbeen">Binnenbeenlengte</label><output id="mbBinnenbeenUit">83 cm</output></div>
+        <input type="range" id="mbBinnenbeen" min="65" max="100" step="1" value="83">
+        <span class="wb-klein">Zo meet je het: ga op blote voeten met je rug tegen de muur staan, klem een dik boek tussen je benen alsof het een zadel is en meet van de bovenkant van het boek tot de vloer.</span>
+      </div>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Jouw bouw en rijstijl</h2>
+      <div class="wb-veld">
+        <span class="wb-label">Bovenlijf en armen</span>
+        <div class="wb-chips" data-veld="romp">
+          <button type="button" data-waarde="kort" aria-pressed="false">Eerder kort</button>
+          <button type="button" data-waarde="normaal" class="is-aan" aria-pressed="true">Gemiddeld</button>
+          <button type="button" data-waarde="lang" aria-pressed="false">Eerder lang</button>
+        </div>
+        <span class="wb-klein">Twijfel je? Laat het op gemiddeld staan. Lange armen en een lang bovenlijf passen beter op een langer frame.</span>
+      </div>
+      <div class="wb-veld">
+        <span class="wb-label">Hoe wil je zitten?</span>
+        <div class="wb-chips" data-veld="stijl">
+          <button type="button" data-waarde="sportief" aria-pressed="false">Sportief en gestrekt</button>
+          <button type="button" data-waarde="allround" class="is-aan" aria-pressed="true">Allround</button>
+          <button type="button" data-waarde="comfort" aria-pressed="false">Comfortabel en rechtop</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Advies ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="mbKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="mbKopAdvies">Jouw framemaat</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Maat</span><strong id="mbMaat">M</strong></div>
+        <div><span class="wb-klein-licht">Framemaat</span><strong id="mbCm">53 – 54</strong></div>
+        <div><span class="wb-klein-licht">Zadelhoogte</span><strong id="mbZadel">73 cm</strong></div>
+        <div><span class="wb-klein-licht">Stack / reach</span><strong id="mbGeo">575 / 385</strong></div>
+      </div>
+      <p class="wb-uitleg" id="mbUitleg"></p>
+      <ul class="mb-redenen" id="mbRedenen"></ul>
+      <p class="wb-tip">Tip: elke fabrikant meet net anders. Leg je maat altijd naast de maattabel van het merk, en maak bij twijfel een proefrit.</p>
+    </aside>
+  </div>
+
+  <!-- ===== Alle maten ===== -->
+  <section class="wb-resultaat" aria-labelledby="mbKopTabel">
+    <h2 class="wb-kop" id="mbKopTabel"><span class="wb-stap">3</span> Alle maten op een rij</h2>
+    <p class="wb-aantal">Richtwaarden voor gravelbikes. Jouw maat is gemarkeerd.</p>
+    <div class="mb-tabelvak">
+      <table class="wb-tabel">
+        <thead><tr><th>Maat</th><th>Framemaat</th><th>Lichaamslengte</th><th class="wb-getal">Stack</th><th class="wb-getal">Reach</th></tr></thead>
+        <tbody id="mbTabel"></tbody>
+      </table>
+    </div>
+    <p class="wb-bron">Zadelhoogte volgens de vuistregel binnenbeenlengte × 0,883, gemeten van het midden van de trapas tot de bovenkant van het zadel. Stack en reach zijn gemiddelden van gangbare gravelbikes; per merk kan dat een paar centimeter schelen. Geen bikefitting: voel je ergens pijn of ongemak, laat je dan goed afstellen.</p>
+  </section>
+</div>

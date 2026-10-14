@@ -325,3 +325,4 @@ button { font: inherit; color: inherit; }
   .profiel__vlag { font-size: .65rem; }
 }
 @media (max-width: 640px) { .snelkeuze__begin span { display: block; margin: 4px 0 0; } }
+.deel.is-aan .snelfiets__grond { stroke: var(--groen); stroke-dasharray: 8 6; }

@@ -18,7 +18,8 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 ## Waar wat staat
 - Pagina's worden gemaakt door `.claude/bouw-site.ps1` uit `inhoud/` — gemaakte pagina's niet met de hand bewerken.
 - Homepage: `index.html` (met de hand), maar de wegwijzer-bordjes, de eerste tip en het schema zet `bouw-site.ps1` erin.
-- Eén lijst met alle tools staat in `.claude/bouw-site.ps1` (`$tools`): titels, SEO-titel, wegwijzertekst, filter, plaatje. Nieuwe tool = daar toevoegen + `api/teller.php` (TOOLS) + "Ik wil…" in `index.html`.
+- Eén lijst met alle tools staat in `.claude/bouw-site.ps1` (`$tools`): titels, SEO-titel, wegwijzertekst, filter, plaatje. Nieuwe tool = daar toevoegen + `api/teller.php` (TOOLS) + "Ik wil…" en de fiets in `index.html` + een blok in `assets/js/vraag-gorilla.js`.
+- Nieuwere tools (maatbepaler, paklijst, gravelroutes, versnellingen) delen hun opmaak in `assets/css/werkbank.css` (scope `wb-scope` plus een eigen scope). Gravelroutes: alleen routes met een bron die je zelf hebt gecontroleerd.
 - Vraag de Gorilla: komt vanzelf onder elke tool (behalve gravelbike- en wielenkiezer, die hebben er een in de tool). Voorbeelden, extra kennis en het invullen van de tool staan per tool in `assets/js/vraag-gorilla.js` (TOOLS); de veelgestelde vragen van de pagina gebruikt hij ook.
 - Veelgestelde vragen per tool: `inhoud/tools/<naam>-faq.html` (paren `<h3>vraag</h3><p>antwoord</p>`), worden ook FAQ-schema.
 - SEO: elke pagina krijgt schema (JSON-LD), deelplaatje `assets/img/deelplaatje.png` (ontwerp in `.claude/deelplaatje.html`), `llms.txt` wordt gegenereerd.

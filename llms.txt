@@ -2,7 +2,7 @@
 
 > Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.
 
-Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke banden, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.
+Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en framemaat, welke banden, wielen en versnellingen, welke bandenspanning, waar je kunt graveln, welk ultra-event, wat je meeneemt en aantrekt, en hoe je je route op een sticker zet.
 
 ## Tools
 
@@ -13,6 +13,10 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke 
 - [Profielsticker](https://gravelgorilla.nl/tools/profielsticker/): Maak gratis een profielsticker van je GPX voor je bovenbuis of stuur: hoogteprofiel, klimmen, ondergrond, posten, wattage en eetmomenten. Printen of downloaden.
 - [Kledingadvies](https://gravelgorilla.nl/tools/kledingadvies/): Wat trek je aan op de gravelbike? Gratis kledingadvies op basis van temperatuur, wind, regen, ritduur en tempo, met de weersverwachting voor jouw plek.
 - [Gravelbanden Kiezer](https://gravelgorilla.nl/tools/gravelbanden-kiezer/): Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.
+- [Maatbepaler](https://gravelgorilla.nl/tools/maatbepaler/): Welke framemaat gravelbike heb je nodig? Bereken je maat met je lengte en binnenbeenlengte, plus zadelhoogte en stack en reach. Met advies als je tussen twee maten zit.
+- [Paklijst bikepacking](https://gravelgorilla.nl/tools/paklijst-bikepacking/): Bikepacking paklijst die zich aanpast aan je tocht: kies duur, seizoen, slapen en bevoorrading en vink af wat je meeneemt. Met gewicht, kopiëren en printen.
+- [Gravelroutes in Nederland en België](https://gravelgorilla.nl/tools/gravelroutes/): Gravelroutes in Nederland en België op een rij: bewegwijzerde routes en GPX-routes per provincie, te filteren op lengte. Met links naar de officiële bron.
+- [Versnellingscalculator](https://gravelgorilla.nl/tools/versnellingscalculator/): Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.
 
 ## Over
 

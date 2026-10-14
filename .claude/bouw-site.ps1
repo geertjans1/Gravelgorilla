@@ -25,7 +25,7 @@ function JsonLd($obj) { '  <script type="application/ld+json">' + (ConvertTo-Jso
 $organisatie = [ordered]@{ '@type' = 'Organization'; '@id' = "$site/#organisatie"; name = 'Gravel Gorilla'; url = "$site/"
   logo = "$site/assets/img/icon-192.png"; email = 'info@gravelgorilla.nl'
   founder = [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/" }
-  description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, gravelbanden, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies.' }
+  description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike en framemaat kiezen, gravelbanden, bandenspanning, wielen, versnellingen, gravelroutes, ultra-events, bikepacking-paklijst, profielstickers en kledingadvies.' }
 
 function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "") {
   $extraCss = ($css | ForEach-Object { "  <link rel=""stylesheet"" href=""/assets/css/$_"">" }) -join "`n"
@@ -162,8 +162,32 @@ $tools = @(
     seoTitel = 'Welke gravelband past bij jou? Bandenkiezer | Gravel Gorilla'
     sub = 'Schuif je ondergrond, rijstijl en weer aan en zie welke breedte, welk profiel en welke banden bij je passen.'; beschrijving = 'Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.'
     naamKort = 'Banden Kiezer'; kort = 'Ondergrond, rijstijl en weer instellen, en zien welke breedte, welk profiel en welke banden passen.'
-    filter = 'kiezen'; plaatje = 'band'; label = 'Nieuw'
+    filter = 'kiezen'; plaatje = 'band'
     soort = 'kiezer'; scope = 'gb-scope'; uitlegKop = 'Zo kies je de juiste gravelband' }
+  [ordered]@{ slug = 'maatbepaler'; km = '08'; kop = 'Maat<wbr><span class="groen">bepaler</span>'; titel = 'Maatbepaler'
+    seoTitel = 'Welke framemaat gravelbike? Maatbepaler | Gravel Gorilla'
+    sub = 'Vul je lengte en binnenbeenlengte in en zie welke framemaat, zadelhoogte en stack en reach bij je passen. Ook als je tussen twee maten zit.'; beschrijving = 'Welke framemaat gravelbike heb je nodig? Bereken je maat met je lengte en binnenbeenlengte, plus zadelhoogte en stack en reach. Met advies als je tussen twee maten zit.'
+    naamKort = 'Maatbepaler'; kort = 'Je lengte en binnenbeen erin, en zien welke framemaat en zadelhoogte passen. Ook tussen twee maten.'
+    filter = 'berekenen'; plaatje = 'maat'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'wb-scope mb-scope'; uitlegKop = 'Zo kies je de juiste framemaat' }
+  [ordered]@{ slug = 'paklijst-bikepacking'; km = '09'; kop = 'Pak<wbr><span class="groen">lijst</span>'; titel = 'Paklijst bikepacking'
+    seoTitel = 'Paklijst bikepacking: wat neem je mee? | Gravel Gorilla'
+    sub = 'Een afvinklijst die meegroeit met je tocht: duur, seizoen, slapen en eten. Met het gewicht erbij.'; beschrijving = 'Bikepacking paklijst die zich aanpast aan je tocht: kies duur, seizoen, slapen en bevoorrading en vink af wat je meeneemt. Met gewicht, kopiëren en printen.'
+    naamKort = 'Paklijst bikepacking'; kort = 'Een afvinklijst per tochtlengte en seizoen, met het gewicht van je bagage erbij.'
+    filter = 'plannen'; plaatje = 'tas'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'wb-scope pk-scope'; uitlegKop = 'Nooit meer iets vergeten' }
+  [ordered]@{ slug = 'gravelroutes'; km = '10'; kop = 'Gravel<wbr><span class="groen">routes</span>'; titel = 'Gravelroutes in Nederland en België'
+    seoTitel = 'Gravelroutes in Nederland en België | Gravel Gorilla'
+    sub = 'Officiële gravelroutes en GPX-routes in Nederland en Vlaanderen. Kies een provincie, een lengte en hoe je de weg vindt.'; beschrijving = 'Gravelroutes in Nederland en België op een rij: bewegwijzerde routes en GPX-routes per provincie, te filteren op lengte. Met links naar de officiële bron.'
+    naamKort = 'Gravelroutes'; kort = 'Bewegwijzerde gravelroutes en GPX-routes in Nederland en Vlaanderen, per provincie en lengte.'
+    filter = 'plannen'; plaatje = 'kaart'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'wb-scope gr-scope'; uitlegKop = 'Gravelen waar het mag' }
+  [ordered]@{ slug = 'versnellingscalculator'; km = '11'; kop = 'Versnellings<wbr><span class="groen">calculator</span>'; titel = 'Versnellingscalculator'
+    seoTitel = 'Versnellingscalculator gravelbike: voorblad en cassette | Gravel Gorilla'
+    sub = 'Kies je voorblad en cassette en zie je lichtste verzet, je topsnelheid en hoe steil je nog fietsend omhoog komt. Vergelijk twee opstellingen.'; beschrijving = 'Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.'
+    naamKort = 'Versnellingen'; kort = 'Voorblad en cassette vergelijken: je lichtste verzet en hoe steil je nog omhoog komt.'
+    filter = 'berekenen'; plaatje = 'tandwiel'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'wb-scope vs-scope'; uitlegKop = 'Het juiste verzet voor elke klim' }
 )
 
 # Kleine plaatjes die oppoppen als je over een bordje in de wegwijzer beweegt
@@ -177,6 +201,10 @@ $plaatjes = @{
   jas     = '<svg viewBox="0 0 100 100" width="96" height="96"><path d="M34 18 18 28l7 16 7-4v42h36V40l7 4 7-16-16-10a16 16 0 0 1-32 0z" fill="#2F8F3E"/><path d="M50 30v52" stroke="#14361E" stroke-width="3"/><circle cx="50" cy="44" r="2.5" fill="#F4F1EA"/><circle cx="50" cy="56" r="2.5" fill="#F4F1EA"/><path d="M70 14c4 4 4 9 0 13M78 10c6 6 6 15 0 21" fill="none" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/></svg>'
   profiel = '<svg viewBox="0 0 100 100" width="100" height="100"><rect x="8" y="30" width="84" height="40" rx="6" fill="#15181A"/><path d="M14 62 L28 50 L38 55 L52 38 L64 47 L76 36 L86 62 Z" fill="#2F8F3E"/><rect x="14" y="62" width="30" height="4" fill="#9AA098"/><rect x="44" y="62" width="42" height="4" fill="#F4F1EA"/><circle cx="52" cy="38" r="3.5" fill="#FF6B2C"/></svg>'
   vlag    = '<svg viewBox="0 0 100 100" width="96" height="96"><path d="M28 86V16" stroke="#15181A" stroke-width="4" stroke-linecap="round"/><path d="M30 18h46l-9 14 9 14H30z" fill="#2F8F3E"/><g fill="#F4F1EA"><rect x="38" y="22" width="7" height="7"/><rect x="52" y="22" width="7" height="7"/><rect x="45" y="29" width="7" height="7"/><rect x="59" y="29" width="7" height="7"/><rect x="38" y="36" width="7" height="7"/><rect x="52" y="36" width="7" height="7"/></g></svg>'
+  maat    = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M20 78 L48 30 L80 30 M48 30 L60 78 L20 78 M60 78 L80 30" fill="none" stroke="#15181A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M44 30 L40 16 M32 16 H50" stroke="#15181A" stroke-width="5" stroke-linecap="round"/><path d="M88 14 V86" stroke="#FF6B2C" stroke-width="4"/><path d="M82 14 H94 M82 86 H94 M84 32 H92 M84 50 H92 M84 68 H92" stroke="#FF6B2C" stroke-width="3"/></svg>'
+  tas     = '<svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="26" width="72" height="56" rx="12" fill="#2F8F3E"/><path d="M36 26 V18 Q36 12 42 12 H58 Q64 12 64 18 V26" fill="none" stroke="#15181A" stroke-width="5"/><path d="M30 48 l6 6 l12 -12 M30 66 l6 6 l12 -12" fill="none" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56 48 H72 M56 66 H72" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="26" r="9" fill="#FF6B2C"/></svg>'
+  kaart   = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M12 24 L36 14 L64 24 L88 14 V76 L64 86 L36 76 L12 86 Z" fill="#E3DDCF" stroke="#15181A" stroke-width="4" stroke-linejoin="round"/><path d="M36 14 V76 M64 24 V86" stroke="#15181A" stroke-width="3"/><path d="M20 66 Q34 40 50 52 T80 30" fill="none" stroke="#2F8F3E" stroke-width="5" stroke-dasharray="7 5" stroke-linecap="round"/><circle cx="80" cy="30" r="7" fill="#FF6B2C"/></svg>'
+  tandwiel = '<svg viewBox="0 0 100 100" width="100" height="100">' + ((0..11 | ForEach-Object { '<rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(' + ($_ * 30) + ' 50 50)"/>' }) -join '') + '<circle cx="50" cy="50" r="32" fill="#15181A"/><circle cx="50" cy="50" r="22" fill="#2F8F3E"/><circle cx="50" cy="50" r="8" fill="#FF6B2C"/><circle cx="50" cy="50" r="3" fill="#15181A"/></svg>'
 }
 
 # Veelgestelde vragen van een tool lezen uit inhoud/tools/<naam>-faq.html (paren van <h3>vraag</h3><p>antwoord</p>)
@@ -197,6 +225,7 @@ foreach ($t in $tools) {
     'kiezer' {
       $scope = if ($t.scope) { $t.scope } else { 'gk-scope' }
       $css = @("$($t.slug).css"); $js = @("$($t.slug).js"); if ($scope -eq 'gk-scope') { $subId = ' id="gk-sub-text"' }
+      if ($scope -match 'wb-scope') { $css = @('werkbank.css') + $css }   # de nieuwe tools delen hun basisopmaak
       $tool = "    <div class=""$scope"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
     }
     'blok' {
@@ -318,6 +347,7 @@ $anderen
 }
 
 # ---------- Over ons ----------
+$aantalWoord = @("nul", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", "tien", "elf", "twaalf", "dertien", "veertien", "vijftien", "zestien")[$tools.Count]
 $overSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
   [ordered]@{ '@type' = 'AboutPage'; url = "$site/over-ons/"; name = 'Over Gravel Gorilla'; inLanguage = 'nl'; about = @{ '@id' = "$site/#organisatie" }; mainEntity = @{ '@id' = "$site/over-ons/#geert" } }
   [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/"; email = 'info@gravelgorilla.nl'
@@ -329,7 +359,7 @@ $pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Go
       <a href="/" class="terug">← Home</a>
       <p class="pagina-km">Gebouwd door een gravelrijder</p>
       <h1 class="kop-l">Over <span class="groen">ons</span></h1>
-      <p class="pagina-sub">Van frustratie naar zeven tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
+      <p class="pagina-sub">Van frustratie naar $aantalWoord tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
     </section>
     <section class="maker" id="geert" aria-labelledby="maker-kop">
       <div class="maker__beeld" aria-hidden="true"><img src="/assets/img/logo-icon.svg" alt="" width="120" height="120"></div>
@@ -342,7 +372,7 @@ $pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Go
       </div>
     </section>
     <section class="cijfers" aria-label="Het verhaal in cijfers">
-      <div class="cijfer"><strong>7</strong><span>gratis interactieve tools</span></div>
+      <div class="cijfer"><strong>$($tools.Count)</strong><span>gratis interactieve tools</span></div>
       <div class="cijfer"><strong>147</strong><span>gravelbikes in de kiezer</span></div>
       <div class="cijfer"><strong>21</strong><span>e-gravelbikes vergeleken</span></div>
       <div class="cijfer"><strong>13</strong><span>merken naast elkaar</span></div>
@@ -510,7 +540,7 @@ Schrijf "index.html" $voorpagina
 
 # ---------- llms.txt: korte samenvatting van de site voor AI-zoekmachines ----------
 $llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
-  "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke banden, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
+  "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en framemaat, welke banden, wielen en versnellingen, welke bandenspanning, waar je kunt graveln, welk ultra-event, wat je meeneemt en aantrekt, en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
   (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
   "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n"
 Schrijf "llms.txt" $llms

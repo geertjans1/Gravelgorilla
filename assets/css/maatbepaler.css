@@ -1,0 +1,7 @@
+/* Gravel Gorilla — Maatbepaler (basis in werkbank.css) */
+.mb-redenen { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: .92rem; color: rgba(244,241,234,.85); }
+.mb-redenen:empty { display: none; }
+.mb-tabelvak { overflow-x: auto; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 8px 14px; }
+.mb-scope tr.is-jij td { background: rgba(47,143,62,.12); }
+.mb-scope tr.is-jij td:first-child { box-shadow: inset 4px 0 0 var(--groen); }
+.mb-scope tr.is-twijfel td { background: rgba(255,107,44,.08); }

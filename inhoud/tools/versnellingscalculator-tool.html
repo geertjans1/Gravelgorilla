@@ -1,0 +1,68 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Invoer ===== -->
+    <section class="wb-kaart" aria-labelledby="vsKopInvoer">
+      <h2 class="wb-kop" id="vsKopInvoer"><span class="wb-stap">1</span> Je versnellingen</h2>
+      <div class="vs-opstellingen">
+        <div class="vs-opstelling vs-opstelling--a">
+          <span class="vs-letter">A</span>
+          <label class="wb-veld"><span class="wb-label">Voorblad</span><select id="vsVoorA"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterA"></select></label>
+        </div>
+        <div class="vs-opstelling vs-opstelling--b">
+          <span class="vs-letter">B</span>
+          <label class="wb-veld"><span class="wb-label">Voorblad</span><select id="vsVoorB"></select></label>
+          <label class="wb-veld"><span class="wb-label">Cassette</span><select id="vsAchterB"></select></label>
+        </div>
+      </div>
+      <span class="wb-klein">Vergelijk je huidige versnellingen (A) met een andere opstelling (B). Kies bij B "Geen vergelijking" als je er maar één wilt zien.</span>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Jij, je wielen en de klim</h2>
+      <div class="wb-twee">
+        <label class="wb-veld"><span class="wb-label">Wielmaat</span>
+          <select id="vsWiel"><option value="622">700c (28 inch)</option><option value="584">650b (27,5 inch)</option></select>
+        </label>
+        <label class="wb-veld"><span class="wb-label">Bandbreedte</span>
+          <select id="vsBand"><option>35</option><option>38</option><option selected>40</option><option>42</option><option>45</option><option>47</option><option>50</option></select>
+        </label>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsCadans">Trapfrequentie bergop</label><output id="vsCadansUit">75 rpm</output></div>
+        <input type="range" id="vsCadans" min="55" max="100" step="1" value="75">
+        <span class="wb-klein">Hoe vaak per minuut je pedalen ronddraaien als je klimt. De meeste rijders zitten rond de 70 tot 85.</span>
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsGewicht">Gewicht: jij, fiets en bagage</label><output id="vsGewichtUit">90 kg</output></div>
+        <input type="range" id="vsGewicht" min="55" max="160" step="1" value="90">
+      </div>
+      <div class="wb-schuif">
+        <div class="wb-label"><label for="vsVermogen">Vermogen dat je bergop lang volhoudt</label><output id="vsVermogenUit">200 watt</output></div>
+        <input type="range" id="vsVermogen" min="100" max="400" step="5" value="200">
+        <span class="wb-klein">Weet je het niet? Recreatief zo'n 150 watt, getraind 200 tot 250, sterk 300 of meer.</span>
+      </div>
+    </section>
+
+    <!-- ===== Advies ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="vsKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="vsKopAdvies">Je lichtste verzet</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Steilste klim (A)</span><strong id="vsKlimA">12 %</strong></div>
+        <div><span class="wb-klein-licht">Steilste klim (B)</span><strong id="vsKlimB">–</strong></div>
+        <div><span class="wb-klein-licht">Lichtste verzet (A)</span><strong id="vsLaagA">–</strong></div>
+        <div><span class="wb-klein-licht">Topsnelheid (A)</span><strong id="vsTopA">–</strong></div>
+      </div>
+      <p class="wb-uitleg" id="vsUitleg"></p>
+      <p class="wb-tip" id="vsTip"></p>
+    </aside>
+  </div>
+
+  <!-- ===== Ladder en tabel ===== -->
+  <section class="wb-resultaat" aria-labelledby="vsKopLadder">
+    <h2 class="wb-kop" id="vsKopLadder"><span class="wb-stap">3</span> Al je verzetten op een rij</h2>
+    <p class="wb-aantal" id="vsLadderUitleg">Elk bolletje is een versnelling: hoe hard je gaat bij je gekozen trapfrequentie.</p>
+    <div class="vs-ladder" id="vsLadder"></div>
+    <div class="vs-tabellen" id="vsTabellen"></div>
+    <p class="wb-bron">De steilste klim is een schatting van wat je zittend, bij je gekozen trapfrequentie, volhoudt. We rekenen met je gewicht, je vermogen, je trapfrequentie in het lichtste verzet, rolweerstand op gravel en een beetje luchtweerstand. Ontwikkeling = hoeveel meter je fiets vooruitgaat per pedaalomwenteling. Bij de cassettes zijn de grootste en kleinste tandwielen exact; de tandwielen ertussen zijn bij benadering.</p>
+  </section>
+</div>

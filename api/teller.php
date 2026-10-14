@@ -9,7 +9,7 @@
  * De standen staan in een bestand buiten de webmap, zodat een nieuwe versie van de site ze niet overschrijft.
  */
 
-const TOOLS = ['gravelbike-kiezer', 'bandenspanning-calculator', 'gravelwielen-kiezer', 'ultra-eventkiezer', 'profielsticker', 'kledingadvies', 'gravelbanden-kiezer'];
+const TOOLS = ['gravelbike-kiezer', 'bandenspanning-calculator', 'gravelwielen-kiezer', 'ultra-eventkiezer', 'profielsticker', 'kledingadvies', 'gravelbanden-kiezer', 'maatbepaler', 'paklijst-bikepacking', 'gravelroutes', 'versnellingscalculator'];
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');

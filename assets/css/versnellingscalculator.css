@@ -1,0 +1,23 @@
+/* Gravel Gorilla — Versnellingscalculator (basis in werkbank.css) */
+.vs-opstellingen { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.vs-opstelling { position: relative; display: grid; gap: 12px; padding: 16px; border-radius: 16px; border: 1.5px solid var(--lijn); transition: opacity .2s; }
+.vs-opstelling--a { border-color: var(--groen); }
+.vs-opstelling--b { border-color: var(--actie); }
+.vs-opstelling--b.is-uit { opacity: .6; border-style: dashed; }
+.vs-letter { position: absolute; top: -12px; left: 14px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; font-family: var(--kopfont); font-weight: 700; color: #fff; background: var(--groen); }
+.vs-opstelling--b .vs-letter { background: var(--actie); color: #15181A; }
+
+.vs-ladder { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 22px 26px 34px; display: grid; gap: 22px; position: relative; }
+.vs-rij { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: center; }
+.vs-rij__naam { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; font-family: var(--kopfont); font-weight: 700; color: #fff; background: var(--groen); }
+.vs-rij:nth-child(2) .vs-rij__naam { background: var(--actie); color: #15181A; }
+.vs-rij__as { position: relative; height: 22px; border-bottom: 2px solid var(--lijn); }
+.vs-bol { position: absolute; top: 50%; width: 13px; height: 13px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--groen); box-shadow: 0 0 0 2px var(--vlak); transition: left .35s var(--zacht); }
+.vs-rij:nth-child(2) .vs-bol { background: var(--actie); }
+.vs-bol--klein { opacity: .45; top: calc(50% + 9px); }
+.vs-schaal { position: relative; height: 14px; margin-left: 38px; font-size: .75rem; color: var(--tekst-zacht); }
+.vs-schaal span { position: absolute; transform: translateX(-50%); }
+.vs-tabellen { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-top: 22px; }
+.vs-tabel h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.vs-tabelvak { max-height: 420px; overflow: auto; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 6px 12px; }
+@media (max-width: 560px) { .vs-opstellingen { grid-template-columns: 1fr; } .vs-ladder { padding: 18px 14px 30px; } }

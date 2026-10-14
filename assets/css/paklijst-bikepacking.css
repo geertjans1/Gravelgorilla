@@ -1,0 +1,23 @@
+/* Gravel Gorilla — Paklijst bikepacking (basis in werkbank.css) */
+.pk-groepen { columns: 2 340px; column-gap: 18px; }
+.pk-groep { break-inside: avoid; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 16px 18px; margin-bottom: 18px; }
+.pk-groep h3 { font-size: 1.25rem; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.pk-groep h3 small { font-family: var(--tekstfont); font-size: .8rem; font-weight: 600; color: var(--tekst-zacht); text-transform: none; }
+.pk-groep ul { list-style: none; margin: 0; padding: 0; }
+.pk-groep li + li { border-top: 1px solid var(--lijn); }
+.pk-groep label { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: start; padding: 9px 0; cursor: pointer; font-size: .95rem; }
+.pk-groep input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--groen); cursor: pointer; }
+.pk-groep input:checked + span { color: var(--tekst-zacht); text-decoration: line-through; text-decoration-color: var(--groen); }
+.pk-groep em { font-style: normal; font-size: .8rem; color: var(--tekst-zacht); white-space: nowrap; }
+.pk-tip { display: block; font-size: .8rem; color: var(--tekst-zacht); margin-top: 2px; }
+.pk-knop-licht { border-color: rgba(244,241,234,.5); color: #F4F1EA; }
+.pk-knop-licht:hover { background: #F4F1EA; color: #14361E; }
+.pk-melding { color: #8FD9A0; }
+
+/* printen: alleen de lijst */
+@media print {
+  body * { visibility: hidden; }
+  #pkLijst, #pkLijst * { visibility: visible; }
+  #pkLijst { position: absolute; inset: 0; columns: 2; }
+  .pk-groep { border: 1px solid #999; }
+}

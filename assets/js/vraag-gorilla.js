@@ -64,17 +64,26 @@
 
   const OP_PAGINA = [...document.querySelectorAll(".tool-faq h3")].map(h => ({
     vraag: h.textContent, tekst: h.nextElementSibling ? h.nextElementSibling.innerHTML : ""
+  })).concat([...document.querySelectorAll(".tool-uitleg h3")].map(h => {
+    // uitleg op de pagina: een kopje met alles wat eronder staat tot het volgende kopje
+    let tekst = "", el = h.nextElementSibling;
+    while (el && el.tagName !== "H3") { tekst += el.outerHTML; el = el.nextElementSibling; }
+    return { vraag: h.textContent, tekst };
   }));
 
   // vragen die bij een andere tool horen
   const ANDERE = [
-    { slug: "gravelbike-kiezer", naam: "Gravelbike Kiezer", w: "gravelbike fiets frame framemaat merk model welke gravelbike" },
+    { slug: "gravelbike-kiezer", naam: "Gravelbike Kiezer", w: "gravelbike fiets merk model welke gravelbike kopen" },
     { slug: "gravelbanden-kiezer", naam: "Gravelbanden Kiezer", w: "welke band banden bandbreedte profiel noppen slick semi-slick bandenmerk" },
     { slug: "bandenspanning-calculator", naam: "Bandenspanning Calculator", w: "bandenspanning spanning druk bar psi oppompen pompen" },
     { slug: "gravelwielen-kiezer", naam: "Gravelwielen Kiezer", w: "wielen wielset velg velgen naaf carbon wielen" },
     { slug: "ultra-eventkiezer", naam: "Ultra-eventkiezer", w: "ultra event race bikepacking-race wedstrijd inschrijven evenement" },
-    { slug: "profielsticker", naam: "Profielsticker", w: "sticker hoogteprofiel gpx route bovenbuis posten" },
-    { slug: "kledingadvies", naam: "Kledingadvies", w: "kleding aantrekken trek aan graden temperatuur jas jack handschoenen koud warm regenjas outfit" }
+    { slug: "profielsticker", naam: "Profielsticker", w: "sticker hoogteprofiel gpx bovenbuis posten" },
+    { slug: "kledingadvies", naam: "Kledingadvies", w: "kleding aantrekken trek aan graden temperatuur jas jack handschoenen koud warm regenjas outfit" },
+    { slug: "maatbepaler", naam: "Maatbepaler", w: "maat framemaat lengte binnenbeen zadelhoogte zadel stack reach" },
+    { slug: "paklijst-bikepacking", naam: "Paklijst bikepacking", w: "paklijst meenemen inpakken tassen slaapzak tent bagage" },
+    { slug: "gravelroutes", naam: "Gravelroutes", w: "gravelroute routes graveln gravelen waar rijden provincie bewegwijzerd" },
+    { slug: "versnellingscalculator", naam: "Versnellingscalculator", w: "versnelling versnellingen verzet voorblad cassette tandwiel klimmen" }
   ].filter(a => a.slug !== tool).map(a => ({
     vraag: a.w, tekst: 'Daar heeft de gorilla een aparte tool voor: <a href="/tools/' + a.slug + '/">' + a.naam + " →</a>"
   }));
@@ -308,6 +317,158 @@
             (geweest ? "Bij events die dit jaar al geweest zijn, staat de verwachte maand van de volgende editie. " : "") +
             "Controleer altijd de officiële website voordat je je inschrijft.",
           knop: { tekst: "Zoek verder in de kiezer", naar: null }
+        };
+      }
+    },
+
+    /* ===== Maatbepaler ===== */
+    "maatbepaler": {
+      eigen: /maat|lengte|binnenbeen|cm|\d[,.]\d\d ?m|zadel|stack|reach|frame/,
+      plek: "Bijv. Ik ben 1,83 m met 87 cm binnenbeen",
+      voorbeelden: ["Ik ben 1,83 m met 87 cm binnenbeen", "178 cm, welke maat?", "Ik ben 172 cm en zit liever rechtop", "Hoe hoog moet mijn zadel?", "Wat is stack en reach?"],
+      kennis: [
+        { vraag: "Kan ik een fiets die net te groot is passend maken?", w: "te groot te klein passend stuurpen aanpassen", tekst: "Een beetje wel: met een kortere stuurpen (1 tot 2 cm), een stuur met minder reach en het zadel iets naar voren. Meer dan een paar centimeter rek je het niet, want dan gaat de fiets anders sturen. Bij twijfel liever de maat die zonder trucjes past." },
+        { vraag: "Is er verschil tussen dames- en herenmaten?", w: "dames vrouw heren man vrouwenfiets", tekst: "De meeste gravelbikes zijn unisex. Dames hebben gemiddeld iets langere benen en een korter bovenlijf voor hun lengte; dan past vaak de kleinere maat. Vul je binnenbeenlengte in, dan rekent de maatbepaler daar al mee." }
+      ],
+      slim(q) {
+        const getallen = [];
+        q.replace(/(\d)[,.](\d\d)\s*m(?![a-z])/g, (_, a, b) => { getallen.push(+(a + b)); return ""; })
+          .replace(/(\d{2,3})(?:[,.]\d)?\s*(?:cm|centimeter)?/g, (_, a) => { getallen.push(+a); return ""; });
+        const lengte = getallen.find(n => n >= 140 && n <= 215);
+        let been = getallen.find(n => n >= 60 && n <= 110);
+        const romp = heeft(q, ["lang bovenlijf", "lange armen", "lange romp"]) ? "lang" : heeft(q, ["kort bovenlijf", "korte armen", "korte romp"]) ? "kort" : null;
+        const stijl = heeft(q, ["sportief", "gestrekt", "race", "aero"]) ? "sportief" : heeft(q, ["rechtop", "comfort", "relax", "rug"]) ? "comfort" : null;
+        if (!lengte && !been && !romp && !stijl) return null;
+        if (lengte) zetSchuif("#mbLengte", tussen(lengte, 150, 205));
+        const geschat = !been && lengte;
+        if (geschat) been = Math.round(lengte * 0.46);
+        if (been) zetSchuif("#mbBinnenbeen", tussen(been, 65, 100));
+        if (romp) klik('.wb-chips[data-veld="romp"] button[data-waarde="' + romp + '"]');
+        if (stijl) klik('.wb-chips[data-veld="stijl"] button[data-waarde="' + stijl + '"]');
+        return {
+          html: "Met <b>" + $("#mbLengte").value + " cm</b> lengte en <b>" + $("#mbBinnenbeen").value + " cm</b> binnenbeen" + (geschat ? " (geschat; meet hem voor een preciezer advies)" : "") +
+            " adviseert de gorilla maat <b>" + tekst("#mbMaat") + "</b> (framemaat " + tekst("#mbCm") + " cm). Zadelhoogte: ongeveer <b>" + tekst("#mbZadel") + "</b>, stack en reach rond " + tekst("#mbGeo") + " mm." +
+            '<p class="vg__tip">' + html(tekst("#mbUitleg")) + "</p>",
+          knop: { tekst: "Bekijk alle maten", naar: "#mbTabel" }
+        };
+      }
+    },
+
+    /* ===== Paklijst bikepacking ===== */
+    "paklijst-bikepacking": {
+      eigen: /pak|mee|tas|slaap|tent|bivak|bikepack|lijst|nacht|kamp|hotel|weekend|week/,
+      plek: "Bijv. Weekend bikepacken met tent in het najaar",
+      voorbeelden: ["Weekend bikepacken met tent in het najaar", "Een week in de zomer, met hotels", "Bivakkeren in de winter, afgelegen", "Welk gereedschap neem ik mee?", "Hoe zwaar wordt mijn bagage?"],
+      kennis: [
+        { vraag: "Hoe houd ik mijn spullen droog?", w: "droog regen nat waterdicht", tekst: "Bikepackingtassen zijn vaak waterafstotend, maar niet altijd helemaal waterdicht. Stop je slaapzak, droge kleren en elektronica daarom extra in waterdichte zakjes (drybags). Dan blijft het belangrijkste droog, wat er ook gebeurt." },
+        { vraag: "Hoe zwaar wordt mijn bagage?", w: "zwaar gewicht weegt kilo kilos bagage", tekst: "Met een tent en een paar nachten kom je met lichte spullen meestal op 7 tot 10 kilo. Slaap je binnen, dan kan het met 3 tot 5 kilo. Kies hierboven je tocht: rechts zie je meteen het geschatte gewicht van jouw lijst, en welke spullen het zwaarst zijn." },
+        { vraag: "Mag ik wildkamperen?", w: "wildkamperen wild kamperen bivak buiten slapen paalkamperen", tekst: "In Nederland en België is wildkamperen bijna overal verboden. Je kunt wel terecht op paalkampeerplekken (in Nederland) of bivakzones (in Vlaanderen): gratis of goedkope plekken in de natuur voor één nacht. Kijk voor je vertrekt waar die op je route liggen." }
+      ],
+      slim(q) {
+        const nachten = getal(q, "nachten|nacht|dagen|dag");
+        let duur = nachten != null ? (nachten <= 1 ? 0 : nachten <= 3 ? 1 : nachten <= 7 ? 2 : 3) : null;
+        if (duur == null) duur = heeft(q, ["weekend"]) ? 1 : heeft(q, ["maand", "weken", "lange reis"]) ? 3 : heeft(q, ["week"]) ? 2 : heeft(q, ["overnacht", "microavontuur", "een nacht"]) ? 0 : null;
+        const seizoen = heeft(q, ["winter", "vorst", "sneeuw"]) ? 2 : heeft(q, ["najaar", "herfst", "voorjaar", "lente"]) ? 1 : heeft(q, ["zomer", "warm"]) ? 0 : null;
+        const slapen = heeft(q, ["bivak", "tarp"]) ? "bivak" : heeft(q, ["hotel", "b&b", "bnb", "hut", "pension", "airbnb", "binnen"]) ? "binnen" : heeft(q, ["tent", "camping", "kamperen"]) ? "tent" : null;
+        const bevoorrading = heeft(q, ["afgelegen", "weinig winkels", "wildernis", "geen winkels"]) ? "weinig" : null;
+        const koken = heeft(q, ["koken", "brander", "koffie zetten", "warme maaltijd"]) ? "ja" : null;
+        if (duur == null && seizoen == null && !slapen && !bevoorrading && !koken) return null;
+        zetSchuif("#pkDuur", duur == null ? 1 : duur);
+        zetSchuif("#pkSeizoen", seizoen == null ? 1 : seizoen);
+        klik('.wb-chips[data-veld="slapen"] button[data-waarde="' + (slapen || "tent") + '"]');
+        klik('.wb-chips[data-veld="bevoorrading"] button[data-waarde="' + (bevoorrading || "veel") + '"]');
+        klik('.wb-chips[data-veld="koken"] button[data-waarde="' + (koken || "nee") + '"]');
+        const instelling = [tekst("#pkDuurUit").toLowerCase(), tekst("#pkSeizoenUit").toLowerCase(),
+          { tent: "in een tent", bivak: "met tarp of bivakzak", binnen: "binnen slapen" }[slapen || "tent"]].concat(bevoorrading ? ["afgelegen"] : [], koken ? ["zelf koken"] : []);
+        return {
+          html: "Ik heb de paklijst ingesteld op <b>" + html(instelling.join(", ")) + "</b>. Dat zijn <b>" + tekst("#pkAantal") + " spullen</b>, samen ongeveer <b>" + tekst("#pkGewicht") + "</b>." +
+            '<p class="vg__tip">' + html(tekst("#pkUitleg")) + "</p>",
+          knop: { tekst: "Naar de afvinklijst", naar: "#pkLijst" }
+        };
+      }
+    },
+
+    /* ===== Gravelroutes ===== */
+    "gravelroutes": {
+      eigen: /route|graveln|gravel|rijden|provincie|km|gpx|bewegwijzer|waar|limburg|drenthe|zeeland|gelderland|achterhoek|veluwe|kempen|vlaanderen|belgi|nederland/,
+      plek: "Bijv. Bewegwijzerde gravelroutes in Limburg",
+      voorbeelden: ["Gravelroutes in Zuid-Limburg", "Een korte route in Drenthe", "Bewegwijzerde routes in Gelderland", "Lange route in Vlaanderen", "Waar kan ik graveln bij Maastricht?"],
+      kennis: [
+        { vraag: "Hoe zet ik een GPX-route op mijn fietscomputer?", w: "gpx fietscomputer garmin wahoo komoot telefoon downloaden", tekst: "Download het GPX-bestand bij de bron van de route. Bij een Garmin of Wahoo zet je het via de app van je fietscomputer of via Komoot op je toestel. Op je telefoon open je het in een app zoals Komoot of RideWithGPS en volg je de lijn." },
+        { vraag: "Mag ik in natuurgebieden graveln?", w: "natuurgebied bos heide mag toegestaan regels verboden", tekst: "Alleen op paden waar fietsen is toegestaan. Op officiële routes zit je goed. Daarbuiten: let op de borden van Staatsbosbeheer, Natuurmonumenten of Natuurpunt, en blijf van wandelpaden af." }
+      ],
+      slim(q) {
+        if (!window.GG_ROUTES_ZET || !window.GG_PROV) return null;
+        const keuze = {};
+        const belg = heeft(q, ["belgi", "vlaander", "vlaams"]);
+        if (/limburg/.test(q)) keuze.prov = belg || /belgisch/.test(q) ? "LB" : "LI";
+        else if (/achterhoek|veluwe|posbank|arnhem/.test(q)) keuze.prov = "GE";
+        else if (/heuvelrug/.test(q)) keuze.prov = "UT";
+        else {
+          const p = Object.entries(window.GG_PROV).find(([, v]) => q.includes(norm(v[0]).replace(/ \((nl|be)\)/, "")));
+          if (p) keuze.prov = p[0];
+        }
+        if (!keuze.prov) {
+          const plaats = window.GG_ROUTES.map(r => norm(r.n + " " + (r.noot || ""))).join(" ");
+          const woord = woorden(q).find(w => w.length > 3 && !/route|graveln|gravel|korte|lange|bewegwijzerd|waar|rijden|vinden|buurt|vlaand|vlaams|belgi|nederland/.test(w) && plaats.includes(w));
+          if (woord) keuze.zoek = woord;
+        }
+        if (!keuze.prov && !keuze.zoek) { if (belg) keuze.land = "BE"; else if (heeft(q, ["nederland"])) keuze.land = "NL"; }
+        const km = getal(q, "km|kilometer");
+        if (km) keuze.lengte = km < 30 ? "kort" : km < 60 ? "middel" : km < 100 ? "lang" : "extra";
+        else if (heeft(q, ["kort", "beginner", "rondje"])) keuze.lengte = "kort";
+        else if (heeft(q, ["lange", "meerdaag", "bikepack"])) keuze.lengte = "extra";
+        if (heeft(q, ["bewegwijzer", "bordjes", "paaltjes", "pijlen"])) keuze.nav = "bord";
+        else if (heeft(q, ["gpx"])) keuze.nav = "gpx";
+        if (!Object.keys(keuze).length) return null;
+        const uit = window.GG_ROUTES_ZET(keuze);
+        if (!uit.length) return { html: "Daar vindt de gorilla nog geen route bij. Probeer het ruimer, bijvoorbeeld zonder lengte, of kies een andere provincie op de kaart." };
+        const top = uit.slice().sort((a, b) => a.km - b.km).slice(0, 5);
+        return {
+          html: "De gorilla vond <b>" + uit.length + " " + (uit.length === 1 ? "route" : "routes") + "</b>" + (uit.length > 5 ? ". De kortste vijf:" : ":") +
+            lijst(top.map(r => '<a href="' + r.u + '" target="_blank" rel="noopener">' + html(r.n) + " ↗</a> " + String(r.km).replace(".", ",") + (r.tot ? "–" + r.tot : "") + " km, " + (r.nav === "bord" ? "bewegwijzerd" : "GPX"))) +
+            "Ik heb de filters hierboven ook zo gezet.",
+          knop: { tekst: "Bekijk alle routes", naar: "#grLijst" }
+        };
+      }
+    },
+
+    /* ===== Versnellingscalculator ===== */
+    "versnellingscalculator": {
+      eigen: /verzet|versnelling|voorblad|cassette|tand|klim|1x|2x|rpm|watt|ontwikkeling|blad|\d\d ?[x×\/-] ?\d\d/,
+      plek: "Bijv. 40 voor en 10-44 achter, hoe steil kan ik klimmen?",
+      voorbeelden: ["40 voor en 10-44 achter, hoe steil kan ik klimmen?", "Vergelijk 40x42 met 38x44", "46/30 met 11-34, ik weeg 85 kg", "Welk verzet voor de Ardennen met bagage?", "Wat is ontwikkeling?"],
+      kennis: [
+        { vraag: "Welk verzet voor de Ardennen of Zuid-Limburg?", w: "ardennen limburg heuvels bergen steil eifel", tekst: "Kies een lichtste verzet waarin het voorblad kleiner is dan je grootste tandwiel achter, bijvoorbeeld 38 of 40 voor met 44 tot 51 achter, of 46/30 met 11–34. Met bagage mag het nog een tandje lichter. Vul je gewicht en vermogen in, dan zie je welke hellingen je nog fietsend haalt." },
+        { vraag: "Welk verzet voor bikepacking?", w: "bikepacking bagage tassen zwaar ultra", tekst: "Met 8 tot 12 kilo bagage wil je een lichter verzet dan normaal. Veel bikepackers rijden 1× met 36 of 38 voor en een cassette tot 50 of 52, of 2× met 46/30. Zet je totale gewicht met bagage in de calculator om te zien hoe steil je nog omhoog komt." }
+      ],
+      slim(q) {
+        const opstellingen = [];
+        const voorOptie = id => !!$('#vsVoorA option[value="' + id + '"]');
+        const cassette = (k, g) => { const id = k + "-" + g; return $('#vsAchterA option[value="' + id + '"]') ? id : null; };
+        const cassetteMetGroot = g => { const o = [...document.querySelectorAll("#vsAchterA option")].find(x => x.value.endsWith("-" + g)); return o ? o.value : null; };
+        const cassettes = [...q.matchAll(/(1[01])\s*[-–]\s*(\d{2})/g)].map(m => cassette(m[1], m[2])).filter(Boolean);
+        const zonderCassettes = q.replace(/(1[01])\s*[-–]\s*(\d{2})/g, " ");
+        // 40x42: voorblad 40 met een cassette die tot 42 gaat
+        [...zonderCassettes.matchAll(/(\d{2})\s*[x×]\s*(\d{2})/g)].forEach(m => { const c = cassetteMetGroot(m[2]); if (voorOptie(m[1]) && c) opstellingen.push({ voor: m[1], achter: c }); });
+        // 46/30 of "40 voor"
+        const voors = [...zonderCassettes.replace(/(\d{2})\s*[x×]\s*(\d{2})/g, " ").matchAll(/(\d{2})\s*\/\s*(\d{2})|(\d{2})\s*(?:t\b|tanden|tands)?\s*(?:voor|voorblad)|voorblad\s*(?:van\s*)?(\d{2})/g)]
+          .map(m => (m[1] ? m[1] + "-" + m[2] : m[3] || m[4])).filter(voorOptie);
+        voors.forEach((v, i) => opstellingen.push({ voor: v, achter: cassettes[i] || cassettes[0] || null }));
+        if (!voors.length && !opstellingen.length) cassettes.forEach(c => opstellingen.push({ voor: null, achter: c }));
+        const kg = getal(q, "kg|kilo"), watt = getal(q, "w|watt"), rpm = getal(q, "rpm|omwentelingen");
+        if (!opstellingen.length && !kg && !watt && !rpm) return null;
+        const zet = (sel, w) => { const s = $(sel); if (s && w) { s.value = w; s.dispatchEvent(new Event("change", { bubbles: true })); } };
+        if (opstellingen[0]) { zet("#vsVoorA", opstellingen[0].voor); zet("#vsAchterA", opstellingen[0].achter); }
+        if (opstellingen[1]) { zet("#vsVoorB", opstellingen[1].voor); zet("#vsAchterB", opstellingen[1].achter); }
+        else if (opstellingen[0]) zet("#vsVoorB", "geen");
+        if (kg) zetSchuif("#vsGewicht", tussen(Math.round(kg), 55, 160));
+        if (watt) zetSchuif("#vsVermogen", tussen(Math.round(watt / 5) * 5, 100, 400));
+        if (rpm) zetSchuif("#vsCadans", tussen(Math.round(rpm), 55, 100));
+        return {
+          html: "Ik heb de calculator ingevuld. " + html(tekst("#vsUitleg")) +
+            '<p class="vg__tip">Steilste klim in je lichtste verzet: A <b>' + tekst("#vsKlimA") + "</b>" + (tekst("#vsKlimB") !== "–" ? ", B <b>" + tekst("#vsKlimB") + "</b>" : "") + ".</p>",
+          knop: { tekst: "Bekijk al je verzetten", naar: "#vsLadder" }
         };
       }
     },

@@ -1,0 +1,99 @@
+/* =========================================================
+   Gravel Gorilla — Werkbank: gedeelde opmaak voor maatbepaler, paklijst, gravelroutes en versnellingen (alles binnen .wb-scope)
+   ========================================================= */
+.wb-wrap { max-width: var(--breed); margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 40px; }
+.wb-raster { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: start; }
+
+.wb-kaart { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 22px; padding: clamp(20px, 3vw, 30px); display: grid; gap: 22px; }
+.wb-kop { display: flex; align-items: center; gap: 12px; font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.wb-stap { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: var(--groen); color: #fff; font-size: 1.1rem; flex-shrink: 0; box-shadow: inset 0 0 0 2px var(--groen), inset 0 0 0 4px #F4F1EA; }
+.wb-label { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-weight: 600; font-size: .95rem; }
+.wb-label output { font-family: var(--kopfont); font-size: 1.35rem; font-weight: 600; color: var(--groen-tekst); text-transform: uppercase; }
+.wb-veld { display: grid; gap: 9px; }
+.wb-klein { font-size: .82rem; color: var(--tekst-zacht); }
+
+/* schuifjes met klikbare schaal */
+.wb-schuif { display: grid; gap: 6px; }
+.wb-scope input[type="range"] { width: 100%; accent-color: var(--groen); height: 28px; cursor: pointer; margin: 0; }
+.wb-schaal { display: grid; grid-template-columns: repeat(5, 1fr); font-size: .8rem; }
+.wb-schaal--3 { grid-template-columns: repeat(3, 1fr); }
+.wb-schaal button { font: inherit; background: none; border: 0; padding: 2px 0; color: var(--tekst-zacht); cursor: pointer; text-align: center; }
+.wb-schaal button:first-child { text-align: left; }
+.wb-schaal button:last-child { text-align: right; }
+.wb-schaal button:hover { color: var(--groen-tekst); }
+
+.wb-scope select { font: inherit; color: var(--tekst); background: var(--achtergrond); border: 1.5px solid var(--lijn); border-radius: 10px; padding: 11px 13px; width: 100%; }
+.wb-scope select:focus { outline: none; border-color: var(--groen); }
+.wb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.wb-chips button { font: inherit; font-size: .93rem; font-weight: 500; padding: 9px 15px; border-radius: 999px; cursor: pointer; background: transparent; color: var(--tekst); border: 1.5px solid var(--lijn); transition: background .2s, border-color .2s, color .2s; }
+.wb-chips button:hover { border-color: var(--tekst); }
+.wb-chips button.is-aan { background: var(--tekst); border-color: var(--tekst); color: var(--achtergrond); }
+
+/* ---------- Advies ---------- */
+.wb-advies { position: sticky; top: 86px; display: grid; gap: 16px; background: var(--diepgroen); color: #F4F1EA; border-radius: 24px; padding: clamp(22px, 3vw, 32px); }
+.wb-kop--licht { color: #F4F1EA; }
+.wb-samenvatting { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wb-samenvatting > div { background: rgba(244,241,234,.08); border-radius: 14px; padding: 14px 16px; }
+.wb-klein-licht { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: #9AA098; font-weight: 600; }
+.wb-samenvatting strong { display: block; font-family: var(--kopfont); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.05; margin-top: 4px; }
+.wb-uitleg { font-size: .97rem; color: rgba(244,241,234,.85); line-height: 1.55; }
+.wb-tip { font-size: .9rem; color: #FFD2B8; border-left: 3px solid var(--actie); padding-left: 12px; }
+
+/* ---------- Resultaten ---------- */
+.wb-resultaat { margin-top: 30px; }
+.wb-aantal { color: var(--tekst-zacht); margin: 8px 0 18px; }
+.wb-lijst { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.wb-band { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; transition: border-color .3s, transform .3s var(--zacht); }
+.wb-band:hover { border-color: var(--groen); transform: translateY(-3px); }
+.wb-band--top { border: 2px solid var(--groen); }
+.wb-band__kop { display: flex; gap: 14px; align-items: center; }
+.wb-band__match { flex-shrink: 0; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: var(--groen); color: #fff; font-family: var(--kopfont); font-weight: 700; font-size: 1.25rem; }
+.wb-band--top .wb-band__match { background: var(--actie); color: #15181A; }
+.wb-band__merk { font-size: .82rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--tekst-zacht); }
+.wb-band h3 { font-size: 1.45rem; line-height: 1.05; }
+.wb-band__type { color: var(--tekst-zacht); font-size: .95rem; }
+.wb-band__specs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.wb-chip { font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; background: var(--achtergrond-2); }
+.wb-chip--maat { background: var(--groen); color: #fff; }
+.wb-ook { font-size: .82rem; color: var(--tekst-zacht); }
+.wb-band__meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .9rem; }
+.wb-band__meta small { color: var(--tekst-zacht); }
+.wb-prijs { font-weight: 700; letter-spacing: .05em; margin-left: auto; }
+.wb-grijs { color: var(--lijn); }
+.wb-band__waarom { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: .92rem; }
+.wb-band__waarom li::marker { color: var(--groen); content: "✓  "; }
+.wb-band__links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: .88rem; padding-top: 10px; border-top: 1px solid var(--lijn); }
+.wb-band__links a { color: var(--groen-tekst); font-weight: 600; }
+.wb-band__links a:hover { text-decoration: underline; }
+.wb-leeg { padding: 30px; text-align: center; color: var(--tekst-zacht); grid-column: 1 / -1; }
+.wb-bron { margin-top: 22px; font-size: .82rem; color: var(--tekst-zacht); max-width: 70em; }
+.wb-bron a { color: var(--groen-tekst); text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .wb-raster { grid-template-columns: 1fr; }
+  .wb-advies { position: static; }
+}
+@media (max-width: 480px) {
+  .wb-schaal { font-size: .68rem; }
+  .wb-lijst { grid-template-columns: 1fr; }
+}
+
+/* ---------- extra onderdelen ---------- */
+.wb-scope input[type="number"] { font: inherit; color: var(--tekst); background: var(--achtergrond); border: 1.5px solid var(--lijn); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.wb-scope input[type="number"]:focus { outline: none; border-color: var(--groen); }
+.wb-twee { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wb-groot { font-family: var(--kopfont); font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1; font-weight: 700; }
+.wb-balk { height: 10px; border-radius: 99px; background: rgba(244,241,234,.15); overflow: hidden; }
+.wb-balk > span { display: block; height: 100%; background: var(--actie); border-radius: 99px; transition: width .4s var(--zacht); }
+.wb-tabel { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.wb-tabel th, .wb-tabel td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--lijn); }
+.wb-tabel th { font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; letter-spacing: .04em; font-size: .85rem; color: var(--tekst-zacht); }
+.wb-tabel td.wb-getal, .wb-tabel th.wb-getal { text-align: right; font-variant-numeric: tabular-nums; }
+.wb-schaal--4 { grid-template-columns: repeat(4, 1fr); }
+.wb-knoppen { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.wb-knop { font: inherit; font-weight: 600; font-size: .92rem; padding: 10px 16px; border-radius: 10px; border: 1.5px solid var(--tekst); background: transparent; color: var(--tekst); cursor: pointer; }
+.wb-knop:hover { background: var(--tekst); color: var(--achtergrond); }
+.wb-knop--actie { background: var(--actie); border-color: var(--actie); color: #15181A; }
+.wb-knop--actie:hover { background: var(--actie-hover); color: #15181A; }
+.wb-melding { font-size: .85rem; color: var(--groen-tekst); min-height: 1.2em; }
+@media (max-width: 480px) { .wb-twee { grid-template-columns: 1fr; } }
