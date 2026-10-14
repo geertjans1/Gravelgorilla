@@ -288,25 +288,58 @@ function Bron($L, [string]$rel) {
   @{ pad = "inhoud\$rel"; vertaald = ($L.taal -eq 'nl') }
 }
 
+# Vertaallijsten voor de grote, ingeladen tools: inhoud/vertalingen/<tool>.txt
+# Per regel "Nederlands ‖ Engels ‖ Duits", in de secties [js], [html] en [venster]. Het bouwscript maakt daarmee
+# de Engelse en Duitse versie van de code (assets/js/<tool>.en.js enz.), zodat de Nederlandse bron ongemoeid blijft.
+function LeesVertaling([string]$slug) {
+  $pad = "$root\inhoud\vertalingen\$slug.txt"
+  if (-not (Test-Path $pad)) { return $null }
+  $secties = @{}; $huidig = 'js'
+  foreach ($r in [IO.File]::ReadAllLines($pad, [Text.Encoding]::UTF8)) {
+    if ($r -match '^\s*(#|$)') { continue }
+    if ($r -match '^\[(\w+)\]\s*$') { $huidig = $Matches[1]; continue }
+    $d = $r -split ' ‖ '
+    if ($d.Count -ge 3) { if (-not $secties[$huidig]) { $secties[$huidig] = @() }; $secties[$huidig] += , @($d[0], $d[1], $d[2]) }
+  }
+  $secties
+}
+function Vertaal([string]$tekst, $paren, [int]$i, [string]$wat) {
+  # langste teksten eerst, zodat een kort woord niet een stuk van een langere zin vervangt
+  foreach ($p in ($paren | Sort-Object { - $_[0].Length })) {
+    if ($tekst.Contains($p[0])) { $tekst = $tekst.Replace($p[0], $p[$i]) }
+    else { Write-Host "LET OP: vertaling ($wat) niet gevonden: $($p[0].Substring(0, [Math]::Min(80, $p[0].Length)))" }
+  }
+  $tekst
+}
+
 foreach ($L in $talen) {
 $toolsHier = @(ToolsIn $L)
 foreach ($t in $toolsHier) {
   $pad = "/tools/$($t.slug)/"
   $css = @(); $js = @(); $subId = ''
   $toolBron = Bron $L "tools\$($t.slug)-tool.html"
+  $toolHtml = if ($t.soort -ne 'venster') { Lees $toolBron.pad } else { '' }
+  $vt = if ($L.taal -ne 'nl') { LeesVertaling $t.slug } else { $null }
+  $ti = @{ en = 1; de = 2 }[$L.taal]
+  if ($vt -and $vt['html'] -and -not $toolBron.vertaald) { $toolHtml = Vertaal $toolHtml $vt['html'] $ti "$($t.slug) html $($L.taal)"; $toolBron.vertaald = $true }
   # nog niet vertaalde tool: een korte melding erboven
-  #   (een toolvenster zoals de profielsticker vertaalt zichzelf; welke talen het kan staat in $t.talen)
-  $vertaald = if ($t.soort -eq 'venster') { @($t.talen) -contains $L.taal } else { $toolBron.vertaald }
+  #   (een toolvenster zoals de profielsticker heeft een eigen vertaalde versie; welke talen het kan staat in $t.talen)
+  $vertaald = if ($t.soort -eq 'venster') { (@($t.talen) -contains $L.taal) -or ($vt -and $vt['venster']) } else { $toolBron.vertaald }
   $melding = if (-not $vertaald) { "    <p class=""tool-melding"">$($L.ui.alleenNl)</p>`n" } else { '' }
   switch ($t.soort) {
     'kiezer' {
       $scope = if ($t.scope) { $t.scope } else { 'gk-scope' }
       $css = @("$($t.slug).css"); $js = @("$($t.slug).js"); if ($scope -eq 'gk-scope') { $subId = ' id="gk-sub-text"' }
       if ($scope -match 'wb-scope') { $css = @('werkbank.css') + $css }   # de nieuwe tools delen hun basisopmaak
-      $tool = $melding + "    <div class=""$scope"">`n" + (Prefix (Lees $toolBron.pad) $L) + "    </div>"
+      if ($vt -and $vt['js']) {
+        # vertaalde kopie van de code van deze tool
+        Schrijf "assets\js\$($t.slug).$($L.taal).js" (Vertaal (Lees "assets\js\$($t.slug).js") $vt['js'] $ti "$($t.slug).js $($L.taal)")
+        $js = @("$($t.slug).$($L.taal).js")
+      }
+      $tool = $melding + "    <div class=""$scope"">`n" + (Prefix $toolHtml $L) + "    </div>"
     }
     'blok' {
-      $tool = $melding + "    <div class=""tool-vak"">`n" + (Prefix (Lees $toolBron.pad) $L) + "    </div>"
+      $tool = $melding + "    <div class=""tool-vak"">`n" + (Prefix $toolHtml $L) + "    </div>"
       if ($t.slug -eq 'bandenspanning-calculator') {
         # komt iemand uit de bandenkiezer (?breedte=45), zet dan meteen die bandbreedte klaar
         $tool += "`n    <script>(function () { var b = new URLSearchParams(location.search).get(""breedte""), s = document.getElementById(""ggWidth""); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event(""input"", { bubbles: true })); } })();</script>"

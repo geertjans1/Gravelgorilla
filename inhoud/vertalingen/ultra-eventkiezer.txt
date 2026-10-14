@@ -1,0 +1,175 @@
+# Vertaling Ultra-eventkiezer — per regel: Nederlands ‖ Engels ‖ Duits
+# [js] = assets/js/ultra-eventkiezer.js, [html] = inhoud/tools/ultra-eventkiezer-tool.html
+# Het bouwscript vervangt de Nederlandse tekst precies zoals hij hier staat; wordt hij niet gevonden, dan meldt het "LET OP".
+
+[js]
+const MND=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"]; ‖ const MND=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]; ‖ const MND=["jan","feb","mär","apr","mai","jun","jul","aug","sep","okt","nov","dez"];
+tour:"Toertocht" ‖ tour:"Sportive" ‖ tour:"Tour"
+stage:"In etappes" ‖ stage:"Stage race" ‖ stage:"In Etappen"
+const SURF={asfalt:"Asfalt",gemengd:"Gemengd",onverhard:"Onverhard"}; ‖ const SURF={asfalt:"Tarmac",gemengd:"Mixed",onverhard:"Unpaved"}; ‖ const SURF={asfalt:"Asphalt",gemengd:"Gemischt",onverhard:"Unbefestigt"};
+lbl:"750 – 1.500 km" ‖ lbl:"750 – 1,500 km" ‖ lbl:"750 – 1.500 km"
+lbl:"1.500 – 3.000 km" ‖ lbl:"1,500 – 3,000 km" ‖ lbl:"1.500 – 3.000 km"
+lbl:"> 3.000 km" ‖ lbl:"> 3,000 km" ‖ lbl:"> 3.000 km"
+const nf=n=>n.toLocaleString("nl-NL"); ‖ const nf=n=>n.toLocaleString("en-GB"); ‖ const nf=n=>n.toLocaleString("de-DE");
+a.localeCompare(b,"nl") ‖ a.localeCompare(b,"en") ‖ a.localeCompare(b,"de")
+<span class="tbc">datum onder voorbehoud</span> ‖ <span class="tbc">date provisional</span> ‖ <span class="tbc">Datum unter Vorbehalt</span>
+rel="noopener">Naar website ↗</a> ‖ rel="noopener">To website ↗</a> ‖ rel="noopener">Zur Website ↗</a>
+<span class="pastlabel">Geweest</span> ‖ <span class="pastlabel">Past</span> ‖ <span class="pastlabel">Vorbei</span>
++" van "+EVENTS.length ‖ +" of "+EVENTS.length ‖ +" von "+EVENTS.length
+(list.length===1?"event":"events") ‖ (list.length===1?"event":"events") ‖ (list.length===1?"Event":"Events")
+land:"Albanië" ‖ land:"Albania" ‖ land:"Albanien"
+land:"Australië" ‖ land:"Australia" ‖ land:"Australien"
+land:"Canada" ‖ land:"Canada" ‖ land:"Kanada"
+land:"Colombia" ‖ land:"Colombia" ‖ land:"Kolumbien"
+land:"Duitsland" ‖ land:"Germany" ‖ land:"Deutschland"
+land:"Estland" ‖ land:"Estonia" ‖ land:"Estland"
+land:"Frankrijk" ‖ land:"France" ‖ land:"Frankreich"
+land:"Griekenland" ‖ land:"Greece" ‖ land:"Griechenland"
+land:"Israël" ‖ land:"Israel" ‖ land:"Israel"
+land:"Italië" ‖ land:"Italy" ‖ land:"Italien"
+land:"Japan" ‖ land:"Japan" ‖ land:"Japan"
+land:"Kirgizië" ‖ land:"Kyrgyzstan" ‖ land:"Kirgisistan"
+land:"Marokko" ‖ land:"Morocco" ‖ land:"Marokko"
+land:"Montenegro" ‖ land:"Montenegro" ‖ land:"Montenegro"
+land:"Namibië" ‖ land:"Namibia" ‖ land:"Namibia"
+land:"Nederland" ‖ land:"Netherlands" ‖ land:"Niederlande"
+land:"Nieuw-Zeeland" ‖ land:"New Zealand" ‖ land:"Neuseeland"
+land:"Noorwegen" ‖ land:"Norway" ‖ land:"Norwegen"
+land:"Oostenrijk" ‖ land:"Austria" ‖ land:"Österreich"
+land:"Polen" ‖ land:"Poland" ‖ land:"Polen"
+land:"Rwanda" ‖ land:"Rwanda" ‖ land:"Ruanda"
+land:"Slovenië" ‖ land:"Slovenia" ‖ land:"Slowenien"
+land:"Slowakije" ‖ land:"Slovakia" ‖ land:"Slowakei"
+land:"Spanje" ‖ land:"Spain" ‖ land:"Spanien"
+land:"Tsjechië" ‖ land:"Czechia" ‖ land:"Tschechien"
+land:"Turkije" ‖ land:"Turkey" ‖ land:"Türkei"
+land:"Verenigd Koninkrijk" ‖ land:"United Kingdom" ‖ land:"Vereinigtes Königreich"
+land:"Verenigde Staten" ‖ land:"United States" ‖ land:"Vereinigte Staaten"
+land:"Zwitserland" ‖ land:"Switzerland" ‖ land:"Schweiz"
+cont:"Afrika" ‖ cont:"Africa" ‖ cont:"Afrika"
+cont:"Azië" ‖ cont:"Asia" ‖ cont:"Asien"
+cont:"Europa" ‖ cont:"Europe" ‖ cont:"Europa"
+cont:"Noord-Amerika" ‖ cont:"North America" ‖ cont:"Nordamerika"
+cont:"Oceanië" ‖ cont:"Oceania" ‖ cont:"Ozeanien"
+cont:"Zuid-Amerika" ‖ cont:"South America" ‖ cont:"Südamerika"
+city:"Amerongen (ronde van NL)" ‖ city:"Amerongen (loop of the Netherlands)" ‖ city:"Amerongen (Runde durch die Niederlande)"
+city:"Gliwice (ronde van Polen)" ‖ city:"Gliwice (loop of Poland)" ‖ city:"Gliwice (Runde durch Polen)"
+city:"Granada, Andalusië" ‖ city:"Granada, Andalusia" ‖ city:"Granada, Andalusien"
+city:"Kigali (ronde door Rwanda)" ‖ city:"Kigali (loop through Rwanda)" ‖ city:"Kigali (Runde durch Ruanda)"
+city:"Lanzarote → El Hierro (Canarische Eilanden)" ‖ city:"Lanzarote → El Hierro (Canary Islands)" ‖ city:"Lanzarote → El Hierro (Kanarische Inseln)"
+city:"München (semi-vrije route)" ‖ city:"Munich (semi-free route)" ‖ city:"München (halbfreie Route)"
+city:"Nederland (grensroute)" ‖ city:"Netherlands (border route)" ‖ city:"Niederlande (Grenzroute)"
+city:"Pūponga → Slope Point (Zuidereiland)" ‖ city:"Pūponga → Slope Point (South Island)" ‖ city:"Pūponga → Slope Point (Südinsel)"
+city:"Ronde van Bohemen" ‖ city:"Loop of Bohemia" ‖ city:"Runde durch Böhmen"
+city:"Ronde van Polen" ‖ city:"Loop of Poland" ‖ city:"Runde durch Polen"
+city:"Ronde van Tsjechië" ‖ city:"Loop of Czechia" ‖ city:"Runde durch Tschechien"
+city:"Shkodër (Balkanronde)" ‖ city:"Shkodër (Balkan loop)" ‖ city:"Shkodër (Balkanrunde)"
+city:"Silvi (kust-tot-kust)" ‖ city:"Silvi (coast to coast)" ‖ city:"Silvi (Küste zu Küste)"
+city:"Slovenië (Balkantraverse)" ‖ city:"Slovenia (Balkan traverse)" ‖ city:"Slowenien (Balkantraverse)"
+city:"St. Georgen im Attergau (ronde van Oostenrijk)" ‖ city:"St. Georgen im Attergau (loop of Austria)" ‖ city:"St. Georgen im Attergau (Runde durch Österreich)"
+city:"Zuid-Italië (Etna ↔ Vesuvius)" ‖ city:"Southern Italy (Etna ↔ Vesuvius)" ‖ city:"Süditalien (Ätna ↔ Vesuv)"
+city:"Šumava (Boheemse Woud)" ‖ city:"Šumava (Bohemian Forest)" ‖ city:"Šumava (Böhmerwald)"
+note:"Ruige traverse van Nieuw-Zeelands Zuidereiland, inclusief flinke stukken hike-a-bike. Deelname via ballot." ‖ note:"Rugged traverse of New Zealand's South Island, including long hike-a-bike sections. Entry by ballot." ‖ note:"Raue Durchquerung der neuseeländischen Südinsel, inklusive langer Schiebepassagen. Teilnahme per Losverfahren."
+note:"Eilandhoppen over vijf Canarische eilanden, veerboten inbegrepen. Ideale winterultra." ‖ note:"Island hopping across five Canary Islands, ferries included. The ideal winter ultra." ‖ note:"Inselhopping über fünf Kanarische Inseln, Fähren inklusive. Der ideale Winter-Ultra."
+note:"Gravel en asfalt door het land van duizend heuvels." ‖ note:"Gravel and tarmac through the land of a thousand hills." ‖ note:"Schotter und Asphalt durch das Land der tausend Hügel."
+note:"IJskoude nachten, gloeiende dagen: dé winterklassieker door de Atlas en Anti-Atlas." ‖ note:"Freezing nights, scorching days: the winter classic through the Atlas and Anti-Atlas." ‖ note:"Eiskalte Nächte, glühende Tage: der Winterklassiker durch Atlas und Antiatlas."
+note:"Acht etappes bikepacking over de drie cordilleras van de Colombiaanse Andes." ‖ note:"Eight stages of bikepacking over the three cordilleras of the Colombian Andes." ‖ note:"Acht Etappen Bikepacking über die drei Kordilleren der kolumbianischen Anden."
+note:"Dwars over het Australische continent, inclusief de beruchte kale Nullarbor-vlakte." ‖ note:"Across the Australian continent, including the notorious bare Nullarbor Plain." ‖ note:"Quer über den australischen Kontinent, inklusive der berüchtigten kahlen Nullarbor-Ebene."
+note:"Gravelversie van het eilandhoppen: vulkanische trails, vijf eilanden, veerboten." ‖ note:"Gravel version of the island hopping: volcanic trails, five islands, ferries." ‖ note:"Gravel-Version des Inselhoppings: vulkanische Trails, fünf Inseln, Fähren."
+note:"Zelfvoorzienende race langs de Nederlandse grensstreek — verrassend veel hoogtemeters." ‖ note:"Self-supported race along the Dutch border region — surprisingly much climbing." ‖ note:"Self-supported-Rennen entlang der niederländischen Grenzregion — überraschend viele Höhenmeter."
+note:"Van vulkaan naar vulkaan: kort, steil en venijnig door Zuid-Italië." ‖ note:"From volcano to volcano: short, steep and vicious through southern Italy." ‖ note:"Von Vulkan zu Vulkan: kurz, steil und giftig durch Süditalien."
+note:"Non-stop kust-tot-kust met volgauto; ook 300 km-variant. Klassieker in het supported ultrarijden." ‖ note:"Non-stop coast to coast with a support car; also a 300 km version. A classic of supported ultra racing." ‖ note:"Nonstop von Küste zu Küste mit Begleitfahrzeug; auch eine 300-km-Variante. Ein Klassiker im Supported-Ultrafahren."
+note:"Drie varianten (700, 1.250 of 1.650 km) van zuid naar noord: trails, gravel en heel veel Italië." ‖ note:"Three versions (700, 1,250 or 1,650 km) from south to north: trails, gravel and lots of Italy." ‖ note:"Drei Varianten (700, 1.250 oder 1.650 km) von Süd nach Nord: Trails, Schotter und ganz viel Italien."
+note:"Compacte Spaanse road-ultra: 600 km met 11.000 hoogtemeters." ‖ note:"Compact Spanish road ultra: 600 km with 11,000 m of climbing." ‖ note:"Kompakter spanischer Straßen-Ultra: 600 km mit 11.000 Höhenmetern."
+note:"Klein land, groot lijden: bergtrails door de Dinarische Alpen." ‖ note:"Small country, big suffering: mountain trails through the Dinaric Alps." ‖ note:"Kleines Land, großes Leiden: Bergtrails durch die Dinarischen Alpen."
+note:"MTB-bikepacking door Tsjechische bossen en heuvelruggen." ‖ note:"MTB bikepacking through Czech forests and ridges." ‖ note:"MTB-Bikepacking durch tschechische Wälder und Höhenzüge."
+note:"Hét Nederlandse ultra-avontuur: 1.950 km langs de randen van het land, met gravelstroken." ‖ note:"The Dutch ultra adventure: 1,950 km along the edges of the country, with gravel sections." ‖ note:"Das niederländische Ultra-Abenteuer: 1.950 km entlang der Landesränder, mit Schotterabschnitten."
+note:"De Schotse Hooglanden op hun rauwst; cult-klassieker zonder inschrijfgeld." ‖ note:"The Scottish Highlands at their rawest; a cult classic without an entry fee." ‖ note:"Die schottischen Highlands von ihrer rauesten Seite; Kultklassiker ohne Startgeld."
+note:"Road-ultra dwars door Slowakije." ‖ note:"Road ultra right across Slovakia." ‖ note:"Straßen-Ultra quer durch die Slowakei."
+note:"Off-road epos van Lost Dot door de Vervloekte Bergen en meerdere Balkanlanden." ‖ note:"Off-road epic by Lost Dot through the Accursed Mountains and several Balkan countries." ‖ note:"Offroad-Epos von Lost Dot durch die Albanischen Alpen und mehrere Balkanländer."
+note:"Instapversie van Seven Serpents: 500 km Sloveens-Kroatische gravel." ‖ note:"Entry-level version of Seven Serpents: 500 km of Slovenian-Croatian gravel." ‖ note:"Einsteigerversion von Seven Serpents: 500 km slowenisch-kroatischer Schotter."
+note:"Het grootste bikepacking-event ter wereld: geen race, wél duizenden deelnemers en strade bianche." ‖ note:"The biggest bikepacking event in the world: not a race, but thousands of participants and strade bianche." ‖ note:"Das größte Bikepacking-Event der Welt: kein Rennen, aber Tausende Teilnehmer und Strade Bianche."
+note:"1.000 km vanuit Utrecht de grens over en terug; snelle, sociale Nederlandse ultrascene." ‖ note:"1,000 km from Utrecht across the border and back; a fast, social Dutch ultra scene." ‖ note:"1.000 km von Utrecht über die Grenze und zurück; schnelle, gesellige niederländische Ultraszene."
+note:"Zusje van Atlas & Silk Road, door het Griekse Pindosgebergte." ‖ note:"Little sister of Atlas & Silk Road, through the Greek Pindus mountains." ‖ note:"Kleine Schwester von Atlas & Silk Road, durch das griechische Pindosgebirge."
+note:"1.800 km road tussen Oostzee en Tatra." ‖ note:"1,800 km of road between the Baltic Sea and the Tatras." ‖ note:"1.800 km Straße zwischen Ostsee und Tatra."
+note:"Nachtstart in de Flint Hills: de ultra-versie van 's werelds bekendste gravelrace." ‖ note:"Night start in the Flint Hills: the ultra version of the world's best-known gravel race." ‖ note:"Nachtstart in den Flint Hills: die Ultra-Version des bekanntesten Gravelrennens der Welt."
+note:"MTB-traverse over de ruggengraat van de Dinarische Alpen." ‖ note:"MTB traverse along the spine of the Dinaric Alps." ‖ note:"MTB-Traverse über das Rückgrat der Dinarischen Alpen."
+note:"Off-road bikepacking door Moravië." ‖ note:"Off-road bikepacking through Moravia." ‖ note:"Offroad-Bikepacking durch Mähren."
+note:"Technisch en steil: veel hoogtemeters per kilometer." ‖ note:"Technical and steep: lots of climbing per kilometre." ‖ note:"Technisch und steil: viele Höhenmeter pro Kilometer."
+note:"De TransAmerica-route non-stop van west naar oost; opvolger van de Trans Am Bike Race." ‖ note:"The TransAmerica route non-stop from west to east; successor of the Trans Am Bike Race." ‖ note:"Die TransAmerica-Route nonstop von West nach Ost; Nachfolger des Trans Am Bike Race."
+note:"Zeven bergruggen tussen de Alpen en de Adriatische Zee." ‖ note:"Seven mountain ridges between the Alps and the Adriatic Sea." ‖ note:"Sieben Bergrücken zwischen den Alpen und der Adria."
+note:"Lange off-road lus door Polen." ‖ note:"Long off-road loop through Poland." ‖ note:"Lange Offroad-Schleife durch Polen."
+note:"550 of 850 km dwalen door het Boheemse Woud." ‖ note:"550 or 850 km of roaming through the Bohemian Forest." ‖ note:"550 oder 850 km Streifzug durch den Böhmerwald."
+note:"Gravel-ultra vanuit Krakau; ook een 500 km-versie." ‖ note:"Gravel ultra from Kraków; also a 500 km version." ‖ note:"Gravel-Ultra ab Krakau; auch eine 500-km-Version."
+note:"Hét halo-event van bikepacking: de Great Divide van Canada naar de Mexicaanse grens." ‖ note:"The halo event of bikepacking: the Great Divide from Canada to the Mexican border." ‖ note:"Das Aushängeschild des Bikepackings: der Great Divide von Kanada bis zur mexikanischen Grenze."
+note:"Zwitserland van oost naar west, over alpenweiden en bergpassen." ‖ note:"Switzerland from east to west, over alpine meadows and mountain passes." ‖ note:"Die Schweiz von Ost nach West, über Almwiesen und Bergpässe."
+note:"Grote lus door de Taunus en omstreken; gemoedelijke Duitse bikepacking-scene." ‖ note:"Big loop through the Taunus and surroundings; a friendly German bikepacking scene." ‖ note:"Große Schleife durch den Taunus und Umgebung; gemütliche deutsche Bikepacking-Szene."
+note:"De legende: non-stop met volgteam, 3.000 mijl door 13 staten. Teams starten 20 juni." ‖ note:"The legend: non-stop with a support crew, 3,000 miles through 13 states. Teams start on 20 June." ‖ note:"Die Legende: nonstop mit Begleitteam, 3.000 Meilen durch 13 Bundesstaaten. Teams starten am 20. Juni."
+note:"Groot ultrafestival met afstanden van 300 tot 2.600 km." ‖ note:"Big ultra festival with distances from 300 to 2,600 km." ‖ note:"Großes Ultrafestival mit Distanzen von 300 bis 2.600 km."
+note:"Van de kop van Europa naar het zuidpuntje; ook 1.700, 4.000 en 5.300 km-varianten." ‖ note:"From the top of Europe to its southern tip; also 1,700, 4,000 and 5,300 km versions." ‖ note:"Vom Kopf Europas bis zur Südspitze; auch Varianten mit 1.700, 4.000 und 5.300 km."
+note:"Noorse klassieker sinds 1967: 540 km in één ruk naar Oslo." ‖ note:"Norwegian classic since 1967: 540 km in one go to Oslo." ‖ note:"Norwegischer Klassiker seit 1967: 540 km in einem Rutsch nach Oslo."
+note:"Semi-vrije route langs 20 alpenpassen; Lite-versie (840 km) start 4 juni." ‖ note:"Semi-free route over 20 alpine passes; the Lite version (840 km) starts on 4 June." ‖ note:"Halbfreie Route über 20 Alpenpässe; die Lite-Version (840 km) startet am 4. Juni."
+note:"Brits-Columbia via oude spoorpaden en trails." ‖ note:"British Columbia via old rail trails and singletrack." ‖ note:"British Columbia über alte Bahntrassen und Trails."
+note:"Grote ronde van Polen; met unsupported én supported categorieën." ‖ note:"Big loop of Poland; with both unsupported and supported categories." ‖ note:"Große Runde durch Polen; mit Unsupported- und Supported-Kategorien."
+note:"Vrije routekeuze langs drie iconische checkpoints richting het zuiden." ‖ note:"Free route choice via three iconic checkpoints heading south." ‖ note:"Freie Routenwahl über drei ikonische Checkpoints Richtung Süden."
+note:"De Wisła volgen van de bergen naar de zee." ‖ note:"Following the Vistula from the mountains to the sea." ‖ note:"Der Weichsel folgen, von den Bergen bis ans Meer."
+note:"Gravel onder de middernachtzon, boven de poolcirkel." ‖ note:"Gravel under the midnight sun, above the Arctic Circle." ‖ note:"Schotter unter der Mitternachtssonne, nördlich des Polarkreises."
+note:"Dwars door Slowakije en Tsjechië; kies de North- of South-route." ‖ note:"Right across Slovakia and Czechia; choose the North or South route." ‖ note:"Quer durch die Slowakei und Tschechien; wähle die North- oder South-Route."
+note:"Gravel door heel Tsjechië; ook 800 km-variant." ‖ note:"Gravel across all of Czechia; also an 800 km version." ‖ note:"Schotter durch ganz Tschechien; auch eine 800-km-Variante."
+note:"Keltische kusten en cols; route ±2.300 km, wisselt per editie." ‖ note:"Celtic coasts and cols; route ±2,300 km, changes every edition." ‖ note:"Keltische Küsten und Pässe; Route ±2.300 km, wechselt jede Ausgabe."
+note:"Dé klassieker onder de road-ultra's: vrije route van Noorwegen naar Griekenland, ±5.000 km." ‖ note:"The classic among road ultras: free route from Norway to Greece, ±5,000 km." ‖ note:"Der Klassiker unter den Straßen-Ultras: freie Route von Norwegen nach Griechenland, ±5.000 km."
+note:"Van Italië naar de Noordkaap over een vaste route; groot internationaal deelnemersveld." ‖ note:"From Italy to the North Cape on a fixed route; a big international field." ‖ note:"Von Italien zum Nordkap auf fester Route; großes internationales Starterfeld."
+note:"Baskische bossen, Pyreneeën-uitlopers en de halfwoestijn van de Bardenas." ‖ note:"Basque forests, Pyrenean foothills and the semi-desert of the Bardenas." ‖ note:"Baskische Wälder, Pyrenäen-Ausläufer und die Halbwüste der Bardenas."
+note:"Classic 650, Gravel 790 of Hardline 950 km (start 31 juli)." ‖ note:"Classic 650, Gravel 790 or Hardline 950 km (start 31 July)." ‖ note:"Classic 650, Gravel 790 oder Hardline 950 km (Start 31. Juli)."
+note:"XL-editie met fors meer klimwerk richting Ardennen en Eifel." ‖ note:"XL edition with much more climbing towards the Ardennes and the Eifel." ‖ note:"XL-Ausgabe mit deutlich mehr Kletterei Richtung Ardennen und Eifel."
+note:"Fjorden, hoogvlakten en eindeloze Noorse gravel." ‖ note:"Fjords, high plateaus and endless Norwegian gravel." ‖ note:"Fjorde, Hochebenen und endloser norwegischer Schotter."
+note:"Singletrack-monster op grote hoogte langs de Colorado Trail." ‖ note:"High-altitude singletrack monster along the Colorado Trail." ‖ note:"Singletrail-Monster in großer Höhe entlang des Colorado Trail."
+note:"600 km met 20.000 hoogtemeters — steiler wordt het zelden." ‖ note:"600 km with 20,000 m of climbing — it rarely gets steeper." ‖ note:"600 km mit 20.000 Höhenmetern — steiler wird es selten."
+note:"Supported ronde van Oostenrijk; de Challenge-versie (560 km) start 10 augustus." ‖ note:"Supported loop of Austria; the Challenge version (560 km) starts on 10 August." ‖ note:"Supported-Runde durch Österreich; die Challenge-Version (560 km) startet am 10. August."
+note:"Compact maar taai: de West-Karpaten off-road." ‖ note:"Compact but tough: the Western Carpathians off-road." ‖ note:"Kompakt, aber zäh: die Westkarpaten offroad."
+note:"Het zwaarste dat bikepacking te bieden heeft: hooggebergte, rivierdoorwadingen en yurtkampen." ‖ note:"The toughest bikepacking has to offer: high mountains, river crossings and yurt camps." ‖ note:"Das Härteste, was Bikepacking zu bieten hat: Hochgebirge, Flussdurchquerungen und Jurtencamps."
+note:"In vier etappes off-road door Groot-Brittannië; inschrijving via loting." ‖ note:"Off-road through Great Britain in four stages; entry by ballot." ‖ note:"In vier Etappen offroad durch Großbritannien; Anmeldung per Los."
+note:"Enorme gravelronde van Polen." ‖ note:"Huge gravel loop of Poland." ‖ note:"Riesige Gravelrunde durch Polen."
+note:"Vlak, snel en bosrijk Baltisch gravelen; ook 500 km-versie." ‖ note:"Flat, fast and forested Baltic gravel; also a 500 km version." ‖ note:"Flaches, schnelles und waldreiches Baltikum-Graveln; auch eine 500-km-Version."
+note:"Wildernisultra door Alaska — beren inbegrepen." ‖ note:"Wilderness ultra through Alaska — bears included." ‖ note:"Wildnis-Ultra durch Alaska — Bären inklusive."
+note:"850 of 1.100 km langs Tsjechische meren." ‖ note:"850 or 1,100 km along Czech lakes." ‖ note:"850 oder 1.100 km entlang tschechischer Seen."
+note:"850 of 1.500 km rond de Tsjechische Republiek." ‖ note:"850 or 1,500 km around the Czech Republic." ‖ note:"850 oder 1.500 km rund um die Tschechische Republik."
+note:"Orbit360-serie: Adventure 1.100, Classic 800 of Entree 500 km. Hoogtemeters in overvloed." ‖ note:"Orbit360 series: Adventure 1,100, Classic 800 or Entree 500 km. Climbing in abundance." ‖ note:"Orbit360-Serie: Adventure 1.100, Classic 800 oder Entree 500 km. Höhenmeter im Überfluss."
+note:"Europa's populairste gravel-ultra: woestijn van Gorafe, Cabo de Gata en de Sierra Nevada." ‖ note:"Europe's most popular gravel ultra: the Gorafe desert, Cabo de Gata and the Sierra Nevada." ‖ note:"Europas beliebtester Gravel-Ultra: die Wüste von Gorafe, Cabo de Gata und die Sierra Nevada."
+note:"Geen race maar een rally over legendarische gravelpassen; in 2026 geen officiële editie, route vrij te rijden." ‖ note:"Not a race but a rally over legendary gravel passes; no official edition in 2026, the route is free to ride." ‖ note:"Kein Rennen, sondern eine Rallye über legendäre Schotterpässe; 2026 keine offizielle Ausgabe, die Route ist frei befahrbar."
+note:"Door de Franse Alpen van meer naar zee." ‖ note:"Through the French Alps from lake to sea." ‖ note:"Durch die französischen Alpen vom See bis zum Meer."
+note:"Langs de grenzen van Bohemen; ruig, bosrijk en verrassend zwaar." ‖ note:"Along the borders of Bohemia; rugged, forested and surprisingly hard." ‖ note:"Entlang der Grenzen Böhmens; rau, waldreich und überraschend hart."
+note:"Twee continenten in één race; gravel- (4.000 km) en road-variant (4.250 km)." ‖ note:"Two continents in one race; gravel (4,000 km) and road version (4,250 km)." ‖ note:"Zwei Kontinente in einem Rennen; Gravel- (4.000 km) und Straßenvariante (4.250 km)."
+note:"Lost Dots herfstrace over de grote Pyreneeëncols; ±1.500 km." ‖ note:"Lost Dot's autumn race over the great Pyrenean cols; ±1,500 km." ‖ note:"Das Herbstrennen von Lost Dot über die großen Pyrenäenpässe; ±1.500 km."
+note:"Klassieke Tsjechische divide-route." ‖ note:"Classic Czech divide route." ‖ note:"Klassische tschechische Divide-Route."
+note:"Spaanse road-ultra in het naseizoen." ‖ note:"Spanish road ultra in the late season." ‖ note:"Spanischer Straßen-Ultra in der Nachsaison."
+note:"Van Windhoek door woestijn, winelands en Karoo naar Zuid-Afrika." ‖ note:"From Windhoek through desert, winelands and Karoo to South Africa." ‖ note:"Von Windhoek durch Wüste, Winelands und Karoo nach Südafrika."
+note:"Van de Golan tot de Rode Zee; ook North- (700) en South-helft (750 km)." ‖ note:"From the Golan to the Red Sea; also North (700) and South half (750 km)." ‖ note:"Vom Golan bis zum Roten Meer; auch Nord- (700) und Südhälfte (750 km)."
+note:"800 mijl AZT inclusief Grand Canyon-doorsteek met de fiets op de rug; ook 300-mijlversie." ‖ note:"800 miles of AZT including a Grand Canyon crossing with the bike on your back; also a 300-mile version." ‖ note:"800 Meilen AZT inklusive Grand-Canyon-Durchquerung mit dem Rad auf dem Rücken; auch eine 300-Meilen-Version."
+note:"Nieuwste telg van The Mountain Races, door het Turkse Taurusgebergte." ‖ note:"Newest member of The Mountain Races, through the Turkish Taurus Mountains." ‖ note:"Jüngstes Mitglied der Mountain Races, durch das türkische Taurusgebirge."
+note:"De moeder van alle brevetten, eens per vier jaar; kwalificatie via de BRM-serie. Volgende editie: augustus 2027." ‖ note:"The mother of all brevets, once every four years; qualification via the BRM series. Next edition: August 2027." ‖ note:"Die Mutter aller Brevets, alle vier Jahre; Qualifikation über die BRM-Serie. Nächste Ausgabe: August 2027."
+note:"Ultra-avontuur door de Japanse bergen; volgende editie in 2027, details volgen." ‖ note:"Ultra adventure through the Japanese mountains; next edition in 2027, details to follow." ‖ note:"Ultra-Abenteuer durch die japanischen Berge; nächste Ausgabe 2027, Details folgen."
+
+[html]
+<p class="sub">Vind jouw volgende ultra: filter op datum, werelddeel, land, afstand, ondergrond en type fiets. Van 460 km Tuscany Trail tot 7.400 km Northcape–Tarifa.</p> ‖ <p class="sub">Find your next ultra: filter by date, continent, country, distance, surface and type of bike. From the 460 km Tuscany Trail to the 7,400 km Northcape–Tarifa.</p> ‖ <p class="sub">Finde deinen nächsten Ultra: Filtere nach Datum, Kontinent, Land, Distanz, Untergrund und Radtyp. Vom 460 km langen Tuscany Trail bis zu 7.400 km Northcape–Tarifa.</p>
+<span>landen</span> ‖ <span>countries</span> ‖ <span>Länder</span>
+<span>werelddelen</span> ‖ <span>continents</span> ‖ <span>Kontinente</span>
+<span>km totaal</span> ‖ <span>km in total</span> ‖ <span>km insgesamt</span>
+placeholder="Zoek op naam, plaats of land…" ‖ placeholder="Search by name, place or country…" ‖ placeholder="Nach Name, Ort oder Land suchen…"
+<option value="">Alle landen</option> ‖ <option value="">All countries</option> ‖ <option value="">Alle Länder</option>
+<option value="datum">Sorteer: datum</option> ‖ <option value="datum">Sort: date</option> ‖ <option value="datum">Sortieren: Datum</option>
+<option value="km-op">Afstand ↑</option> ‖ <option value="km-op">Distance ↑</option> ‖ <option value="km-op">Distanz ↑</option>
+<option value="km-af">Afstand ↓</option> ‖ <option value="km-af">Distance ↓</option> ‖ <option value="km-af">Distanz ↓</option>
+<option value="hm-af">Hoogtemeters ↓</option> ‖ <option value="hm-af">Climbing ↓</option> ‖ <option value="hm-af">Höhenmeter ↓</option>
+checked> Alleen aankomend</label> ‖ checked> Upcoming only</label> ‖ checked> Nur kommende</label>
+id="reset">✕ Wis filters</button> ‖ id="reset">✕ Clear filters</button> ‖ id="reset">✕ Filter löschen</button>
+<div class="flabel">Maand</div> ‖ <div class="flabel">Month</div> ‖ <div class="flabel">Monat</div>
+<div class="flabel">Werelddeel</div> ‖ <div class="flabel">Continent</div> ‖ <div class="flabel">Kontinent</div>
+<div class="flabel">Afstand</div> ‖ <div class="flabel">Distance</div> ‖ <div class="flabel">Distanz</div>
+<div class="flabel">Ondergrond</div> ‖ <div class="flabel">Surface</div> ‖ <div class="flabel">Untergrund</div>
+<div class="flabel">Fiets</div> ‖ <div class="flabel">Bike</div> ‖ <div class="flabel">Rad</div>
+<div class="hint">Klik op chips om te filteren · data zijn richtwaarden, check altijd de officiële site</div> ‖ <div class="hint">Click chips to filter · dates are guide values, always check the official site</div> ‖ <div class="hint">Klick auf die Chips zum Filtern · Termine sind Richtwerte, prüf immer die offizielle Seite</div>
+<b>Geen events gevonden</b>Pas je filters aan of wis alles met ✕. ‖ <b>No events found</b>Adjust your filters or clear everything with ✕. ‖ <b>Keine Events gefunden</b>Passe deine Filter an oder lösche alles mit ✕.
+<strong>Bronnen:</strong> samengesteld juli 2026 op basis van ‖ <strong>Sources:</strong> compiled July 2026 based on ‖ <strong>Quellen:</strong> zusammengestellt im Juli 2026 auf Basis von
+en de officiële eventwebsites.<br> ‖ and the official event websites.<br> ‖ und den offiziellen Event-Websites.<br>
+Afstanden en hoogtemeters zijn richtwaarden van de organisaties; data en routes kunnen wijzigen. Events gemarkeerd met “datum onder voorbehoud” zijn nog niet definitief bevestigd. Self-supported = zelfvoorzienend zonder hulp van buitenaf; supported = met volgauto/team. ‖ Distances and climbing are guide values from the organisers; dates and routes can change. Events marked "date provisional" are not yet confirmed. Self-supported = without outside help; supported = with a support car/team. ‖ Distanzen und Höhenmeter sind Richtwerte der Veranstalter; Termine und Routen können sich ändern. Mit „Datum unter Vorbehalt" markierte Events sind noch nicht bestätigt. Self-supported = ohne Hilfe von außen; supported = mit Begleitfahrzeug/Team.

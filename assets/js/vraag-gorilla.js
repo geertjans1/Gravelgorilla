@@ -308,7 +308,7 @@
          ["sweden|schweden", "zweden"], ["portugal", "portugal"], ["scotland|schottland", "schotland"], ["united kingdom|uk|britain|grossbritannien|england", "verenigd koninkrijk"],
          ["morocco|marokko", "marokko"], ["slovenia|slowenien", "slovenie"], ["poland|polen", "polen"], ["czech|tschechien", "tsjechie"], ["usa|united states|america|amerika", "verenigde staten"],
          ["europe", "europa"], ["africa", "afrika"], ["asia|asien", "azie"], ["oceania|ozeanien", "oceanie"]]
-          .forEach(([andere, nl]) => { q = q.replace(new RegExp("(^|[^a-z])(" + andere + ")(?![a-z])", "g"), "$1" + nl); });
+          .forEach(([andere, nl]) => { if (TAAL === "nl") q = q.replace(new RegExp("(^|[^a-z])(" + andere + ")(?![a-z])", "g"), "$1" + nl); });
         const MAANDEN = ["jan", "feb", "maart|mrt|mar|marz", "apr", "mei|may|mai", "jun", "jul", "aug", "sep", "okt|oct", "nov", "dec|dez"];
         const maanden = MAANDEN.map((m, i) => (new RegExp("(^|[^a-z])(" + m + ")").test(q) ? i : -1)).filter(i => i >= 0);
         const landen = [...new Set(EVENTS.map(e => e.land))].filter(l => q.includes(norm(l)));
@@ -346,12 +346,12 @@
         const datum = (d, opties) => new Date(d).toLocaleDateString(LOC, opties || { day: "numeric", month: "short", year: "numeric" });
         const wanneer = e => new Date(e.d) >= vandaag
           ? datum(e.d) + (e.tbc ? T(" (onder voorbehoud)", " (provisional)", " (unter Vorbehalt)") : "")
-          : T("volgende editie rond ", "next edition around ", "nächste Ausgabe um ") + datum(volgende(e), { month: "long", year: "numeric" }) + T(" (vorige: ", " (previous: ", " (vorige: ") + datum(e.d) + ")";
+          : T("volgende editie rond ", "next edition around ", "nächste Ausgabe etwa im ") + datum(volgende(e), { month: "long", year: "numeric" }) + T(" (vorige: ", " (previous: ", " (zuletzt: ") + datum(e.d) + ")";
         const regel = e => '<a href="' + e.u + '" target="_blank" rel="noopener">' + html(e.n) + " ↗</a> " +
           wanneer(e) + ", " + html(landNaam(e.land)) + ", " + e.km.toLocaleString(LOC) + " km" + (e.hm ? ", " + e.hm.toLocaleString(LOC) + T(" hm", " m climbing", " hm") : "");
         const geweest = uit.slice(0, 5).some(e => new Date(e.d) < vandaag);
         return {
-          html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? "event" : "events") + "</b>" + T("", "", " gefunden") + (uit.length > 5 ? T(". De eerste vijf:", ". The first five:", ". Die ersten fünf:") : ":") +
+          html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? T("event", "event", "Event") : T("events", "events", "Events")) + "</b>" + T("", "", " gefunden") + (uit.length > 5 ? T(". De eerste vijf:", ". The first five:", ". Die ersten fünf:") : ":") +
             lijst(uit.slice(0, 5).map(regel)) +
             (geweest ? T("Bij events die dit jaar al geweest zijn, staat de verwachte maand van de volgende editie. ", "For events that have already taken place this year, the expected month of the next edition is shown. ", "Bei Events, die dieses Jahr schon waren, steht der erwartete Monat der nächsten Ausgabe. ") : "") +
             T("Controleer altijd de officiële website voordat je je inschrijft.", "Always check the official website before you register.", "Prüf immer die offizielle Website, bevor du dich anmeldest."),
