@@ -121,11 +121,9 @@ button { font: inherit; color: inherit; }
 
 .snelkeuze { margin-top: 36px; border-top: 1.5px solid var(--tekst); padding-top: 18px; max-width: 34em; }
 .snelkeuze__begin { font-family: var(--kopfont); text-transform: uppercase; font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; }
-.snelkeuze__opties { display: flex; flex-wrap: wrap; gap: 8px; }
-.snelkeuze__opties a { padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--lijn); font-size: .95rem; font-weight: 500; transition: background .2s, border-color .2s, color .2s; }
-.snelkeuze__opties a:first-child { background: var(--actie); border-color: var(--actie); color: #15181A; }
+.snelkeuze__opties { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.snelkeuze__opties a { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 7px; border-radius: 999px; border: 1.5px solid var(--lijn); font-size: .95rem; font-weight: 500; transition: background .2s, border-color .2s, color .2s; }
 .snelkeuze__opties a:hover { border-color: var(--groen); color: var(--groen-tekst); }
-.snelkeuze__opties a:first-child:hover { background: var(--actie-hover); color: #15181A; }
 .snelkeuze__alles { border-style: dashed !important; }
 
 .opening__band { position: relative; justify-self: center; width: min(100%, 460px); }
@@ -137,11 +135,11 @@ button { font: inherit; color: inherit; }
 .spoor { position: absolute; left: 50%; top: 92%; width: 60px; height: 40vh; transform: translateX(-50%); opacity: .3; -webkit-mask-image: linear-gradient(#000, transparent); mask-image: linear-gradient(#000, transparent); }
 
 /* ---------- Hoogteprofiel ---------- */
-.profiel { position: relative; max-width: var(--breed); margin: 0 auto 40px; height: 150px; padding: 0 clamp(16px, 4vw, 40px); }
+.profiel { position: relative; max-width: var(--breed); margin: 0 auto 40px; padding: 0 clamp(16px, 4vw, 40px); }
 .profiel__lijn { width: 100%; height: 100%; overflow: visible; }
 .profiel__vlak { fill: var(--profiel-vlak); }
 .profiel__pad { fill: none; stroke: var(--groen); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-.profiel__vak { position: relative; height: 100%; }
+.profiel__vak { position: relative; height: 150px; }
 .profiel__punt { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); display: grid; place-items: center; }
 .profiel__punt i { width: 16px; height: 16px; border-radius: 50%; background: var(--achtergrond); border: 3px solid var(--groen); transition: transform .25s var(--zacht), background .25s; }
 .profiel__punt span { position: absolute; bottom: 100%; margin-bottom: 8px; white-space: nowrap; font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; font-size: .9rem; letter-spacing: .04em; padding: 3px 10px; border-radius: 6px; background: var(--tekst); color: var(--achtergrond); }
@@ -260,7 +258,7 @@ button { font: inherit; color: inherit; }
   .bar.is-open .bar__menu span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
   .brand__word { font-size: 1.1rem; }
   .opening__band { width: 58vw; margin-bottom: -40px; }
-  .profiel { height: 110px; }
+  .profiel__vak { height: 110px; }
   .profiel__punt span { font-size: .72rem; padding: 2px 7px; }
   .wegwijzer { padding-top: 70px; }
   .wegwijzer__zoek { align-items: stretch; width: 100%; }
@@ -288,3 +286,41 @@ button { font: inherit; color: inherit; }
 /* Gebruiksteller bij de bordjes in de wegwijzer */
 .bordje__teller { display: block; margin-top: 6px; font-size: .82rem; font-weight: 600; color: var(--groen-tekst); }
 .bordje > a:hover .bordje__teller { color: #8FD9A0; }
+
+/* ---------- Snelkeuze-fiets: wijs aan wat je wilt weten ---------- */
+.snelkeuze__begin span { font-family: var(--tekstfont); text-transform: none; font-size: .95rem; font-weight: 500; color: var(--tekst-zacht); margin-left: 6px; }
+.snelfiets { margin: 4px 0 14px; }
+.snelfiets svg { display: block; width: 100%; height: auto; overflow: visible; }
+.snelfiets__grond { stroke: var(--lijn); stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; }
+.deel { color: var(--tekst); cursor: pointer; transition: color .25s; }
+.deel.is-aan { color: var(--groen); }
+.sticker__vlak { fill: #F4F1EA; stroke: currentColor; stroke-width: 2.5; transition: fill .25s; }
+.deel--sticker.is-aan .sticker__vlak { fill: #FFD2B8; }
+.punt__kern { fill: var(--actie); transition: fill .25s, transform .25s var(--zacht); transform-box: fill-box; transform-origin: center; }
+.punt text { fill: #15181A; font-family: var(--kopfont); font-size: 15px; font-weight: 700; text-anchor: middle; pointer-events: none; }
+.punt__golf { fill: var(--actie); opacity: 0; transform-box: fill-box; transform-origin: center; animation: golf 4.2s var(--zacht) infinite; animation-delay: var(--d, 0ms); }
+.deel.is-aan .punt__kern { fill: var(--groen); transform: scale(1.18); }
+.deel.is-aan .punt text { fill: #fff; }
+@keyframes golf { 0% { transform: scale(1); opacity: .5; } 35%, 100% { transform: scale(2.2); opacity: 0; } }
+.snelkeuze__opties a span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--actie); color: #15181A; font-family: var(--kopfont); font-weight: 700; font-size: .85rem; transition: background .2s, color .2s; }
+.snelkeuze__opties a.is-aan { border-color: var(--groen); color: var(--groen-tekst); }
+.snelkeuze__opties a.is-aan span { background: var(--groen); color: #fff; }
+@media (prefers-reduced-motion: reduce) { .punt__golf { animation: none; } }
+
+/* ---------- Hoogteprofiel als rit over de pagina ---------- */
+.profiel__punt span { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.profiel__punt span small { font-family: var(--tekstfont); font-size: .62rem; font-weight: 700; letter-spacing: .12em; color: var(--actie); }
+.profiel__punt:hover span { background: var(--groen); color: #fff; }
+.profiel__punt--finish span { transform: translateX(-42%); }
+.profiel__punt--finish i { border-radius: 3px; border: 0; width: 22px; height: 22px; background: repeating-conic-gradient(var(--tekst) 0 25%, var(--achtergrond) 0 50%) 0 0 / 11px 11px; box-shadow: 0 0 0 2px var(--tekst); }
+.profiel__punt--finish:hover i { background: repeating-conic-gradient(var(--groen) 0 25%, var(--achtergrond) 0 50%) 0 0 / 11px 11px; }
+.profiel__vlag { position: absolute; left: var(--x); top: var(--y); transform: translate(-2px, -100%); font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; font-size: .8rem; letter-spacing: .06em; padding: 2px 8px 2px 12px; border-left: 3px solid var(--tekst); background: var(--actie); color: #15181A; margin-top: -10px; }
+.profiel__stijging { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%) rotate(-14deg); font-family: var(--kopfont); font-weight: 700; font-size: .95rem; color: var(--tekst-zacht); opacity: .7; }
+.profiel__renner { position: absolute; left: 0; top: 80%; width: 40px; height: 40px; margin: -38px 0 0 -20px; pointer-events: none; will-change: transform, left, top; filter: drop-shadow(0 3px 4px rgba(0,0,0,.18)); }
+.profiel__renner img { display: block; width: 100%; height: 100%; }
+.profiel__as { display: flex; justify-content: space-between; border-top: 1.5px solid var(--tekst); margin-top: -1px; padding-top: 6px; font-family: var(--kopfont); font-size: .75rem; font-weight: 600; letter-spacing: .06em; color: var(--tekst-zacht); }
+@media (max-width: 640px) {
+  .profiel__stijging, .profiel__punt span small { display: none; }
+  .profiel__renner { width: 28px; height: 28px; margin: -27px 0 0 -14px; }
+  .profiel__vlag { font-size: .65rem; }
+}

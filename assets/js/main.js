@@ -90,20 +90,32 @@ const bandDraai = document.querySelector(".band__draai");
 const pad = document.getElementById("profielPad");
 const profiel = document.querySelector(".profiel");
 const padLengte = pad.getTotalLength();
-pad.style.strokeDasharray = padLengte;
-pad.style.strokeDashoffset = minderBeweging ? 0 : padLengte;
 
 function bijScrollen() {
   const y = window.scrollY;
   if (!minderBeweging) {
     // draaien om het midden van de band (200,200)
     bandDraai.setAttribute("transform", `rotate(${(y * 0.25).toFixed(1)} 200 200)`);
-    // het profiel is helemaal getekend als het halverwege het scherm staat
+    // het profiel is helemaal getekend (en het logo bij de finish) als het bovenin het scherm staat
     const vak = profiel.getBoundingClientRect();
-    const voortgang = Math.min(Math.max((window.innerHeight - vak.top) / (window.innerHeight * 0.6), 0), 1);
-    pad.style.strokeDashoffset = padLengte * (1 - voortgang);
+    const voortgang = Math.min(Math.max((window.innerHeight - vak.top) / (window.innerHeight * 0.8), 0), 1);
+    // (de groene lijn wordt in zetRenner tot aan het logo getekend)
+    zetRenner(voortgang);
   }
 }
+
+/* Het logo rolt als een wiel over het profiel, op de punt waar de lijn getekend is. */
+const renner = document.getElementById("profielRenner");
+const klem = document.getElementById("profielKlem");
+function zetRenner(voortgang) {
+  if (!renner) return;
+  const p = pad.getPointAtLength(padLengte * voortgang);
+  renner.style.left = (p.x / 1200 * 100) + "%";
+  renner.style.top = (p.y / 150 * 100) + "%";
+  klem.setAttribute("width", (p.x + 10).toFixed(1));
+  renner.style.transform = `rotate(${(padLengte * voortgang * 0.9).toFixed(1)}deg)`;
+}
+zetRenner(minderBeweging ? 1 : 0);
 
 let wacht = false;
 window.addEventListener("scroll", () => {
@@ -113,3 +125,14 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 
 bijScrollen();
+
+/* ---------- Snelkeuze-fiets: onderdeel en knop lichten samen op ---------- */
+document.querySelectorAll(".snelkeuze [data-deel]").forEach(el => {
+  const zelfde = () => document.querySelectorAll(`.snelkeuze [data-deel="${el.dataset.deel}"]`);
+  const aan = () => zelfde().forEach(z => z.classList.add("is-aan"));
+  const uit = () => zelfde().forEach(z => z.classList.remove("is-aan"));
+  el.addEventListener("mouseenter", aan);
+  el.addEventListener("mouseleave", uit);
+  el.addEventListener("focus", aan);
+  el.addEventListener("blur", uit);
+});
