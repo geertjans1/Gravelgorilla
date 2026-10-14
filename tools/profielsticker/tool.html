@@ -421,7 +421,7 @@ input[aria-invalid=true],select[aria-invalid=true]{border:2px solid var(--crit) 
           <label class="ps-check ps-small-check"><input type="checkbox" id="ps-osm-auto"> Bij een nieuwe route automatisch ophalen</label>
           <ol class="ps-howto">
             <li><b>Ondergrond aanpassen:</b> kies hieronder asfalt, gravel of zand en sleep over de gekleurde balk onder het profiel.</li>
-            <li><b>Positie of post:</b> tik op het profiel (of gebruik de pijltjestoetsen) om de kilometer te zien en daar een post neer te zetten.</li>
+            <li><b>Positie of post:</b> tik op het profiel (of gebruik de pijltjestoetsen) om de kilometer te zien en daar een post neer te zetten. Een post verplaatsen? Sleep het genummerde rondje naar links of rechts.</li>
           </ol>
           <div class="ps-chips" id="ps-brush" role="radiogroup" aria-label="Ondergrond om te tekenen"></div>
           <div class="ps-chart" id="ps-chart" tabindex="0" role="slider" aria-label="Positie op het hoogteprofiel" aria-describedby="ps-chart-help ps-chart-sum"></div>
@@ -3750,9 +3750,12 @@ function renderEditor() {
   const pl = S.posts.slice().sort((a, b) => a.km - b.km);
   pl.forEach((p, i) => {
     const x = X(clamp(p.km, 0, T));
-    s += '<path d="M' + x.toFixed(1) + ' 20V' + H1 + '" stroke="#45484d" stroke-width="1" stroke-dasharray="3 3"/>';
-    s += '<circle cx="' + x.toFixed(1) + '" cy="11" r="9" fill="#16181a"/>';
-    s += '<text x="' + x.toFixed(1) + '" y="15" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">' + (i + 1) + '</text>';
+    const sleept = S.drag && S.drag.id === p.id;
+    s += '<path d="M' + x.toFixed(1) + ' 20V' + H1 + '" stroke="' + (sleept ? '#e87b05' : '#45484d') + '" stroke-width="' + (sleept ? 2 : 1) + '" stroke-dasharray="3 3" pointer-events="none"/>';
+    s += '<g class="ps-post-grip" data-id="' + p.id + '" style="cursor:ew-resize;touch-action:none"><title>Sleep om post ' + (i + 1) + ' te verplaatsen</title>';
+    s += '<rect x="' + (x - 16).toFixed(1) + '" y="0" width="32" height="26" fill="transparent"/>';
+    s += '<circle cx="' + x.toFixed(1) + '" cy="11" r="' + (sleept ? 11 : 9) + '" fill="' + (sleept ? '#e87b05' : '#16181a') + '"/>';
+    s += '<text x="' + x.toFixed(1) + '" y="15" font-size="12" font-weight="700" fill="#fff" text-anchor="middle" pointer-events="none">' + (i + 1) + '</text></g>';
   });
   // ondergrondbalk
   const sy0 = H1 + SG;
@@ -4762,6 +4765,17 @@ function bindStatic() {
   const chart = $('#ps-chart');
   chart.addEventListener('pointerdown', e => {
     if (!S.route || !S.geo) return;
+    const grip = e.target.closest ? e.target.closest('.ps-post-grip') : null;
+    if (grip) {
+      const p = postById(grip.dataset.id);
+      if (p) {
+        e.preventDefault();
+        try { chart.setPointerCapture(e.pointerId); } catch (er) { }
+        S.drag = { id: p.id, pid: e.pointerId, km0: p.km };
+        S.cursorKm = p.km; S.cursorPinned = true; renderEditor();
+        return;
+      }
+    }
     const km = evtKm(e);
     if (e.target.classList && e.target.classList.contains('ps-strip-hit')) {
       if (e.pointerType === 'touch') { S.touch = { x: e.clientX, y: e.clientY, km, id: e.pointerId, el: e.target }; return; }
@@ -4775,6 +4789,17 @@ function bindStatic() {
   });
   chart.addEventListener('pointermove', e => {
     if (!S.route || !S.geo) return;
+    if (S.drag && e.pointerId === S.drag.pid) {
+      const p = postById(S.drag.id);
+      if (p) {
+        const nieuwKm = Math.round(evtKm(e) * 10) / 10;
+        if (!isFinite(nieuwKm)) return; // profiel niet zichtbaar: post laten staan
+        p.km = nieuwKm;
+        S.cursorKm = p.km;
+        if (!S.dragRaf) S.dragRaf = requestAnimationFrame(() => { S.dragRaf = null; renderEditor(); });
+      }
+      return;
+    }
     const km = evtKm(e);
     if (S.touch && e.pointerId === S.touch.id && !S.paint) {
       const dx = e.clientX - S.touch.x, dy = e.clientY - S.touch.y;
@@ -4789,6 +4814,19 @@ function bindStatic() {
     if (e.pointerType === 'mouse' && !S.paint) { S.cursorKm = km; updateCursor(); }
   });
   const endPaint = e => {
+    if (S.drag && e.pointerId === S.drag.pid) {
+      const p = postById(S.drag.id), km0 = S.drag.km0;
+      S.drag = null;
+      if (S.dragRaf) { cancelAnimationFrame(S.dragRaf); S.dragRaf = null; }
+      if (p) {
+        S.posts.sort((a, b) => a.km - b.km);
+        renderPosts();
+        recompute();
+        if (Math.abs(p.km - km0) >= 0.05) postsStatus('Post “' + p.name + '” verplaatst naar km ' + fmtKm(p.km, 1) + '.');
+        else renderEditor();
+      }
+      return;
+    }
     if (S.touch && e.pointerId === S.touch.id) {
       // korte tik op de balk zonder slepen: positie tonen in plaats van tekenen
       if (!S.paint && e.type === 'pointerup' && S.geo) { S.cursorKm = S.touch.km; S.cursorPinned = true; updateCursor(); }
