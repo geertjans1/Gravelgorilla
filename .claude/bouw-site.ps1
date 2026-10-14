@@ -137,9 +137,11 @@ foreach ($t in $tools) {
       $tool = "    <div class=""tool-vak"">`n" + (Lees "inhoud\tools\$($t.slug)-tool.html") + "    </div>"
     }
     'venster' {
+      # versienummer van de tool, zodat browsers een nieuwe versie meteen ophalen
+      $toolVersie = ([Security.Cryptography.MD5]::Create().ComputeHash([IO.File]::ReadAllBytes("$root\tools\$($t.slug)\tool.html")) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
       $tool = @"
     <div class="tool-vak">
-      <div class="tool-frame"><iframe src="tool.html" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
+      <div class="tool-frame"><iframe src="tool.html?v=$toolVersie" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
     </div>
     <script>
       /* het venster groeit mee met de inhoud van de tool */
@@ -305,6 +307,13 @@ RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301
 </IfModule>
 
 # Afbeeldingen, opmaak en code mogen even bewaard worden door de browser (sneller)
+# Pagina's (HTML) altijd even laten checken op een nieuwe versie, zodat wijzigingen meteen zichtbaar zijn
+<IfModule mod_headers.c>
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresByType image/jpeg "access plus 1 month"

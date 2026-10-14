@@ -26,6 +26,13 @@ RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301
 </IfModule>
 
 # Afbeeldingen, opmaak en code mogen even bewaard worden door de browser (sneller)
+# Pagina's (HTML) altijd even laten checken op een nieuwe versie, zodat wijzigingen meteen zichtbaar zijn
+<IfModule mod_headers.c>
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresByType image/jpeg "access plus 1 month"
