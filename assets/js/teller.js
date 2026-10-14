@@ -39,7 +39,7 @@
   }
 
   /* Wegwijzer op volgorde van gebruik: de vaakst gebruikte tool bovenaan, met het label "Meest gebruikt".
-     Bij gelijke stand blijft de gewone volgorde (KM-nummer) staan.
+     De KM-bordjes worden de plek in de ranglijst. Bij gelijke stand blijft de gewone volgorde staan.
      Staan er al bordjes in beeld, dan schuiven ze rustig naar hun nieuwe plek. */
   function sorteerBordjes(stand) {
     var lijst = document.getElementById("bordjes");
@@ -59,6 +59,12 @@
     volgorde.forEach(function (o, plek) {
       lijst.appendChild(o.li);
       o.li.style.setProperty("--v", plek * 80 + "ms");
+      // KM-bordje = plek in de ranglijst (KM 01 = meest gebruikt)
+      var km = String(plek + 1).padStart(2, "0");
+      var bord = o.li.querySelector(".bordje__bord");
+      if (bord && bord.lastChild) bord.lastChild.textContent = km;
+      var kmVak = o.li.querySelector(".bordje__km");
+      if (kmVak) kmVak.setAttribute("aria-label", "Kilometer " + km);
     });
 
     var koploper = volgorde[0];
