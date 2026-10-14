@@ -24,6 +24,7 @@ function Schrijf([string]$pad, [string]$inhoud) {
 function JsonLd($obj) { '  <script type="application/ld+json">' + (ConvertTo-Json $obj -Depth 12 -Compress) + '</script>' }
 $organisatie = [ordered]@{ '@type' = 'Organization'; '@id' = "$site/#organisatie"; name = 'Gravel Gorilla'; url = "$site/"
   logo = "$site/assets/img/icon-192.png"; email = 'info@gravelgorilla.nl'
+  founder = [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/" }
   description = 'Onafhankelijke Nederlandse website met gratis tools voor gravelrijders: gravelbike kiezen, bandenspanning, wielen, ultra-events, profielstickers en kledingadvies.' }
 
 function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "") {
@@ -101,11 +102,11 @@ function Voet([string[]]$js = @()) {
     <div class="voet__binnen">
       <p class="voet__slot">De gorilla wijst de weg.<br>Jij rijdt.</p>
       <nav aria-label="Voet">
-        <a href="/#wegwijzer">Tools</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a>
+        <a href="/#wegwijzer">Tools</a><a href="/over-ons/">Over ons</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a>
       </nav>
     </div>
     <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
-    <p class="voet__klein">© 2026 Gravel Gorilla · onafhankelijk gemaakt door een gravelliefhebber</p>
+    <p class="voet__klein">© 2026 Gravel Gorilla · gemaakt door Geert Jans, gravelrijder · geen cookies, geen advertenties</p>
   </footer>
 
   <script src="/assets/js/site.js"></script>
@@ -282,15 +283,27 @@ $anderen
 
 # ---------- Over ons ----------
 $overSchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
-  [ordered]@{ '@type' = 'AboutPage'; url = "$site/over-ons/"; name = 'Over Gravel Gorilla'; inLanguage = 'nl'; about = @{ '@id' = "$site/#organisatie" } }
+  [ordered]@{ '@type' = 'AboutPage'; url = "$site/over-ons/"; name = 'Over Gravel Gorilla'; inLanguage = 'nl'; about = @{ '@id' = "$site/#organisatie" }; mainEntity = @{ '@id' = "$site/over-ons/#geert" } }
+  [ordered]@{ '@type' = 'Person'; '@id' = "$site/over-ons/#geert"; name = 'Geert Jans'; url = "$site/over-ons/"; email = 'info@gravelgorilla.nl'
+    description = 'Gravelrijder en maker van Gravel Gorilla en alle tools op gravelgorilla.nl.'; worksFor = @{ '@id' = "$site/#organisatie" } }
   $organisatie) })
-$pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Gorilla is gebouwd door een gravelrijder: gratis tools voor gravelbikes, banden, wielen, events en kleding. Eerlijk, onafhankelijk en zonder account." "/over-ons/" @() "" "website" $overSchema) + @"
+$pagina = (Kop "Over Gravel Gorilla: gratis tools voor gravelrijders" "Gravel Gorilla is gemaakt door Geert Jans, gravelrijder: gratis tools voor gravelbikes, banden, wielen, events en kleding. Eerlijk en zonder account." "/over-ons/" @() "" "website" $overSchema) + @"
   <main>
     <section class="pagina-kop">
       <a href="/" class="terug">← Home</a>
       <p class="pagina-km">Gebouwd door een gravelrijder</p>
       <h1 class="kop-l">Over <span class="groen">ons</span></h1>
       <p class="pagina-sub">Van frustratie naar zes tools. Te veel artikelen beloofden een antwoord en lieten je toch met een gok zitten. Daarom bouwen we tools die voor jou rekenen en kiezen.</p>
+    </section>
+    <section class="maker" id="geert" aria-labelledby="maker-kop">
+      <div class="maker__beeld" aria-hidden="true"><img src="/assets/img/logo-icon.svg" alt="" width="120" height="120"></div>
+      <div class="maker__tekst">
+        <p class="pagina-km">Wie zit erachter?</p>
+        <h2 id="maker-kop">Hoi, ik ben <span class="groen">Geert Jans</span></h2>
+        <p>Ik rijd zelf gravel, en ik maak alle tools op deze site. Gravel Gorilla begon met een frustratie: ik zocht antwoord op gewone vragen, zoals welke gravelbike bij me past, hoeveel lucht er in mijn banden moet en wat ik aantrek bij tien graden en wind. Ik vond vooral algemene artikelen die je alsnog met een gok laten zitten.</p>
+        <p>Dus ben ik zelf gaan uitzoeken, rekenen en vergelijken. Daar zijn deze tools uit voortgekomen. Ze zijn gratis, je hebt geen account nodig en er staan geen advertenties op de site.</p>
+        <p>Zie je iets wat niet klopt, mis je een merk of heb je een idee voor een nieuwe tool? Mail me op <a href="mailto:info@gravelgorilla.nl">info@gravelgorilla.nl</a>. Ik lees alles.</p>
+      </div>
     </section>
     <section class="cijfers" aria-label="Het verhaal in cijfers">
       <div class="cijfer"><strong>6</strong><span>gratis interactieve tools</span></div>
@@ -353,6 +366,52 @@ $pagina = (Kop "Contact | Gravel Gorilla" "Een vraag, een tip, een prijs die nie
 "@ + (Voet)
 Schrijf "contact\index.html" $pagina
 "pagina: /contact/"
+
+# ---------- Privacy ----------
+$privacySchema = JsonLd ([ordered]@{ '@context' = 'https://schema.org'; '@graph' = @(
+  [ordered]@{ '@type' = 'WebPage'; url = "$site/privacy/"; name = 'Privacyverklaring Gravel Gorilla'; inLanguage = 'nl'; dateModified = '2026-10-14'; publisher = @{ '@id' = "$site/#organisatie" } }
+  $organisatie) })
+$pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt geen cookies en geen advertenties. Lees in gewone taal welke gegevens de site en de tools wel gebruiken, en waarom." "/privacy/" @() "" "website" $privacySchema) + @"
+  <main>
+    <section class="pagina-kop">
+      <a href="/" class="terug">← Home</a>
+      <p class="pagina-km">Bijgewerkt op 14 oktober 2026</p>
+      <h1 class="kop-l">Privacy<wbr><span class="groen">verklaring</span></h1>
+      <p class="pagina-sub">Kort gezegd: geen cookies, geen advertenties en geen account. Hieronder lees je precies wat de site wel doet.</p>
+    </section>
+    <article class="lees privacy">
+      <h2>Wie is verantwoordelijk?</h2>
+      <p>Gravel Gorilla (gravelgorilla.nl) wordt gemaakt door Geert Jans. Vragen over privacy? Mail naar <a href="mailto:info@gravelgorilla.nl">info@gravelgorilla.nl</a>.</p>
+
+      <h2>Geen cookies, geen tracking</h2>
+      <p>De site plaatst geen cookies, gebruikt geen advertenties en geen programma's die je volgen over het internet (zoals Google Analytics of een Facebook-pixel). Je hebt geen account nodig en je hoeft nergens je naam of e-mailadres in te vullen.</p>
+
+      <h2>Wat de site wel gebruikt</h2>
+      <h3>Gebruiksteller van de tools</h3>
+      <p>Bij elke tool staat hoe vaak hij is gebruikt. Als je een tool-pagina opent, gaat de teller van die tool één omhoog. Er wordt daarbij niets over jou opgeslagen: geen IP-adres, geen cookie, alleen het totaal per tool.</p>
+      <h3>Instellingen op je eigen apparaat</h3>
+      <p>Je keuze voor de lichte of donkere weergave, en je instellingen in de profielsticker (zoals je gewicht en eetvoorkeuren), worden bewaard in je eigen browser. Die gegevens gaan niet naar ons. Je wist ze door de sitegegevens in je browser te verwijderen.</p>
+      <h3>Weersverwachting in het kledingadvies</h3>
+      <p>Klik je op "Weer ophalen", dan gaan de plaatsnaam en datum die je invult naar Open-Meteo, een gratis weerdienst, om de verwachting op te halen. Doe je dat niet, dan wordt er niets verstuurd.</p>
+      <h3>Ondergrond in de profielsticker</h3>
+      <p>Je routebestand (GPX of TCX) wordt op je eigen apparaat gelezen en niet geüpload. Laat je de ondergrond ophalen, dan gaan alleen de coördinaten van de route, zonder naam of tijden, via onze server naar de kaartservers van OpenStreetMap. Onze server onthoudt het antwoord van OpenStreetMap (welke wegen er langs die route liggen) 30 dagen, zodat dezelfde route de volgende keer sneller laadt. Daarbij wordt niet opgeslagen van wie de route is.</p>
+      <h3>Lettertypes en productfoto's</h3>
+      <p>De lettertypes van de site worden geladen via Google Fonts, en in de kiezers worden productfoto's geladen van de websites van de fietsmerken. Je browser maakt daarvoor verbinding met die servers, die daarbij technisch gezien je IP-adres zien.</p>
+      <h3>Logbestanden van de webserver</h3>
+      <p>Zoals bij vrijwel elke website houdt de server bij onze hostingpartij Cloud86 technische logbestanden bij, met onder andere het IP-adres, het tijdstip en de opgevraagde pagina. Die worden alleen gebruikt voor beveiliging en het oplossen van storingen, en na een beperkte tijd automatisch verwijderd.</p>
+      <h3>Als je mailt</h3>
+      <p>Mail je ons, dan gebruiken we je e-mailadres en bericht alleen om je te antwoorden. We delen ze met niemand.</p>
+
+      <h2>Links naar andere websites</h2>
+      <p>De tools linken naar websites van fietsmerken, winkels en events. Op die websites gelden hun eigen privacyregels.</p>
+
+      <h2>Jouw rechten</h2>
+      <p>Je hebt het recht om te vragen welke gegevens we van je hebben, en om die te laten aanpassen of verwijderen. Omdat de site nauwelijks persoonsgegevens verwerkt, gaat het in de praktijk vooral om e-mail die je ons hebt gestuurd. Stuur je verzoek naar <a href="mailto:info@gravelgorilla.nl">info@gravelgorilla.nl</a>. Ben je het niet eens met hoe we met je gegevens omgaan, dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
+    </article>
+  </main>
+"@ + (Voet)
+Schrijf "privacy\index.html" $pagina
+"pagina: /privacy/"
 
 # ---------- Pagina niet gevonden ----------
 $pagina = (Kop "Pagina niet gevonden — Gravel Gorilla" "Deze pagina bestaat niet (meer)." "/404.html") + @"
@@ -417,13 +476,13 @@ Schrijf "index.html" $voorpagina
 $llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
   "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke wielen, welke bandenspanning, welk ultra-event, wat je aantrekt en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
   (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
-  "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n"
+  "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n"
 Schrijf "llms.txt" $llms
 "llms.txt: klaar"
 
 # ---------- Sitemap, robots.txt ----------
 $vandaag = Get-Date -Format 'yyyy-MM-dd'
-$adressen = @(@('/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag))
+$adressen = @(@('/', $vandaag), @('/over-ons/', $vandaag), @('/contact/', $vandaag), @('/privacy/', $vandaag))
 $adressen += $tools | ForEach-Object { ,@("/tools/$($_.slug)/", $vandaag) }
 $xml = "<?xml version=""1.0"" encoding=""UTF-8""?>`n<urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"">`n"
 $xml += ($adressen | ForEach-Object { "  <url><loc>$site$($_[0])</loc><lastmod>$($_[1])</lastmod></url>" }) -join "`n"

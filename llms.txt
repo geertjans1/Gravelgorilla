@@ -15,5 +15,6 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike, welke 
 
 ## Over
 
-- [Over Gravel Gorilla](https://gravelgorilla.nl/over-ons/): wie erachter zit en hoe de tools worden gemaakt en bijgehouden.
+- [Over Gravel Gorilla](https://gravelgorilla.nl/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.
 - [Contact](https://gravelgorilla.nl/contact/): info@gravelgorilla.nl
+- [Privacyverklaring](https://gravelgorilla.nl/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.

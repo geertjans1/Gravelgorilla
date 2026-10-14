@@ -121,3 +121,19 @@
 .ander__km { font-family: var(--kopfont); font-weight: 600; font-size: .85rem; letter-spacing: .06em; color: var(--groen-tekst); }
 .ander strong { font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; font-size: 1.35rem; line-height: 1.05; }
 .ander span:last-child { color: var(--tekst-zacht); font-size: .92rem; line-height: 1.45; }
+
+/* ---------- Over ons: wie zit erachter? ---------- */
+.maker { max-width: var(--breed); margin: 10px auto 60px; padding: 0 clamp(16px, 4vw, 40px); display: grid; grid-template-columns: 160px 1fr; gap: clamp(20px, 4vw, 48px); align-items: start; }
+.maker__beeld { width: 160px; height: 160px; border-radius: 24px; background: var(--diepgroen); display: grid; place-items: center; }
+.maker__beeld img { width: 110px; height: 110px; }
+.maker__tekst { max-width: 44em; }
+.maker__tekst h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; }
+.maker__tekst p:not(.pagina-km) { font-size: 1.08rem; line-height: 1.7; color: var(--tekst); }
+.maker__tekst p + p { margin-top: 1em; }
+.maker__tekst a { color: var(--groen-tekst); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) { .maker { grid-template-columns: 1fr; } .maker__beeld { width: 110px; height: 110px; } .maker__beeld img { width: 76px; height: 76px; } }
+
+/* ---------- Privacyverklaring ---------- */
+.privacy { margin-bottom: 120px; }
+.privacy h2 { margin-top: 1.6em; }
+.privacy h3 { font-family: var(--tekstfont); text-transform: none; letter-spacing: 0; font-size: 1.1rem; font-weight: 600; }
