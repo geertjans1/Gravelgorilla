@@ -129,7 +129,21 @@
     { n: "FT Heirnis", d: "2027-08-29", pl: "Gent", p: "OVB", land: "BE", km: [50], bron: "Cycling Vlaanderen", u: "https://cycling.vlaanderen/tochten/ft-heirnis-2027-08-29", ll: [51.054, 3.725] },
     { n: "Garnaalrit", d: "2027-09-04", pl: "Boekhoute", p: "OVB", land: "BE", km: [80], bron: "Cycling Vlaanderen", u: "https://cycling.vlaanderen/tochten/garnaalrit-2027-09-04", ll: [51.258, 3.718], noot: "Ook op zondag 5 september." },
     { n: "SLW Cycling Classic", d: "2027-09-05", pl: "Poederlee", p: "AN", land: "BE", km: [90], bron: "Cycling Vlaanderen", u: "https://cycling.vlaanderen/tochten/the-slw-cycling-classic-van-het-slijpend-wiel-2027-09-05", ll: [51.227, 4.836] },
-    { n: "Flirten met de grens", d: "2027-10-03", pl: "Watervliet", p: "OVB", land: "BE", km: [80], bron: "Cycling Vlaanderen", u: "https://cycling.vlaanderen/tochten/flirten-met-de-grens-2027-10-03", ll: [51.276, 3.627] }
+    { n: "Flirten met de grens", d: "2027-10-03", pl: "Watervliet", p: "OVB", land: "BE", km: [80], bron: "Cycling Vlaanderen", u: "https://cycling.vlaanderen/tochten/flirten-met-de-grens-2027-10-03", ll: [51.276, 3.627] },
+    { n: "Bockerijders", d: "2026-10-17", pl: "Herkenbosch", p: "LI", land: "NL", km: [80, 115, 155], prijs: 39.95, bron: "True Grit", u: "https://bockerijders.nl/", ll: [51.155, 6.066], noot: "Uitverkocht; kaartjes worden doorverkocht via Atleta." },
+    { n: "Gravelty Veluwe", d: "2026-10-25", pl: "Terlet (Arnhem)", p: "GE", land: "NL", km: [70, 90], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-veluwe/", ll: [52.059, 5.941] },
+    { n: "Gravelty Victory", d: "2026-11-01", pl: "Bussum", p: "NH", land: "NL", km: [40, 60, 80], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-victory/", ll: [52.277, 5.163] },
+    { n: "Breuls Euregio Classic MTB & Gravel", d: "2026-11-14", pl: "Maasmechelen", p: "LB", land: "BE", km: [50, 80, 110], bron: "KWTC De Toekomst Rekem", u: "https://www.kwtcdetoekomstrekem.be/mtb-gravel-2026/", ll: [50.963, 5.696] },
+    { n: "Gravelty Herfst", d: "2026-11-22", pl: "Terlet (Arnhem)", p: "GE", land: "NL", km: [40, 60, 80], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-herfst/", ll: [52.059, 5.941] },
+    { n: "Gravelty Viking", d: "2026-12-06", pl: "Nijmegen", p: "GE", land: "NL", km: [45, 65, 85], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-viking/", ll: [51.843, 5.839] },
+    { n: "Prins van de Peel", d: "2026-12-13", pl: "Wilbertoord", p: "NB", land: "NL", km: [], prijs: 15, bron: "Prins van de Peel", u: "https://prinsvandepeel.bikesight.nl/", ll: [51.655, 5.774], noot: "Open gravelwedstrijd voor iedereen op een rondje van 8 km: 75 of 150 minuten." },
+    { n: "Gravelty Rudolph", d: "2026-12-27", pl: "Terlet (Arnhem)", p: "GE", land: "NL", km: [65, 85], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-rudolph/", ll: [52.059, 5.941] },
+    { n: "Gravelty New Year", d: "2027-01-03", pl: "Amerongen", p: "UT", land: "NL", km: [45, 80], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-new-year/", ll: [52.000, 5.460] },
+    { n: "Gravelty Lumberjack", d: "2027-01-24", pl: "Doorn", p: "UT", land: "NL", km: [40, 65, 95], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/gravelty-lumberjack/", ll: [52.033, 5.346] },
+    { n: "Volta NXT Classic (gravelroute)", d: "2027-04-04", pl: "Eijsden", p: "LI", land: "NL", km: [75], bron: "NXT Classic", u: "https://www.nxtclassic.nl/", ll: [50.778, 5.708], noot: "Toertocht met een gravelroute van 75 km." },
+    { n: "Dutch Gravel Ride", d: "2027-04-16", pl: "Amersfoort", p: "UT", land: "NL", km: [], bron: "NL Tour Rides", u: "https://www.nltourrides.nl/dutch-gravel-ride/", ll: [52.164, 5.409], noot: "Driedaagse gravelrit van 16 tot 18 april, en nog een keer van 23 tot 25 april." },
+    { n: "Marly Grav Fest", d: "2027-05-08", pl: "Valkenburg", p: "LI", land: "NL", km: [], bron: "Marly Grav", u: "https://www.marlygrav.com/", ll: [50.865, 5.831], noot: "Gravelfestival bij het Shimano Experience Center; op 9 mei is er een wedstrijd." },
+    { n: "Gravel Man", d: "2027-06-12", pl: "Kortemark", p: "WV", land: "BE", km: [65, 100, 135], bron: "Gravel Man", u: "https://gravelman.be/", ll: [51.029, 3.044], noot: "Ook op 13 juni. Geen wedstrijd." }
   ];
   // TOCHTEN-EIND
 
@@ -145,7 +159,13 @@
     "De graveltochten zijn niet met pijlen aangegeven.": ["The gravel routes are not marked with arrows.", "Die Gravelrouten sind nicht mit Pfeilen markiert."],
     "Met drie gravelroutes.": ["With three gravel routes.", "Mit drei Gravelrouten."],
     "Mountainbikers zijn ook welkom op het gravelparcours.": ["Mountain bikers are welcome on the gravel course too.", "Auch Mountainbiker sind auf der Gravelstrecke willkommen."],
-    "Ook op zondag 5 september.": ["Also on Sunday 5 September.", "Auch am Sonntag, 5. September."]
+    "Ook op zondag 5 september.": ["Also on Sunday 5 September.", "Auch am Sonntag, 5. September."],
+    "Uitverkocht; kaartjes worden doorverkocht via Atleta.": ["Sold out; tickets are resold via Atleta.", "Ausverkauft; Tickets werden über Atleta weiterverkauft."],
+    "Open gravelwedstrijd voor iedereen op een rondje van 8 km: 75 of 150 minuten.": ["Open gravel race for everyone on an 8 km loop: 75 or 150 minutes.", "Offenes Gravelrennen für alle auf einer 8-km-Runde: 75 oder 150 Minuten."],
+    "Toertocht met een gravelroute van 75 km.": ["Tour with a 75 km gravel route.", "Radtour mit einer 75-km-Gravelroute."],
+    "Driedaagse gravelrit van 16 tot 18 april, en nog een keer van 23 tot 25 april.": ["Three-day gravel ride from 16 to 18 April, and again from 23 to 25 April.", "Dreitägige Gravel-Tour vom 16. bis 18. April und noch einmal vom 23. bis 25. April."],
+    "Gravelfestival bij het Shimano Experience Center; op 9 mei is er een wedstrijd.": ["Gravel festival at the Shimano Experience Center; there's a race on 9 May.", "Gravelfestival am Shimano Experience Center; am 9. Mai gibt es ein Rennen."],
+    "Ook op 13 juni. Geen wedstrijd.": ["Also on 13 June. Not a race.", "Auch am 13. Juni. Kein Rennen."]
   };
   if (TAAL !== "nl") TOCHTEN.forEach(t => { if (t.noot && NOTEN[t.noot]) t.noot = NOTEN[t.noot][TAAL === "en" ? 0 : 1]; });
   const LOCALE = { nl: "nl-NL", en: "en-GB", de: "de-DE" }[TAAL] || "nl-NL";
@@ -209,14 +229,13 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const prijs = p => "€ " + (p % 1 ? p.toFixed(2).replace(".", TAAL === "en" ? "." : ",") : p);
 
+  // provinciekaart met de echte vormen (assets/js/provincie-kaart.js)
   function kaart() {
-    const telling = {};
+    const telling = {}, namen = {}, land = {};
     KOMEND.filter(t => past(t, true)).forEach(t => { telling[t.p] = (telling[t.p] || 0) + 1; });
-    $("#ttKaart").innerHTML = Object.entries(PROV).map(([code, [naam, c, r, land, breed]]) =>
-      '<button type="button" class="gr-tegel gr-tegel--' + land.toLowerCase() + (S.prov === code ? " is-aan" : "") + (telling[code] ? "" : " is-leeg") +
-      '" style="grid-column:' + (c + 1) + (breed ? " / span " + breed : "") + ";grid-row:" + (r + 1) + '" data-prov="' + code + '" aria-pressed="' + (S.prov === code) + '" title="' + naam + '">' +
-      "<b>" + naam.replace(" (NL)", "").replace(" (BE)", "") + "</b><span>" + (telling[code] || 0) + "</span></button>").join("") +
-      '<span class="gr-grens" aria-hidden="true">' + T("Nederland ↑ · België ↓", "Netherlands ↑ · Belgium ↓", "Niederlande ↑ · Belgien ↓") + "</span>";
+    Object.entries(PROV).forEach(([c, v]) => { namen[c] = v[0].replace(" (NL)", "").replace(" (BE)", ""); land[c] = v[3]; });
+    window.GG_KAART($("#ttKaart"), { tellingen: telling, aan: S.prov, namen, land, aria: T("Kies een provincie", "Choose a province", "Wähle eine Provinz"), een: T("tocht", "ride", "Tour"), meer: T("tochten", "rides", "Touren"), hint: T("Wijs een provincie aan om de naam te zien.", "Point at a province to see its name.", "Zeig auf eine Provinz, um ihren Namen zu sehen."),
+      kies: code => { S.prov = S.prov === code ? null : code; if (S.prov) { S.plek = null; $("#ttLocatie").classList.remove("is-aan"); } toon(); } });
   }
 
   function navTekst(n) {
@@ -231,7 +250,7 @@
     if (S.wanneer === "weekend") delen.push(T("komend weekend", "this coming weekend", "am kommenden Wochenende"));
     if (S.wanneer === "4weken") delen.push(T("de komende 4 weken", "the next 4 weeks", "in den nächsten 4 Wochen"));
     if (S.maand) delen.push(maandNaam(S.maand));
-    if (S.plek) delen.push(T("binnen ", "within ", "im Umkreis von ") + S.straal + T(" km van jou", " km of you", " km"));
+    if (S.plek) delen.push(T("binnen ", "within ", "im Umkreis von ") + S.straal + T(" km van jou (hemelsbreed)", " km of you (as the crow flies)", " km Luftlinie"));
     else if (S.prov) delen.push(PROV[S.prov][0]);
     else if (S.land !== "alle") delen.push(LANDNAAM[S.land]);
     if (S.lengte !== "alle") delen.push({ kort: T("tot 50 km", "up to 50 km", "bis 50 km"), middel: "50 – 100 km", lang: T("meer dan 100 km", "more than 100 km", "über 100 km") }[S.lengte]);
@@ -247,10 +266,11 @@
       const m = t.d.slice(0, 7);
       if (m !== maand) { if (maand) html += "</ol>"; maand = m; html += '<h3 class="tt-maand">' + maandNaam(m) + '</h3><ol class="tt-tochten">'; }
       const ver = S.plek && t.ll ? Math.round(afstand(S.plek, t.ll)) : null;
-      const plaats = esc(t.pl) + " · " + (t.p && PROV[t.p] ? PROV[t.p][0].replace(" (NL)", "").replace(" (BE)", "") + " · " : "") + LANDNAAM[t.land];
+      const plaats = '<span class="tt-plaats">📍 ' + esc(t.pl) + "</span> · " + (t.p && PROV[t.p] ? PROV[t.p][0].replace(" (NL)", "").replace(" (BE)", "") + " · " : "") + LANDNAAM[t.land];
       html += '<li class="tt-tocht">' +
         '<div class="tt-datum"><span>' + t.dt.toLocaleDateString(LOCALE, { weekday: "short" }) + "</span><strong>" + t.dt.getDate() + "</strong><span>" + t.dt.toLocaleDateString(LOCALE, { month: "short" }) + "</span></div>" +
-        '<div class="tt-info"><h4>' + esc(t.n) + "</h4><p>" + plaats + (ver !== null ? " · " + T("± ", "± ", "± ") + ver + T(" km van jou", " km from you", " km von dir") : "") + "</p>" +
+        '<div class="tt-info"><h4>' + esc(t.n) + "</h4><p>" + plaats + "</p>" +
+        (ver !== null ? '<p class="tt-ver" title="' + T("Afstand in een rechte lijn; over de weg is het verder.", "Distance in a straight line; by road it's further.", "Entfernung in Luftlinie; über die Straße ist es weiter.") + '">± ' + ver + T(" km van jou, hemelsbreed", " km from you, as the crow flies", " km von dir, Luftlinie") + "</p>" : "") +
         (t.km && t.km.length ? '<div class="tt-km">' + t.km.map(k => "<span>" + k + " km</span>").join("") + "</div>" : '<div class="tt-km"><span class="tt-km--onbekend">' + T("Afstanden: zie organisator", "Distances: see organiser", "Strecken: siehe Veranstalter") + "</span></div>") +
         (t.noot ? '<p class="tt-noot">' + esc(t.noot) + "</p>" : "") +
         '<div class="tt-onder">' +
@@ -289,13 +309,6 @@
       const aan = b.dataset.waarde === v; b.classList.toggle("is-aan", aan); b.setAttribute("aria-pressed", aan);
     }));
   }
-  $("#ttKaart").addEventListener("click", e => {
-    const t = e.target.closest("[data-prov]");
-    if (!t) return;
-    S.prov = S.prov === t.dataset.prov ? null : t.dataset.prov;
-    if (S.prov) { S.plek = null; $("#ttLocatie").classList.remove("is-aan"); }
-    toon();
-  });
   wortel.querySelectorAll(".wb-chips").forEach(groep => groep.addEventListener("click", e => {
     const k = e.target.closest("button");
     if (!k) return;
@@ -310,13 +323,13 @@
   $("#ttZoek").addEventListener("input", e => { S.zoek = e.target.value.trim().toLowerCase(); toon(); });
   $("#ttLocatie").addEventListener("click", () => {
     const tekst = $("#ttLocatieTekst");
-    if (S.plek) { S.plek = null; $("#ttLocatie").classList.remove("is-aan"); tekst.textContent = T("Locatie uitgezet.", "Location turned off.", "Standort ausgeschaltet."); toon(); return; }
+    if (S.plek) { S.plek = null; $("#ttLocatie").classList.remove("is-aan"); tekst.textContent = T("Je locatie staat uit: je ziet weer alle tochten.", "Your location is off: you see all rides again.", "Dein Standort ist aus: Du siehst wieder alle Touren."); toon(); return; }
     if (!navigator.geolocation) { tekst.textContent = T("Je browser kan je locatie niet doorgeven. Tik dan op een provincie.", "Your browser can't share your location. Tap a province instead.", "Dein Browser kann deinen Standort nicht weitergeben. Tippe stattdessen auf eine Provinz."); return; }
     tekst.textContent = T("Even je locatie zoeken…", "Finding your location…", "Standort wird gesucht …");
     navigator.geolocation.getCurrentPosition(p => {
       S.plek = [p.coords.latitude, p.coords.longitude]; S.prov = null;
       $("#ttLocatie").classList.add("is-aan");
-      tekst.textContent = T("Tochten binnen de gekozen afstand van jou. Nog een keer tikken zet dit uit.", "Rides within the chosen distance of you. Tap again to turn this off.", "Touren im gewählten Umkreis. Noch einmal tippen schaltet das aus.");
+      tekst.textContent = T("Je ziet nu de tochten binnen de gekozen afstand van jou, hemelsbreed gemeten (in een rechte lijn). Kies hierboven een andere afstand, of tik nog een keer op \"Gebruik mijn locatie\" om weer alle tochten te zien.", "You now see the rides within the chosen distance of you, as the crow flies (in a straight line). Choose another distance above, or tap \"Use my location\" again to see all rides.", "Du siehst jetzt die Touren im gewählten Umkreis, in Luftlinie gemessen. Wähle oben einen anderen Umkreis oder tippe noch einmal auf „Meinen Standort verwenden\", um wieder alle Touren zu sehen.");
       toon();
     }, () => { tekst.textContent = T("Je locatie kon niet worden opgehaald. Tik dan op een provincie.", "Your location couldn't be found. Tap a province instead.", "Dein Standort konnte nicht ermittelt werden. Tippe stattdessen auf eine Provinz."); }, { timeout: 10000, maximumAge: 600000 });
   });

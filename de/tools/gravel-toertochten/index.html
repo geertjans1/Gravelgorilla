@@ -53,8 +53,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=7d41d3e8">
   <link rel="stylesheet" href="/assets/css/pagina.css?v=4ba5a55d">
-  <link rel="stylesheet" href="/assets/css/werkbank.css?v=dc685c85">
-  <link rel="stylesheet" href="/assets/css/gravel-toertochten.css?v=a9d9c870">
+  <link rel="stylesheet" href="/assets/css/werkbank.css?v=871190e3">
+  <link rel="stylesheet" href="/assets/css/gravel-toertochten.css?v=902edb9b">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/de/tools/gravel-toertochten/#tool","name":"Gravel-Touren","url":"https://gravelgorilla.nl/de/tools/gravel-toertochten/","description":"Kalender mit organisierten Gravel-Touren in den Niederlanden, Belgien und im Grenzgebiet: Filter nach Datum, Provinz, Strecke oder in deiner Nähe. Mit Links zur offiziellen Anmeldung.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"de","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/de/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/de/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Gravel-Touren","item":"https://gravelgorilla.nl/de/tools/gravel-toertochten/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Unabhängige niederländische Website mit kostenlosen Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Gravelreifen, Reifendruck, Laufräder, Übersetzung, Gravelrouten, Ultra-Events, Bikepacking-Packliste, Profilsticker und Kleidungsberater."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/de/tools/gravel-toertochten/#faq","mainEntity":[{"@type":"Question","name":"Was ist eine organisierte Gravel-Tour?","acceptedAnswer":{"@type":"Answer","text":"Eine organisierte Fahrt über unbefestigte Wege, für die du dich anmeldest. Du wählst aus mehreren Strecken, folgst Pfeilen oder einer GPS-Route, und unterwegs gibt es eine Kaffeepause. Es ist kein Rennen: Du fährst in deinem eigenen Tempo."}},{"@type":"Question","name":"Muss ich Mitglied eines Verbands oder Vereins sein?","acceptedAnswer":{"@type":"Answer","text":"Nein, jeder darf mitfahren. Mitglieder der NTFU, von Cycling Vlaanderen oder der FFBC bekommen oft Rabatt und sind manchmal versichert. Der angegebene Preis ist der normale Tagespreis ohne Mitgliedschaft."}},{"@type":"Question","name":"Wann finden die meisten Gravel-Touren statt?","acceptedAnswer":{"@type":"Answer","text":"In den Niederlanden vor allem von Oktober bis März: Dann sind viele Naturgebiete ruhiger, und die Vereine veranstalten ihre Herbst- und Wintertouren. In Flandern haben auch viele Touren im Frühjahr und Sommer eine Gravelroute."}},{"@type":"Question","name":"Wie melde ich meine eigene Tour an?","acceptedAnswer":{"@type":"Answer","text":"Nutze das Formular unter dem Kalender. Trag Name, Datum, Startort und Website deiner Tour ein. Wir prüfen jede Anmeldung zuerst und nehmen die Tour dann kostenlos in den Kalender auf."}},{"@type":"Question","name":"Kann ich eine Gravel-Tour mit dem Mountainbike fahren?","acceptedAnswer":{"@type":"Answer","text":"Meistens ja. Eine Gravelroute ist mit dem Mountainbike gut machbar, nur auf den asphaltierten Stücken bist du etwas langsamer. Umgekehrt geht es nicht immer: Fahr mit dem Gravelbike lieber nicht die Mountainbike-Route einer Tour, außer der Veranstalter sagt, dass es geht."}}]}]}</script>
 </head>
 <body>
@@ -125,13 +125,15 @@
           <div class="wb-chips" data-veld="straal">
             <button type="button" data-waarde="25" aria-pressed="false">25 km</button>
             <button type="button" data-waarde="50" class="is-aan" aria-pressed="true">50 km</button>
+            <button type="button" data-waarde="75" aria-pressed="false">75 km</button>
             <button type="button" data-waarde="100" aria-pressed="false">100 km</button>
+            <button type="button" data-waarde="200" aria-pressed="false">200 km</button>
           </div>
         </div>
-        <span class="wb-klein" id="ttLocatieTekst">Dein Standort bleibt auf deinem Gerät: Wir speichern ihn nicht.</span>
+        <span class="wb-klein" id="ttLocatieTekst">Tippe auf den Knopf und wähle, wie weit du fahren willst. Die Entfernung ist Luftlinie; über die Straße ist es weiter. Dein Standort bleibt auf deinem Gerät.</span>
       </div>
       <span class="wb-label">Oder tippe auf eine Provinz</span>
-      <div class="gr-kaart tt-kaart" id="ttKaart" role="group" aria-label="Wähle eine Provinz"></div>
+      <div class="pk-doos" id="ttKaart" role="group" aria-label="Wähle eine Provinz"></div>
       <div class="wb-veld">
         <span class="wb-label">Land</span>
         <div class="wb-chips" data-veld="land">
@@ -176,7 +178,7 @@
   <section class="wb-resultaat" aria-labelledby="ttKopLijst">
     <h2 class="wb-kop" id="ttKopLijst"><span class="wb-stap">4</span> Die Touren</h2>
     <div id="ttLijst" class="tt-lijst"></div>
-    <p class="wb-bron">Quellen (geprüft im Oktober 2026): der Tourenkalender der <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, der Freizeitkalender von <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> und der Kalender der <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonien. Jede Tour verlinkt auf ihre offizielle Seite (meist auf Niederländisch oder Französisch). Vergangene Touren verschwinden automatisch aus der Liste.</p>
+    <p class="wb-bron">Quellen (geprüft im Oktober 2026): der Tourenkalender der <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, der Freizeitkalender von <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> und der Kalender der <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonien, dazu Touren, die wir über <a href="https://www.nltourrides.nl/" target="_blank" rel="noopener">NL Tour Rides</a>, <a href="https://landvangrindenzand.nl/events/" target="_blank" rel="noopener">Land van Grind en Zand</a> und <a href="https://gritgravel.cc/gravel-events/" target="_blank" rel="noopener">Grit</a> gefunden und beim Veranstalter geprüft haben. Jede Tour verlinkt auf ihre offizielle Seite (meist auf Niederländisch oder Französisch). Vergangene Touren verschwinden automatisch aus der Liste.</p>
   </section>
 
   <!-- ===== Aanmelden ===== -->
@@ -250,12 +252,13 @@
       <h2 class="tool-uitleg-kop">Gemeinsam graveln, im eigenen Tempo</h2>
 <p>Eine organisierte Gravel-Tour (auf Niederländisch: toertocht) ist der einfachste Weg, neue Schotterwege zu entdecken. Ein Verein plant eine Strecke, du meldest dich an und fährst in deinem eigenen Tempo. Unterwegs gibt es meist eine Kaffeepause, danach oft Suppe oder ein Bier. Es ist kein Rennen: Es gibt keine Ergebnisliste, und niemand schaut auf deine Zeit.</p>
 <h3>Wie funktioniert es?</h3>
-<p>Wähle, wann du fahren willst (am kommenden Wochenende, in den nächsten vier Wochen oder in einem Monat), und wo: Tippe auf eine Provinz oder nutze deinen Standort, um Touren im Umkreis von 25, 50 oder 100 km zu sehen. Dann wählst du, wie weit du fahren willst. Bei jeder Tour siehst du die Strecken, ob du Pfeilen oder einer GPS-Route folgst, den Tagespreis (falls bekannt) und einen Link zur offiziellen Anmeldeseite. Mit „In den Kalender" trägst du die Tour in deinen eigenen Kalender ein.</p>
+<p>Wähle, wann du fahren willst (am kommenden Wochenende, in den nächsten vier Wochen oder in einem Monat), und wo: Tippe auf eine Provinz oder nutze deinen Standort, um Touren im Umkreis von 25 bis 200 km (Luftlinie) zu sehen. Dann wählst du, wie weit du fahren willst. Bei jeder Tour siehst du die Strecken, ob du Pfeilen oder einer GPS-Route folgst, den Tagespreis (falls bekannt) und einen Link zur offiziellen Anmeldeseite. Mit „In den Kalender" trägst du die Tour in deinen eigenen Kalender ein.</p>
 <h3>Woher kommen die Touren?</h3>
 <ul>
 <li><strong>Niederlande:</strong> der Tourenkalender der NTFU (niederländischer Radsportverband) auf fietssport.nl, nur Touren fürs Gravelbike.</li>
 <li><strong>Flandern:</strong> der Freizeitkalender von Cycling Vlaanderen, nur Touren mit einer Gravelroute.</li>
 <li><strong>Wallonien:</strong> der Kalender der FFBC, nur Touren mit einer Gravelroute.</li>
+<li><strong>Einzelne Veranstalter:</strong> Touren, die wir unter anderem über NL Tour Rides, True Grit, Land van Grind en Zand und Grit gefunden und dann beim Veranstalter geprüft haben.</li>
 <li><strong>Deutschland:</strong> Gravel-Touren direkt hinter der Grenze, die im niederländischen Kalender stehen. Im Breitensportkalender von German Cycling standen im Oktober 2026 noch keine Gravelrides in Grenznähe.</li>
 </ul>
 <p>Viele Touren für Frühjahr und Sommer 2027 sind noch nicht bekannt: Vereine veröffentlichen ihre Termine oft erst wenige Monate vorher. Deshalb wird die Liste regelmäßig aktualisiert. Die Quellseiten sind meist auf Niederländisch oder Französisch.</p>
@@ -304,7 +307,8 @@
   </footer>
 
   <script src="/assets/js/site.js?v=9acaf9e2"></script>
-  <script src="/assets/js/gravel-toertochten.js?v=74e90528"></script>
+  <script src="/assets/js/provincie-kaart.js?v=4201aba9"></script>
+  <script src="/assets/js/gravel-toertochten.js?v=f7bebb8d"></script>
   <script src="/assets/js/vraag-gorilla.js?v=03c15d33"></script>
   <script src="/assets/js/teller.js?v=4745d26e"></script>
 </body>

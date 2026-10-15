@@ -53,8 +53,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=7d41d3e8">
   <link rel="stylesheet" href="/assets/css/pagina.css?v=4ba5a55d">
-  <link rel="stylesheet" href="/assets/css/werkbank.css?v=dc685c85">
-  <link rel="stylesheet" href="/assets/css/gravel-toertochten.css?v=a9d9c870">
+  <link rel="stylesheet" href="/assets/css/werkbank.css?v=871190e3">
+  <link rel="stylesheet" href="/assets/css/gravel-toertochten.css?v=902edb9b">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/en/tools/gravel-toertochten/#tool","name":"Gravel Tours","url":"https://gravelgorilla.nl/en/tools/gravel-toertochten/","description":"Calendar of organised gravel tours in the Netherlands, Belgium and just across the border: filter by date, province, distance or near you. With links to the official registration.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/en/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Gravel Tours","item":"https://gravelgorilla.nl/en/tools/gravel-toertochten/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/en/tools/gravel-toertochten/#faq","mainEntity":[{"@type":"Question","name":"What is an organised gravel tour?","acceptedAnswer":{"@type":"Answer","text":"An organised ride on unpaved roads and tracks that you sign up for. You choose from a few distances, follow arrows or a GPS route and there\u0027s a coffee stop along the way. It\u0027s not a race: you ride at your own pace."}},{"@type":"Question","name":"Do I need to be a member of a cycling federation or club?","acceptedAnswer":{"@type":"Answer","text":"No, anyone can take part. Members of the NTFU, Cycling Vlaanderen or the FFBC often get a discount and are sometimes insured. The price shown for a ride is the normal day price without membership."}},{"@type":"Question","name":"When are most gravel tours held?","acceptedAnswer":{"@type":"Answer","text":"In the Netherlands mainly from October to March: many nature areas are quieter then and clubs hold their autumn and winter rides. In Flanders many tours in spring and summer also have a gravel route."}},{"@type":"Question","name":"How do I add my own ride?","acceptedAnswer":{"@type":"Answer","text":"Use the form below the calendar. Fill in the name, date, start town and website of your ride. We check every submission first and then add the ride to the calendar for free."}},{"@type":"Question","name":"Can I ride a gravel tour on a mountain bike?","acceptedAnswer":{"@type":"Answer","text":"Usually yes. A gravel route is fine on a mountain bike, you\u0027re just a bit slower on the paved parts. The other way round doesn\u0027t always work: on a gravel bike, avoid a ride\u0027s mountain bike route unless the organiser says it\u0027s suitable."}}]}]}</script>
 </head>
 <body>
@@ -125,13 +125,15 @@
           <div class="wb-chips" data-veld="straal">
             <button type="button" data-waarde="25" aria-pressed="false">25 km</button>
             <button type="button" data-waarde="50" class="is-aan" aria-pressed="true">50 km</button>
+            <button type="button" data-waarde="75" aria-pressed="false">75 km</button>
             <button type="button" data-waarde="100" aria-pressed="false">100 km</button>
+            <button type="button" data-waarde="200" aria-pressed="false">200 km</button>
           </div>
         </div>
-        <span class="wb-klein" id="ttLocatieTekst">Your location stays on your own device: we don't store it.</span>
+        <span class="wb-klein" id="ttLocatieTekst">Tap the button and choose how far you want to travel. The distance is as the crow flies (in a straight line); by road it's further. Your location stays on your own device.</span>
       </div>
       <span class="wb-label">Or tap a province</span>
-      <div class="gr-kaart tt-kaart" id="ttKaart" role="group" aria-label="Choose a province"></div>
+      <div class="pk-doos" id="ttKaart" role="group" aria-label="Choose a province"></div>
       <div class="wb-veld">
         <span class="wb-label">Country</span>
         <div class="wb-chips" data-veld="land">
@@ -176,7 +178,7 @@
   <section class="wb-resultaat" aria-labelledby="ttKopLijst">
     <h2 class="wb-kop" id="ttKopLijst"><span class="wb-stap">4</span> The rides</h2>
     <div id="ttLijst" class="tt-lijst"></div>
-    <p class="wb-bron">Sources (checked in October 2026): the touring calendar of the <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, the recreational calendar of <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> and the calendar of the <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonia. Each ride links to its official page (mostly in Dutch or French). Rides that are over disappear from the list automatically.</p>
+    <p class="wb-bron">Sources (checked in October 2026): the touring calendar of the <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, the recreational calendar of <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> and the calendar of the <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonia, plus rides we found via <a href="https://www.nltourrides.nl/" target="_blank" rel="noopener">NL Tour Rides</a>, <a href="https://landvangrindenzand.nl/events/" target="_blank" rel="noopener">Land van Grind en Zand</a> and <a href="https://gritgravel.cc/gravel-events/" target="_blank" rel="noopener">Grit</a> and then checked with the organiser. Each ride links to its official page (mostly in Dutch or French). Rides that are over disappear from the list automatically.</p>
   </section>
 
   <!-- ===== Aanmelden ===== -->
@@ -250,12 +252,13 @@
       <h2 class="tool-uitleg-kop">Riding gravel together, at your own pace</h2>
 <p>An organised gravel tour (in Dutch: toertocht) is the easiest way to discover new gravel tracks. A club plans a route, you sign up and ride at your own pace. There's usually a coffee stop along the way, and often soup or a beer afterwards. It's not a race: there are no results and nobody looks at your time.</p>
 <h3>How does it work?</h3>
-<p>Choose when you want to ride (this weekend, the next four weeks or a month) and where: tap a province or use your location to see rides within 25, 50 or 100 km. Then choose how far you want to ride. For each ride you see the distances, whether you follow arrows or a GPS route, the day price if known, and a link to the official page to register. With "Add to calendar" you put the ride in your own calendar.</p>
+<p>Choose when you want to ride (this weekend, the next four weeks or a month) and where: tap a province or use your location to see rides within 25 to 200 km (as the crow flies). Then choose how far you want to ride. For each ride you see the distances, whether you follow arrows or a GPS route, the day price if known, and a link to the official page to register. With "Add to calendar" you put the ride in your own calendar.</p>
 <h3>Where do the rides come from?</h3>
 <ul>
 <li><strong>Netherlands:</strong> the touring calendar of the NTFU (Dutch cycling federation) on fietssport.nl, gravel bike rides only.</li>
 <li><strong>Flanders:</strong> the recreational calendar of Cycling Vlaanderen, rides with a gravel route only.</li>
 <li><strong>Wallonia:</strong> the calendar of the FFBC, rides with a gravel route only.</li>
+<li><strong>Individual organisers:</strong> rides we found via NL Tour Rides, True Grit, Land van Grind en Zand and Grit, among others, and then checked with the organiser.</li>
 <li><strong>Germany:</strong> gravel tours just across the border that are listed on the Dutch calendar. In October 2026 the German federation calendar had no gravel tours close to the border yet.</li>
 </ul>
 <p>Many rides for spring and summer 2027 aren't known yet: clubs often publish their dates only a few months ahead. That's why the list is updated regularly. The source pages are mostly in Dutch or French.</p>
@@ -304,7 +307,8 @@
   </footer>
 
   <script src="/assets/js/site.js?v=9acaf9e2"></script>
-  <script src="/assets/js/gravel-toertochten.js?v=74e90528"></script>
+  <script src="/assets/js/provincie-kaart.js?v=4201aba9"></script>
+  <script src="/assets/js/gravel-toertochten.js?v=f7bebb8d"></script>
   <script src="/assets/js/vraag-gorilla.js?v=03c15d33"></script>
   <script src="/assets/js/teller.js?v=4745d26e"></script>
 </body>

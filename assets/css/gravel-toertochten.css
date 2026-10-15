@@ -63,3 +63,8 @@
   .tt-tocht { grid-template-columns: 56px 1fr; gap: 12px; padding: 12px; }
 }
 @media (max-width: 480px) { .tt-scope .gr-kaart { grid-auto-rows: 50px; } .tt-scope .gr-tegel b { font-size: .64rem; } }
+
+/* plaats en afstanden beter zichtbaar */
+.tt-plaats { color: var(--tekst); font-weight: 700; }
+.tt-info > p.tt-ver { color: var(--groen-tekst); font-weight: 700; cursor: help; }
+.tt-km span { background: var(--groen); border-color: var(--groen); color: #fff; }

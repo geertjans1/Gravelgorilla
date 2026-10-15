@@ -97,3 +97,23 @@
 .wb-knop--actie:hover { background: var(--actie-hover); color: #15181A; }
 .wb-melding { font-size: .85rem; color: var(--groen-tekst); min-height: 1.2em; }
 @media (max-width: 480px) { .wb-twee { grid-template-columns: 1fr; } }
+
+/* Provinciekaart (assets/js/provincie-kaart.js), gedeeld door Gravelroutes en Gravel Toertochten */
+.pk-doos { margin: 6px 0 14px; max-width: 420px; }
+.pk { display: block; width: 100%; height: auto; max-height: 520px; overflow: visible; }
+.pk-prov { stroke: var(--vlak); stroke-width: 1.8; stroke-linejoin: round; cursor: pointer; transition: fill .2s, opacity .2s; outline: none; }
+.pk-nl { fill: rgba(47,143,62,.45); }
+.pk-be { fill: rgba(255,107,44,.42); }
+.pk-prov:hover, .pk-prov:focus-visible { fill: rgba(47,143,62,.6); }
+.pk-be:hover, .pk-be:focus-visible { fill: rgba(255,107,44,.6); }
+.pk-prov:focus-visible { stroke: var(--tekst); stroke-width: 2; }
+.pk-prov.is-leeg { opacity: .45; }
+.pk-nl.is-aan { fill: var(--groen); opacity: 1; }
+.pk-be.is-aan { fill: var(--actie); opacity: 1; }
+.pk-bru { fill: var(--lijn); cursor: default; }
+.pk-getal { pointer-events: none; }
+.pk-getal circle { fill: var(--tekst); }
+.pk-getal text { fill: var(--vlak); font-family: var(--kopfont); font-weight: 700; font-size: 8.5px; text-anchor: middle; }
+.pk-getal.is-aan circle { fill: var(--vlak); stroke: var(--tekst); stroke-width: 1.2; }
+.pk-getal.is-aan text { fill: var(--tekst); }
+.pk-naam { min-height: 1.4em; margin: 6px 0 0; font-weight: 700; font-size: .95rem; color: var(--tekst); }

@@ -248,14 +248,13 @@
       (!S.zoek || (r.n + " " + r.p.map(p => PROV[p] ? PROV[p][0] : "").join(" ") + " " + (r.noot || "")).toLowerCase().includes(S.zoek));
   }
 
+  // provinciekaart met de echte vormen (assets/js/provincie-kaart.js)
   function kaart() {
-    const telling = {};
+    const telling = {}, namen = {}, land = {};
     ROUTES.filter(r => past(r, true)).forEach(r => r.p.forEach(p => { telling[p] = (telling[p] || 0) + 1; }));
-    $("#grKaart").innerHTML = Object.entries(PROV).map(([code, [naam, c, r, land, breed]]) =>
-      '<button type="button" class="gr-tegel gr-tegel--' + land.toLowerCase() + (S.prov === code ? " is-aan" : "") + (telling[code] ? "" : " is-leeg") +
-      '" style="grid-column:' + (c + 1) + (breed ? " / span " + breed : "") + ";grid-row:" + (r + 1) +'" data-prov="' + code + '" aria-pressed="' + (S.prov === code) + '" title="' + naam + '">' +
-      "<b>" + naam.replace(" (NL)", "").replace(" (BE)", "") + "</b><span>" + (telling[code] || 0) + "</span></button>").join("") +
-      '<span class="gr-grens" aria-hidden="true">' + T("Nederland ↑ · België ↓", "Netherlands ↑ · Belgium ↓", "Niederlande ↑ · Belgien ↓") + '</span>';
+    Object.entries(PROV).forEach(([c, v]) => { namen[c] = v[0].replace(" (NL)", "").replace(" (BE)", ""); land[c] = v[3]; });
+    window.GG_KAART($("#grKaart"), { tellingen: telling, aan: S.prov, namen, land, aria: T("Kies een provincie", "Choose a province", "Wähle eine Provinz"), een: T("route", "route", "Route"), meer: T("routes", "routes", "Routen"), hint: T("Wijs een provincie aan om de naam te zien.", "Point at a province to see its name.", "Zeig auf eine Provinz, um ihren Namen zu sehen."),
+      kies: code => { S.prov = S.prov === code ? null : code; toon(); } });
   }
 
   function lijst() {
@@ -281,12 +280,6 @@
   function toon() { kaart(); lijst(); }
 
   /* ---------- invoer ---------- */
-  $("#grKaart").addEventListener("click", e => {
-    const t = e.target.closest("[data-prov]");
-    if (!t) return;
-    S.prov = S.prov === t.dataset.prov ? null : t.dataset.prov;
-    toon();
-  });
   wortel.querySelectorAll(".wb-chips").forEach(groep => groep.addEventListener("click", e => {
     const k = e.target.closest("button");
     if (!k) return;

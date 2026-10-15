@@ -251,7 +251,7 @@ $tools = @(
     sub = 'Officiële gravelroutes en GPX-routes in Nederland en Vlaanderen. Kies een provincie, een lengte en hoe je de weg vindt.'; beschrijving = 'Gravelroutes in Nederland en België op een rij: bewegwijzerde routes en GPX-routes per provincie, te filteren op lengte. Met links naar de officiële bron.'
     naamKort = 'Gravelroutes'; kort = 'Bewegwijzerde gravelroutes en GPX-routes in Nederland en Vlaanderen, per provincie en lengte.'
     filter = 'plannen'; plaatje = 'kaart'; label = 'Nieuw'
-    soort = 'kiezer'; scope = 'wb-scope gr-scope'; uitlegKop = 'Gravelen waar het mag' }
+    soort = 'kiezer'; scope = 'wb-scope gr-scope'; uitlegKop = 'Gravelen waar het mag'; extraJs = @('provincie-kaart.js') }
   [ordered]@{ slug = 'versnellingscalculator'; km = '11'; kop = 'Versnellings<wbr><span class="groen">calculator</span>'; titel = 'Versnellingscalculator'
     seoTitel = 'Versnellingscalculator voor je gravelbike | Gravel Gorilla'
     sub = 'Kies je voorblad en cassette en zie je lichtste verzet, je topsnelheid en hoe steil je nog fietsend omhoog komt. Vergelijk twee opstellingen.'; beschrijving = 'Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.'
@@ -263,7 +263,7 @@ $tools = @(
     sub = 'Alle georganiseerde gravel-toertochten in Nederland, België en net over de grens op een rij. Kies wanneer, waar en hoe ver je wilt rijden.'; beschrijving = 'Kalender met gravel-toertochten in Nederland, België en net over de grens: filter op datum, provincie, afstand of in de buurt van jou. Met links naar de officiële inschrijving.'
     naamKort = 'Gravel Toertochten'; kort = 'Kalender met gravel-toertochten in Nederland, België en net over de grens. Op datum, plek en afstand.'
     filter = 'plannen'; plaatje = 'kalender'; label = 'Nieuw'
-    soort = 'kiezer'; scope = 'wb-scope tt-scope'; uitlegKop = 'Samen gravelen, in je eigen tempo' }
+    soort = 'kiezer'; scope = 'wb-scope tt-scope'; uitlegKop = 'Samen gravelen, in je eigen tempo'; extraJs = @('provincie-kaart.js') }
 )
 
 # Kleine plaatjes die oppoppen als je over een bordje in de wegwijzer beweegt
@@ -400,6 +400,7 @@ foreach ($t in $toolsHier) {
         Schrijf "assets\js\$($t.slug).$($L.taal).js" (Vertaal (Lees "assets\js\$($t.slug).js") $vt['js'] $ti "$($t.slug).js $($L.taal)")
         $js = @("$($t.slug).$($L.taal).js")
       }
+      if ($t.extraJs) { $js = @($t.extraJs) + $js }   # gedeelde scripts, zoals de provinciekaart
       $tool = $melding + "    <div class=""$scope"" data-tool-vak>`n" + (Prefix $toolHtml $L) + "    </div>"
     }
     'blok' {

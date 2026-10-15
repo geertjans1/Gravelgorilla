@@ -24,13 +24,15 @@
           <div class="wb-chips" data-veld="straal">
             <button type="button" data-waarde="25" aria-pressed="false">25 km</button>
             <button type="button" data-waarde="50" class="is-aan" aria-pressed="true">50 km</button>
+            <button type="button" data-waarde="75" aria-pressed="false">75 km</button>
             <button type="button" data-waarde="100" aria-pressed="false">100 km</button>
+            <button type="button" data-waarde="200" aria-pressed="false">200 km</button>
           </div>
         </div>
-        <span class="wb-klein" id="ttLocatieTekst">Dein Standort bleibt auf deinem Gerät: Wir speichern ihn nicht.</span>
+        <span class="wb-klein" id="ttLocatieTekst">Tippe auf den Knopf und wähle, wie weit du fahren willst. Die Entfernung ist Luftlinie; über die Straße ist es weiter. Dein Standort bleibt auf deinem Gerät.</span>
       </div>
       <span class="wb-label">Oder tippe auf eine Provinz</span>
-      <div class="gr-kaart tt-kaart" id="ttKaart" role="group" aria-label="Wähle eine Provinz"></div>
+      <div class="pk-doos" id="ttKaart" role="group" aria-label="Wähle eine Provinz"></div>
       <div class="wb-veld">
         <span class="wb-label">Land</span>
         <div class="wb-chips" data-veld="land">
@@ -75,7 +77,7 @@
   <section class="wb-resultaat" aria-labelledby="ttKopLijst">
     <h2 class="wb-kop" id="ttKopLijst"><span class="wb-stap">4</span> Die Touren</h2>
     <div id="ttLijst" class="tt-lijst"></div>
-    <p class="wb-bron">Quellen (geprüft im Oktober 2026): der Tourenkalender der <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, der Freizeitkalender von <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> und der Kalender der <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonien. Jede Tour verlinkt auf ihre offizielle Seite (meist auf Niederländisch oder Französisch). Vergangene Touren verschwinden automatisch aus der Liste.</p>
+    <p class="wb-bron">Quellen (geprüft im Oktober 2026): der Tourenkalender der <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, der Freizeitkalender von <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> und der Kalender der <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonien, dazu Touren, die wir über <a href="https://www.nltourrides.nl/" target="_blank" rel="noopener">NL Tour Rides</a>, <a href="https://landvangrindenzand.nl/events/" target="_blank" rel="noopener">Land van Grind en Zand</a> und <a href="https://gritgravel.cc/gravel-events/" target="_blank" rel="noopener">Grit</a> gefunden und beim Veranstalter geprüft haben. Jede Tour verlinkt auf ihre offizielle Seite (meist auf Niederländisch oder Französisch). Vergangene Touren verschwinden automatisch aus der Liste.</p>
   </section>
 
   <!-- ===== Aanmelden ===== -->

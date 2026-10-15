@@ -24,13 +24,15 @@
           <div class="wb-chips" data-veld="straal">
             <button type="button" data-waarde="25" aria-pressed="false">25 km</button>
             <button type="button" data-waarde="50" class="is-aan" aria-pressed="true">50 km</button>
+            <button type="button" data-waarde="75" aria-pressed="false">75 km</button>
             <button type="button" data-waarde="100" aria-pressed="false">100 km</button>
+            <button type="button" data-waarde="200" aria-pressed="false">200 km</button>
           </div>
         </div>
-        <span class="wb-klein" id="ttLocatieTekst">Your location stays on your own device: we don't store it.</span>
+        <span class="wb-klein" id="ttLocatieTekst">Tap the button and choose how far you want to travel. The distance is as the crow flies (in a straight line); by road it's further. Your location stays on your own device.</span>
       </div>
       <span class="wb-label">Or tap a province</span>
-      <div class="gr-kaart tt-kaart" id="ttKaart" role="group" aria-label="Choose a province"></div>
+      <div class="pk-doos" id="ttKaart" role="group" aria-label="Choose a province"></div>
       <div class="wb-veld">
         <span class="wb-label">Country</span>
         <div class="wb-chips" data-veld="land">
@@ -75,7 +77,7 @@
   <section class="wb-resultaat" aria-labelledby="ttKopLijst">
     <h2 class="wb-kop" id="ttKopLijst"><span class="wb-stap">4</span> The rides</h2>
     <div id="ttLijst" class="tt-lijst"></div>
-    <p class="wb-bron">Sources (checked in October 2026): the touring calendar of the <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, the recreational calendar of <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> and the calendar of the <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonia. Each ride links to its official page (mostly in Dutch or French). Rides that are over disappear from the list automatically.</p>
+    <p class="wb-bron">Sources (checked in October 2026): the touring calendar of the <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, the recreational calendar of <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> and the calendar of the <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonia, plus rides we found via <a href="https://www.nltourrides.nl/" target="_blank" rel="noopener">NL Tour Rides</a>, <a href="https://landvangrindenzand.nl/events/" target="_blank" rel="noopener">Land van Grind en Zand</a> and <a href="https://gritgravel.cc/gravel-events/" target="_blank" rel="noopener">Grit</a> and then checked with the organiser. Each ride links to its official page (mostly in Dutch or French). Rides that are over disappear from the list automatically.</p>
   </section>
 
   <!-- ===== Aanmelden ===== -->
