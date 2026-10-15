@@ -828,6 +828,10 @@ RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301
 <FilesMatch "\.html$">
 Header set Cache-Control "no-cache"
 </FilesMatch>
+# Testsite: versie.txt mag zonder wachtwoord gelezen worden (alleen een versiecode)
+<Files "versie.txt">
+Require all granted
+</Files>
 # Testsite (test.gravelgorilla.nl): niet opnemen in zoekmachines
 <IfModule mod_setenvif.c>
 SetEnvIfNoCase Host "^test\." GG_TESTSITE
@@ -867,3 +871,12 @@ foreach ($p in $paginas) {
   if ($nieuw -ne $t) { [IO.File]::WriteAllText($p.FullName, $nieuw, $utf8) }
 }
 "versienummers: $($paginas.Count) pagina's bijgewerkt"
+
+# ---------- versie.txt: code van deze versie van de site ----------
+# Verandert alleen als een pagina, opmaak of code verandert. Op de testsite (met wachtwoord) mag dit ene bestand
+# zonder wachtwoord gelezen worden, zodat Claude kan controleren of een wijziging is aangekomen.
+$alles = ($paginas | Sort-Object FullName | ForEach-Object { Versie $_.FullName }) -join ''
+$alles += ($versies.Keys | Sort-Object | ForEach-Object { $versies[$_] }) -join ''
+$siteVersie = ($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes($alles)) | Select-Object -First 6 | ForEach-Object { $_.ToString('x2') }) -join ''
+Schrijf "versie.txt" "$siteVersie`n"
+"versie: $siteVersie"
