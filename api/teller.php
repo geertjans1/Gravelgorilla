@@ -38,6 +38,33 @@ function lees_stand($fp) {
  *      → haalt de oude stem van deze bezoeker weg en telt de nieuwe mee; geeft {"op": .., "neer": ..} terug.
  * Wie wat heeft gestemd wordt niet opgeslagen; de browser van de bezoeker onthoudt zelf zijn eigen stem.
  */
+/*
+ * Gebruik (alleen voor de beheerder, niet zichtbaar op de site):
+ * POST /api/teller.php?gebruik=<tool>&soort=gestart|stap
+ *   gestart = iemand vult iets in of klikt iets aan in de tool (1x per bezoek aan de pagina)
+ *   stap    = iemand klikt door naar een tool bij "Volgende stap"
+ * Alleen totalen per tool; niets over de bezoeker. Lezen kan alleen via /beheer/ (met wachtwoord).
+ */
+if (isset($_GET['gebruik'])) {
+  $tool = $_GET['gebruik'];
+  $soort = $_GET['soort'] ?? '';
+  if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !in_array($tool, TOOLS, true) || !in_array($soort, ['gestart', 'stap'], true)) {
+    http_response_code(400); echo json_encode(['fout' => 'ongeldig']); exit;
+  }
+  $gebruikBestand = dirname($bestand) . '/' . (is_writable($buiten) ? $voor . 'gebruik.json' : 'gebruik.json');
+  $gp = @fopen($gebruikBestand, 'c+');
+  if (!$gp) { http_response_code(500); echo json_encode(['fout' => 'niet beschikbaar']); exit; }
+  flock($gp, LOCK_EX);
+  $g = json_decode(stream_get_contents($gp) ?: '{}', true);
+  if (!is_array($g)) { $g = []; }
+  if (empty($g['_sinds'])) { $g['_sinds'] = date('Y-m-d'); }
+  $g[$tool][$soort] = (int)($g[$tool][$soort] ?? 0) + 1;
+  ftruncate($gp, 0); rewind($gp); fwrite($gp, json_encode($g)); fflush($gp);
+  flock($gp, LOCK_UN); fclose($gp);
+  echo json_encode(['ok' => true]);
+  exit;
+}
+
 if (isset($_GET['stemmen']) || isset($_GET['stem'])) {
   $stemBestand = dirname($bestand) . '/' . (is_writable($buiten) ? $voor . 'stemmen.json' : 'stemmen.json');
   $sp = @fopen($stemBestand, 'c+');

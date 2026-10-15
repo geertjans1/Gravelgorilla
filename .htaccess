@@ -1,5 +1,5 @@
 # Gravel Gorilla — instellingen voor de webserver (gemaakt door .claude/bouw-site.ps1)
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>

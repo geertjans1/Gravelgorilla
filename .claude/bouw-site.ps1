@@ -390,10 +390,10 @@ foreach ($t in $toolsHier) {
         Schrijf "assets\js\$($t.slug).$($L.taal).js" (Vertaal (Lees "assets\js\$($t.slug).js") $vt['js'] $ti "$($t.slug).js $($L.taal)")
         $js = @("$($t.slug).$($L.taal).js")
       }
-      $tool = $melding + "    <div class=""$scope"">`n" + (Prefix $toolHtml $L) + "    </div>"
+      $tool = $melding + "    <div class=""$scope"" data-tool-vak>`n" + (Prefix $toolHtml $L) + "    </div>"
     }
     'blok' {
-      $tool = $melding + "    <div class=""tool-vak"">`n" + (Prefix $toolHtml $L) + "    </div>"
+      $tool = $melding + "    <div class=""tool-vak"" data-tool-vak>`n" + (Prefix $toolHtml $L) + "    </div>"
       if ($t.slug -eq 'bandenspanning-calculator') {
         # komt iemand uit de bandenkiezer (?breedte=45), zet dan meteen die bandbreedte klaar
         $tool += "`n    <script>(function () { var b = new URLSearchParams(location.search).get(""breedte""), s = document.getElementById(""ggWidth""); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event(""input"", { bubbles: true })); } })();</script>"
@@ -409,7 +409,7 @@ foreach ($t in $toolsHier) {
       }
       $toolVersie = ([Security.Cryptography.MD5]::Create().ComputeHash([IO.File]::ReadAllBytes("$root\tools\$($t.slug)\$vensterNaam")) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
       $tool = $melding + @"
-    <div class="tool-vak">
+    <div class="tool-vak" data-tool-vak>
       <div class="tool-frame"><iframe src="/tools/$($t.slug)/$($vensterNaam)?v=$toolVersie&amp;taal=$($L.taal)" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
     </div>
     <script>
@@ -670,7 +670,7 @@ $pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt gee
 
       <h2>Wat de site wel gebruikt</h2>
       <h3>Gebruiksteller van de tools</h3>
-      <p>Bij elke tool staat hoe vaak hij is gebruikt. Als je een tool-pagina opent, gaat de teller van die tool één omhoog. Er wordt daarbij niets over jou opgeslagen: geen IP-adres, geen cookie, alleen het totaal per tool.</p>
+      <p>Bij elke tool staat hoe vaak hij is gebruikt. Als je een tool-pagina opent, gaat de teller van die tool één omhoog. Er wordt daarbij niets over jou opgeslagen: geen IP-adres, geen cookie, alleen het totaal per tool. Ook tellen we per tool hoe vaak iemand ermee aan de slag gaat (iets invult of aanklikt) en hoe vaak iemand doorklikt naar een volgende tool. Ook dat zijn alleen totalen, die alleen de beheerder ziet.</p>
       <h3>Stemmen op de tools</h3>
       <p>Je kunt een tool een stem omhoog of omlaag geven. Opgeslagen wordt alleen het totaal aantal stemmen per tool. Welke stem jij gaf, onthoudt alleen je eigen browser, zodat je je stem kunt veranderen of intrekken.</p>
       <h3>Instellingen op je eigen apparaat</h3>
@@ -843,7 +843,7 @@ Schrijf "robots.txt" "User-agent: *`nAllow: /`n`nSitemap: $site/sitemap.xml`n"
 # ---------- .htaccess: instellingen voor de webserver van Cloud86 ----------
 $htaccess = @'
 # Gravel Gorilla — instellingen voor de webserver (gemaakt door .claude/bouw-site.ps1)
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>

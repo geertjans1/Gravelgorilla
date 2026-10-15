@@ -188,6 +188,28 @@
     return fetch(adres + "?stemmen").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
   }
 
+  /* ---------- Gebruik meten (alleen zichtbaar voor de beheerder op /beheer/) ----------
+     "gestart": iemand vult iets in of klikt iets aan in de tool zelf (1x per bezoek aan de pagina).
+     "stap": iemand klikt door naar een tool bij "Volgende stap". Geen cookies, niets over de bezoeker. */
+  function meldGebruik(tool, soort) {
+    try { fetch(adres + "?gebruik=" + encodeURIComponent(tool) + "&soort=" + soort, { method: "POST", keepalive: true }).catch(function () {}); } catch (e) {}
+  }
+  var toolVak = document.querySelector("[data-tool-vak]");
+  if (opPagina && toolVak) {
+    var hierTool = opPagina.dataset.teller, gestart = false;
+    var start = function () { if (gestart) return; gestart = true; meldGebruik(hierTool, "gestart"); };
+    ["input", "change", "click"].forEach(function (soort) {
+      toolVak.addEventListener(soort, function (e) { if (e.isTrusted) start(); }, true);
+    });
+    // de profielsticker draait in een eigen venster: klikken daarin zie je hier als "het venster krijgt de aandacht"
+    window.addEventListener("blur", function () {
+      setTimeout(function () { var a = document.activeElement; if (a && a.tagName === "IFRAME" && toolVak.contains(a)) start(); }, 0);
+    });
+    document.querySelectorAll(".volgende__kaart").forEach(function (a) {
+      a.addEventListener("click", function () { meldGebruik(hierTool, "stap"); });
+    });
+  }
+
   // Op een tool-pagina: het blok "Wat vind je van deze tool?"
   var stemHier = document.querySelector("[data-stem-tool]");
   if (stemHier) {
