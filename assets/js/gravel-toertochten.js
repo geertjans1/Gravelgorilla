@@ -13,7 +13,8 @@
   const $ = s => wortel.querySelector(s);
 
   // n = naam, d = datum, pl = startplaats, p = provincie, land, km = afstanden, nav = gps / pijlen / beide,
-  // prijs = in euro (zonder lidmaatschap, dagprijs), bron, u = link, ll = [breedte, lengte], noot
+  // prijs = in euro (zonder lidmaatschap, dagprijs), bron, u = link, ll = [breedte, lengte], noot,
+  // w = eigen website van de organisator (alleen als die is gecontroleerd; bij een kalenderbron gaat u naar de kalender)
   // TOCHTEN-BEGIN
   const TOCHTEN = [
     { n: "Klinker-Gravel Classic", d: "2026-10-17", pl: "Nijkerk", p: "GE", land: "NL", km: [56, 66, 76], nav: "gps", bron: "NTFU", u: "https://www.fietssport.nl/toertochten/60393/klinker-gravel-classic", ll: [52.215, 5.478] },
@@ -170,6 +171,10 @@
   if (TAAL !== "nl") TOCHTEN.forEach(t => { if (t.noot && NOTEN[t.noot]) t.noot = NOTEN[t.noot][TAAL === "en" ? 0 : 1]; });
   const LOCALE = { nl: "nl-NL", en: "en-GB", de: "de-DE" }[TAAL] || "nl-NL";
 
+  // bij deze bronnen gaat de link naar een kalender; bij andere bronnen is de link al de site van de organisator
+  const KALENDERS = ["NTFU", "Cycling Vlaanderen", "FFBC"];
+  TOCHTEN.forEach(t => { if (!t.w && !KALENDERS.includes(t.bron)) t.w = t.u; });
+
   // ---------- provincies (zelfde tegelkaart als bij Gravelroutes) ----------
   const PROV = {
     FR: ["Friesland", 2, 0, "NL"], GR: ["Groningen", 3, 0, "NL"], NH: ["Noord-Holland", 1, 1, "NL"], FL: ["Flevoland", 2, 1, "NL"], DR: ["Drenthe", 3, 1, "NL"],
@@ -276,12 +281,26 @@
         '<div class="tt-onder">' +
         (t.nav ? '<span class="gr-badge' + (t.nav !== "gps" ? " gr-badge--bord" : "") + '">' + navTekst(t.nav) + "</span>" : "") +
         (t.prijs ? '<span class="gr-badge">' + prijs(t.prijs) + "</span>" : "") +
-        '<a href="' + esc(t.u) + '" target="_blank" rel="noopener">' + T("Info en inschrijven bij ", "Info and registration at ", "Infos und Anmeldung bei ") + esc(t.bron) + " ↗</a>" +
+        (t.w ? '<a class="tt-org" href="' + esc(t.w) + '" target="_blank" rel="noopener">' + T("Website organisator", "Organiser's website", "Website des Veranstalters") + " ↗</a>" : "") +
+        (t.w !== t.u ? '<a href="' + esc(t.u) + '" target="_blank" rel="noopener">' + (t.w ? T("Ook bij ", "Also at ", "Auch bei ") : T("Info en inschrijven bij ", "Info and registration at ", "Infos und Anmeldung bei ")) + esc(t.bron) + " ↗</a>" : "") +
         '<button type="button" class="tt-agenda" data-i="' + KOMEND.indexOf(t) + '">' + T("In je agenda", "Add to calendar", "In den Kalender") + "</button>" +
         "</div></div></li>";
     });
     $("#ttLijst").innerHTML = html + "</ol>";
+    gelijk();
   }
+
+  // alle tegels even hoog (naar de hoogste), voor een rustig overzicht; op een smal scherm (1 kolom) niet nodig
+  function gelijk() {
+    const tegels = [...wortel.querySelectorAll(".tt-tocht")];
+    tegels.forEach(t => { t.style.minHeight = ""; });
+    if (tegels.length < 2 || window.matchMedia("(max-width: 600px)").matches) return;
+    const hoogste = Math.max(...tegels.map(t => t.offsetHeight));
+    if (hoogste) tegels.forEach(t => { t.style.minHeight = hoogste + "px"; });
+  }
+  let gelijkWacht;
+  window.addEventListener("resize", () => { clearTimeout(gelijkWacht); gelijkWacht = setTimeout(gelijk, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(gelijk);
 
   function toon() { kaart(); lijst(); }
 
@@ -293,7 +312,7 @@
     const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Gravel Gorilla//Gravel Toertochten//NL", "BEGIN:VEVENT",
       "UID:" + d + "-" + t.n.replace(/\W+/g, "").slice(0, 30) + "@gravelgorilla.nl", "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z",
       "DTSTART;VALUE=DATE:" + d, "DTEND;VALUE=DATE:" + d2, "SUMMARY:" + v(t.n), "LOCATION:" + v(t.pl + ", " + LANDNAAM[t.land]),
-      "DESCRIPTION:" + v((t.km && t.km.length ? t.km.join(" / ") + " km. " : "") + T("Info en inschrijven: ", "Info and registration: ", "Infos und Anmeldung: ") + t.u), "URL:" + t.u,
+      "DESCRIPTION:" + v((t.km && t.km.length ? t.km.join(" / ") + " km. " : "") + T("Info en inschrijven: ", "Info and registration: ", "Infos und Anmeldung: ") + (t.w || t.u)), "URL:" + (t.w || t.u),
       "END:VEVENT", "END:VCALENDAR"].join("\r\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));

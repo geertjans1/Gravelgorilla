@@ -538,7 +538,7 @@
         return {
           html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? T("tocht", "ride", "Tour") : T("tochten", "rides", "Touren")) + "</b>" + T("", "", " gefunden") +
             (uit.length > 5 ? T(". De eerstvolgende vijf:", ". The next five:", ". Die nächsten fünf:") : ":") +
-            lijst(top.map(t => t.dt.toLocaleDateString(LOC, { weekday: "short", day: "numeric", month: "short" }) + ': <a href="' + t.u + '" target="_blank" rel="noopener">' + html(t.n) + " ↗</a> " + html(t.pl) + (t.km && t.km.length ? ", " + t.km.join("/") + " km" : ""))) +
+            lijst(top.map(t => t.dt.toLocaleDateString(LOC, { weekday: "short", day: "numeric", month: "short" }) + ': <a href="' + (t.w || t.u) + '" target="_blank" rel="noopener">' + html(t.n) + " ↗</a> " + html(t.pl) + (t.km && t.km.length ? ", " + t.km.join("/") + " km" : ""))) +
             T("Ik heb de filters hierboven ook zo gezet.", "I've set the filters above the same way.", "Ich habe die Filter oben auch so eingestellt."),
           knop: { tekst: T("Bekijk alle tochten", "See all rides", "Alle Touren ansehen"), naar: "#ttLijst" }
         };

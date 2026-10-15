@@ -28,16 +28,18 @@
 .tt-datum { display: grid; align-content: center; text-align: center; border-radius: 12px; background: var(--diepgroen); color: #F4F1EA; padding: 8px 4px; line-height: 1.1; }
 .tt-datum span { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: #9AA098; }
 .tt-datum strong { font-family: var(--kopfont); font-size: 1.6rem; line-height: 1.05; }
-.tt-info { min-width: 0; }
+.tt-info { min-width: 0; display: flex; flex-direction: column; }
 .tt-info h4 { font-size: 1.08rem; line-height: 1.15; margin: 0; overflow-wrap: anywhere; }
 .tt-info > p { font-size: .86rem; color: var(--tekst-zacht); margin-top: 4px; }
 .tt-info > p.tt-noot { color: var(--tekst); }
 .tt-km { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
 .tt-km span { font-size: .78rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; border: 1.5px solid var(--groen); color: var(--groen-tekst); }
 .tt-km .tt-km--onbekend { border-style: dashed; border-color: var(--lijn); color: var(--tekst-zacht); font-weight: 600; }
-.tt-onder { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 10px; font-size: .86rem; }
+.tt-onder { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: auto; padding-top: 10px; font-size: .86rem; }
 .tt-onder a { color: var(--groen-tekst); font-weight: 600; }
 .tt-onder a:hover { text-decoration: underline; }
+.tt-onder a.tt-org { background: var(--actie); color: #15181A; padding: 4px 11px; border-radius: 999px; font-weight: 700; }
+.tt-onder a.tt-org:hover { text-decoration: none; filter: brightness(1.06); }
 .tt-scope .gr-badge { font-size: .75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--achtergrond-2); }
 .tt-scope .gr-badge--bord { background: var(--groen); color: #fff; }
 .tt-agenda { font: inherit; font-size: .82rem; font-weight: 600; background: none; border: 1.5px solid var(--lijn); border-radius: 999px; padding: 4px 10px; color: var(--tekst); cursor: pointer; }

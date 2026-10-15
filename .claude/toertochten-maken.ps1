@@ -4,7 +4,8 @@
 # Bronlijst: een regel per tocht, kolommen gescheiden door een tab:
 #   datum (jjjj-mm-dd), naam, startplaats, provincie (code zoals GE, NB, OVB, VB), land (NL/BE/DE),
 #   afstanden (km, met /), nav (gps, pijlen of beide; leeg = onbekend), prijs (euro; leeg = onbekend),
-#   bron, link, breedte, lengte (coordinaten van de startplaats), noot (mag leeg).
+#   bron, link, breedte, lengte (coordinaten van de startplaats), noot (mag leeg),
+#   website organisator (mag leeg; alleen een adres invullen dat je zelf hebt gecontroleerd).
 # Een nieuwe noot? Zet de Engelse en Duitse vertaling in NOTEN in assets/js/gravel-toertochten.js.
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
@@ -23,6 +24,7 @@ $js = foreach ($r in $regels) {
   if ($f[7]) { $delen += "prijs: " + ([double]$f[7]).ToString([Globalization.CultureInfo]::InvariantCulture) }
   $delen += "bron: $(Js $f[8])", "u: $(Js $f[9])", "ll: [$($f[10]), $($f[11])]"
   if ($f.Count -gt 12 -and $f[12]) { $delen += "noot: $(Js $f[12])" }
+  if ($f.Count -gt 13 -and $f[13]) { $delen += "w: $(Js $f[13])" }
   "    { " + ($delen -join ', ') + " }"
 }
 

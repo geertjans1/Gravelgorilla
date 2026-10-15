@@ -1,5 +1,5 @@
 ﻿# Gravel Toertochten: bronlijst (tab-gescheiden). Na wijzigen: .claude/toertochten-maken.ps1 en daarna .claude/bouw-site.ps1
-# datum	naam	startplaats	provincie	land	afstanden (km, met /)	nav (gps/pijlen/beide)	prijs (euro)	bron	link	breedte	lengte	noot
+# datum	naam	startplaats	provincie	land	afstanden (km, met /)	nav (gps/pijlen/beide)	prijs (euro)	bron	link	breedte	lengte	noot	website organisator (alleen gecontroleerd)
 2026-10-17	Klinker-Gravel Classic	Nijkerk	GE	NL	56/66/76	gps		NTFU	https://www.fietssport.nl/toertochten/60393/klinker-gravel-classic	52.215	5.478	
 2026-10-18	AVIKO Gravel Kruisbergtocht	Hummelo	GE	NL	50/75/100	gps	8	NTFU	https://www.fietssport.nl/toertochten/60000/aviko-gravel-kruisbergtocht-2026	52.005	6.235	
 2026-10-18	JO OFF DE ROOT gravelrit	's-Heer Hendrikskinderen	ZE	NL	65/90	beide	8	NTFU	https://www.fietssport.nl/toertochten/59788/jo-off-de-root-gravelrit-2026	51.502	3.862	
