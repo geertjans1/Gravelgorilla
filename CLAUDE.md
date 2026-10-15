@@ -7,7 +7,7 @@ Statische site voor gravelgorilla.nl. Eigenaar: Geert (geen ontwikkelaar): leg a
 - Daarom: eerst lokaal testen (`.claude/serve.ps1` → localhost:8080, of `C:\xampp\php\php.exe -S localhost:8090 -t .` als PHP nodig is), dan pushen.
 - Na elke push: op de live site controleren dat de wijziging er echt staat (curl met `?t=$RANDOM`).
 - Nooit DNS, MX of mailinstellingen aanraken: mail voor info@gravelgorilla.nl loopt via dezelfde server.
-- Testsite: branch `test` → test.gravelgorilla.nl (Plesk Git, ingesteld door Geert). Zodra die werkt: wijzigingen eerst naar `test`, pas na "zet live" van Geert naar `main`. De testsite krijgt `noindex` (via `.htaccess`) en eigen teller-/stembestanden (`gravelgorilla-test-*.json`).
+- Testsite: branch `Test` (hoofdletter T) → test.gravelgorilla.nl (Plesk Git, ingesteld door Geert). Zodra die werkt: wijzigingen eerst naar `Test` (`git push origin main:Test` of eigen werk op Test), pas na "zet live" van Geert naar `main`. De testsite krijgt `noindex` (via `.htaccess`) en eigen teller-/stembestanden (`gravelgorilla-test-*.json`).
 
 ## Versienummers (cache) — ALTIJD
 Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring gezorgd.
