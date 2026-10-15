@@ -87,7 +87,7 @@
     @('<small>Top</small>Wegwijzer', '<small>Summit</small>Signpost'),
     @('<small>Post</small>Gorilla-tips', '<small>Feed zone</small>Gorilla tips'),
     @('<small>Top</small>Over ons', '<small>Summit</small>About us'),
-    @('<h2 class="kop-l verschijn">Waar wil<br>je heen?</h2>', '<h2 class="kop-l verschijn">Where do you<br>want to go?</h2>'),
+    @('<h2 class="kop-l verschijn">Naar welke tool wil je?</h2>', '<h2 class="kop-l verschijn">Which tool do you need?</h2>'),
     @('data-filter="alle" aria-pressed="true">Alles</button>', 'data-filter="alle" aria-pressed="true">All</button>'),
     @('aria-pressed="false">Kiezen</button>', 'aria-pressed="false">Choose</button>'),
     @('aria-pressed="false">Berekenen</button>', 'aria-pressed="false">Calculate</button>'),

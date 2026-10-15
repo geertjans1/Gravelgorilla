@@ -148,12 +148,16 @@ button { font: inherit; color: inherit; }
 /* ---------- Wegwijzer ---------- */
 .wegwijzer { max-width: var(--breed); margin: 0 auto; padding: 100px clamp(16px, 4vw, 40px) 120px; }
 .wegwijzer__kop { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
-.wegwijzer__zoek { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-.filters { display: flex; gap: 6px; flex-wrap: wrap; }
-.filter { padding: 8px 15px; border-radius: 8px; border: 1.5px solid var(--lijn); background: transparent; cursor: pointer; font-size: .9rem; font-weight: 500; transition: all .2s; }
-.filter:hover { border-color: var(--tekst); }
+.wegwijzer__zoek { display: flex; flex-direction: column; align-items: stretch; gap: 14px; margin: 0 auto; }
+@media (min-width: 1100px) { .wegwijzer__kop { flex-wrap: nowrap; align-items: center; } .wegwijzer__kop h2 { flex: 1 1 auto; min-width: 0; } .wegwijzer__zoek { flex: none; } }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.filter { padding: 13px 26px; border-radius: 10px; border: 2px solid var(--lijn); background: transparent; color: var(--tekst); cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all .2s; }
+.filter:hover { border-color: var(--groen); background: rgba(47,143,62,.12); color: var(--groen); transform: translateY(-2px); }
+.filter.is-aan:hover { background: var(--groen); border-color: var(--groen); color: #fff; }
 .filter.is-aan { background: var(--tekst); border-color: var(--tekst); color: var(--achtergrond); }
-.zoekveld { display: flex; align-items: center; gap: 8px; width: 300px; padding: 10px 14px; border-radius: 8px; border: 1.5px solid var(--lijn); color: var(--tekst-zacht); transition: border-color .2s; }
+.zoekveld { display: flex; align-items: center; gap: 10px; width: 100%; padding: 15px 20px; border-radius: 10px; border: 2px solid var(--lijn); color: var(--tekst-zacht); font-size: 1.1rem; transition: border-color .2s; }
+.zoekveld:hover { border-color: var(--groen); }
+.zoekveld svg { width: 22px; height: 22px; }
 .zoekveld:focus-within { border-color: var(--groen); }
 .zoekveld input { border: 0; outline: 0; background: none; font: inherit; color: var(--tekst); width: 100%; }
 
@@ -272,6 +276,7 @@ button { font: inherit; color: inherit; }
   .wegwijzer { padding-top: 70px; }
   .wegwijzer__zoek { align-items: stretch; width: 100%; }
   .zoekveld { width: 100%; }
+  .filters { display: grid; grid-template-columns: 1fr 1fr; }
   .bordje > a, .bordje > div { grid-template-columns: 1fr 48px; padding: 22px 4px; gap: 4px 12px; }
   .bordje__km { grid-column: 1; grid-row: 1; flex-direction: row; justify-self: start; }
   .bordje__km::after { display: none; }
