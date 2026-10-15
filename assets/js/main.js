@@ -180,18 +180,24 @@ bijScrollen();
 
 /* ---------- Snelkeuze-fiets: onderdeel en knop lichten samen op ---------- */
 /* Wijs je een onderdeel aan (op de fiets of in het lijstje), dan verschijnt bij het nummer op de fiets
-   een labeltje met dezelfde keuze, zodat je meteen ziet waar het om gaat. */
+   een labeltje met dezelfde keuze, zodat je meteen ziet waar het om gaat.
+   Touchscreen: eerste tik op de fiets laat het labeltje zien (met →), tweede tik op hetzelfde
+   onderdeel of een tik op het labeltje gaat naar de tool. Ergens anders tikken sluit het weer. */
 const snelfiets = document.querySelector(".snelfiets");
-const fietsLabel = document.createElement("div");
+const fietsLabel = document.createElement("a");
 fietsLabel.className = "snelfiets__tip";
 fietsLabel.setAttribute("aria-hidden", "true");
+fietsLabel.tabIndex = -1;
 if (snelfiets) snelfiets.appendChild(fietsLabel);
+let vastDeel = null;   // onderdeel dat met de vinger is aangetikt (labeltje blijft staan)
 function fietsTip(deel) {
   if (!snelfiets) return;
   const punt = deel && snelfiets.querySelector(`.deel[data-deel="${deel}"] .punt__kern`);
   const keuze = deel && document.querySelector(`.snelkeuze__opties a[data-deel="${deel}"]`);
-  if (!punt || !keuze) { fietsLabel.classList.remove("is-zichtbaar"); return; }
-  fietsLabel.innerHTML = keuze.innerHTML;
+  if (!punt || !keuze) { fietsLabel.classList.remove("is-zichtbaar", "is-vast"); return; }
+  fietsLabel.innerHTML = keuze.innerHTML + (vastDeel === deel ? '<b aria-hidden="true">→</b>' : "");
+  fietsLabel.href = keuze.getAttribute("href");
+  fietsLabel.classList.toggle("is-vast", vastDeel === deel);
   const vak = snelfiets.getBoundingClientRect(), p = punt.getBoundingClientRect();
   const midden = p.left + p.width / 2 - vak.left;
   const links = Math.max(0, Math.min(midden - fietsLabel.offsetWidth / 2, vak.width - fietsLabel.offsetWidth));
@@ -203,9 +209,33 @@ function fietsTip(deel) {
 document.querySelectorAll(".snelkeuze [data-deel]").forEach(el => {
   const zelfde = () => document.querySelectorAll(`.snelkeuze [data-deel="${el.dataset.deel}"]`);
   const aan = () => { zelfde().forEach(z => z.classList.add("is-aan")); fietsTip(el.dataset.deel); };
-  const uit = () => { zelfde().forEach(z => z.classList.remove("is-aan")); fietsTip(null); };
+  const uit = () => { if (vastDeel === el.dataset.deel) return; zelfde().forEach(z => z.classList.remove("is-aan")); fietsTip(null); };
   el.addEventListener("mouseenter", aan);
   el.addEventListener("mouseleave", uit);
   el.addEventListener("focus", aan);
   el.addEventListener("blur", uit);
+
+  // alleen de onderdelen op de fiets zelf: met de vinger eerst laten zien, pas bij de tweede tik erheen
+  if (!el.closest(".snelfiets")) return;
+  let soort = "";
+  el.addEventListener("pointerdown", e => { soort = e.pointerType; });
+  el.addEventListener("click", e => {
+    const vinger = soort === "touch" || soort === "pen";
+    soort = "";
+    if (!vinger || vastDeel === el.dataset.deel) return;   // muis/toetsenbord of tweede tik: gewoon naar de tool
+    e.preventDefault();
+    e.stopPropagation();
+    const vorige = vastDeel;
+    vastDeel = el.dataset.deel;
+    if (vorige) document.querySelectorAll(`.snelkeuze [data-deel="${vorige}"]`).forEach(z => z.classList.remove("is-aan"));
+    aan();
+  });
+});
+// ergens anders tikken: aangetikt onderdeel weer loslaten
+document.addEventListener("click", e => {
+  if (!vastDeel || fietsLabel.contains(e.target)) return;
+  const deel = vastDeel;
+  vastDeel = null;
+  document.querySelectorAll(`.snelkeuze [data-deel="${deel}"]`).forEach(z => z.classList.remove("is-aan"));
+  fietsTip(null);
 });

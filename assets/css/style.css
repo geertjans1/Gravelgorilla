@@ -342,6 +342,8 @@ button { font: inherit; color: inherit; }
 .snelfiets { margin: 18px 0 0; position: relative; max-width: 560px; }
 .snelfiets__tip { position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1.5px solid var(--groen); background: var(--achtergrond); color: var(--groen-tekst); font-size: .9rem; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 24px rgba(0,0,0,.14); pointer-events: none; opacity: 0; transform: translateY(6px); transition: opacity .18s, transform .18s; }
 .snelfiets__tip.is-zichtbaar { opacity: 1; transform: none; }
+.snelfiets__tip.is-vast { pointer-events: auto; cursor: pointer; padding-right: 12px; }
+.snelfiets__tip b { margin-left: 2px; font-size: 1.05rem; }
 .snelfiets__tip::after { content: ""; position: absolute; left: var(--pijl, 50%); top: 100%; width: 10px; height: 10px; background: var(--achtergrond); border: solid var(--groen); border-width: 0 1.5px 1.5px 0; transform: translate(-50%, -50%) rotate(45deg); }
 .snelfiets__tip span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--groen); color: #fff; font-family: var(--kopfont); font-weight: 700; font-size: .85rem; }
 .snelfiets svg { display: block; width: 100%; height: auto; overflow: visible; }
