@@ -207,9 +207,12 @@ document.querySelectorAll(".snelkeuze [data-deel]").forEach(el => {
   const zelfde = () => document.querySelectorAll(`.snelkeuze [data-deel="${el.dataset.deel}"]`);
   const aan = () => { zelfde().forEach(z => z.classList.add("is-aan")); fietsTip(el.dataset.deel); };
   const uit = () => { if (vastDeel === el.dataset.deel) return; zelfde().forEach(z => z.classList.remove("is-aan")); fietsTip(null); };
-  el.addEventListener("mouseenter", aan);
-  el.addEventListener("mouseleave", uit);
-  el.addEventListener("focus", aan);
+  // Alleen een echte muis (of het toetsenbord) laat oplichten bij aanwijzen. Met de vinger niet:
+  // Safari op iPhone/iPad ziet een eerste tik die iets laat verschijnen als "aanwijzen" en volgt de link dan niet.
+  // Zo gaan de knoppen in het lijstje met één tik naar de tool; de fiets regelt zijn eigen tik hieronder.
+  el.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") aan(); });
+  el.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") uit(); });
+  el.addEventListener("focus", () => { if (el.matches(":focus-visible")) aan(); });
   el.addEventListener("blur", uit);
 
   // alleen de onderdelen op de fiets zelf: met de vinger eerst laten zien, pas bij de tweede tik erheen
