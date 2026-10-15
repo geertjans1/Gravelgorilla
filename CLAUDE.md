@@ -18,6 +18,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 ## Waar wat staat
 - Pagina's worden gemaakt door `.claude/bouw-site.ps1` uit `inhoud/` — gemaakte pagina's niet met de hand bewerken.
 - Homepage: `index.html` (met de hand), maar de wegwijzer-bordjes, de eerste tip en het schema zet `bouw-site.ps1` erin.
+- Wegwijzer = ranglijst (`assets/js/teller.js`): volgorde op gebruik, groene balk met aantal, stippellijn onder de top 3 en boven de onderste 3 ("degradatiezone"; pas vanaf 8 tools), stemkolom (Reddit-stijl) links bij elk bordje en "Wat vind je van deze tool?" op elke toolpagina (`stemVraag` in de psd1). Eigen stem staat in de browser (`gg-stem-<tool>`), totalen op de server.
 - Gorilla-tips (homepage): 3 per tool in `TIPS_ALLE` in `assets/js/main.js` (NL/EN/DE + tool). Naast het tipnummer staan KM-bordje en naam van de tool, overgenomen van de wegwijzer. Nieuwe tool = ook 3 tips toevoegen.
 - Eén lijst met alle tools staat in `.claude/bouw-site.ps1` (`$tools`): titels, SEO-titel, wegwijzertekst, filter, plaatje. Nieuwe tool = daar toevoegen + `api/teller.php` (TOOLS) + "Ik wil…" en de fiets in `index.html` + een blok in `assets/js/vraag-gorilla.js`.
 - Nieuwere tools (maatbepaler, paklijst, gravelroutes, versnellingen) delen hun opmaak in `assets/css/werkbank.css` (scope `wb-scope` plus een eigen scope). Gravelroutes: alleen routes met een bron die je zelf hebt gecontroleerd.
@@ -28,7 +29,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 - Kiezers: `.claude/kiezer-importeren.ps1` (gravelbike/wielen), `.claude/ultra-importeren.ps1`.
 - Logo: bron in `.claude/logo/` (svg + png 512). Nieuw logo? Vervang `assets/img/logo-icon.svg`, draai `.claude/maak-favicons.ps1`, pas het grote logo in `index.html` (opening__band) aan en maak het deelplaatje opnieuw.
 - Profielsticker: bron is `inhoud/bron/profielsticker.html` (daar aanpassen), daarna `.claude/profielsticker-importeren.ps1`.
-- Server-scripts (PHP): `api/teller.php` (gebruiksteller), `api/osm.php` (tussenstation OpenStreetMap). Gegevens staan buiten `httpdocs`.
+- Server-scripts (PHP): `api/teller.php` (gebruiksteller) + stemmen omhoog/omlaag per tool (`?stemmen`, `?stem=<tool>&nu=&was=`), `api/osm.php` (tussenstation OpenStreetMap). Gegevens staan buiten `httpdocs`.
 - PowerShell-scripts met niet-ASCII tekens opslaan als UTF-8 **met** BOM (Windows PowerShell 5.1).
 
 ## Huisstijl

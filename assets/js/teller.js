@@ -54,11 +54,16 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;
+        var hoogste = Math.max.apply(null, Object.keys(d).map(function (k) { return d[k]; }).concat(1));
         bijBordjes.forEach(function (b) {
           var n = d[b.dataset.tellerTool];
           if (typeof n !== "number") return;
-          b.textContent = getal(n) + T("× gebruikt", "× used", "× genutzt");
+          // horizontale balk, net als een ranglijst: de vaakst gebruikte tool is de langste balk
+          b.innerHTML = '<span class="bordje__balk"><b>' + getal(n) + T("× gebruikt", "× used", "× genutzt") + "</b></span>";
           b.hidden = false;
+          var balk = b.firstChild;
+          balk.getBoundingClientRect();
+          balk.style.setProperty("--breed", Math.round(n / hoogste * 100) + "%");
         });
         sorteerBordjes(d);
       })
@@ -94,6 +99,24 @@
       if (kmVak) kmVak.setAttribute("aria-label", "Kilometer " + km);
     });
 
+    /* Ranglijst zoals in de voetbalcompetitie: een stippellijn onder de top 3 (meest gebruikt)
+       en boven de onderste 3 (de "degradatiezone": minst gebruikt). */
+    [].slice.call(lijst.querySelectorAll(".bordjes__lijn")).forEach(function (x) { x.remove(); });
+    items.forEach(function (li) { li.classList.remove("bordje--top", "bordje--onder"); });
+    if (volgorde.length >= 8 && volgorde[0].n > 0) {
+      volgorde.slice(0, 3).forEach(function (o) { o.li.classList.add("bordje--top"); });
+      volgorde.slice(-3).forEach(function (o) { o.li.classList.add("bordje--onder"); });
+      var lijn = function (soort, tekst) {
+        var l = document.createElement("li");
+        l.className = "bordjes__lijn bordjes__lijn--" + soort;
+        l.setAttribute("aria-hidden", "true");
+        l.innerHTML = "<span>" + tekst + "</span>";
+        return l;
+      };
+      lijst.insertBefore(lijn("top", T("▲ Top 3 · meest gebruikt", "▲ Top 3 · most used", "▲ Top 3 · meistgenutzt")), volgorde[3].li);
+      lijst.insertBefore(lijn("onder", T("▼ Degradatiezone · minst gebruikt", "▼ Relegation zone · least used", "▼ Abstiegszone · am wenigsten genutzt")), volgorde[volgorde.length - 3].li);
+    }
+
     var koploper = volgorde[0];
     if (koploper.n > 0) {
       var naam = koploper.li.querySelector(".bordje__naam");
@@ -113,6 +136,77 @@
       li.style.transition = "transform .6s cubic-bezier(.2,.7,.2,1)";
       li.style.transform = "";
       setTimeout(function () { li.style.transition = ""; }, 700);
+    });
+  }
+  /* ---------- Stemmen: duim omhoog / omlaag per tool (zoals Reddit) ----------
+     Zo zie je welke tools mensen goed vinden en welke aandacht nodig hebben.
+     De browser onthoudt je eigen stem (gg-stem-<tool>); nog eens klikken haalt je stem weg. */
+  var pijl = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l8.5 9.5H15v7.5H9V13H3.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+  function mijnStem(tool) { try { return localStorage.getItem("gg-stem-" + tool) || "geen"; } catch (e) { return "geen"; } }
+  function bewaarStem(tool, s) { try { if (s === "geen") localStorage.removeItem("gg-stem-" + tool); else localStorage.setItem("gg-stem-" + tool, s); } catch (e) {} }
+
+  function maakStem(houder, tool, stand, groot) {
+    var s = { op: stand ? stand.op : 0, neer: stand ? stand.neer : 0 };
+    var tekstOp = T("Goede tool", "Great tool", "Gutes Tool"), tekstNeer = T("Kan beter", "Could be better", "Geht besser");
+    houder.innerHTML =
+      '<button type="button" class="stem__knop stem__knop--op" aria-label="' + tekstOp + '">' + pijl + (groot ? "<span>" + tekstOp + "</span>" : "") + "</button>" +
+      '<span class="stem__score" aria-live="polite"></span>' +
+      '<button type="button" class="stem__knop stem__knop--neer" aria-label="' + tekstNeer + '">' + pijl + (groot ? "<span>" + tekstNeer + "</span>" : "") + "</button>" +
+      (groot ? '<span class="stem__dank" hidden>' + T("Bedankt voor je stem!", "Thanks for voting!", "Danke für deine Stimme!") + "</span>" : "");
+    var op = houder.querySelector(".stem__knop--op"), neer = houder.querySelector(".stem__knop--neer");
+    var score = houder.querySelector(".stem__score"), dank = houder.querySelector(".stem__dank");
+
+    function teken() {
+      var mijn = mijnStem(tool);
+      op.classList.toggle("is-aan", mijn === "op"); op.setAttribute("aria-pressed", mijn === "op");
+      neer.classList.toggle("is-aan", mijn === "neer"); neer.setAttribute("aria-pressed", mijn === "neer");
+      var netto = s.op - s.neer;
+      score.textContent = netto > 0 ? "+" + getal(netto) : getal(netto);
+      score.className = "stem__score" + (netto > 0 ? " is-plus" : netto < 0 ? " is-min" : "");
+      houder.title = getal(s.op) + " × " + tekstOp.toLowerCase() + " · " + getal(s.neer) + " × " + tekstNeer.toLowerCase();
+      houder.hidden = false;
+    }
+    function kies(richting, e) {
+      e.preventDefault(); e.stopPropagation();          // op de homepage zit de stem naast een link: niet doorklikken
+      var was = mijnStem(tool), nu = was === richting ? "geen" : richting;
+      if (was !== "geen") s[was] = Math.max(0, s[was] - 1);
+      if (nu !== "geen") s[nu]++;
+      bewaarStem(tool, nu);
+      teken();
+      if (dank) dank.hidden = nu === "geen";
+      fetch(adres + "?stem=" + encodeURIComponent(tool) + "&nu=" + nu + "&was=" + was, { method: "POST" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && typeof d.op === "number") { s = d; teken(); } })
+        .catch(function () {});
+    }
+    op.addEventListener("click", function (e) { kies("op", e); });
+    neer.addEventListener("click", function (e) { kies("neer", e); });
+    teken();
+  }
+
+  function haalStemmen() {
+    return fetch(adres + "?stemmen").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+
+  // Op een tool-pagina: het blok "Wat vind je van deze tool?"
+  var stemHier = document.querySelector("[data-stem-tool]");
+  if (stemHier) {
+    haalStemmen().then(function (d) { maakStem(stemHier, stemHier.dataset.stemTool, d && d[stemHier.dataset.stemTool], true); });
+  }
+
+  // Op de homepage: een stemkolom links naast elk bordje
+  var bordjesLijst = document.getElementById("bordjes");
+  if (bordjesLijst && bijBordjes.length) {
+    haalStemmen().then(function (d) {
+      bijBordjes.forEach(function (b) {
+        var li = b.closest(".bordje"), tool = b.dataset.tellerTool;
+        if (!li || li.querySelector(".stem")) return;
+        var houder = document.createElement("span");
+        houder.className = "stem stem--rij";
+        li.classList.add("met-stem");
+        li.insertBefore(houder, li.firstChild);
+        maakStem(houder, tool, d && d[tool], false);
+      });
     });
   }
 })();

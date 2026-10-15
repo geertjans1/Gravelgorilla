@@ -8,7 +8,7 @@
     voetSlot = 'Der Gorilla zeigt den Weg.<br>Du fährst.'; voetNav = 'Fußzeile'
     voetKlein = '© 2026 Gravel Gorilla · gemacht von Geert Jans, Gravelfahrer · keine Cookies, keine Werbung'
     terugTools = '← Zurück zu allen Tools'; home = '← Startseite'; faqKop = 'Häufige Fragen'; andereKop = 'Weitere <span class="groen">Tools</span>'
-    deel = 'Tool teilen'; deelVraag = 'Praktisch? Schick dieses Tool an deine Radkumpels.'; deelKopie = 'Link kopieren'; deelGekopieerd = 'Link kopiert!'; deelMail = 'E-Mail'; deelOnderwerp = 'Praktisches Tool für Gravelfahrer'
+    deel = 'Tool teilen'; deelVraag = 'Praktisch? Schick dieses Tool an deine Radkumpels.'; deelKopie = 'Link kopieren'; deelGekopieerd = 'Link kopiert!'; deelMail = 'E-Mail'; deelOnderwerp = 'Praktisches Tool für Gravelfahrer'; stemVraag = 'Wie findest du dieses Tool? Deine Stimme entscheidet, was zuerst verbessert wird.'
     vgKop = 'Frag den <span class="groen">Gorilla</span>'; vgUitleg = 'Stell deine Frage in ganz normalen Worten. Kann der Gorilla das Tool für dich ausfüllen, macht er das sofort.'
     vgAria = 'Deine Frage an den Gorilla'; vgPlek = 'Stell deine Frage'; vgKnop = 'Fragen'; vgVoorbeelden = 'Beispielfragen'
     alleenNl = 'Dieses Tool gibt es im Moment nur auf Niederländisch. Die deutsche Version ist unterwegs: Der Gorilla übersetzt gerade.'

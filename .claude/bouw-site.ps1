@@ -487,6 +487,10 @@ $tool
       <p>$($u.deelVraag)</p>
 $(& $deelHtml ' deelknop--actie')
     </section>
+    <section class="stem-balk">
+      <p>$($u.stemVraag)</p>
+      <div class="stem stem--groot" data-stem-tool="$($t.slug)" hidden></div>
+    </section>
 $gorillaHtml
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">$(Html $t.uitlegKop)</h2>
@@ -616,6 +620,8 @@ $pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt gee
       <h2>Wat de site wel gebruikt</h2>
       <h3>Gebruiksteller van de tools</h3>
       <p>Bij elke tool staat hoe vaak hij is gebruikt. Als je een tool-pagina opent, gaat de teller van die tool één omhoog. Er wordt daarbij niets over jou opgeslagen: geen IP-adres, geen cookie, alleen het totaal per tool.</p>
+      <h3>Stemmen op de tools</h3>
+      <p>Je kunt een tool een stem omhoog of omlaag geven. Opgeslagen wordt alleen het totaal aantal stemmen per tool. Welke stem jij gaf, onthoudt alleen je eigen browser, zodat je je stem kunt veranderen of intrekken.</p>
       <h3>Instellingen op je eigen apparaat</h3>
       <p>Je keuze voor de lichte of donkere weergave, en je instellingen in de profielsticker (zoals je gewicht en eetvoorkeuren), worden bewaard in je eigen browser. Die gegevens gaan niet naar ons. Je wist ze door de sitegegevens in je browser te verwijderen.</p>
       <h3>Weersverwachting in het kledingadvies</h3>

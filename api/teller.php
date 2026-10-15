@@ -29,6 +29,45 @@ function lees_stand($fp) {
   return $stand;
 }
 
+/*
+ * Stemmen (duim omhoog / omlaag per tool), net als bij Reddit:
+ * GET  /api/teller.php?stemmen                      → {"gravelbike-kiezer": {"op": 12, "neer": 2}, ...}
+ * POST /api/teller.php?stem=<tool>&nu=op|neer|geen&was=op|neer|geen
+ *      → haalt de oude stem van deze bezoeker weg en telt de nieuwe mee; geeft {"op": .., "neer": ..} terug.
+ * Wie wat heeft gestemd wordt niet opgeslagen; de browser van de bezoeker onthoudt zelf zijn eigen stem.
+ */
+if (isset($_GET['stemmen']) || isset($_GET['stem'])) {
+  $stemBestand = dirname($bestand) . '/' . (is_writable($buiten) ? 'gravelgorilla-stemmen.json' : 'stemmen.json');
+  $sp = @fopen($stemBestand, 'c+');
+  if (!$sp) { http_response_code(500); echo json_encode(['fout' => 'stemmen niet beschikbaar']); exit; }
+  $leesStemmen = function () use ($sp) {
+    rewind($sp);
+    $s = json_decode(stream_get_contents($sp) ?: '{}', true);
+    if (!is_array($s)) { $s = []; }
+    foreach (TOOLS as $t) { $s[$t] = ['op' => (int)($s[$t]['op'] ?? 0), 'neer' => (int)($s[$t]['neer'] ?? 0)]; }
+    return $s;
+  };
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['stem'])) {
+    $tool = $_GET['stem'];
+    $nu = $_GET['nu'] ?? 'geen';
+    $was = $_GET['was'] ?? 'geen';
+    $keuzes = ['op', 'neer', 'geen'];
+    if (!in_array($tool, TOOLS, true) || !in_array($nu, $keuzes, true) || !in_array($was, $keuzes, true)) { http_response_code(400); echo json_encode(['fout' => 'ongeldige stem']); exit; }
+    flock($sp, LOCK_EX);
+    $s = $leesStemmen();
+    if ($was !== 'geen') { $s[$tool][$was] = max(0, $s[$tool][$was] - 1); }
+    if ($nu !== 'geen') { $s[$tool][$nu]++; }
+    ftruncate($sp, 0); rewind($sp); fwrite($sp, json_encode($s)); fflush($sp);
+    flock($sp, LOCK_UN);
+    echo json_encode($s[$tool]);
+  } else {
+    flock($sp, LOCK_SH); $s = $leesStemmen(); flock($sp, LOCK_UN);
+    echo json_encode($s);
+  }
+  fclose($sp);
+  exit;
+}
+
 $fp = @fopen($bestand, 'c+');
 if (!$fp) { http_response_code(500); echo json_encode(['fout' => 'teller niet beschikbaar']); exit; }
 

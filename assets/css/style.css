@@ -297,9 +297,43 @@ button { font: inherit; color: inherit; }
   html { scroll-behavior: auto; }
 }
 
-/* Gebruiksteller bij de bordjes in de wegwijzer */
-.bordje__teller { display: block; margin-top: 6px; font-size: .82rem; font-weight: 600; color: var(--groen-tekst); }
-.bordje > a:hover .bordje__teller { color: #8FD9A0; }
+/* Ranglijst in de wegwijzer: balk met gebruik, top 3 en degradatiezone, stemmen */
+.bordje__teller { display: block; width: 100%; margin-top: 10px; }
+.bordje__balk { display: flex; justify-content: flex-end; width: fit-content; min-width: var(--breed, 0%); box-sizing: border-box; padding: 5px 10px; border-radius: 4px; background: linear-gradient(180deg, #3BA34B, var(--groen)); box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); color: #fff; font-size: .8rem; font-weight: 700; white-space: nowrap; transition: min-width 1.2s var(--zacht), background .3s; }
+.bordje > a:hover .bordje__balk { background: #8FD9A0; color: #14361E; }
+.bordje--top { box-shadow: inset 5px 0 0 var(--groen); }
+.bordje--onder { box-shadow: inset 5px 0 0 #D64545; }
+.bordje:has(+ .bordjes__lijn) { border-bottom-color: transparent; }
+.bordjes__lijn { position: relative; height: 0; margin: 14px 0; border-top: 2px dashed var(--groen); }
+.bordjes__lijn span { position: absolute; right: 16px; top: 0; transform: translateY(-50%); padding: 3px 12px; border: 1.5px solid currentColor; border-radius: 999px; background: var(--achtergrond); color: var(--groen-tekst); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+.bordjes__lijn--onder { border-top-color: #D64545; }
+.bordjes__lijn--onder span { color: #D64545; }
+.bordjes:has(.bordje.is-weg) .bordjes__lijn { display: none; }
+.bordjes:has(.bordje.is-weg) .bordje { box-shadow: none; }
+.bordje.met-stem { display: flex; align-items: center; }
+.bordje.met-stem > a { flex: 1; min-width: 0; }
+.stem { display: flex; align-items: center; gap: 2px; }
+.stem--rij { flex: none; flex-direction: column; width: 58px; padding-left: 10px; }
+.stem__knop { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 36px; height: 32px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--tekst-zacht); font: inherit; cursor: pointer; transition: color .2s, background .2s, transform .15s, border-color .2s; }
+.stem__knop svg { width: 20px; height: 20px; fill: none; flex: none; }
+.stem__knop--neer svg { transform: rotate(180deg); }
+.stem__knop.is-aan svg { fill: currentColor; }
+.stem__knop--op:hover, .stem__knop--op.is-aan { color: var(--groen-tekst); background: rgba(47,143,62,.13); border-color: var(--groen); }
+.stem__knop--neer:hover, .stem__knop--neer.is-aan { color: #D64545; background: rgba(214,69,69,.12); border-color: #D64545; }
+.stem__knop:active { transform: scale(.88); }
+.stem__score { min-width: 3ch; text-align: center; font-weight: 700; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.stem__score.is-plus { color: var(--groen-tekst); }
+.stem__score.is-min { color: #D64545; }
+.stem--groot { flex-wrap: wrap; gap: 10px; }
+.stem--groot .stem__knop { width: auto; height: auto; padding: 10px 16px; border: 2px solid var(--lijn); color: var(--tekst); font-weight: 600; }
+.stem--groot .stem__score { font-size: 1.3rem; order: 3; }
+.stem--groot .stem__dank { order: 4; }
+.stem__dank { color: var(--groen-tekst); font-weight: 600; font-size: .9rem; }
+@media (max-width: 640px) {
+  .stem--rij { width: 42px; padding-left: 2px; }
+  .stem--rij .stem__knop { width: 34px; }
+  .bordjes__lijn span { right: 4px; font-size: .64rem; }
+}
 
 /* ---------- Snelkeuze-fiets: wijs aan wat je wilt weten ---------- */
 .snelkeuze__begin span { font-family: var(--tekstfont); text-transform: none; font-size: .95rem; font-weight: 500; color: var(--tekst-zacht); margin-left: 6px; }
