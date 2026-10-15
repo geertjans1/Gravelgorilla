@@ -8,6 +8,7 @@
     voetSlot = 'The gorilla shows the way.<br>You ride.'; voetNav = 'Footer'
     voetKlein = '© 2026 Gravel Gorilla · made by Geert Jans, gravel rider · no cookies, no ads'
     terugTools = '← Back to all tools'; home = '← Home'; faqKop = 'Frequently asked questions'; andereKop = 'Other <span class="groen">tools</span>'
+    deel = 'Share this tool'; deelVraag = 'Useful? Send this tool to your riding mates.'; deelKopie = 'Copy link'; deelGekopieerd = 'Link copied!'; deelMail = 'Email'; deelOnderwerp = 'Handy tool for gravel riders'
     vgKop = 'Ask the <span class="groen">Gorilla</span>'; vgUitleg = 'Ask your question in plain English. If the gorilla can fill in the tool for you, he does it right away.'
     vgAria = 'Your question for the gorilla'; vgPlek = 'Ask your question'; vgKnop = 'Ask'; vgVoorbeelden = 'Example questions'
     alleenNl = 'This tool is currently only available in Dutch. The English version is on its way: the gorilla is translating.'

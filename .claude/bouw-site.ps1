@@ -455,6 +455,24 @@ foreach ($t in $toolsHier) {
       [ordered]@{ '@type' = 'Question'; name = (KaleTekst $_.vraag); acceptedAnswer = [ordered]@{ '@type' = 'Answer'; text = (KaleTekst $_.antwoord) } } }) }
   }
 
+  # deelknop: op een telefoon het deelmenu van de telefoon, anders een klein menu (link kopiëren, WhatsApp, e-mail).
+  # Geen knoppen of code van Facebook en co: die volgen bezoekers. Werking in site.js.
+  $deelTekst = "$($t.titel): $($t.sub)"
+  $deelHtml = {
+    param([string]$extra)
+    $wa = [Uri]::EscapeDataString("$deelTekst $adres")
+    $mail = "mailto:?subject=$([Uri]::EscapeDataString($u.deelOnderwerp + ': ' + $t.titel))&amp;body=$([Uri]::EscapeDataString("$deelTekst`n$adres"))"
+@"
+      <div class="deel$extra" data-deel-url="$adres" data-deel-titel="$(Html $t.titel)" data-deel-tekst="$(Html $deelTekst)" data-deel-klaar="$(Html $u.deelGekopieerd)">
+        <button class="deel__knop" type="button" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></g></svg><span>$($u.deel)</span></button>
+        <div class="deel__menu" hidden>
+          <button type="button" data-deel-kopie>$($u.deelKopie)</button>
+          <a href="https://wa.me/?text=$wa" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="$mail">$($u.deelMail)</a>
+        </div>
+      </div>
+"@
+  }
   $pagina = (Kop $t.seoTitel $t.beschrijving $pad $css "" "website" (JsonLd $schemaObj) $L) + @"
   <main>
     <section class="pagina-kop">
@@ -463,8 +481,13 @@ foreach ($t in $toolsHier) {
       <p class="pagina-teller" data-teller="$($t.slug)" hidden></p>
       <h1 class="kop-l">$($t.kop)</h1>
       <p class="pagina-sub"$subId>$(Html $t.sub)</p>
+$(& $deelHtml '')
     </section>
 $tool
+    <section class="deel-balk">
+      <p>$($u.deelVraag)</p>
+$(& $deelHtml ' deel--actie')
+    </section>
 $gorillaHtml
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">$(Html $t.uitlegKop)</h2>

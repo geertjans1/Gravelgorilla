@@ -28,6 +28,34 @@ document.getElementById("themaKnop").addEventListener("click", () => {
   try { localStorage.setItem("gg-thema", nieuw); } catch (e) {}
 });
 
+/* ---------- Deelknop op de toolpagina's ----------
+   Telefoon/tablet: het eigen deelmenu van het toestel (WhatsApp, Signal, mail...).
+   Computer: een klein menu met link kopiëren, WhatsApp en e-mail. */
+document.querySelectorAll(".deel").forEach(deel => {
+  const knop = deel.querySelector(".deel__knop");
+  const menu = deel.querySelector(".deel__menu");
+  const zet = open => { menu.hidden = !open; knop.setAttribute("aria-expanded", open); };
+  knop.addEventListener("click", async e => {
+    e.stopPropagation();
+    const aanraak = window.matchMedia("(pointer: coarse)").matches;
+    if (aanraak && navigator.share) {
+      try { await navigator.share({ title: deel.dataset.deelTitel, text: deel.dataset.deelTekst, url: deel.dataset.deelUrl }); } catch (fout) {}
+      return;
+    }
+    zet(menu.hidden);
+  });
+  deel.querySelector("[data-deel-kopie]").addEventListener("click", async e => {
+    const b = e.currentTarget, oud = b.textContent;
+    try { await navigator.clipboard.writeText(deel.dataset.deelUrl); }
+    catch (fout) { const v = document.createElement("textarea"); v.value = deel.dataset.deelUrl; document.body.appendChild(v); v.select(); document.execCommand("copy"); v.remove(); }
+    b.textContent = deel.dataset.deelKlaar;
+    setTimeout(() => { b.textContent = oud; zet(false); }, 1600);
+  });
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => zet(false)));
+  document.addEventListener("click", e => { if (!deel.contains(e.target)) zet(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
+});
+
 /* ---------- Taalmenu (NL / EN / DE) ---------- */
 const taal = document.getElementById("taalKeuze");
 if (taal) {
