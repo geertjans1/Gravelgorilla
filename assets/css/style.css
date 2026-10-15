@@ -311,6 +311,7 @@ button { font: inherit; color: inherit; }
 .bordjes:has(.bordje.is-weg) .bordjes__lijn { display: none; }
 .bordjes:has(.bordje.is-weg) .bordje { box-shadow: none; }
 .bordje.met-stem { display: flex; align-items: center; }
+.bordje.met-stem.is-weg { display: none; }
 .bordje.met-stem > a { flex: 1; min-width: 0; }
 .stem { display: flex; align-items: center; gap: 2px; }
 .stem--rij { flex: none; flex-direction: column; width: 58px; padding-left: 10px; }
