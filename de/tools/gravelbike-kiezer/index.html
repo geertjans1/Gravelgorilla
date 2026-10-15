@@ -76,14 +76,13 @@
       <h1 class="kop-l">Gravelbike-<wbr><span class="groen">Finder</span></h1>
       <p class="pagina-sub" id="gk-sub-text">Finde das Gravelbike, das zu dir passt.</p>
     </section>
-    <p class="tool-melding">Dieses Tool gibt es im Moment nur auf Niederländisch. Die deutsche Version ist unterwegs: Der Gorilla übersetzt gerade.</p>
     <div class="gk-scope">
 <div class="gk-wrap">
 
-  <nav class="gk-tabs" role="tablist" aria-label="Kiezer-modus">
-    <button class="gk-tab active" id="tabbtn-finder" role="tab" aria-selected="true" aria-controls="tab-finder" onclick="switchTab('finder')"><span class="gk-tab-ico">🦍</span> Vind mijn gravelbike</button>
-    <button class="gk-tab" id="tabbtn-compare" role="tab" aria-selected="false" aria-controls="tab-compare" onclick="switchTab('compare')"><span class="gk-tab-ico">🔍</span> Vergelijk alle gravelbikes</button>
-    <button class="gk-tab" id="tabbtn-gorilla" role="tab" aria-selected="false" aria-controls="tab-gorilla" onclick="switchTab('gorilla')"><span class="gk-tab-ico">🤖</span> Vraag de Gorilla</button>
+  <nav class="gk-tabs" role="tablist" aria-label="Modus">
+    <button class="gk-tab active" id="tabbtn-finder" role="tab" aria-selected="true" aria-controls="tab-finder" onclick="switchTab('finder')"><span class="gk-tab-ico">🦍</span> Mein Gravelbike finden</button>
+    <button class="gk-tab" id="tabbtn-compare" role="tab" aria-selected="false" aria-controls="tab-compare" onclick="switchTab('compare')"><span class="gk-tab-ico">🔍</span> Alle Gravelbikes vergleichen</button>
+    <button class="gk-tab" id="tabbtn-gorilla" role="tab" aria-selected="false" aria-controls="tab-gorilla" onclick="switchTab('gorilla')"><span class="gk-tab-ico">🤖</span> Frag den Gorilla</button>
   </nav>
 
   <!-- ===================== TAB 1: VOORDEUR ===================== -->
@@ -105,106 +104,106 @@
         </svg>
       </span>
       <div>
-        <h2>De Gorilla wijst je de weg</h2>
-        <p>Vijf korte vragen, meteen resultaat. Ik reken voor elke fiets een eerlijke Match Score uit, met de redenen erbij — en daarna kun je je advies optioneel nog verfijnen.</p>
+        <h2>Der Gorilla zeigt dir den Weg</h2>
+        <p>Fünf kurze Fragen, sofort ein Ergebnis. Für jedes Bike berechne ich einen ehrlichen Match Score mit Begründung — danach kannst du deine Empfehlung optional noch verfeinern.</p>
       </div>
     </div>
 
     <div class="gk-fstep" id="fstep-level">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">1</span> Hoeveel ervaring heb je op gravel?</div>
-      <div class="gk-fstep-sub">Dit bepaalt hoeveel ik je laat meesturen — en of ik je richting toegankelijke of high-end specs stuur.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">1</span> Wie viel Gravel-Erfahrung hast du?</div>
+      <div class="gk-fstep-sub">Das bestimmt, wie viel du mitsteuerst — und ob ich dich zu zugänglicher oder High-End-Ausstattung lenke.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','beginner',this)">Beginner<small>Mijn eerste gravelbike</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','gemiddeld',this)">Gemiddeld<small>Af en toe op gravel</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','gevorderd',this)">Gevorderd<small>Ik rij regelmatig gravel</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('level','expert',this)">Expert<small>Ik zoek snelheid &amp; prestaties</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','beginner',this)">Einsteiger<small>Mein erstes Gravelbike</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','gemiddeld',this)">Mittel<small>Ab und zu auf Schotter</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','gevorderd',this)">Fortgeschritten<small>Ich fahre regelmäßig Gravel</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('level','expert',this)">Experte<small>Ich suche Tempo &amp; Leistung</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-use">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">2</span> Wat wil je vooral met je gravelbike doen?</div>
-      <div class="gk-fstep-sub">Dit stuurt de geometrie en het comfort van de match.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">2</span> Was willst du vor allem mit deinem Gravelbike machen?</div>
+      <div class="gk-fstep-sub">Das steuert Geometrie und Komfort des Treffers.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('use','bos',this)">🌲 Lekker toeren<small>Bos, zand &amp; mooie ritten</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('use','bikepacking',this)">🎒 Met tassen op pad<small>Bikepacking &amp; lange tochten</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('use','racen',this)">🚀 Vooral hard fietsen<small>Snel &amp; sportief</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('use','events',this)">🏆 Wedstrijden &amp; events<small>Lange gravelraces</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('use','alles',this)">🚲 Een beetje van alles<small>Veelzijdig</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('use','bos',this)">🌲 Entspannt fahren<small>Wald, Sand &amp; schöne Touren</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('use','bikepacking',this)">🎒 Mit Taschen unterwegs<small>Bikepacking &amp; lange Touren</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('use','racen',this)">🚀 Vor allem schnell fahren<small>Schnell &amp; sportlich</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('use','events',this)">🏆 Rennen &amp; Events<small>Lange Gravelrennen</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('use','alles',this)">🚲 Von allem etwas<small>Vielseitig</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-current">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">3</span> Wat voor fiets rij je nu?</div>
-      <div class="gk-fstep-sub">Zo weet ik wat er voor jou gaat veranderen — en kan ik mijn advies daarop afstemmen.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">3</span> Was für ein Rad fährst du jetzt?</div>
+      <div class="gk-fstep-sub">So weiß ich, was sich für dich ändert — und kann meine Empfehlung darauf abstimmen.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('current','race',this)">🚴 Racefiets<small>Van de weg af</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('current','mtb',this)">🚵 Mountainbike<small>Van het terrein af</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('current','oldgravel',this)">🚲 Oudere gravelbike<small>Tijd voor een upgrade</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('current','none',this)">🆕 (Bijna) geen fiets<small>Dit wordt mijn eerste</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('current','race',this)">🚴 Rennrad<small>Runter von der Straße</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('current','mtb',this)">🚵 Mountainbike<small>Raus aus dem Gelände</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('current','oldgravel',this)">🚲 Älteres Gravelbike<small>Zeit für ein Upgrade</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('current','none',this)">🆕 (Fast) kein Rad<small>Das wird mein erstes</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-height">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">4</span> Hoe lang ben je?</div>
-      <div class="gk-fstep-sub">Misschien wel de belangrijkste vraag: ik laat fietsen die niet in jouw maat bestaan zakken en zet een ✓-badge bij de fietsen die wél passen.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">4</span> Wie groß bist du?</div>
+      <div class="gk-fstep-sub">Vielleicht die wichtigste Frage: Bikes, die es nicht in deiner Größe gibt, rutschen nach unten, und passende Bikes bekommen ein ✓.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('height','h1',this)">Tot 165 cm<small>Kleiner postuur</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('height','h1',this)">Bis 165 cm<small>Kleinere Statur</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('height','h2',this)">165 – 175 cm<small></small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('height','h3',this)">175 – 185 cm<small></small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('height','h4',this)">185 cm en langer<small>Langer postuur</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('height','h4',this)">185 cm und größer<small>Größere Statur</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-budget">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">5</span> Wat is je budget?</div>
-      <div class="gk-fstep-sub">De richtprijs van de complete fiets. Fietsen boven je budget laat ik weg; scherp geprijsde fietsen eronder tellen gewoon mee.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">5</span> Wie hoch ist dein Budget?</div>
+      <div class="gk-fstep-sub">Der Richtpreis des kompletten Bikes. Bikes über deinem Budget lasse ich weg; günstigere darunter zählen ganz normal mit.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b1',this)">Tot €2.000<small>Instap</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b2',this)">€2.000 – 3.500<small>Middenklasse</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b3',this)">€3.500 – 5.000<small>Hoog</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b1',this)">Bis €2.000<small>Einstieg</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b2',this)">€2.000 – 3.500<small>Mittelklasse</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('budget','b3',this)">€3.500 – 5.000<small>Hoch</small></button>
         <button type="button" class="gk-fchip" onclick="pickFinder('budget','b4',this)">€5.000+<small>Top</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-maint">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">6</span> Wat vind je het belangrijkst?</div>
-      <div class="gk-fstep-sub">Dit helpt me kiezen tussen Shimano/SRAM, mechanisch of elektronisch en 1× of 2×.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">6</span> Was ist dir am wichtigsten?</div>
+      <div class="gk-fstep-sub">Das hilft mir bei der Wahl zwischen Shimano/SRAM, mechanisch oder elektronisch und 1× oder 2×.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('maint','low',this)">🔧 Zo min mogelijk onderhoud<small>Simpel &amp; betrouwbaar</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('maint','tech',this)">⚡ Nieuwste techniek<small>Draadloos &amp; geïntegreerd</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('maint','value',this)">💰 Beste prijs-kwaliteit<small>Meeste fiets voor je geld</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('maint','perf',this)">🚀 Maximale prestaties<small>Licht &amp; high-end</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('maint','low',this)">🔧 So wenig Wartung wie möglich<small>Einfach &amp; zuverlässig</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('maint','tech',this)">⚡ Neueste Technik<small>Kabellos &amp; integriert</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('maint','value',this)">💰 Bestes Preis-Leistungs-Verhältnis<small>Meistes Bike fürs Geld</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('maint','perf',this)">🚀 Maximale Leistung<small>Leicht &amp; High-End</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-fitprio">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">7</span> Waar weegt jouw keuze het zwaarst op?</div>
-      <div class="gk-fstep-sub">Expertmodus: jij bepaalt waar ik de Match Score extra op laat doorwegen.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">7</span> Was zählt bei deiner Wahl am meisten?</div>
+      <div class="gk-fstep-sub">Expertenmodus: Du bestimmst, was im Match Score besonders stark zählt.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','weight',this)">⚖️ Gewicht<small>Zo licht mogelijk</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','speed',this)">🚀 Snelheid<small>Racegeo &amp; stijf</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','comfort',this)">🛋️ Comfort<small>Demping &amp; brede banden</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','mounts',this)">🎒 Montagepunten<small>Bagage &amp; spatborden</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','value',this)">💰 Prijs-kwaliteit<small>Beste deal</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','weight',this)">⚖️ Gewicht<small>So leicht wie möglich</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','speed',this)">🚀 Tempo<small>Renngeometrie &amp; steif</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','comfort',this)">🛋️ Komfort<small>Dämpfung &amp; breite Reifen</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','mounts',this)">🎒 Befestigungspunkte<small>Gepäck &amp; Schutzbleche</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('fitprio','value',this)">💰 Preis-Leistung<small>Bester Deal</small></button>
       </div>
     </div>
 
     <div class="gk-fstep hidden" id="fstep-region">
-      <div class="gk-fstep-q"><span class="gk-fstep-num">8</span> Waar rij je het meest?</div>
-      <div class="gk-fstep-sub">Dit kleurt mijn advies en geeft een kleine duw aan passende fietsen — geen harde selectie.</div>
+      <div class="gk-fstep-q"><span class="gk-fstep-num">8</span> Wo fährst du am meisten?</div>
+      <div class="gk-fstep-sub">Das färbt meine Empfehlung und gibt passenden Bikes einen kleinen Schub — keine harte Auswahl.</div>
       <div class="gk-fchips">
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','maasduinen',this)">🌲 Maasduinen<small>Zand &amp; bos</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','veluwe',this)">🌳 Veluwe<small>Bos &amp; zand</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','limburg',this)">⛰️ Zuid-Limburg<small>Heuvels</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','ardennen',this)">🏔️ Ardennen<small>Lange klimmen</small></button>
-        <button type="button" class="gk-fchip" onclick="pickFinder('region','overal',this)">🌍 Overal<small>Maakt niet uit</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','maasduinen',this)">🌲 Maasduinen (NL)<small>Sand &amp; Wald</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','veluwe',this)">🌳 Veluwe (NL)<small>Wald &amp; Sand</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','limburg',this)">⛰️ Südlimburg<small>Hügel</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','ardennen',this)">🏔️ Ardennen<small>Lange Anstiege</small></button>
+        <button type="button" class="gk-fchip" onclick="pickFinder('region','overal',this)">🌍 Überall<small>Egal</small></button>
       </div>
     </div>
 
     <div class="gk-advice" id="finder-advice"></div>
     <div class="gk-finder-actions" id="finder-actions" style="display:none;">
-      <button type="button" class="gk-fbtn-primary" onclick="finderToCompare()">🔍 Bekijk deze selectie in de vergelijker</button>
-      <button type="button" class="gk-fbtn-ghost" onclick="resetFinder()">↺ Opnieuw beginnen</button>
+      <button type="button" class="gk-fbtn-primary" onclick="finderToCompare()">🔍 Diese Auswahl im Vergleich ansehen</button>
+      <button type="button" class="gk-fbtn-ghost" onclick="resetFinder()">↺ Neu beginnen</button>
     </div>
     <div class="gk-fcount" id="finder-count"></div>
     <div class="gk-ftop3" id="finder-top3"></div>
@@ -215,31 +214,31 @@
   <section id="tab-compare" class="gk-tabpanel" role="tabpanel" aria-labelledby="tabbtn-compare">
   <div class="gk-topbar">
     <div class="gk-sort">
-      <label for="sort-sel">Sorteren op:</label>
+      <label for="sort-sel">Sortieren nach:</label>
       <select id="sort-sel" onchange="render()">
-        <option value="price-asc">Prijs laag–hoog</option>
-        <option value="price-desc">Prijs hoog–laag</option>
-        <option value="weight-asc">Gewicht laag–hoog</option>
-        <option value="brand-asc">Merk A–Z</option>
+        <option value="price-asc">Preis niedrig–hoch</option>
+        <option value="price-desc">Preis hoch–niedrig</option>
+        <option value="weight-asc">Gewicht niedrig–hoch</option>
+        <option value="brand-asc">Marke A–Z</option>
       </select>
     </div>
-    <button class="gk-reset" onclick="resetFilters()">✕ Filters wissen</button>
+    <button class="gk-reset" onclick="resetFilters()">✕ Filter löschen</button>
   </div>
 
   <div class="gk-filters-box">
     <div class="gk-filters-grid" id="gk-filters-basic">
 
       <div class="gk-filter-group">
-        <span class="gk-label">Type fiets <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Kies een gewone (niet-elektrische) gravelbike of een elektrische met trapondersteuning (motor + accu).</span></span></span></span></span>
+        <span class="gk-label">Bike-Typ <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Wähle ein normales (nicht elektrisches) Gravelbike oder ein elektrisches mit Tretunterstützung (Motor + Akku).</span></span></span></span></span>
         <div class="gk-chips" id="filter-etype">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="normal">Niet-elektrisch</span>
+          <span class="gk-chip" data-val="normal">Nicht elektrisch</span>
           <span class="gk-chip" data-val="electric">Elektrisch ⚡</span>
         </div>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Prijsklasse <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het richtprijssegment van de complete fiets in euro's. Je kunt meerdere prijsklassen tegelijk aanvinken.</span></span></span></span></span>
+        <span class="gk-label">Preisklasse <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Richtpreissegment des kompletten Bikes in Euro. Du kannst mehrere Preisklassen gleichzeitig ankreuzen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-price">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">€0 – 1.000</span>
@@ -249,11 +248,11 @@
           <span class="gk-chip" data-val="5">€5.000 – 7.500</span>
           <span class="gk-chip" data-val="6">€7.500+</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Merk <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het fabrikantmerk van de fiets. Je kunt meerdere merken tegelijk aanvinken om ze samen te vergelijken.</span></span></span></span></span>
+        <span class="gk-label">Marke <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Herstellermarke des Bikes. Du kannst mehrere Marken gleichzeitig ankreuzen, um sie zu vergleichen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-brand">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="Canyon">Canyon</span>
@@ -270,11 +269,11 @@
           <span class="gk-chip" data-val="Factor">Factor</span>
           <span class="gk-chip" data-val="Rose">Rose</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Framemaat <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De framematen waarin de fiets leverbaar is. Merken die in centimeters meten zijn bij benadering omgerekend (±46–49 cm = XS, 50–52 = S, 53–55 = M, 56–58 = L, 59–61 = XL). Je ziet alle fietsen die in minstens één gekozen maat leverbaar zijn.</span></span></span></span></span>
+        <span class="gk-label">Rahmengröße <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Rahmengrößen, in denen das Bike erhältlich ist. Marken, die in Zentimetern messen, sind ungefähr umgerechnet (±46–49 cm = XS, 50–52 = S, 53–55 = M, 56–58 = L, 59–61 = XL). Du siehst alle Bikes, die in mindestens einer gewählten Größe erhältlich sind.</span></span></span></span></span>
         <div class="gk-chips" id="filter-size">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="2XS">2XS</span>
@@ -285,13 +284,13 @@
           <span class="gk-chip" data-val="XL">XL</span>
           <span class="gk-chip" data-val="2XL">2XL</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
     </div><!-- /gk-filters-basic -->
 
     <button class="gk-adv-toggle" id="gk-adv-toggle" type="button" onclick="toggleAdv()" aria-expanded="false" aria-controls="gk-filters-adv">
-      <span class="gk-adv-label">🛠️ Meer filters</span>
+      <span class="gk-adv-label">🛠️ Mehr Filter</span>
       <span class="gk-adv-badge" id="gk-adv-badge">0</span>
       <span class="gk-adv-caret" aria-hidden="true">▾</span>
     </button>
@@ -299,18 +298,18 @@
     <div class="gk-filters-grid gk-filters-adv" id="gk-filters-adv" hidden>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Modeljaar <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het modeljaar van de getoonde uitvoering — het jaar waarin deze versie op de markt kwam. Nieuwere modeljaren hebben de laatste specificaties en standaarden; oudere modeljaren zijn vaak scherper geprijsd.</span></span></span></span></span>
+        <span class="gk-label">Modelljahr <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Modelljahr der gezeigten Version — das Jahr, in dem sie auf den Markt kam. Neuere Modelljahre haben die neuesten Daten und Standards; ältere Modelljahre sind oft günstiger.</span></span></span></span></span>
         <div class="gk-chips" id="filter-year">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="2024">2024</span>
           <span class="gk-chip" data-val="2025">2025</span>
           <span class="gk-chip" data-val="2026">2026</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Schakelsysteem merk <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De fabrikant van de versnellingen. Shimano (o.a. GRX) en SRAM (o.a. XPLR/AXS) zijn de twee grote spelers, elk met eigen bediening en prijsklassen.</span></span></span></span></span>
+        <span class="gk-label">Schaltungsmarke <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Der Hersteller der Schaltung. Shimano (u. a. GRX) und SRAM (u. a. XPLR/AXS) sind die zwei großen Anbieter, jeweils mit eigener Bedienung und Preisklassen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-shifting">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="Shimano">Shimano</span>
@@ -319,7 +318,7 @@
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Schakeltype <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Mechanisch werkt via kabels (betaalbaar, eenvoudig te onderhouden). Elektronisch schakelt via motortjes (Di2 of AXS): nauwkeuriger en draadloos, maar duurder en met accu's.</span></span></span></span></span>
+        <span class="gk-label">Schaltungstyp <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Mechanisch funktioniert über Züge (bezahlbar, einfach zu warten). Elektronisch schaltet über kleine Motoren (Di2 oder AXS): präziser und kabellos, aber teurer und mit Akkus.</span></span></span></span></span>
         <div class="gk-chips" id="filter-shifttype">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="electronic">Elektronisch</span>
@@ -328,30 +327,30 @@
       </div>
 
       <div class="gk-filter-group wide-2">
-        <span class="gk-label">Gravelgroepset (SRAM XPLR / Shimano GRX) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De twee gravel-specifieke groepsetfamilies. <b>SRAM XPLR</b> = de 1×-gravellijn (Apex, Rival, Force of Red XPLR) met extra groot cassettebereik; Apex XPLR is 12-speed, Rival/Force/Red XPLR zijn 13-speed. <b>Shimano GRX</b> = Shimano's complete gravelgroep (GRX 400 t/m GRX Di2). Kies één of beide om alleen fietsen met een echte gravelgroepset te tonen.</span></span></span></span></span>
+        <span class="gk-label">Gravelgruppe (SRAM XPLR / Shimano GRX) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die zwei gravelspezifischen Gruppenfamilien. <b>SRAM XPLR</b> = die 1×-Gravellinie (Apex, Rival, Force oder Red XPLR) mit extra großer Kassettenbandbreite; Apex XPLR ist 12-fach, Rival/Force/Red XPLR sind 13-fach. <b>Shimano GRX</b> = Shimanos komplette Gravelgruppe (GRX 400 bis GRX Di2). Wähle eine oder beide, um nur Bikes mit echter Gravelgruppe zu zeigen.</span></span></span></span></span>
         <div class="gk-chips" id="filter-gravelgroep">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="xplr">🪨 SRAM XPLR</span>
           <span class="gk-chip" data-val="grx">⛰️ Shimano GRX</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group wide-2">
-        <span class="gk-label">Cassette (aantal versnellingen) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het aantal tandkransen achter — een snelle graadmeter voor hoe modern de afmontage is. <b>13 speed</b> = de nieuwste SRAM XPLR AXS-generatie (Rival/Force/Red, 2024+). <b>12 speed</b> = de actuele generatie: Shimano GRX 820/610/Di2 én SRAM Apex/Eagle AXS. <b>9–11 speed</b> = instap- of oudere groepen (CUES, GRX 400, Apex 11). Meer versnellingen = kleinere stappen tussen de verzetten en het nieuwste schakelwerk.</span></span></span></span></span>
+        <span class="gk-label">Kassette (Anzahl Gänge) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Anzahl der Ritzel hinten — ein schneller Gradmesser dafür, wie modern die Ausstattung ist. <b>13-fach</b> = die neueste SRAM-XPLR-AXS-Generation (Rival/Force/Red, 2024+). <b>12-fach</b> = die aktuelle Generation: Shimano GRX 820/610/Di2 und SRAM Apex/Eagle AXS. <b>9–11-fach</b> = Einstiegs- oder ältere Gruppen (CUES, GRX 400, Apex 11). Mehr Gänge = kleinere Sprünge zwischen den Übersetzungen und die neueste Schaltung.</span></span></span></span></span>
         <div class="gk-chips" id="filter-speed">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="9">9 speed</span>
-          <span class="gk-chip" data-val="10">10 speed</span>
-          <span class="gk-chip" data-val="11">11 speed</span>
-          <span class="gk-chip" data-val="12">12 speed</span>
-          <span class="gk-chip" data-val="13">13 speed · nieuwste</span>
+          <span class="gk-chip" data-val="9">9-fach</span>
+          <span class="gk-chip" data-val="10">10-fach</span>
+          <span class="gk-chip" data-val="11">11-fach</span>
+          <span class="gk-chip" data-val="12">12-fach</span>
+          <span class="gk-chip" data-val="13">13-fach · neueste</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group wide-2">
-        <span class="gk-label">Afmontage (groepset) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De specifieke groepset op de fiets. Shimano-niveaus van laag naar hoog: CUES &lt; GRX 400 &lt; GRX 600 &lt; GRX 800 &lt; GRX Di2 / XT Di2. SRAM van laag naar hoog: Apex &lt; Apex AXS &lt; Rival AXS &lt; Force AXS &lt; Red AXS. Hoger = lichter, scherper schakelend en duurder.</span></span></span></span></span>
+        <span class="gk-label">Ausstattung (Gruppe) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die konkrete Gruppe am Bike. Shimano-Stufen von niedrig nach hoch: CUES &lt; GRX 400 &lt; GRX 600 &lt; GRX 800 &lt; GRX Di2 / XT Di2. SRAM von niedrig nach hoch: Apex &lt; Apex AXS &lt; Rival AXS &lt; Force AXS &lt; Red AXS. Höher = leichter, präziser schaltend und teurer.</span></span></span></span></span>
         <div class="gk-chips gk-chips-2col" id="filter-groupset">
           <span class="gk-chip active" data-val="all">Alle</span>
           <div class="gk-chips-col">
@@ -372,31 +371,31 @@
             <span class="gk-chip" data-val="SRAM Red AXS">Red AXS</span>
           </div>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
 
       <div class="gk-filter-group">
-        <span class="gk-label">Aandrijving (voorblad) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het aantal kettingbladen vooraan. 1× (één blad) is simpel en licht met één shifter — minder onderhoud. 2× (twee bladen) geeft meer en kleinere versnellingsstappen, fijn voor steile klimmen én hoge snelheden.</span></span></span></span></span>
+        <span class="gk-label">Antrieb (Kettenblätter) <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Anzahl der Kettenblätter vorne. 1× (ein Blatt) ist einfach und leicht mit einem Schalthebel — weniger Wartung. 2× (zwei Blätter) bietet mehr und kleinere Gangsprünge, gut für steile Anstiege und hohe Geschwindigkeiten.</span></span></span></span></span>
         <div class="gk-chips" id="filter-drivetrain">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="1x">1× (één blad)</span>
-          <span class="gk-chip" data-val="2x">2× (twee bladen)</span>
+          <span class="gk-chip" data-val="1x">1× (ein Blatt)</span>
+          <span class="gk-chip" data-val="2x">2× (zwei Blätter)</span>
         </div>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Frame materiaal <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het materiaal van het frame. Carbon is licht en trillingsdempend maar duurder; aluminium is betaalbaar, stijf en robuust.</span></span></span></span></span>
+        <span class="gk-label">Rahmenmaterial <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Material des Rahmens. Carbon ist leicht und vibrationsdämpfend, aber teurer; Aluminium ist bezahlbar, steif und robust.</span></span></span></span></span>
         <div class="gk-chips" id="filter-frame">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="carbon">Carbon</span>
           <span class="gk-chip" data-val="aluminium">Aluminium</span>
-          <span class="gk-chip" data-val="staal">Staal</span>
+          <span class="gk-chip" data-val="staal">Stahl</span>
         </div>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Wielen <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het materiaal van de velgen. Carbon wielen zijn lichter en stijver (en duurder); aluminium wielen zijn goedkoper en makkelijker te repareren.</span></span></span></span></span>
+        <span class="gk-label">Laufräder <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Material der Felgen. Carbon-Laufräder sind leichter und steifer (und teurer); Alu-Laufräder sind günstiger und leichter zu reparieren.</span></span></span></span></span>
         <div class="gk-chips" id="filter-wheels">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="carbon">Carbon</span>
@@ -405,84 +404,84 @@
       </div>
 
       <div class="gk-filter-group wide-2">
-        <span class="gk-label">Wielmerk <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het merk van de wielset (velgenfabrikant), afgeleid van de gemonteerde wielen. "Generiek / OEM" = naamloze fabriekswielen zonder opgegeven merk. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Laufradmarke <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Die Marke des Laufradsatzes (Felgenhersteller), abgeleitet von den montierten Laufrädern. „Generisch / OEM" = namenlose Serienlaufräder ohne angegebene Marke. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-wielmerk">
           <span class="gk-chip active" data-val="all">Alle</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Wielsetgewicht <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het gewicht van de complete wielset (per paar, incl. tape/ventiel waar opgegeven). Lichter rolt vlotter en versnelt sneller. Alleen modellen met een bekend wielsetgewicht verschijnen bij deze filter. Meerdere klassen mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Laufradsatzgewicht <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Gewicht des kompletten Laufradsatzes (pro Paar, inkl. Band/Ventil, wo angegeben). Leichter rollt flotter und beschleunigt schneller. Nur Modelle mit bekanntem Laufradsatzgewicht erscheinen bei diesem Filter. Mehrere Klassen möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-wielgewicht">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="2">&lt; 1250 g</span>
           <span class="gk-chip" data-val="3">1251–1500 g</span>
           <span class="gk-chip" data-val="4">&gt; 1500 g</span>
-          <span class="gk-chip" data-val="0">Gewicht onbekend</span>
+          <span class="gk-chip" data-val="0">Gewicht unbekannt</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Max. bandbreedte <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De breedste band die in het frame past (in mm). Bredere banden geven meer grip, comfort en demping op ruw terrein; smallere banden zijn sneller op asfalt. Meerdere klassen mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Max. Reifenbreite <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Der breiteste Reifen, der in den Rahmen passt (in mm). Breitere Reifen bieten mehr Grip, Komfort und Dämpfung in rauem Gelände; schmalere Reifen sind auf Asphalt schneller. Mehrere Klassen möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-tire">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="1">Tot 42 mm</span>
+          <span class="gk-chip" data-val="1">Bis 42 mm</span>
           <span class="gk-chip" data-val="2">43–47 mm</span>
           <span class="gk-chip" data-val="3">48–52 mm</span>
-          <span class="gk-chip" data-val="4">53 mm en breder</span>
+          <span class="gk-chip" data-val="4">53 mm und breiter</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Gewicht <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Het totaalgewicht van de complete fiets. Lichter is sneller en wendbaarder, vooral klimmend. E-bikes zijn door motor en accu altijd zwaarder. Meerdere klassen mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Gewicht <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Das Gesamtgewicht des kompletten Bikes. Leichter ist schneller und wendiger, vor allem bergauf. E-Bikes sind durch Motor und Akku immer schwerer. Mehrere Klassen möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-weight">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="1">7–8 kg</span>
           <span class="gk-chip" data-val="2">8–9 kg</span>
           <span class="gk-chip" data-val="3">9–10 kg</span>
-          <span class="gk-chip" data-val="4">Zwaarder dan 10 kg</span>
+          <span class="gk-chip" data-val="4">Schwerer als 10 kg</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Geometrie / rijstijl <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">De rijpositie en het karakter. Race = sportief en snel (lage zit). Adventure = comfortabel en veelzijdig. Bikepacking/Touring = rechtop en gemaakt voor bagage. Meerdere mogelijk.</span></span></span></span></span>
+        <span class="gk-label">Geometrie / Fahrstil <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Sitzposition und Charakter. Race = sportlich und schnell (tiefe Position). Adventure = komfortabel und vielseitig. Bikepacking/Touring = aufrecht und für Gepäck gemacht. Mehrere möglich.</span></span></span></span></span>
         <div class="gk-chips" id="filter-geo">
           <span class="gk-chip active" data-val="all">Alle</span>
           <span class="gk-chip" data-val="Race Gravel">Race Gravel</span>
           <span class="gk-chip" data-val="Adventure Gravel">Adventure</span>
           <span class="gk-chip" data-val="Bikepacking / Touring">Bikepacking</span>
         </div>
-        <span class="gk-multi-hint">meerdere mogelijk</span>
+        <span class="gk-multi-hint">mehrere möglich</span>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Vering / demping <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Heeft de fiets een verings- of dempingssysteem? Denk aan een veervork voor, een gedempte achterbouw, of een dempende zadelpen/stuur. Geeft meer comfort op ruw terrein.</span></span></span></span></span>
+        <span class="gk-label">Federung / Dämpfung <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Hat das Bike ein Federungs- oder Dämpfungssystem? Etwa eine Federgabel, einen gedämpften Hinterbau oder eine dämpfende Sattelstütze/einen dämpfenden Lenker. Bringt mehr Komfort in rauem Gelände.</span></span></span></span></span>
         <div class="gk-chips" id="filter-damping">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="yes">Met vering/demping</span>
-          <span class="gk-chip" data-val="no">Zonder</span>
+          <span class="gk-chip" data-val="yes">Mit Federung/Dämpfung</span>
+          <span class="gk-chip" data-val="no">Ohne</span>
         </div>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Montagepunten <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Heeft frame en/of vork extra bevestigingspunten voor frametassen, een derde bidonhouder, vorktassen of bagagedragers? Handig voor bikepacking en lange tochten met bagage.</span></span></span></span></span>
+        <span class="gk-label">Befestigungspunkte <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Haben Rahmen und/oder Gabel zusätzliche Befestigungspunkte für Rahmentaschen, einen dritten Flaschenhalter, Gabeltaschen oder Gepäckträger? Praktisch für Bikepacking und lange Touren mit Gepäck.</span></span></span></span></span>
         <div class="gk-chips" id="filter-mounts">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="yes">Met montagepunten</span>
-          <span class="gk-chip" data-val="no">Zonder</span>
+          <span class="gk-chip" data-val="yes">Mit Befestigungspunkten</span>
+          <span class="gk-chip" data-val="no">Ohne</span>
         </div>
       </div>
 
       <div class="gk-filter-group">
-        <span class="gk-label">Spatbordbevestiging <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Zijn er bevestigingsogen om spatborden te monteren? Handig voor woon-werkverkeer, natte ritten en het hele jaar door rijden.</span></span></span></span></span>
+        <span class="gk-label">Schutzblechbefestigung <span class="gk-help" tabindex="0">?<span class="gk-pop"><span class="gk-pop-box"><span class="gk-pop-text">Gibt es Ösen, um Schutzbleche zu montieren? Praktisch für den Arbeitsweg, nasse Fahrten und Fahren das ganze Jahr.</span></span></span></span></span>
         <div class="gk-chips" id="filter-fender">
           <span class="gk-chip active" data-val="all">Alle</span>
-          <span class="gk-chip" data-val="yes">Mogelijk</span>
-          <span class="gk-chip" data-val="no">Niet mogelijk</span>
+          <span class="gk-chip" data-val="yes">Möglich</span>
+          <span class="gk-chip" data-val="no">Nicht möglich</span>
         </div>
       </div>
 
@@ -490,7 +489,7 @@
   </div>
 
   <div class="gk-compare">
-    <button class="gk-compare-btn" id="gk-compare-btn" onclick="toggleCompare()" aria-expanded="false" aria-controls="gk-compare-panel">Bekijk de verschillen van de resultaten</button>
+    <button class="gk-compare-btn" id="gk-compare-btn" onclick="toggleCompare()" aria-expanded="false" aria-controls="gk-compare-panel">Unterschiede der Ergebnisse ansehen</button>
     <div class="gk-compare-panel" id="gk-compare-panel" aria-live="polite"></div>
   </div>
 
@@ -502,20 +501,20 @@
 
   <div class="gk-dealer collapsed gk-dealer-foot" id="gk-dealer">
     <div class="gk-dealer-title" onclick="toggleDealer()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDealer();}" aria-controls="gk-dealer-body" aria-expanded="false" id="gk-dealer-title">
-      <span class="gk-dealer-title-text">📍 Gevonden wat je zocht? Vind een dealer in de buurt</span>
-      <span class="gk-ai-toggle-label" id="gk-dealer-toggle-label">Klap uit</span>
+      <span class="gk-dealer-title-text">📍 Gefunden, was du suchst? Finde einen Händler in der Nähe</span>
+      <span class="gk-ai-toggle-label" id="gk-dealer-toggle-label">Ausklappen</span>
       <span class="gk-ai-toggle" id="gk-dealer-toggle" aria-hidden="true">+</span>
     </div>
     <div class="gk-dealer-body" id="gk-dealer-body">
-      <div class="gk-dealer-desc">Kies een merk en vul je postcode in. Je krijgt de dichtstbijzijnde dealers op de kaart te zien (opent in een nieuw tabblad), plus een link naar de officiële dealerzoeker van het merk.</div>
+      <div class="gk-dealer-desc">Wähle eine Marke und gib deine Postleitzahl ein. Du siehst die nächsten Händler auf der Karte (öffnet in einem neuen Tab) und einen Link zur offiziellen Händlersuche der Marke.</div>
       <div class="gk-dealer-row">
-        <select id="dealer-brand" onchange="dealerBrandChange()" aria-label="Merk">
-          <option value="">— Kies een merk —</option>
+        <select id="dealer-brand" onchange="dealerBrandChange()" aria-label="Marke">
+          <option value="">— Marke wählen —</option>
         </select>
-        <input id="dealer-pc" type="text" placeholder="Postcode, bijv. 5801 AB" aria-label="Postcode" onkeydown="if(event.key==='Enter')zoekDealer()">
-        <button class="gk-dealer-btn" onclick="zoekDealer()">Zoek dealer</button>
+        <input id="dealer-pc" type="text" placeholder="PLZ, z. B. 52062" aria-label="Postleitzahl" onkeydown="if(event.key==='Enter')zoekDealer()">
+        <button class="gk-dealer-btn" onclick="zoekDealer()">Händler suchen</button>
       </div>
-      <div class="gk-dealer-err" id="dealer-err">Vul een geldige Nederlandse of Belgische postcode in, bijvoorbeeld <strong>5801 AB</strong> of <strong>3500</strong>.</div>
+      <div class="gk-dealer-err" id="dealer-err">Gib eine gültige deutsche, niederländische oder belgische Postleitzahl ein, zum Beispiel <strong>52062</strong>, <strong>5801 AB</strong> oder <strong>3500</strong>.</div>
       <div class="gk-dealer-note" id="dealer-note"></div>
       <div class="gk-dealer-official" id="dealer-official"></div>
     </div>
@@ -525,18 +524,18 @@
   <!-- ===================== TAB 3: VRAAG DE GORILLA ===================== -->
   <section id="tab-gorilla" class="gk-tabpanel" role="tabpanel" aria-labelledby="tabbtn-gorilla">
     <div class="gk-ai" id="gk-ai-inline">
-      <div class="gk-ai-title"><span class="gk-ai-title-text">🤖 Vraag de Gorilla</span></div>
-      <div class="gk-ai-desc" id="gk-ai-desc">Stel een vraag in gewone taal en krijg een aanbeveling op basis van alle modellen — bijvoorbeeld over prijs, gewicht, vering of gebruik.</div>
+      <div class="gk-ai-title"><span class="gk-ai-title-text">🤖 Frag den Gorilla</span></div>
+      <div class="gk-ai-desc" id="gk-ai-desc">Stell eine Frage in normaler Sprache und bekomme eine Empfehlung auf Basis aller Modelle — zum Beispiel zu Preis, Gewicht, Federung oder Einsatz.</div>
       <div class="gk-ai-row">
-        <input class="gk-ai-input" id="ai-input" type="text" placeholder="Bijv. Wat is de lichtste gravelbike onder de 5000 euro?" onkeydown="if(event.key==='Enter')askAI()">
-        <button class="gk-ai-btn" onclick="askAI()">Vraag</button>
+        <input class="gk-ai-input" id="ai-input" type="text" placeholder="Z. B. Welches ist das leichteste Gravelbike unter 5000 Euro?" onkeydown="if(event.key==='Enter')askAI()">
+        <button class="gk-ai-btn" onclick="askAI()">Fragen</button>
       </div>
       <div class="gk-ai-ex">
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Wat is de beste budgetbike?</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Wat is de lichtste gravelbike?</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Beste e-bike voor bikepacking</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Goedkoopste carbon gravelbike</span>
-        <span class="gk-ai-ex-chip" onclick="askExample(this)">Gravelbike met vering en brede banden</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Was ist das beste Budget-Bike?</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Was ist das leichteste Gravelbike?</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Bestes E-Bike für Bikepacking</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Günstigstes Carbon-Gravelbike</span>
+        <span class="gk-ai-ex-chip" onclick="askExample(this)">Gravelbike mit Federung und breiten Reifen</span>
       </div>
       <div class="gk-ai-answer" id="ai-answer"></div>
     </div>
@@ -544,10 +543,10 @@
 </div>
 
 <div class="gk-live" id="gk-live">
-  <div class="gk-live-head" id="gk-live-head" role="button" tabindex="0" aria-controls="gk-live-body" aria-expanded="true" title="Klik om in-/uit te klappen">
-    <span class="gk-live-title">In selectie</span>
+  <div class="gk-live-head" id="gk-live-head" role="button" tabindex="0" aria-controls="gk-live-body" aria-expanded="true" title="Klicken zum Ein-/Ausklappen">
+    <span class="gk-live-title">In der Auswahl</span>
     <span class="gk-live-count" id="gk-live-count">0</span>
-    <span class="gk-live-toggle-label" id="gk-live-toggle-label">Klap in</span>
+    <span class="gk-live-toggle-label" id="gk-live-toggle-label">Einklappen</span>
     <span class="gk-live-toggle" id="gk-live-toggle" aria-hidden="true">–</span>
   </div>
   <div class="gk-live-body" id="gk-live-body"></div>
@@ -556,15 +555,15 @@
 <!-- v9: Gravel-assistent verplaatst naar Tab 3 (Vraag de Gorilla) -->
 
 
-<div id="gk-cmpbar" role="region" aria-label="Vergelijkselectie">
-  <button id="gk-cmpbar-btn" type="button" onclick="openCmpModal()">⇄ Vergelijk</button>
+<div id="gk-cmpbar" role="region" aria-label="Vergleichsauswahl">
+  <button id="gk-cmpbar-btn" type="button" onclick="openCmpModal()">⇄ Vergleichen</button>
   <span id="gk-cmpbar-note"></span>
-  <button id="gk-cmpbar-clear" type="button" onclick="clearCmpSel()" title="Selectie wissen" aria-label="Selectie wissen">×</button>
+  <button id="gk-cmpbar-clear" type="button" onclick="clearCmpSel()" title="Auswahl löschen" aria-label="Auswahl löschen">×</button>
 </div>
-<div id="gk-cmp-modal" hidden role="dialog" aria-modal="true" aria-label="Fietsen vergelijken">
+<div id="gk-cmp-modal" hidden role="dialog" aria-modal="true" aria-label="Bikes vergleichen">
   <div class="gk-cmpm-backdrop" onclick="closeCmpModal()"></div>
   <div class="gk-cmpm-box">
-    <button class="gk-cmpm-close" type="button" onclick="closeCmpModal()" aria-label="Sluiten">×</button>
+    <button class="gk-cmpm-close" type="button" onclick="closeCmpModal()" aria-label="Schließen">×</button>
     <div id="gk-cmpm-body"></div>
   </div>
 </div>
@@ -622,7 +621,7 @@
   </footer>
 
   <script src="/assets/js/site.js?v=8069af02"></script>
-  <script src="/assets/js/gravelbike-kiezer.js?v=bf46583f"></script>
+  <script src="/assets/js/gravelbike-kiezer.de.js?v=140c4607"></script>
   <script src="/assets/js/teller.js?v=0609dda3"></script>
 </body>
 </html>
