@@ -17,7 +17,9 @@ header('X-Robots-Tag: noindex');
 
 // Buiten de webmap (httpdocs) als dat kan, anders in een afgeschermde map ernaast.
 $buiten = dirname(__DIR__, 2);
-$bestand = is_writable($buiten) ? $buiten . '/gravelgorilla-tellers.json' : __DIR__ . '/data/tellers.json';
+// De testsite (test.gravelgorilla.nl) krijgt eigen bestanden, zodat testen de echte cijfers niet verandert.
+$voor = preg_match('/^test\./i', $_SERVER['HTTP_HOST'] ?? '') ? 'gravelgorilla-test-' : 'gravelgorilla-';
+$bestand = is_writable($buiten) ? $buiten . '/' . $voor . 'tellers.json' : __DIR__ . '/data/tellers.json';
 if (!is_dir(dirname($bestand))) { @mkdir(dirname($bestand), 0750, true); }
 
 function lees_stand($fp) {
@@ -37,7 +39,7 @@ function lees_stand($fp) {
  * Wie wat heeft gestemd wordt niet opgeslagen; de browser van de bezoeker onthoudt zelf zijn eigen stem.
  */
 if (isset($_GET['stemmen']) || isset($_GET['stem'])) {
-  $stemBestand = dirname($bestand) . '/' . (is_writable($buiten) ? 'gravelgorilla-stemmen.json' : 'stemmen.json');
+  $stemBestand = dirname($bestand) . '/' . (is_writable($buiten) ? $voor . 'stemmen.json' : 'stemmen.json');
   $sp = @fopen($stemBestand, 'c+');
   if (!$sp) { http_response_code(500); echo json_encode(['fout' => 'stemmen niet beschikbaar']); exit; }
   $leesStemmen = function () use ($sp) {
