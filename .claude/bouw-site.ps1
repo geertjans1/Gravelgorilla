@@ -857,6 +857,9 @@ RewriteRule ^(.*)$ https://gravelgorilla.nl/$1 [R=301,L]
 RewriteRule (^|/)(\.claude|\.git|inhoud|_bron)(/|$) - [F,L]
 RewriteRule \.(ps1|md|json|gitignore)$ - [F,L]
 
+# Beheerpagina (met wachtwoord via Plesk): /beheer/ toont beheer/index.php
+RewriteRule ^beheer/?$ beheer/index.php [L]
+
 # Oude adressen van de WordPress-site doorsturen naar de nieuwe plek (301 = blijvend verhuisd)
 RewriteRule ^kiezer/?$ /tools/gravelbike-kiezer/ [R=301,L]
 RewriteRule ^tools/?$ /#wegwijzer [R=301,L,NE]
