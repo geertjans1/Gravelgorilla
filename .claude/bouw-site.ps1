@@ -889,6 +889,10 @@ RewriteRule ^beste-gravelbanden/?$ /tools/gravelbanden-kiezer/ [R=301,L]
 RewriteRule ^(zadeltassen-bikepacken-avontuur-fietstassen|de-10-spectaculairste-gravelbestemmingen)/?$ /tools/ultra-eventkiezer/ [R=301,L]
 RewriteRule ^fietsverlichting-budgetverlichting-merkverlichting/?$ / [R=301,L]
 RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301,L]
+# Oude losse kiezer-bestanden uit WordPress (bijv. wp-content/uploads/2026/07/gravelbike-kiezer-tool-v6.html)
+RewriteRule ^wp-content/uploads/.*gravelbike-kiezer[^/]*\.html$ /tools/gravelbike-kiezer/ [R=301,L,NC]
+RewriteRule ^wp-content/uploads/.*(gravelwielen|wielen)-kiezer[^/]*\.html$ /tools/gravelwielen-kiezer/ [R=301,L,NC]
+RewriteRule ^wp-content/uploads/.*ultra[^/]*\.html$ /tools/ultra-eventkiezer/ [R=301,L,NC]
 </IfModule>
 
 # Afbeeldingen, opmaak en code mogen even bewaard worden door de browser (sneller)
