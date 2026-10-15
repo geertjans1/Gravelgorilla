@@ -179,10 +179,31 @@ window.addEventListener("scroll", () => {
 bijScrollen();
 
 /* ---------- Snelkeuze-fiets: onderdeel en knop lichten samen op ---------- */
+/* Wijs je een onderdeel aan (op de fiets of in het lijstje), dan verschijnt bij het nummer op de fiets
+   een labeltje met dezelfde keuze, zodat je meteen ziet waar het om gaat. */
+const snelfiets = document.querySelector(".snelfiets");
+const fietsLabel = document.createElement("div");
+fietsLabel.className = "snelfiets__tip";
+fietsLabel.setAttribute("aria-hidden", "true");
+if (snelfiets) snelfiets.appendChild(fietsLabel);
+function fietsTip(deel) {
+  if (!snelfiets) return;
+  const punt = deel && snelfiets.querySelector(`.deel[data-deel="${deel}"] .punt__kern`);
+  const keuze = deel && document.querySelector(`.snelkeuze__opties a[data-deel="${deel}"]`);
+  if (!punt || !keuze) { fietsLabel.classList.remove("is-zichtbaar"); return; }
+  fietsLabel.innerHTML = keuze.innerHTML;
+  const vak = snelfiets.getBoundingClientRect(), p = punt.getBoundingClientRect();
+  const midden = p.left + p.width / 2 - vak.left;
+  const links = Math.max(0, Math.min(midden - fietsLabel.offsetWidth / 2, vak.width - fietsLabel.offsetWidth));
+  fietsLabel.style.left = links + "px";
+  fietsLabel.style.top = (p.top - vak.top - fietsLabel.offsetHeight - 12) + "px";
+  fietsLabel.style.setProperty("--pijl", (midden - links) + "px");
+  fietsLabel.classList.add("is-zichtbaar");
+}
 document.querySelectorAll(".snelkeuze [data-deel]").forEach(el => {
   const zelfde = () => document.querySelectorAll(`.snelkeuze [data-deel="${el.dataset.deel}"]`);
-  const aan = () => zelfde().forEach(z => z.classList.add("is-aan"));
-  const uit = () => zelfde().forEach(z => z.classList.remove("is-aan"));
+  const aan = () => { zelfde().forEach(z => z.classList.add("is-aan")); fietsTip(el.dataset.deel); };
+  const uit = () => { zelfde().forEach(z => z.classList.remove("is-aan")); fietsTip(null); };
   el.addEventListener("mouseenter", aan);
   el.addEventListener("mouseleave", uit);
   el.addEventListener("focus", aan);
