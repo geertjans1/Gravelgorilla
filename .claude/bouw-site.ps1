@@ -45,7 +45,7 @@ function Prefix([string]$html, $L) {
   [regex]::Replace($html, '(href|action)="/(?!assets/|api/|en/|de/|favicon|/)', "`$1=""$($L.pre)/")
 }
 function TaalMenu($L, [string]$pad) {
-  if ($pad -like "*404*") { $pad = "/" }   # 404 bestaat alleen in het Nederlands: het taalmenu wijst dan naar de homepage per taal
+  if ($pad -like "*404*" -or $pad -like "/gids/*") { $pad = "/" }   # 404 en de gidsen bestaan alleen in het Nederlands: het taalmenu wijst dan naar de homepage per taal
   $lijst =($talen | ForEach-Object {
     $huidig = if ($_.taal -eq $L.taal) { ' aria-current="true"' } else { '' }
     "        <li><a href=""$(TaalPad $_ $pad)"" hreflang=""$($_.taal)"" lang=""$($_.taal)""$huidig>$($vlaggen[$_.taal])<span>$($_.naam)</span></a></li>"
@@ -60,7 +60,7 @@ $lijst
 "@
 }
 function Alternatieven([string]$pad) {
-  if ($pad -like "*404*") { return "" }
+  if ($pad -like "*404*" -or $pad -like "/gids/*") { return "" }
   (($talen | ForEach-Object { "  <link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $pad)"">" }) -join "`n") + "`n  <link rel=""alternate"" hreflang=""x-default"" href=""$site$pad"">`n" + $taalWissel
 }
 # Automatisch de taal van de computer: Nederlands blijft Nederlands, Duits gaat naar /de/, al het andere naar /en/.
@@ -91,7 +91,7 @@ function Balk($L, [string]$pad) {
     </a>
     <nav class="bar__links" aria-label="$($u.menuAria)">
       <a href="$p/#wegwijzer">$($u.tools)</a>
-      <a href="$p/over-ons/">$($u.overOns)</a>
+$(if ($L.taal -eq 'nl') { "      <a href=""/gids/"">Gidsen</a>`n" })      <a href="$p/over-ons/">$($u.overOns)</a>
     </nav>
 $(TaalMenu $L $pad)
     <button class="thema-knop" id="themaKnop" type="button" aria-label="$($u.themaAria)" title="$($u.themaTitel)">
@@ -110,7 +110,7 @@ function VoetHtml($L) {
     <div class="voet__binnen">
       <p class="voet__slot">$($u.voetSlot)</p>
       <nav aria-label="$($u.voetNav)">
-        <a href="$p/#wegwijzer">$($u.tools)</a><a href="$p/over-ons/">$($u.overOns)</a><a href="$p/contact/">$($u.contact)</a><a href="$p/privacy/">$($u.privacy)</a>
+        <a href="$p/#wegwijzer">$($u.tools)</a>$(if ($L.taal -eq 'nl') { '<a href="/gids/">Gidsen</a>' })<a href="$p/over-ons/">$($u.overOns)</a><a href="$p/contact/">$($u.contact)</a><a href="$p/privacy/">$($u.privacy)</a>
       </nav>
     </div>
     <p class="voet__woord" aria-hidden="true">Gravel Gorilla</p>
@@ -339,6 +339,9 @@ function Vertaal([string]$tekst, $paren, [int]$i, [string]$wat) {
 
 # ---------- Volgende stap: per tool 1 of 2 tools die logisch volgen (direct onder de tool) ----------
 # Tekst = waarom je daarheen zou gaan, in drie talen. Nieuwe tool? Voeg hem hier toe (en kijk of hij bij andere tools past).
+# ---------- Gidsen (inhoud/gidsen/*.html → /gids/...; zie .claude/gidsen.ps1) ----------
+. "$PSScriptRoot\gidsen.ps1"
+
 $volgendeStap = @{
   'gravelbike-kiezer' = @(
     @{ slug = 'maatbepaler'; nl = 'Welke framemaat past bij jou?'; en = 'Which frame size fits you?'; de = 'Welche Rahmengröße passt zu dir?' }
@@ -559,6 +562,7 @@ $gorillaHtml
 $uitleg
     </article>
 $faqHtml
+$(if ($L.taal -eq 'nl') { ($gidsen | Where-Object { $_.tool -eq $t.slug } | ForEach-Object { "    <p class=""gids-link"">Lees ook de gids: <a href=""/gids/$($_.slug)/"">$(Html $_.titel)</a></p>" }) -join "`n" })
     <section class="andere-tools" aria-labelledby="andere-kop">
       <h2 class="kop-l" id="andere-kop">$($u.andereKop)</h2>
       <div class="andere-raster">
@@ -832,6 +836,7 @@ foreach ($L in $talen) {
 $llms = "# Gravel Gorilla`n`n> Onafhankelijke Nederlandstalige website (gravelgorilla.nl) met gratis interactieve tools voor gravelrijders in Nederland en België. Geen account nodig, geen advertenties.`n`n" +
   "Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en framemaat, welke banden, wielen en versnellingen, welke bandenspanning, waar je kunt graveln, welk ultra-event, wat je meeneemt en aantrekt, en hoe je je route op een sticker zet.`n`n## Tools`n`n" +
   (($tools | ForEach-Object { "- [$($_.titel)]($site/tools/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
+  "`n`n## Gidsen (Nederlands)`n`n" + (($gidsen | ForEach-Object { "- [$($_.titel)]($site/gids/$($_.slug)/): $($_.beschrijving)" }) -join "`n") +
   "`n`n## Over`n`n- [Over Gravel Gorilla]($site/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.`n- [Contact]($site/contact/): info@gravelgorilla.nl`n- [Privacyverklaring]($site/privacy/): geen cookies, geen advertenties; welke gegevens de tools gebruiken.`n" +
   (($talen | Where-Object { $_.taal -ne 'nl' } | ForEach-Object {
     $L = $_
@@ -850,6 +855,7 @@ $regels = foreach ($a in $adressen) {
   $alt = (($talen | ForEach-Object { "<xhtml:link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $a[0])""/>" }) -join '') + "<xhtml:link rel=""alternate"" hreflang=""x-default"" href=""$site$($a[0])""/>"
   foreach ($L in $talen) { "  <url><loc>$site$(TaalPad $L $a[0])</loc><lastmod>$($a[1])</lastmod>$alt</url>" }
 }
+$regels = @($regels) + "  <url><loc>$site/gids/</loc><lastmod>$vandaag</lastmod></url>" + @($gidsen | ForEach-Object { "  <url><loc>$site/gids/$($_.slug)/</loc><lastmod>$($_.datum)</lastmod></url>" })
 $xml += ($regels -join "`n") + "`n</urlset>`n"
 Schrijf "sitemap.xml" $xml
 Schrijf "robots.txt" "User-agent: *`nAllow: /`n`nSitemap: $site/sitemap.xml`n"
@@ -884,9 +890,9 @@ RewriteRule ^(.*/)?feed/?$ / [R=301,L]
 # Verwijderde blogs (oktober 2026) doorsturen naar de best passende tool
 RewriteRule ^(uncategorized|materiaal)/ /#wegwijzer [R=301,L,NE]
 RewriteRule ^blog/?$ /#wegwijzer [R=301,L,NE]
-RewriteRule ^(gravelbike|gravelbike-kiezen-gravelfiets-kiezen-keuzehulp-welke-gravelbike|welke-gravelbike-budget|beste-prijs-kwaliteit-verhouding-gravelbike)/?$ /tools/gravelbike-kiezer/ [R=301,L]
-RewriteRule ^beste-gravelbanden/?$ /tools/gravelbanden-kiezer/ [R=301,L]
-RewriteRule ^(zadeltassen-bikepacken-avontuur-fietstassen|de-10-spectaculairste-gravelbestemmingen)/?$ /tools/ultra-eventkiezer/ [R=301,L]
+# GIDSEN-OMLEIDINGEN
+RewriteRule ^gravelbike/?$ /tools/gravelbike-kiezer/ [R=301,L]
+RewriteRule ^de-10-spectaculairste-gravelbestemmingen/?$ /tools/ultra-eventkiezer/ [R=301,L]
 RewriteRule ^fietsverlichting-budgetverlichting-merkverlichting/?$ / [R=301,L]
 RewriteRule ^(wp-sitemap.*|sitemap_index|.+-sitemap.*)\.xml$ /sitemap.xml [R=301,L]
 # Oude losse kiezer-bestanden uit WordPress (bijv. wp-content/uploads/2026/07/gravelbike-kiezer-tool-v6.html)
@@ -917,6 +923,9 @@ ExpiresByType text/css "access plus 1 day"
 ExpiresByType application/javascript "access plus 1 day"
 </IfModule>
 '@
+# oude blogadressen naar de gids die erover gaat (uit "oud:" in inhoud/gidsen/*.html)
+$omleidingen = ($gidsen | Where-Object { $_.oud } | ForEach-Object { $g = $_; ($g.oud -split ',\s*') | ForEach-Object { "RewriteRule ^$([regex]::Escape($_.Trim()))/?$ /gids/$($g.slug)/ [R=301,L]" } }) -join "`n"
+$htaccess = $htaccess.Replace("# GIDSEN-OMLEIDINGEN", "# Oude blogadressen naar de gids die erover gaat (uit ""oud:"" in inhoud/gidsen/*.html)`n$omleidingen")
 Schrijf ".htaccess" $htaccess
 "klaar: .htaccess"
 

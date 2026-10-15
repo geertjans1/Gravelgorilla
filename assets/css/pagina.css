@@ -197,3 +197,23 @@
 /* "Klopt er iets niet? Laat het weten" */
 .fout-melden { max-width: var(--breed); margin: 10px auto 0; padding: 0 clamp(16px, 4vw, 40px); font-size: .9rem; color: var(--tekst-zacht); }
 .fout-melden a { color: var(--groen-tekst); font-weight: 600; text-decoration: underline; }
+
+/* ---------- Gidsen (/gids/...) ---------- */
+.gids .gids-fietsen { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 1em; }
+.gids .gids-fiets { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 14px 16px; font-size: .92rem; line-height: 1.45; display: flex; flex-direction: column; gap: 4px; }
+.gids .gids-fiets h3 { margin: 0; font-size: 1.15rem; line-height: 1.1; }
+.gids .gids-fiets__merk { margin: 0; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--tekst-zacht); }
+.gids .gids-fiets__prijs { margin: 2px 0 4px; font-family: var(--kopfont); font-weight: 700; font-size: 1.2rem; color: var(--groen-tekst); }
+.gids .gids-fiets ul { list-style: none; padding: 0; margin: 0; color: var(--tekst-zacht); }
+.gids .gids-fiets li + li { margin-top: 1px; }
+.gids .gids-fiets__waarom { margin: 6px 0 0; font-weight: 600; }
+.gids .gids-fiets a { margin-top: auto; padding-top: 8px; font-weight: 600; }
+.gids table { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.45; }
+.gids th, .gids td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--lijn); vertical-align: top; }
+.gids th { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--tekst-zacht); }
+.gids .tabel-scroll { overflow-x: auto; }
+.gids .gids-kort { background: var(--vlak); border-left: 4px solid var(--groen); border-radius: 0 12px 12px 0; padding: 14px 18px; }
+.gids .gids-kort > * + * { margin-top: .5em; }
+.gids-tool { margin-top: 40px; }
+.gids-link { max-width: 720px; margin: 24px auto 0; padding: 0 clamp(16px, 4vw, 40px); font-weight: 600; }
+.gids-link a { color: var(--groen-tekst); text-decoration: underline; text-underline-offset: 3px; }

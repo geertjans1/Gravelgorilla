@@ -19,6 +19,14 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en fram
 - [Versnellingscalculator](https://gravelgorilla.nl/tools/versnellingscalculator/): Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.
 - [Gravel Toertochten](https://gravelgorilla.nl/tools/gravel-toertochten/): Kalender met gravel-toertochten in Nederland, België en net over de grens: filter op datum, provincie, afstand of in de buurt van jou. Met links naar de officiële inschrijving.
 
+## Gidsen (Nederlands)
+
+- [Beste prijs-kwaliteit gravelbike](https://gravelgorilla.nl/gids/beste-prijs-kwaliteit-gravelbike/): Welke gravelbike geeft de meeste fiets voor je geld? Per budget, van onder de €1.500 tot €6.000, de beste koop uit zo’n 130 gravelbikes. Met uitleg waar je op let.
+- [Welke gravelbike kiezen?](https://gravelgorilla.nl/gids/welke-gravelbike-kiezen/): Welke gravelbike past bij jou? Zes vragen over waar en hoe je rijdt, je budget, het frame, de versnellingen en je maat. Eerlijk uitgelegd, zonder vakjargon.
+- [Gravelbanden kiezen](https://gravelgorilla.nl/gids/gravelbanden-kiezen/): Welke gravelband past bij jouw ritten? Uitleg over bandbreedte, profiel, tubeless en bandenspanning, met tools die het voor je uitrekenen.
+- [Gravelbike of racefiets?](https://gravelgorilla.nl/gids/gravelbike-of-racefiets/): Twijfel je tussen een gravelbike en een racefiets? De verschillen in snelheid, comfort, banden en gebruik op een rij, en wanneer je welke kiest.
+- [Bikepacking-tassen kiezen](https://gravelgorilla.nl/gids/bikepacking-tassen/): Welke bikepacking-tassen heb je nodig? Zadeltas, frametas, stuurtas en meer uitgelegd: wat past waar, hoeveel ruimte je nodig hebt en hoe je slim inpakt.
+
 ## Over
 
 - [Over Gravel Gorilla](https://gravelgorilla.nl/over-ons/): gemaakt door Geert Jans, gravelrijder; wie erachter zit en hoe de tools worden gemaakt en bijgehouden.
