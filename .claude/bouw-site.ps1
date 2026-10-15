@@ -475,7 +475,7 @@ foreach ($t in $toolsHier) {
   $pagina = (Kop $t.seoTitel $t.beschrijving $pad $css "" "website" (JsonLd $schemaObj) $L) + @"
   <main>
     <section class="pagina-kop">
-      <a href="$($L.pre)/#wegwijzer" class="terug">$($u.terugTools)</a>
+      <a href="$($L.pre)/" class="terug">$($u.terugTools)</a>
       <p class="pagina-km" data-km-tool="$($t.slug)">KM $($t.km)</p>
       <p class="pagina-teller" data-teller="$($t.slug)" hidden></p>
       <h1 class="kop-l">$($t.kop)</h1>
