@@ -34,7 +34,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 Bone `#F4F1EA`, Ink `#15181A`, Gorilla Green `#2F8F3E`, Deep Green `#14361E`, Trail Orange `#FF6B2C` (alleen voor actie). Koppen Oswald (hoofdletters), tekst Inter. Donkere modus via `data-thema="donker"`. Niet lijken op gravello.nl.
 
 ## Talen (NL / EN / DE)
-- Nederlands staat in de hoofdmap, Engels in `/en/`, Duits in `/de/`. Taalmenu met vlaggetjes rechtsboven (in `Balk` in `bouw-site.ps1`, werking in `site.js`); met een muis klapt het open bij aanwijzen.
+- Nederlands staat in de hoofdmap, Engels in `/en/`, Duits in `/de/`. Taalmenu met vlaggetjes rechtsboven (in `Balk` in `bouw-site.ps1`, werking in `site.js`); met een muis klapt het open bij aanwijzen (net als het deelmenu; via `klapMenu` in `site.js`, dat naar de muis zelf kijkt en niet naar wat het apparaat meldt: laptops met aanraakscherm zeggen soms "geen muis").
 - Automatische taal (`$taalWissel` in `bouw-site.ps1`, staat in de kop van elke pagina): computer op Nederlands → NL, Duits → DE, alle andere talen → EN. Niet voor zoekmachines/robots, en niet meer zodra iemand zelf een taal kiest in het menu (bewaard als `gg-taal` in de browser).
 - Vaste teksten (menu, knoppen, toolnamen, homepage-vertaallijst, paginatitels): `inhoud/talen/<taal>.psd1` (UTF-8 **met** BOM).
 - Vertaalde inhoud: `inhoud/en/...` en `inhoud/de/...` (zelfde bestandsnamen als `inhoud/...`). Ontbreekt een vertaling, dan toont de pagina de Nederlandse tool met een korte melding.

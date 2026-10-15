@@ -31,18 +31,33 @@ document.getElementById("themaKnop").addEventListener("click", () => {
 /* ---------- Deelknop op de toolpagina's ----------
    Telefoon/tablet: het eigen deelmenu van het toestel (WhatsApp, Signal, mail...).
    Computer: een klein menu met link kopiëren, WhatsApp en e-mail. */
+/* Klapmenu's (taal en delen): met een muis openklappen zodra je de knop aanwijst, kort na weggaan weer dicht.
+   We kijken naar de aanwijzer zelf (pointerType) en niet naar wat het apparaat zegt dat het kan:
+   laptops met een aanraakscherm melden soms "geen muis", terwijl je er gewoon een gebruikt. */
+function klapMenu(houder, knop, zet, isOpen, tik) {
+  let dicht = null, soort = "";
+  houder.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") { clearTimeout(dicht); zet(true); } });
+  houder.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") dicht = setTimeout(() => zet(false), 300); });
+  knop.addEventListener("pointerdown", e => { soort = e.pointerType; });
+  knop.addEventListener("click", e => {
+    e.stopPropagation();
+    const was = soort; soort = "";
+    if (was === "mouse") { clearTimeout(dicht); zet(true); return; }  // muis: klikken houdt hem gewoon open
+    if (tik) tik(); else zet(!isOpen());                               // vinger of toetsenbord
+  });
+  document.addEventListener("click", e => { if (!houder.contains(e.target)) zet(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
+}
+
 document.querySelectorAll(".deel").forEach(deel => {
   const knop = deel.querySelector(".deel__knop");
   const menu = deel.querySelector(".deel__menu");
   const zet = open => { menu.hidden = !open; knop.setAttribute("aria-expanded", open); };
-  knop.addEventListener("click", async e => {
-    e.stopPropagation();
-    const aanraak = window.matchMedia("(pointer: coarse)").matches;
-    if (aanraak && navigator.share) {
+  // met de vinger: het deelmenu van de telefoon zelf, als die dat kan
+  klapMenu(deel, knop, zet, () => !menu.hidden, async () => {
+    if (navigator.share) {
       try { await navigator.share({ title: deel.dataset.deelTitel, text: deel.dataset.deelTekst, url: deel.dataset.deelUrl }); } catch (fout) {}
-      return;
-    }
-    zet(menu.hidden);
+    } else zet(menu.hidden);
   });
   deel.querySelector("[data-deel-kopie]").addEventListener("click", async e => {
     const b = e.currentTarget, oud = b.textContent;
@@ -52,8 +67,6 @@ document.querySelectorAll(".deel").forEach(deel => {
     setTimeout(() => { b.textContent = oud; zet(false); }, 1600);
   });
   menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => zet(false)));
-  document.addEventListener("click", e => { if (!deel.contains(e.target)) zet(false); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
 });
 
 /* ---------- Taalmenu (NL / EN / DE) ---------- */
@@ -61,16 +74,7 @@ const taal = document.getElementById("taalKeuze");
 if (taal) {
   const knop = taal.querySelector(".taal__knop");
   const zet = open => { taal.classList.toggle("is-open", open); knop.setAttribute("aria-expanded", open); };
-  // met een muis: openklappen zodra je de knop aanwijst, dichtklappen kort nadat je weggaat
-  const muis = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  let dicht = null;
-  if (muis) {
-    taal.addEventListener("mouseenter", () => { clearTimeout(dicht); zet(true); });
-    taal.addEventListener("mouseleave", () => { dicht = setTimeout(() => zet(false), 300); });
-  }
-  knop.addEventListener("click", e => { e.stopPropagation(); zet(muis ? true : !taal.classList.contains("is-open")); });
-  document.addEventListener("click", e => { if (!taal.contains(e.target)) zet(false); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
+  klapMenu(taal, knop, zet, () => taal.classList.contains("is-open"));
   taal.querySelectorAll(".taal__lijst a").forEach(a => a.addEventListener("click", () => {
     // eigen keuze onthouden: dan schakelt de site niet meer vanzelf naar de taal van de computer
     try { localStorage.setItem("gg-taal", a.getAttribute("hreflang")); } catch (e) {}
