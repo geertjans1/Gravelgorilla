@@ -8,8 +8,8 @@
 #   .\kiezer-importeren.ps1 -Naam gravelbike-kiezer   -Bron "...\gravelbike-kiezer-v10.5.html"
 #   .\kiezer-importeren.ps1 -Naam gravelwielen-kiezer -Bron "...\gravelwielen-kiezer-tool-v4.html"
 param(
-  [string]$Bron = "C:\Users\Geert\Claude\Projects\Gravelbike kiezer\gravelbike-kiezer-v10.5.html",
-  [string]$Naam = "gravelbike-kiezer"
+  [string]$Naam = "gravelbike-kiezer",
+  [string]$Bron = "$(Split-Path -Parent $PSScriptRoot)\inhoud\bron\$Naam.html"
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot

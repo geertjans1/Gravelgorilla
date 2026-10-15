@@ -235,6 +235,7 @@
     .gk-badge.mechanical    { background: #F1EFE8; color: #3B6D11; }
     .gk-badge.integrated    { background: #FAECE7; color: #712B13; }
     .gk-badge.ebike         { background: #FFE9B0; color: #7A4E00; }
+    .gk-badge.w32 { background: #E3F1E6; color: #14361E; }
     .gk-badge.xplr-gravel   { background: #E7F0D8; color: #3A5A12; border: 1px solid #AFCB7C; }
     .gk-spec-xplr { display:inline-block; margin-left:6px; font-size:10px; font-weight:700; color:#3A5A12; background:#E7F0D8; border:1px solid #AFCB7C; border-radius:4px; padding:0 5px; vertical-align:middle; letter-spacing:.02em; }
     .gk-badge.grx-gravel    { background: #E2EEF7; color: #134A73; border: 1px solid #9CC2DE; }
