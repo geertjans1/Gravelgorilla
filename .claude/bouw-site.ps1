@@ -60,8 +60,26 @@ $lijst
 }
 function Alternatieven([string]$pad) {
   if ($pad -like "*404*") { return "" }
-  (($talen | ForEach-Object { "  <link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $pad)"">" }) -join "`n") + "`n  <link rel=""alternate"" hreflang=""x-default"" href=""$site$pad"">"
+  (($talen | ForEach-Object { "  <link rel=""alternate"" hreflang=""$($_.taal)"" href=""$site$(TaalPad $_ $pad)"">" }) -join "`n") + "`n  <link rel=""alternate"" hreflang=""x-default"" href=""$site$pad"">`n" + $taalWissel
 }
+# Automatisch de taal van de computer: Nederlands blijft Nederlands, Duits gaat naar /de/, al het andere naar /en/.
+# Niet bij zoekmachines (die moeten elke taal zelf zien) en niet als iemand zelf een taal koos in het menu (gg-taal, zie site.js).
+$taalWissel = @'
+  <script>
+    (function () {
+      try {
+        if (/bot|crawl|spider|slurp|google|bing|yandex|baidu|duckduck|lighthouse|headless|preview|facebookexternalhit|embedly|gptbot|chatgpt|claudebot|claude-|perplexity/i.test(navigator.userAgent)) return;
+        if (localStorage.getItem("gg-taal")) return;
+        var l = ((navigator.languages && navigator.languages[0]) || navigator.language || "").toLowerCase().slice(0, 2);
+        if (!l) return;
+        var doel = l === "nl" ? "nl" : (l === "de" ? "de" : "en");
+        if (doel === document.documentElement.lang) return;
+        var a = document.querySelector('link[rel="alternate"][hreflang="' + doel + '"]');
+        if (a) location.replace(a.getAttribute("href").replace(/^https?:\/\/[^\/]+/, "") + location.search + location.hash);
+      } catch (e) {}
+    })();
+  </script>
+'@
 function Balk($L, [string]$pad) {
   $u = $L.ui; $p = $L.pre
 @"

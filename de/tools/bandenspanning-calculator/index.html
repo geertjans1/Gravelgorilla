@@ -12,6 +12,20 @@
   <link rel="alternate" hreflang="en" href="https://gravelgorilla.nl/en/tools/bandenspanning-calculator/">
   <link rel="alternate" hreflang="de" href="https://gravelgorilla.nl/de/tools/bandenspanning-calculator/">
   <link rel="alternate" hreflang="x-default" href="https://gravelgorilla.nl/tools/bandenspanning-calculator/">
+  <script>
+    (function () {
+      try {
+        if (/bot|crawl|spider|slurp|google|bing|yandex|baidu|duckduck|lighthouse|headless|preview|facebookexternalhit|embedly|gptbot|chatgpt|claudebot|claude-|perplexity/i.test(navigator.userAgent)) return;
+        if (localStorage.getItem("gg-taal")) return;
+        var l = ((navigator.languages && navigator.languages[0]) || navigator.language || "").toLowerCase().slice(0, 2);
+        if (!l) return;
+        var doel = l === "nl" ? "nl" : (l === "de" ? "de" : "en");
+        if (doel === document.documentElement.lang) return;
+        var a = document.querySelector('link[rel="alternate"][hreflang="' + doel + '"]');
+        if (a) location.replace(a.getAttribute("href").replace(/^https?:\/\/[^\/]+/, "") + location.search + location.hash);
+      } catch (e) {}
+    })();
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Reifendruck f&#252;rs Gravelbike berechnen | Gravel Gorilla">
   <meta property="og:description" content="Berechne den richtigen Reifendruck f&#252;r dein Gravelbike: nach Gewicht, Reifenbreite, Laufradgr&#246;&#223;e und Untergrund. Vorder- und Hinterreifen getrennt, in bar und psi.">
@@ -37,7 +51,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=ce9cc21d">
+  <link rel="stylesheet" href="/assets/css/style.css?v=de6b4eb2">
   <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/de/tools/bandenspanning-calculator/#tool","name":"Reifendruck-Rechner","url":"https://gravelgorilla.nl/de/tools/bandenspanning-calculator/","description":"Berechne den richtigen Reifendruck für dein Gravelbike: nach Gewicht, Reifenbreite, Laufradgröße und Untergrund. Vorder- und Hinterreifen getrennt, in bar und psi.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"de","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/de/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/de/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Reifendruck-Rechner","item":"https://gravelgorilla.nl/de/tools/bandenspanning-calculator/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Unabhängige niederländische Website mit kostenlosen Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Gravelreifen, Reifendruck, Laufräder, Übersetzung, Gravelrouten, Ultra-Events, Bikepacking-Packliste, Profilsticker und Kleidungsberater."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/de/tools/bandenspanning-calculator/#faq","mainEntity":[{"@type":"Question","name":"Was ist ein guter Reifendruck für ein Gravelbike?","acceptedAnswer":{"@type":"Answer","text":"Das hängt von deinem Gewicht, der Reifenbreite und dem Untergrund ab. Ein Beispiel: Für einen 75 kg schweren Fahrer auf 40 mm Tubeless-Reifen auf gemischtem Untergrund kommt der Rechner auf etwa 1,8 bar vorne und 2,0 bar hinten. Mehr Gewicht, schmalere Reifen oder ein Schlauch bedeuten mehr Druck; breitere Reifen oder loser Sand weniger."}},{"@type":"Question","name":"Warum sollte mein Vorderreifen weicher sein als der Hinterreifen?","acceptedAnswer":{"@type":"Answer","text":"Dein Hinterrad trägt den größten Teil deines Gewichts. Ein Vorderreifen mit etwa 10 Prozent weniger Druck gibt mehr Grip in der Kurve und mehr Komfort für die Hände, ohne dass das Vorderrad wegrutscht."}},{"@type":"Question","name":"Tubeless oder Schlauch: Macht das beim Druck einen Unterschied?","acceptedAnswer":{"@type":"Answer","text":"Ja. Mit Schlauch rechnet der Rechner eine zusätzliche Korrektur ein. Ein zu weicher Reifen mit Schlauch bekommt schneller einen Snakebite: eine Panne, weil der Schlauch gegen die Felge gequetscht wird, zum Beispiel bei einem Schlag gegen eine Baumwurzel."}},{"@type":"Question","name":"Für welche Reifen funktioniert der Rechner?","acceptedAnswer":{"@type":"Answer","text":"Für Reifen von 28 bis 55 mm Breite, auf 700c- und 650b-Laufrädern, für Fahrer von 45 bis 130 kg inklusive Ausrüstung. Du wählst den Untergrund (glatt, gemischt oder rau) und ob du tubeless oder mit Schlauch fährst. Die Empfehlung bekommst du in bar und psi."}},{"@type":"Question","name":"Wie messe ich meinen Reifendruck?","acceptedAnswer":{"@type":"Answer","text":"Mit einer Pumpe mit gutem Manometer oder mit einem separaten digitalen Druckmesser. Reifen verlieren langsam Luft, vor allem Tubeless-Reifen. Prüf den Druck deshalb vor jeder Fahrt und justier nach den ersten Kilometern nach Gefühl."}}]}]}</script>
@@ -587,7 +601,7 @@
     <p class="voet__klein">© 2026 Gravel Gorilla · gemacht von Geert Jans, Gravelfahrer · keine Cookies, keine Werbung</p>
   </footer>
 
-  <script src="/assets/js/site.js?v=8069af02"></script>
+  <script src="/assets/js/site.js?v=90b386d9"></script>
   <script src="/assets/js/vraag-gorilla.js?v=5813a7cc"></script>
   <script src="/assets/js/teller.js?v=0609dda3"></script>
 </body>

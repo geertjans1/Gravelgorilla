@@ -33,11 +33,20 @@ const taal = document.getElementById("taalKeuze");
 if (taal) {
   const knop = taal.querySelector(".taal__knop");
   const zet = open => { taal.classList.toggle("is-open", open); knop.setAttribute("aria-expanded", open); };
-  knop.addEventListener("click", e => { e.stopPropagation(); zet(!taal.classList.contains("is-open")); });
+  // met een muis: openklappen zodra je de knop aanwijst, dichtklappen kort nadat je weggaat
+  const muis = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  let dicht = null;
+  if (muis) {
+    taal.addEventListener("mouseenter", () => { clearTimeout(dicht); zet(true); });
+    taal.addEventListener("mouseleave", () => { dicht = setTimeout(() => zet(false), 300); });
+  }
+  knop.addEventListener("click", e => { e.stopPropagation(); zet(muis ? true : !taal.classList.contains("is-open")); });
   document.addEventListener("click", e => { if (!taal.contains(e.target)) zet(false); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
-  // houd de plek op de pagina vast (#anker) als je van taal wisselt
   taal.querySelectorAll(".taal__lijst a").forEach(a => a.addEventListener("click", () => {
+    // eigen keuze onthouden: dan schakelt de site niet meer vanzelf naar de taal van de computer
+    try { localStorage.setItem("gg-taal", a.getAttribute("hreflang")); } catch (e) {}
+    // houd de plek op de pagina vast (#anker) als je van taal wisselt
     if (location.hash) a.href = a.href.split("#")[0] + location.hash;
   }));
 }

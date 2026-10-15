@@ -12,6 +12,20 @@
   <link rel="alternate" hreflang="en" href="https://gravelgorilla.nl/en/tools/maatbepaler/">
   <link rel="alternate" hreflang="de" href="https://gravelgorilla.nl/de/tools/maatbepaler/">
   <link rel="alternate" hreflang="x-default" href="https://gravelgorilla.nl/tools/maatbepaler/">
+  <script>
+    (function () {
+      try {
+        if (/bot|crawl|spider|slurp|google|bing|yandex|baidu|duckduck|lighthouse|headless|preview|facebookexternalhit|embedly|gptbot|chatgpt|claudebot|claude-|perplexity/i.test(navigator.userAgent)) return;
+        if (localStorage.getItem("gg-taal")) return;
+        var l = ((navigator.languages && navigator.languages[0]) || navigator.language || "").toLowerCase().slice(0, 2);
+        if (!l) return;
+        var doel = l === "nl" ? "nl" : (l === "de" ? "de" : "en");
+        if (doel === document.documentElement.lang) return;
+        var a = document.querySelector('link[rel="alternate"][hreflang="' + doel + '"]');
+        if (a) location.replace(a.getAttribute("href").replace(/^https?:\/\/[^\/]+/, "") + location.search + location.hash);
+      } catch (e) {}
+    })();
+  </script>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Which gravel bike frame size? Size finder | Gravel Gorilla">
   <meta property="og:description" content="Which gravel bike frame size do you need? Calculate your size from your height and inseam, plus saddle height, stack and reach. With advice if you are between two sizes.">
@@ -37,7 +51,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css?v=ce9cc21d">
+  <link rel="stylesheet" href="/assets/css/style.css?v=de6b4eb2">
   <link rel="stylesheet" href="/assets/css/pagina.css?v=5695a11b">
   <link rel="stylesheet" href="/assets/css/werkbank.css?v=dc685c85">
   <link rel="stylesheet" href="/assets/css/maatbepaler.css?v=deefc6ab">
@@ -215,7 +229,7 @@
     <p class="voet__klein">© 2026 Gravel Gorilla · made by Geert Jans, gravel rider · no cookies, no ads</p>
   </footer>
 
-  <script src="/assets/js/site.js?v=8069af02"></script>
+  <script src="/assets/js/site.js?v=90b386d9"></script>
   <script src="/assets/js/maatbepaler.js?v=fa5e2bd4"></script>
   <script src="/assets/js/vraag-gorilla.js?v=5813a7cc"></script>
   <script src="/assets/js/teller.js?v=0609dda3"></script>
