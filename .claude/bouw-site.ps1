@@ -230,7 +230,7 @@ $tools = @(
     soort = 'kiezer'; scope = 'kl-scope'; uitlegKop = 'Nooit meer te warm of te koud' }
   [ordered]@{ slug = 'gravelbanden-kiezer'; km = '07'; kop = 'Gravel&shy;banden <span class="groen">Kiezer</span>'; titel = 'Gravelbanden Kiezer'
     seoTitel = 'Welke gravelband past bij jou? Bandenkiezer | Gravel Gorilla'
-    sub = 'Schuif je ondergrond, rijstijl en weer aan en zie welke breedte, welk profiel en welke banden bij je passen.'; beschrijving = 'Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 40 modellen.'
+    sub = 'Schuif je ondergrond, rijstijl en weer aan en zie welke breedte, welk profiel en welke banden bij je passen.'; beschrijving = 'Welke gravelband kies je? Stel ondergrond, rijstijl en weer in en krijg advies over breedte en profiel, plus de best passende banden uit ruim 50 modellen.'
     naamKort = 'Banden Kiezer'; kort = 'Ondergrond, rijstijl en weer instellen, en zien welke breedte, welk profiel en welke banden passen.'
     filter = 'kiezen'; plaatje = 'band'
     soort = 'kiezer'; scope = 'gb-scope'; uitlegKop = 'Zo kies je de juiste gravelband' }

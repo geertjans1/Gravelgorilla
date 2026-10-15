@@ -20,7 +20,9 @@
     "Schwalbe": "https://www.schwalbe.com/", "Continental": "https://www.continental-tires.com/", "Pirelli": "https://www.pirelli.com/",
     "Vittoria": "https://vittoria.com/", "Panaracer": "https://panaracer.com/", "WTB": "https://www.wtb.com/", "Maxxis": "https://www.maxxis.com/",
     "Specialized": "https://www.specialized.com/", "Challenge": "https://www.challengetech.it/", "Michelin": "https://www.michelin.com/",
-    "Goodyear": "https://goodyearbike.com/", "Hutchinson": "https://cycling.hutchinson.com/", "Vredestein": "https://www.vredestein.nl/", "Tufo": "https://www.tufo.com/"
+    "Goodyear": "https://goodyearbike.com/", "Hutchinson": "https://cycling.hutchinson.com/", "Vredestein": "https://www.vredestein.nl/", "Tufo": "https://www.tufo.com/",
+    "Teravail": "https://teravail.com/", "René Herse": "https://www.renehersecycles.com/", "IRC": "https://www.irc-tire.com/", "Bontrager": "https://www.trekbikes.com/",
+    "CADEX": "https://www.cadex-cycling.com/", "Kenda": "https://www.kendatire.com/", "American Classic": "https://americanclassic.com/"
   };
 
   const BANDEN = [
@@ -65,7 +67,22 @@
     { m: "Vredestein", n: "Aventura", p: 2, b: [38, 44], prijs: 1, s: [3, 3, 2, 3], t: "Betaalbare allrounder van het Nederlandse merk." },
     { m: "Tufo", n: "Gravel Speedero", p: 1, b: [36, 40, 44], prijs: 2, s: [4, 2, 2, 3], test: "tufo-gravel-speedero", t: "Snelle band voor droog gravel." },
     { m: "Tufo", n: "Gravel Thundero", p: 2, b: [36, 40, 44], prijs: 2, s: [3, 3, 3, 3], test: "tufo-gravel-thundero", t: "Lichte allrounder voor wisselend terrein." },
-    { m: "Tufo", n: "Gravel Swampero", p: 4, b: [36, 40, 44], prijs: 2, s: [2, 5, 5, 3], test: "tufo-gravel-swampero", t: "Modderband: hoge noppen voor nat en zacht terrein." }
+    { m: "Tufo", n: "Gravel Swampero", p: 4, b: [36, 40, 44], prijs: 2, s: [2, 5, 5, 3], test: "tufo-gravel-swampero", t: "Modderband: hoge noppen voor nat en zacht terrein." },
+    // aangevuld oktober 2026 (breedtes en gewichten volgens de fabrikant; geen gewicht = niet eenduidig opgegeven)
+    { m: "Maxxis", n: "Ravager", p: 3, b: [40, 45, 50], g: [529, 40], prijs: 2, s: [3, 4, 3, 4], t: "Voor diep en los gravel, met grote zijnoppen." },
+    { m: "WTB", n: "Byway", p: 1, b: [34, 40, 44], g: [426, 40], prijs: 2, s: [4, 2, 1, 3], t: "Gladde middenstrook met zijnoppen: snel op asfalt en hardpack, houvast in bochten." },
+    { m: "WTB", n: "Vulpine", p: 1, b: [36, 40, 45], g: [442, 40], prijs: 2, s: [4, 3, 2, 3], t: "Snel rollende racer met kleine nopjes voor droog gravel." },
+    { m: "Michelin", n: "Power Gravel", p: 2, b: [35, 40, 47], prijs: 2, s: [3, 3, 2, 4], t: "Allrounder met stevig karkas voor gemengd gravel." },
+    { m: "Vittoria", n: "Terreno Dry", p: 1, b: [40, 50], prijs: 2, s: [4, 3, 2, 3], t: "Snelle band met fijn middenprofiel voor droge, harde paden." },
+    { m: "Vittoria", n: "Terreno Zero", p: 1, b: [38, 45], prijs: 2, s: [5, 2, 1, 3], t: "Bijna glad: voor veel asfalt en vlak, hard gravel." },
+    { m: "Hutchinson", n: "Overide", p: 1, b: [35, 38, 40, 45], g: [400, 38], prijs: 1, s: [4, 2, 1, 3], t: "Voordelige, snelle band voor hardpack en asfalt." },
+    { m: "Teravail", n: "Cannonball", p: 1, b: [35, 38, 47], g: [430, 35], prijs: 2, s: [4, 3, 2, 3], t: "Snelle allround-racer met kleine, dicht opeenstaande nopjes." },
+    { m: "René Herse", n: "Snoqualmie Pass", p: 0, b: [44], g: [420, 44], prijs: 3, s: [5, 1, 1, 2], test: "rene-herse-snoqualmie-pass-endurance", t: "Supersoepele slick met dun karkas: comfortabel en snel op grind en asfalt." },
+    { m: "IRC", n: "Boken", p: 2, b: [36, 40], prijs: 2, s: [4, 3, 2, 3], t: "Snelle band met een dicht middenprofiel en grotere zijnoppen." },
+    { m: "Bontrager", n: "GR1 Team Issue", p: 1, b: [35, 40], g: [430, 40], prijs: 3, s: [4, 3, 2, 3], t: "Lichte, snelle gravelband met een fijn profiel." },
+    { m: "CADEX", n: "GX", p: 2, b: [40], g: [445, 40], prijs: 3, s: [4, 3, 2, 3], t: "Lichte racerband voor gemengd gravel." },
+    { m: "Kenda", n: "Flintridge Pro", p: 2, b: [35, 40, 45], prijs: 2, s: [3, 4, 2, 3], t: "Veel grip op los gravel door verspreide, stevige noppen." },
+    { m: "American Classic", n: "Kimberlite", p: 2, b: [35, 40, 45, 50], prijs: 2, s: [3, 3, 2, 3], t: "Allrounder voor wisselende ondergrond, in veel breedtes." },
   ];
 
   /* ---------- Taal van de pagina (nl, en, de) ---------- */
@@ -74,6 +91,20 @@
   const PRE = TAAL === "nl" ? "" : "/" + TAAL;
   // korte typering per band in het Engels en Duits
   const TYPERING = {
+    "Ravager": ["For deep, loose gravel, with big side knobs.", "Für tiefen, losen Schotter, mit großen Seitenstollen."],
+    "Byway": ["Smooth centre strip with side knobs: fast on tarmac and hardpack, grip in corners.", "Glatter Mittelstreifen mit Seitenstollen: schnell auf Asphalt und Hardpack, Halt in Kurven."],
+    "Vulpine": ["Fast-rolling racer with small knobs for dry gravel.", "Schnell rollender Racer mit kleinen Stollen für trockenen Schotter."],
+    "Power Gravel": ["All-rounder with a sturdy casing for mixed gravel.", "Allrounder mit robuster Karkasse für gemischten Schotter."],
+    "Terreno Dry": ["Fast tyre with a fine centre tread for dry, hard trails.", "Schneller Reifen mit feinem Mittelprofil für trockene, harte Wege."],
+    "Terreno Zero": ["Almost slick: for lots of tarmac and flat, hard gravel.", "Fast glatt: für viel Asphalt und flachen, harten Schotter."],
+    "Overide": ["Affordable, fast tyre for hardpack and tarmac.", "Günstiger, schneller Reifen für Hardpack und Asphalt."],
+    "Cannonball": ["Fast all-round racer with small, closely spaced knobs.", "Schneller Allround-Racer mit kleinen, dicht stehenden Stollen."],
+    "Snoqualmie Pass": ["Ultra-supple slick with a thin casing: comfortable and fast on gravel and tarmac.", "Extrem geschmeidiger Slick mit dünner Karkasse: komfortabel und schnell auf Schotter und Asphalt."],
+    "Boken": ["Fast tyre with a dense centre tread and bigger side knobs.", "Schneller Reifen mit dichtem Mittelprofil und größeren Seitenstollen."],
+    "GR1 Team Issue": ["Light, fast gravel tyre with a fine tread.", "Leichter, schneller Gravelreifen mit feinem Profil."],
+    "GX": ["Light race tyre for mixed gravel.", "Leichter Rennreifen für gemischten Schotter."],
+    "Flintridge Pro": ["Lots of grip on loose gravel thanks to spread-out, sturdy knobs.", "Viel Grip auf losem Schotter dank verteilter, kräftiger Stollen."],
+    "Kimberlite": ["All-rounder for changing surfaces, in many widths.", "Allrounder für wechselnde Untergründe, in vielen Breiten."],
     "G-One RS Pro": ["Fast racer with a fine tread for dry, flat gravel.", "Schneller Racer mit feinem Profil für trockenen, flachen Schotter."],
     "G-One RS": ["Fast semi-slick for hardpack and tarmac.", "Schneller Semi-Slick für festen Schotter und Asphalt."],
     "G-One R Pro": ["Fast all-rounder that still grips on loose gravel.", "Schneller Allrounder, der auch auf losem Schotter noch greift."],
