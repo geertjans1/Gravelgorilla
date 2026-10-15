@@ -348,7 +348,7 @@ function bikeSizeCats(b) {
 }
 function sizesLabel(b) {
   if(!b.sizeList || !b.sizeList.length) return b.sizes;
-  return b.sizeList.join(' · ') + (/^\d/.test(b.sizeList[0]) ? ' cm' : '');
+  return b.sizeList.join(' · ') + (/^\d+([.,]\d+)?$/.test(b.sizeList[0]) ? ' cm' : '');
 }
 
 /* Eén enkele filteroptie (key=val) toetsen tegen één fiets — basis voor de tellers */

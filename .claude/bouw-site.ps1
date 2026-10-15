@@ -347,10 +347,16 @@ foreach ($t in $toolsHier) {
     }
     'venster' {
       # versienummer van de tool, zodat browsers een nieuwe versie meteen ophalen; de taal gaat mee in het adres
-      $toolVersie = ([Security.Cryptography.MD5]::Create().ComputeHash([IO.File]::ReadAllBytes("$root\tools\$($t.slug)\tool.html")) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
+      #   een vertaald venster (sectie [venster] in inhoud/vertalingen/<slug>.txt) wordt tool.<taal>.html
+      $vensterNaam = 'tool.html'
+      if ($vt -and $vt['venster']) {
+        $vensterNaam = "tool.$($L.taal).html"
+        Schrijf "tools\$($t.slug)\$vensterNaam" (Vertaal (Lees "tools\$($t.slug)\tool.html") $vt['venster'] $ti "$($t.slug) venster $($L.taal)")
+      }
+      $toolVersie = ([Security.Cryptography.MD5]::Create().ComputeHash([IO.File]::ReadAllBytes("$root\tools\$($t.slug)\$vensterNaam")) | Select-Object -First 4 | ForEach-Object { $_.ToString('x2') }) -join ''
       $tool = $melding + @"
     <div class="tool-vak">
-      <div class="tool-frame"><iframe src="/tools/$($t.slug)/tool.html?v=$toolVersie&amp;taal=$($L.taal)" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
+      <div class="tool-frame"><iframe src="/tools/$($t.slug)/$($vensterNaam)?v=$toolVersie&amp;taal=$($L.taal)" id="toolVenster" title="$(Html $t.titel)" loading="lazy"></iframe></div>
     </div>
     <script>
       /* het venster groeit mee met de inhoud van de tool */

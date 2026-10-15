@@ -123,6 +123,8 @@ $body = [regex]::Replace($body, '(?s)\s*<div class="gk-header".*?</div>\s*</div>
 
 # ---------- 5. Script: kortere ondertitel ----------
 $script = [regex]::Replace($script, '(?s)if\(sub\) sub\.textContent = `[^`]*`;', 'if(sub) sub.textContent = `${total} modellen van ${brands} merken, allemaal te koop in Nederland (incl. ${ebikeCount} e-gravelbikes). Bijgewerkt juni 2026.`;')
+# ---------- 5b. Framematen: alleen "cm" achter echte centimetermaten (49, 52,5), niet achter lettermaten als 2XS ----------
+$script = $script.Replace("(/^\d/.test(b.sizeList[0]) ? ' cm' : '')", "(/^\d+([.,]\d+)?$/.test(b.sizeList[0]) ? ' cm' : '')")
 [IO.File]::WriteAllText("$root\assets\js\$Naam.js", "/* $Naam — gemaakt door .claude/kiezer-importeren.ps1 uit $(Split-Path -Leaf $Bron) */`n" + $script.Trim() + "`n", $utf8)
 
 # ---------- 6. Het bouwstuk voor de pagina (de omlijsting maakt .claude/bouw-site.ps1) ----------
