@@ -156,11 +156,6 @@ button { font: inherit; color: inherit; }
 .filter:hover { border-color: var(--groen); background: rgba(47,143,62,.12); color: var(--groen); transform: translateY(-2px); }
 .filter.is-aan:hover { background: var(--groen); border-color: var(--groen); color: #fff; }
 .filter.is-aan { background: var(--tekst); border-color: var(--tekst); color: var(--achtergrond); }
-.zoekveld { display: flex; align-items: center; gap: 10px; width: 100%; padding: 15px 20px; border-radius: 10px; border: 2px solid var(--lijn); color: var(--tekst-zacht); font-size: 1.1rem; transition: border-color .2s; }
-.zoekveld:hover { border-color: var(--groen); }
-.zoekveld svg { width: 22px; height: 22px; }
-.zoekveld:focus-within { border-color: var(--groen); }
-.zoekveld input { border: 0; outline: 0; background: none; font: inherit; color: var(--tekst); width: 100%; }
 
 .bordjes { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--tekst); }
 .bordje { border-bottom: 1px solid var(--lijn); }
@@ -246,14 +241,23 @@ button { font: inherit; color: inherit; }
 .bordje.is-zichtbaar { opacity: 1; transform: none; }
 
 /* ---------- Tablet ---------- */
-@media (max-width: 980px) {
+/* Opening op tablets: ook brede tablets (iPad liggend, iPad Pro) met een aanraakscherm.
+   Logo klein rechtsboven naast de kop, zodat keuzes en fiets boven de vouw passen. */
+@media (max-width: 980px), (hover: none) and (pointer: coarse) and (max-width: 1400px) {
   .opening { grid-template-columns: 1fr; min-height: 0; padding-top: 96px; position: relative; }
-  .opening .kop-xl { font-size: 4.5vw; }
+  .opening .kop-xl { font-size: clamp(2rem, 4.5vw, 3.4rem); }
   .opening__intro { max-width: calc(100% - 200px); font-size: 1rem; line-height: 1.45; margin-top: 10px; }
   .snelkeuze { margin-top: 22px; }
-  /* tablet: logo klein rechtsboven naast de kop, zodat keuzes en fiets boven de vouw passen */
   .opening__band { position: absolute; top: 92px; right: clamp(16px, 4vw, 40px); width: 170px; margin: 0; }
   .spoor { display: none; }
+}
+/* Liggende tablet: weinig hoogte, dus keuzes links en de fiets ernaast */
+@media (hover: none) and (pointer: coarse) and (min-width: 981px) and (max-width: 1400px) and (orientation: landscape) {
+  .snelkeuze { display: grid; grid-template-columns: 1fr minmax(0, 440px); column-gap: 32px; align-items: center; }
+  .snelkeuze__begin { grid-column: 1 / -1; }
+  .snelfiets { margin: 0; }
+}
+@media (max-width: 980px) {
   .bordje > a, .bordje > div { grid-template-columns: 56px 1fr 56px; row-gap: 6px; }
   .bordje__uitleg { grid-column: 2; grid-row: 2; }
   .bordje__soort { display: none; }
@@ -287,7 +291,6 @@ button { font: inherit; color: inherit; }
   .profiel__punt span { font-size: .72rem; padding: 2px 7px; }
   .wegwijzer { padding-top: 70px; }
   .wegwijzer__zoek { align-items: stretch; width: 100%; }
-  .zoekveld { width: 100%; }
   .filters { display: grid; grid-template-columns: 1fr 1fr; }
   .bordje > a, .bordje > div { grid-template-columns: 1fr 48px; padding: 22px 4px; gap: 4px 12px; }
   .bordje__km { grid-column: 1; grid-row: 1; flex-direction: row; justify-self: start; }
@@ -415,3 +418,17 @@ button { font: inherit; color: inherit; }
 .tool-melding::before { content: "🌍 "; }
 @media (max-width: 640px) { .brand__word { white-space: nowrap; } .taal__knop { gap: 6px; padding: 0 10px; } .taal__pijl { display: none; } }
 @media (max-width: 430px) { .taal__knop > span { display: none; } .taal__knop { width: 42px; padding: 0; justify-content: center; } }
+
+/* Pagina nooit zijwaarts laten schuiven (vooral op telefoons bij vegen) */
+html, body { overflow-x: clip; overscroll-behavior-x: none; }
+
+/* Telefoon: opening zonder uitleg, compacte titel en filters bij "Naar welke tool wil je?".
+   De bordjes schuiven niet van links binnen maar komen rustig omhoog: zo beweegt er niets zijwaarts. */
+@media (max-width: 640px) {
+  .opening__intro { display: none; }
+  .wegwijzer__kop { margin-bottom: 24px; gap: 16px; }
+  .wegwijzer__kop h2 { font-size: 2rem; }
+  .filters { gap: 6px; }
+  .filter { padding: 9px 10px; font-size: .95rem; border-radius: 8px; }
+  .bordje { transform: translateY(14px); }
+}

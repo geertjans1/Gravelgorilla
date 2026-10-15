@@ -92,7 +92,6 @@
     @('aria-pressed="false">Kiezen</button>', 'aria-pressed="false">Choose</button>'),
     @('aria-pressed="false">Berekenen</button>', 'aria-pressed="false">Calculate</button>'),
     @('aria-pressed="false">Plannen</button>', 'aria-pressed="false">Plan</button>'),
-    @('placeholder="Zoek een tool" aria-label="Zoek een tool"', 'placeholder="Search for a tool" aria-label="Search for a tool"'),
     @('Hier loopt het pad dood. Probeer een ander woord, of <a href="/contact/">tip de gorilla</a> welke tool je mist.', 'Dead end. Try another word, or <a href="/contact/">tell the gorilla</a> which tool you are missing.'),
     @('<p class="tips__label">Gorilla-tip <span', '<p class="tips__label">Gorilla tip <span'),
     @('aria-label="Vorige tip"', 'aria-label="Previous tip"'),

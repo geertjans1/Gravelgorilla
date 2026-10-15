@@ -12,16 +12,14 @@ const minderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)").mat
    --------------------------------------------------------- */
 const bordjes = document.getElementById("bordjes");
 
-/* ---------- Filteren en zoeken ---------- */
+/* ---------- Filteren ---------- */
 let filter = "alle";
-const zoekveld = document.getElementById("zoekTool");
 const leeg = document.getElementById("bordjesLeeg");
 
 function toonBordjes() {
-  const zoek = zoekveld.value.trim().toLowerCase();
   let aantal = 0;
   bordjes.querySelectorAll(".bordje").forEach(b => {
-    const past = (filter === "alle" || b.dataset.soort === filter) && (!zoek || b.dataset.zoek.includes(zoek));
+    const past = (filter === "alle" || b.dataset.soort === filter);
     b.classList.toggle("is-weg", !past);
     if (past) aantal++;
   });
@@ -37,7 +35,6 @@ document.querySelectorAll(".filter").forEach(knop => {
     toonBordjes();
   });
 });
-zoekveld.addEventListener("input", toonBordjes);
 
 /* ---------- Gorilla-tips ---------- */
 // 3 tips per tool, in drie talen; t = de tool waar "Naar de tool" heen gaat.
