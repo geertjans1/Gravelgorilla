@@ -14,6 +14,9 @@ RewriteRule (^|/)(\.claude|\.git|inhoud|_bron)(/|$) - [F,L]
 RewriteRule \.(ps1|md|json|gitignore)$ - [F,L]
 
 # Beheerpagina (met wachtwoord via Plesk): /beheer/ toont beheer/index.php
+# TIJDELIJK: op de echte site dicht tot Geert het Plesk-wachtwoord op /beheer heeft gezet (haal dan deze 2 regels weg)
+RewriteCond %{HTTP_HOST} ^(www\.)?gravelgorilla\.nl$ [NC]
+RewriteRule ^beheer(/|$) - [F,L]
 RewriteRule ^beheer/?$ beheer/index.php [L]
 
 # Oude adressen van de WordPress-site doorsturen naar de nieuwe plek (301 = blijvend verhuisd)
