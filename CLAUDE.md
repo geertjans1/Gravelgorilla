@@ -32,6 +32,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 - Logo: bron in `.claude/logo/` (svg + png 512). Nieuw logo? Vervang `assets/img/logo-icon.svg`, draai `.claude/maak-favicons.ps1`, pas het grote logo in `index.html` (opening__band) aan en maak het deelplaatje opnieuw.
 - Profielsticker: bron is `inhoud/bron/profielsticker.html` (daar aanpassen), daarna `.claude/profielsticker-importeren.ps1`.
 - Server-scripts (PHP): `api/teller.php` (gebruiksteller) + stemmen omhoog/omlaag per tool (`?stemmen`, `?stem=<tool>&nu=&was=`), `api/osm.php` (tussenstation OpenStreetMap). Gegevens staan buiten `httpdocs`.
+- Beheerpagina `beheer/index.php` (op /beheer/ via een regel in `.htaccess`; de server opent index.php niet vanzelf). Alleen voor Geert, met Plesk-wachtwoord op /beheer. Toont per tool: geopend (teller), gestart (eerste invoer of klik in `[data-tool-vak]`, 1x per paginabezoek, gemeten in `teller.js`), doorklik "Volgende stap" en stemmen. Gegevens: `gravelgorilla-gebruik.json` buiten de webmap (testsite: `gravelgorilla-test-*`).
 - PowerShell-scripts met niet-ASCII tekens opslaan als UTF-8 **met** BOM (Windows PowerShell 5.1).
 
 ## Huisstijl
