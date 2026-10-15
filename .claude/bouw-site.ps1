@@ -45,7 +45,8 @@ function Prefix([string]$html, $L) {
   [regex]::Replace($html, '(href|action)="/(?!assets/|api/|en/|de/|favicon|/)', "`$1=""$($L.pre)/")
 }
 function TaalMenu($L, [string]$pad) {
-  $lijst = ($talen | ForEach-Object {
+  if ($pad -like "*404*") { $pad = "/" }   # 404 bestaat alleen in het Nederlands: het taalmenu wijst dan naar de homepage per taal
+  $lijst =($talen | ForEach-Object {
     $huidig = if ($_.taal -eq $L.taal) { ' aria-current="true"' } else { '' }
     "        <li><a href=""$(TaalPad $_ $pad)"" hreflang=""$($_.taal)"" lang=""$($_.taal)""$huidig>$($vlaggen[$_.taal])<span>$($_.naam)</span></a></li>"
   }) -join "`n"
@@ -133,7 +134,7 @@ function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css
   <meta name="theme-color" content="#15181A" media="(prefers-color-scheme: dark)">
   <title>$(Html $titel)</title>
   <meta name="description" content="$(Html $beschrijving)">
-  <link rel="canonical" href="$site$adres">
+$(if ($pad -like "*404*") { '  <meta name="robots" content="noindex">' } else { "  <link rel=""canonical"" href=""$site$adres"">" })
 $(Alternatieven $pad)
   <meta property="og:type" content="$soort">
   <meta property="og:title" content="$(Html $titel)">
@@ -252,7 +253,7 @@ $tools = @(
     filter = 'plannen'; plaatje = 'kaart'; label = 'Nieuw'
     soort = 'kiezer'; scope = 'wb-scope gr-scope'; uitlegKop = 'Gravelen waar het mag' }
   [ordered]@{ slug = 'versnellingscalculator'; km = '11'; kop = 'Versnellings<wbr><span class="groen">calculator</span>'; titel = 'Versnellingscalculator'
-    seoTitel = 'Versnellingscalculator gravelbike: voorblad en cassette | Gravel Gorilla'
+    seoTitel = 'Versnellingscalculator voor je gravelbike | Gravel Gorilla'
     sub = 'Kies je voorblad en cassette en zie je lichtste verzet, je topsnelheid en hoe steil je nog fietsend omhoog komt. Vergelijk twee opstellingen.'; beschrijving = 'Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.'
     naamKort = 'Versnellingen'; kort = 'Voorblad en cassette vergelijken: je lichtste verzet en hoe steil je nog omhoog komt.'
     filter = 'berekenen'; plaatje = 'tandwiel'; label = 'Nieuw'
@@ -327,6 +328,42 @@ function Vertaal([string]$tekst, $paren, [int]$i, [string]$wat) {
     else { Write-Host "LET OP: vertaling ($wat) niet gevonden: $($p[0].Substring(0, [Math]::Min(80, $p[0].Length)))" }
   }
   $tekst
+}
+
+# ---------- Volgende stap: per tool 1 of 2 tools die logisch volgen (direct onder de tool) ----------
+# Tekst = waarom je daarheen zou gaan, in drie talen. Nieuwe tool? Voeg hem hier toe (en kijk of hij bij andere tools past).
+$volgendeStap = @{
+  'gravelbike-kiezer' = @(
+    @{ slug = 'maatbepaler'; nl = 'Welke framemaat past bij jou?'; en = 'Which frame size fits you?'; de = 'Welche Rahmengröße passt zu dir?' }
+    @{ slug = 'gravelbanden-kiezer'; nl = 'Welke banden passen bij jouw ondergrond?'; en = 'Which tyres suit your terrain?'; de = 'Welche Reifen passen zu deinem Untergrund?' })
+  'maatbepaler' = @(
+    @{ slug = 'gravelbike-kiezer'; nl = 'Zoek een gravelbike die bij je rijden past.'; en = 'Find a gravel bike that suits your riding.'; de = 'Finde ein Gravelbike, das zu deinem Fahren passt.' })
+  'gravelbanden-kiezer' = @(
+    @{ slug = 'bandenspanning-calculator'; nl = 'Bereken de juiste spanning voor deze banden.'; en = 'Work out the right pressure for these tyres.'; de = 'Berechne den richtigen Druck für diese Reifen.' }
+    @{ slug = 'gravelwielen-kiezer'; nl = 'Zoek wielen die bij deze bandbreedte passen.'; en = 'Find wheels that match this tyre width.'; de = 'Finde Laufräder, die zu dieser Reifenbreite passen.' })
+  'bandenspanning-calculator' = @(
+    @{ slug = 'gravelbanden-kiezer'; nl = 'Twijfel je over de banden zelf? Kies de band die bij je rit past.'; en = 'Unsure about the tyres themselves? Pick the tyre that suits your ride.'; de = 'Unsicher bei den Reifen selbst? Wähle den Reifen, der zu deiner Fahrt passt.' })
+  'gravelwielen-kiezer' = @(
+    @{ slug = 'gravelbanden-kiezer'; nl = 'Kies banden die bij deze wielen passen.'; en = 'Pick tyres that go with these wheels.'; de = 'Wähle Reifen, die zu diesen Laufrädern passen.' }
+    @{ slug = 'bandenspanning-calculator'; nl = 'Bereken de juiste bandenspanning.'; en = 'Work out the right tyre pressure.'; de = 'Berechne den richtigen Reifendruck.' })
+  'versnellingscalculator' = @(
+    @{ slug = 'paklijst-bikepacking'; nl = 'Ga je met bagage op pad? Maak je paklijst.'; en = 'Heading out with luggage? Make your packing list.'; de = 'Mit Gepäck unterwegs? Erstell deine Packliste.' }
+    @{ slug = 'gravelroutes'; nl = 'Zoek een route om je verzet uit te proberen.'; en = 'Find a route to try out your gearing.'; de = 'Finde eine Route, um deine Übersetzung zu testen.' })
+  'ultra-eventkiezer' = @(
+    @{ slug = 'paklijst-bikepacking'; nl = 'Wat neem je mee? Maak je paklijst.'; en = 'What will you bring? Make your packing list.'; de = 'Was nimmst du mit? Erstell deine Packliste.' }
+    @{ slug = 'versnellingscalculator'; nl = 'Klim je dat met bagage? Check je versnellingen.'; en = 'Climbing that with luggage? Check your gearing.'; de = 'Kletterst du das mit Gepäck? Prüf deine Übersetzung.' })
+  'paklijst-bikepacking' = @(
+    @{ slug = 'kledingadvies'; nl = 'Welke kleding heb je nodig bij welk weer?'; en = 'What clothing do you need for which weather?'; de = 'Welche Kleidung brauchst du bei welchem Wetter?' }
+    @{ slug = 'ultra-eventkiezer'; nl = 'Zoek een event om naartoe te werken.'; en = 'Find an event to work towards.'; de = 'Finde ein Event, auf das du hinarbeitest.' })
+  'kledingadvies' = @(
+    @{ slug = 'paklijst-bikepacking'; nl = 'Meerdere dagen weg? Maak je paklijst.'; en = 'Away for several days? Make your packing list.'; de = 'Mehrere Tage unterwegs? Erstell deine Packliste.' }
+    @{ slug = 'gravelroutes'; nl = 'Zoek een gravelroute voor je rit.'; en = 'Find a gravel route for your ride.'; de = 'Finde eine Gravelroute für deine Fahrt.' })
+  'gravelroutes' = @(
+    @{ slug = 'profielsticker'; nl = 'Maak een hoogteprofiel-sticker van je route.'; en = 'Make an elevation profile sticker of your route.'; de = 'Mach einen Höhenprofil-Sticker von deiner Route.' }
+    @{ slug = 'kledingadvies'; nl = 'Wat trek je aan voor deze rit?'; en = 'What will you wear for this ride?'; de = 'Was ziehst du für diese Fahrt an?' })
+  'profielsticker' = @(
+    @{ slug = 'gravelroutes'; nl = 'Nog geen route? Zoek een gravelroute.'; en = 'No route yet? Find a gravel route.'; de = 'Noch keine Route? Finde eine Gravelroute.' }
+    @{ slug = 'kledingadvies'; nl = 'Wat trek je aan op de dag zelf?'; en = 'What will you wear on the day?'; de = 'Was ziehst du am Tag selbst an?' })
 }
 
 foreach ($L in $talen) {
@@ -431,8 +468,20 @@ foreach ($t in $toolsHier) {
       (($faq | ForEach-Object { "      <h3>$($_.vraag)</h3>`n      <p>$(Prefix $_.antwoord $L)</p>" }) -join "`n") + "`n    </section>"
   }
 
+  # volgende stap (1 of 2 logische vervolgtools) — die staan dan niet nog eens bij "Andere tools"
+  $stappen = @($volgendeStap[$t.slug] | Where-Object { $_ })
+  $volgendeHtml = ''
+  if ($stappen.Count) {
+    $kaarten = ($stappen | ForEach-Object {
+      $s = $_; $doel = $toolsHier | Where-Object { $_.slug -eq $s.slug } | Select-Object -First 1
+      "        <a href=""$($L.pre)/tools/$($s.slug)/"" class=""volgende__kaart""><span class=""volgende__km"" data-km-tool=""$($s.slug)"">KM $($doel.km)</span><strong>$(Html $doel.titel)</strong><span>$(Html $s[$L.taal])</span><span class=""volgende__pijl"" aria-hidden=""true"">→</span></a>"
+    }) -join "`n"
+    $volgendeHtml = "    <section class=""volgende"" aria-labelledby=""volgende-kop"">`n      <h2 class=""volgende__kop"" id=""volgende-kop"">$($u.volgendeKop)</h2>`n      <div class=""volgende__raster"">`n$kaarten`n      </div>`n    </section>"
+  }
+  $stapSlugs = @($stappen | ForEach-Object { $_.slug })
+
   # andere tools (interne links)
-  $anderen = ($toolsHier | Where-Object { $_.slug -ne $t.slug } | ForEach-Object {
+  $anderen = ($toolsHier | Where-Object { $_.slug -ne $t.slug -and $stapSlugs -notcontains $_.slug } | ForEach-Object {
     "        <a href=""$($L.pre)/tools/$($_.slug)/"" class=""ander""><span class=""ander__km"" data-km-tool=""$($_.slug)"">KM $($_.km)</span><strong>$(Html $_.titel)</strong><span>$(Html $_.kort)</span></a>"
   }) -join "`n"
 
@@ -483,6 +532,7 @@ foreach ($t in $toolsHier) {
 $(& $deelHtml '')
     </section>
 $tool
+$volgendeHtml
     <section class="deel-balk">
       <p>$($u.deelVraag)</p>
 $(& $deelHtml ' deelknop--actie')
@@ -491,6 +541,7 @@ $(& $deelHtml ' deelknop--actie')
       <p>$($u.stemVraag)</p>
       <div class="stem stem--groot" data-stem-tool="$($t.slug)" hidden></div>
     </section>
+    <p class="fout-melden">$($u.foutVraag) <a href="$($L.pre)/contact/">$($u.foutLink)</a></p>
 $gorillaHtml
     <article class="lees tool-uitleg">
       <h2 class="tool-uitleg-kop">$(Html $t.uitlegKop)</h2>

@@ -296,6 +296,14 @@
   async function haalWeer(gekozen) {
     const plaats = $("#klPlaats").value.trim();
     if (!gekozen && !plaats) { meld(T("Vul eerst een plaats in.", "Enter a place first.", "Gib zuerst einen Ort ein.")); $("#klPlaats").focus(); return; }
+    // de weersverwachting gaat maar 14 dagen vooruit, en niet terug in de tijd
+    const dag = $("#klDatum");
+    if (!dag.value || dag.value < dag.min || dag.value > dag.max) {
+      meld(T("De weersverwachting gaat maar 14 dagen vooruit. Kies een datum van vandaag tot en met over 14 dagen, of vul het weer hieronder zelf in.",
+             "The weather forecast only goes 14 days ahead. Pick a date from today up to 14 days from now, or fill in the weather yourself below.",
+             "Die Wettervorhersage reicht nur 14 Tage voraus. Wähl ein Datum von heute bis in 14 Tagen oder trag das Wetter unten selbst ein."));
+      dag.focus(); return;
+    }
     const knop = $("#klHaal");
     knop.disabled = true;
     meld(T("Weersverwachting ophalen…", "Fetching the weather forecast…", "Wettervorhersage wird abgerufen…"));

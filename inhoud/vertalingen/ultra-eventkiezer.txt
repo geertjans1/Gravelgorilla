@@ -162,6 +162,9 @@ note:"Ultra-avontuur door de Japanse bergen; volgende editie in 2027, details vo
 <span>werelddelen</span> ‖ <span>continents</span> ‖ <span>Kontinente</span>
 <span>km totaal</span> ‖ <span>km in total</span> ‖ <span>km insgesamt</span>
 placeholder="Zoek op naam, plaats of land…" ‖ placeholder="Search by name, place or country…" ‖ placeholder="Nach Name, Ort oder Land suchen…"
+aria-label="Zoek een event" ‖ aria-label="Search events" ‖ aria-label="Event suchen"
+aria-label="Filter op land" ‖ aria-label="Filter by country" ‖ aria-label="Nach Land filtern"
+aria-label="Sorteren" ‖ aria-label="Sort" ‖ aria-label="Sortieren"
 <option value="">Alle landen</option> ‖ <option value="">All countries</option> ‖ <option value="">Alle Länder</option>
 <option value="datum">Sorteer: datum</option> ‖ <option value="datum">Sort: date</option> ‖ <option value="datum">Sortieren: Datum</option>
 <option value="km-op">Afstand ↑</option> ‖ <option value="km-op">Distance ↑</option> ‖ <option value="km-op">Distanz ↑</option>

@@ -131,6 +131,18 @@
     <p class="ggcalc-warning is-hidden" id="ggWarning">This result is outside the usual range for gravel tyres — check the maximum on the sidewall of your tyre.</p>
 
     <p class="ggcalc-tip"><strong>Tip:</strong> this is a good starting point, not a law set in stone. Ride it, fine-tune by feel and never go above the maximum pressure printed on the sidewall of your tyre.</p>
+    <details class="ggcalc-hoe">
+      <summary>How is this number worked out?</summary>
+      <ul>
+        <li><strong>Base:</strong> 30 psi at the rear for 85 kg in total (you + bike) on 40 mm tyres. Heavier = more pressure, in proportion. Wider tyre = less pressure: 45 mm comes out about 16% lower than 40 mm.</li>
+        <li><strong>Front tyre:</strong> 10% lower than the rear, because it carries less weight.</li>
+        <li><strong>Terrain:</strong> smooth 15% higher, rough 15% lower.</li>
+        <li><strong>Wheel size:</strong> 650b 5% higher than 700c.</li>
+        <li><strong>Inner tube:</strong> 15% higher than tubeless, to avoid pinch flats.</li>
+        <li>Rounded to half a psi and always between 15 and 60 psi.</li>
+      </ul>
+      <p>This is a Gravel Gorilla rule of thumb, not a measurement. Casing, rim width and your own feel decide the last few psi.</p>
+    </details>
   </div>
 </div>
 
@@ -344,6 +356,11 @@
   padding-top: 1rem;
 }
 .ggcalc-tip strong { color: var(--ink); }
+.ggcalc-hoe { margin-top: .9rem; font-size: .85rem; color: var(--gravel); }
+.ggcalc-hoe summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.ggcalc-hoe ul { margin: .6rem 0 .5rem 1.1rem; padding: 0; }
+.ggcalc-hoe li { margin: .25rem 0; }
+.ggcalc-hoe p { margin: 0; }
 </style>
 
 <script>

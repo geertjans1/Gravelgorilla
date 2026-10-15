@@ -52,7 +52,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=7d41d3e8">
-  <link rel="stylesheet" href="/assets/css/pagina.css?v=a984a06e">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=dbe3d87d">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/en/tools/profielsticker/#tool","name":"Profile Sticker","url":"https://gravelgorilla.nl/en/tools/profielsticker/","description":"Make a free profile sticker from your GPX for your top tube or handlebar: elevation profile, climbs, surface, stops, power and when to eat. Print or download.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/en/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Profile Sticker","item":"https://gravelgorilla.nl/en/tools/profielsticker/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/en/tools/profielsticker/#faq","mainEntity":[{"@type":"Question","name":"What is a profile sticker?","acceptedAnswer":{"@type":"Answer","text":"A narrow strip for your top tube, handlebar or stem with the elevation profile of your route. You see at a glance where the climbs are, what the surface is, where your stops are, what power to hold per section and when to eat and drink."}},{"@type":"Question","name":"Which route files can I use?","acceptedAnswer":{"@type":"Answer","text":"GPX and TCX files, for example from Komoot, Strava, RideWithGPS, Garmin or an event website. No file at hand? Try the sample ride in the tool."}},{"@type":"Question","name":"Is my route uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The tool reads your file on your own device. Only if you let it fetch the surface are the coordinates of your route, without name or times, sent to OpenStreetMap to see where there is tarmac, gravel or sand."}},{"@type":"Question","name":"Which formats can I make?","acceptedAnswer":{"@type":"Answer","text":"A strip for your top tube (200 × 30 mm), your handlebar (130 × 24 mm) or your stem (90 × 32 mm), a cheat sheet (35 × 110 mm) or a custom size. You can print the sticker on A4 or download it as PNG or SVG."}},{"@type":"Question","name":"Can I add and move stops?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tap the profile to place a stop, such as a rest stop, water point or place to sleep. Want to move it? Drag the numbered circle left or right. Arrival times, water and food are recalculated straight away."}}]}]}</script>
 </head>
@@ -119,6 +119,13 @@
         });
       })();
     </script>
+    <section class="volgende" aria-labelledby="volgende-kop">
+      <h2 class="volgende__kop" id="volgende-kop">Next <span class="groen">step</span></h2>
+      <div class="volgende__raster">
+        <a href="/en/tools/gravelroutes/" class="volgende__kaart"><span class="volgende__km" data-km-tool="gravelroutes">KM 10</span><strong>Gravel Routes in the Netherlands and Belgium</strong><span>No route yet? Find a gravel route.</span><span class="volgende__pijl" aria-hidden="true">→</span></a>
+        <a href="/en/tools/kledingadvies/" class="volgende__kaart"><span class="volgende__km" data-km-tool="kledingadvies">KM 06</span><strong>Clothing Advice</strong><span>What will you wear on the day?</span><span class="volgende__pijl" aria-hidden="true">→</span></a>
+      </div>
+    </section>
     <section class="deel-balk">
       <p>Useful? Send this tool to your riding mates.</p>
       <div class="deelknop deelknop--actie" data-deel-url="https://gravelgorilla.nl/en/tools/profielsticker/" data-deel-titel="Profile Sticker" data-deel-tekst="Profile Sticker: From GPX to a sticker for your top tube or handlebar. With the climbs, your stops, your power and exactly when to eat." data-deel-klaar="Link copied!">
@@ -134,6 +141,7 @@
       <p>What do you think of this tool? Your vote decides what gets improved first.</p>
       <div class="stem stem--groot" data-stem-tool="profielsticker" hidden></div>
     </section>
+    <p class="fout-melden">Spotted a mistake in this tool? <a href="/en/contact/">Let me know</a></p>
     <section class="vg" id="vraagGorilla" data-tool="profielsticker" aria-labelledby="vg-kop">
       <div class="vg__kop">
         <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
@@ -188,11 +196,9 @@
         <a href="/en/tools/bandenspanning-calculator/" class="ander"><span class="ander__km" data-km-tool="bandenspanning-calculator">KM 02</span><strong>Tyre Pressure Calculator</strong><span>The right pressure for your weight, tyre width and surface. Front and rear separately.</span></a>
         <a href="/en/tools/gravelwielen-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelwielen-kiezer">KM 03</span><strong>Gravel Wheel Finder</strong><span>Light, tough or fast? Find the wheelset that suits your bike and riding style.</span></a>
         <a href="/en/tools/ultra-eventkiezer/" class="ander"><span class="ander__km" data-km-tool="ultra-eventkiezer">KM 04</span><strong>Ultra Event Finder</strong><span>Which ultra gravel event suits your experience, fitness and calendar? You get a shortlist.</span></a>
-        <a href="/en/tools/kledingadvies/" class="ander"><span class="ander__km" data-km-tool="kledingadvies">KM 06</span><strong>Clothing Advice</strong><span>Too warm or too cold? See what to wear for each body part, with the forecast for your ride.</span></a>
         <a href="/en/tools/gravelbanden-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbanden-kiezer">KM 07</span><strong>Gravel Tyre Finder</strong><span>Set surface, riding style and weather, and see which width, tread and tyres fit.</span></a>
         <a href="/en/tools/maatbepaler/" class="ander"><span class="ander__km" data-km-tool="maatbepaler">KM 08</span><strong>Frame Size Finder</strong><span>Enter your height and inseam and see which frame size and saddle height fit. Also between two sizes.</span></a>
         <a href="/en/tools/paklijst-bikepacking/" class="ander"><span class="ander__km" data-km-tool="paklijst-bikepacking">KM 09</span><strong>Bikepacking Packing List</strong><span>A checklist per trip length and season, with the weight of your luggage.</span></a>
-        <a href="/en/tools/gravelroutes/" class="ander"><span class="ander__km" data-km-tool="gravelroutes">KM 10</span><strong>Gravel Routes in the Netherlands and Belgium</strong><span>Signposted gravel routes and GPX routes in the Netherlands and Flanders, by province and distance.</span></a>
         <a href="/en/tools/versnellingscalculator/" class="ander"><span class="ander__km" data-km-tool="versnellingscalculator">KM 11</span><strong>Gear Calculator</strong><span>Compare chainring and cassette: your lowest gear and how steep you can still climb.</span></a>
       </div>
     </section>

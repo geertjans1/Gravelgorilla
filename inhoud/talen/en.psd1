@@ -8,7 +8,7 @@
     voetSlot = 'The gorilla shows the way.<br>You ride.'; voetNav = 'Footer'
     voetKlein = '© 2026 Gravel Gorilla · made by Geert Jans, gravel rider · no cookies, no ads'
     terugTools = '← Back to all tools'; home = '← Home'; faqKop = 'Frequently asked questions'; andereKop = 'Other <span class="groen">tools</span>'
-    deel = 'Share this tool'; deelVraag = 'Useful? Send this tool to your riding mates.'; deelKopie = 'Copy link'; deelGekopieerd = 'Link copied!'; deelMail = 'Email'; deelOnderwerp = 'Handy tool for gravel riders'; stemVraag = 'What do you think of this tool? Your vote decides what gets improved first.'
+    deel = 'Share this tool'; deelVraag = 'Useful? Send this tool to your riding mates.'; deelKopie = 'Copy link'; deelGekopieerd = 'Link copied!'; deelMail = 'Email'; deelOnderwerp = 'Handy tool for gravel riders'; stemVraag = 'What do you think of this tool? Your vote decides what gets improved first.'; volgendeKop = 'Next <span class="groen">step</span>'; foutVraag = 'Spotted a mistake in this tool?'; foutLink = 'Let me know'
     vgKop = 'Ask the <span class="groen">Gorilla</span>'; vgUitleg = 'Ask your question in plain English. If the gorilla can fill in the tool for you, he does it right away.'
     vgAria = 'Your question for the gorilla'; vgPlek = 'Ask your question'; vgKnop = 'Ask'; vgVoorbeelden = 'Example questions'
     alleenNl = 'This tool is currently only available in Dutch. The English version is on its way: the gorilla is translating.'
@@ -57,7 +57,7 @@
     'gravelroutes' = @{ kop = 'Gravel <span class="groen">Routes</span>'; titel = 'Gravel Routes in the Netherlands and Belgium'; seoTitel = 'Gravel routes in the Netherlands and Belgium | Gravel Gorilla'
       sub = 'Official gravel routes and GPX routes in the Netherlands and Flanders. Choose a province, a distance and how you find your way.'; beschrijving = 'Gravel routes in the Netherlands and Belgium: signposted routes and GPX routes per province, filtered by distance. With links to the official source.'
       naamKort = 'Gravel Routes'; kort = 'Signposted gravel routes and GPX routes in the Netherlands and Flanders, by province and distance.'; uitlegKop = 'Gravel riding where it is allowed'; label = 'New' }
-    'versnellingscalculator' = @{ kop = 'Gear <span class="groen">Calculator</span>'; titel = 'Gear Calculator'; seoTitel = 'Gravel bike gear calculator: chainring and cassette | Gravel Gorilla'
+    'versnellingscalculator' = @{ kop = 'Gear <span class="groen">Calculator</span>'; titel = 'Gear Calculator'; seoTitel = 'Gravel bike gear calculator | Gravel Gorilla'
       sub = 'Choose your chainring and cassette and see your lowest gear, your top speed and how steep you can still climb. Compare two setups.'; beschrijving = 'Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.'
       naamKort = 'Gearing'; kort = 'Compare chainring and cassette: your lowest gear and how steep you can still climb.'; uitlegKop = 'The right gear for every climb'; label = 'New' }
   }

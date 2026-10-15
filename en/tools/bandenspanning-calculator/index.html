@@ -52,7 +52,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css?v=7d41d3e8">
-  <link rel="stylesheet" href="/assets/css/pagina.css?v=a984a06e">
+  <link rel="stylesheet" href="/assets/css/pagina.css?v=dbe3d87d">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/#tool","name":"Tyre Pressure Calculator","url":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/","description":"Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://gravelgorilla.nl/#organisatie"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Gravel Gorilla","item":"https://gravelgorilla.nl/en/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://gravelgorilla.nl/en/#wegwijzer"},{"@type":"ListItem","position":3,"name":"Tyre Pressure Calculator","item":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/"}]},{"@type":"Organization","@id":"https://gravelgorilla.nl/#organisatie","name":"Gravel Gorilla","url":"https://gravelgorilla.nl/","logo":"https://gravelgorilla.nl/assets/img/icon-192.png?v=bb1fc487","email":"info@gravelgorilla.nl","founder":{"@type":"Person","@id":"https://gravelgorilla.nl/over-ons/#geert","name":"Geert Jans","url":"https://gravelgorilla.nl/over-ons/"},"description":"Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice."},{"@type":"FAQPage","@id":"https://gravelgorilla.nl/en/tools/bandenspanning-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is a good tyre pressure for a gravel bike?","acceptedAnswer":{"@type":"Answer","text":"That depends on your weight, the width of your tyre and the surface. As an example: for a 75 kg rider on 40 mm tubeless tyres on mixed surfaces, the calculator comes to about 1.8 bar front and 2.0 bar rear. Heavier, narrower tyres or inner tubes mean more pressure; wider tyres or loose sand mean less."}},{"@type":"Question","name":"Why should my front tyre be softer than my rear?","acceptedAnswer":{"@type":"Answer","text":"Your rear wheel carries most of your weight. A front tyre with about 10 percent less pressure gives more grip in corners and more comfort in your hands, without the front washing out."}},{"@type":"Question","name":"Tubeless or inner tube: does it matter for pressure?","acceptedAnswer":{"@type":"Answer","text":"Yes. With an inner tube the calculator adds an extra correction. A tyre that\u0027s too soft with an inner tube pinch-flats more easily: a puncture because the tube gets squeezed against the rim, for example when you hit a tree root."}},{"@type":"Question","name":"Which tyres does the calculator work for?","acceptedAnswer":{"@type":"Answer","text":"For tyres from 28 to 55 mm wide, on 700c and 650b wheels, for riders from 45 to 130 kg including gear. You choose the surface (smooth, mixed or rough) and whether you ride tubeless or with inner tubes. You get the advice in bar and psi."}},{"@type":"Question","name":"How do I measure my tyre pressure?","acceptedAnswer":{"@type":"Answer","text":"With a pump with a good gauge, or with a separate digital gauge. Tyres slowly lose air, especially tubeless ones. So check the pressure before every ride and fine-tune by feel after the first kilometres."}}]}]}</script>
 </head>
@@ -231,6 +231,18 @@
     <p class="ggcalc-warning is-hidden" id="ggWarning">This result is outside the usual range for gravel tyres — check the maximum on the sidewall of your tyre.</p>
 
     <p class="ggcalc-tip"><strong>Tip:</strong> this is a good starting point, not a law set in stone. Ride it, fine-tune by feel and never go above the maximum pressure printed on the sidewall of your tyre.</p>
+    <details class="ggcalc-hoe">
+      <summary>How is this number worked out?</summary>
+      <ul>
+        <li><strong>Base:</strong> 30 psi at the rear for 85 kg in total (you + bike) on 40 mm tyres. Heavier = more pressure, in proportion. Wider tyre = less pressure: 45 mm comes out about 16% lower than 40 mm.</li>
+        <li><strong>Front tyre:</strong> 10% lower than the rear, because it carries less weight.</li>
+        <li><strong>Terrain:</strong> smooth 15% higher, rough 15% lower.</li>
+        <li><strong>Wheel size:</strong> 650b 5% higher than 700c.</li>
+        <li><strong>Inner tube:</strong> 15% higher than tubeless, to avoid pinch flats.</li>
+        <li>Rounded to half a psi and always between 15 and 60 psi.</li>
+      </ul>
+      <p>This is a Gravel Gorilla rule of thumb, not a measurement. Casing, rim width and your own feel decide the last few psi.</p>
+    </details>
   </div>
 </div>
 
@@ -444,6 +456,11 @@
   padding-top: 1rem;
 }
 .ggcalc-tip strong { color: var(--ink); }
+.ggcalc-hoe { margin-top: .9rem; font-size: .85rem; color: var(--gravel); }
+.ggcalc-hoe summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.ggcalc-hoe ul { margin: .6rem 0 .5rem 1.1rem; padding: 0; }
+.ggcalc-hoe li { margin: .25rem 0; }
+.ggcalc-hoe p { margin: 0; }
 </style>
 
 <script>
@@ -544,6 +561,12 @@
 </script>
     </div>
     <script>(function () { var b = new URLSearchParams(location.search).get("breedte"), s = document.getElementById("ggWidth"); if (b && s) { s.value = Math.max(28, Math.min(55, parseInt(b, 10) || 40)); s.dispatchEvent(new Event("input", { bubbles: true })); } })();</script>
+    <section class="volgende" aria-labelledby="volgende-kop">
+      <h2 class="volgende__kop" id="volgende-kop">Next <span class="groen">step</span></h2>
+      <div class="volgende__raster">
+        <a href="/en/tools/gravelbanden-kiezer/" class="volgende__kaart"><span class="volgende__km" data-km-tool="gravelbanden-kiezer">KM 07</span><strong>Gravel Tyre Finder</strong><span>Unsure about the tyres themselves? Pick the tyre that suits your ride.</span><span class="volgende__pijl" aria-hidden="true">→</span></a>
+      </div>
+    </section>
     <section class="deel-balk">
       <p>Useful? Send this tool to your riding mates.</p>
       <div class="deelknop deelknop--actie" data-deel-url="https://gravelgorilla.nl/en/tools/bandenspanning-calculator/" data-deel-titel="Tyre Pressure Calculator" data-deel-tekst="Tyre Pressure Calculator: The right pressure for your weight, tyre width and surface. Front and rear separately, in bar and psi." data-deel-klaar="Link copied!">
@@ -559,6 +582,7 @@
       <p>What do you think of this tool? Your vote decides what gets improved first.</p>
       <div class="stem stem--groot" data-stem-tool="bandenspanning-calculator" hidden></div>
     </section>
+    <p class="fout-melden">Spotted a mistake in this tool? <a href="/en/contact/">Let me know</a></p>
     <section class="vg" id="vraagGorilla" data-tool="bandenspanning-calculator" aria-labelledby="vg-kop">
       <div class="vg__kop">
         <img src="/assets/img/logo-icon.svg?v=8a9212c0" alt="" width="56" height="56">
@@ -603,7 +627,6 @@
         <a href="/en/tools/ultra-eventkiezer/" class="ander"><span class="ander__km" data-km-tool="ultra-eventkiezer">KM 04</span><strong>Ultra Event Finder</strong><span>Which ultra gravel event suits your experience, fitness and calendar? You get a shortlist.</span></a>
         <a href="/en/tools/profielsticker/" class="ander"><span class="ander__km" data-km-tool="profielsticker">KM 05</span><strong>Profile Sticker</strong><span>From GPX to a sticker for your top tube: climbs, stops, power and when to eat.</span></a>
         <a href="/en/tools/kledingadvies/" class="ander"><span class="ander__km" data-km-tool="kledingadvies">KM 06</span><strong>Clothing Advice</strong><span>Too warm or too cold? See what to wear for each body part, with the forecast for your ride.</span></a>
-        <a href="/en/tools/gravelbanden-kiezer/" class="ander"><span class="ander__km" data-km-tool="gravelbanden-kiezer">KM 07</span><strong>Gravel Tyre Finder</strong><span>Set surface, riding style and weather, and see which width, tread and tyres fit.</span></a>
         <a href="/en/tools/maatbepaler/" class="ander"><span class="ander__km" data-km-tool="maatbepaler">KM 08</span><strong>Frame Size Finder</strong><span>Enter your height and inseam and see which frame size and saddle height fit. Also between two sizes.</span></a>
         <a href="/en/tools/paklijst-bikepacking/" class="ander"><span class="ander__km" data-km-tool="paklijst-bikepacking">KM 09</span><strong>Bikepacking Packing List</strong><span>A checklist per trip length and season, with the weight of your luggage.</span></a>
         <a href="/en/tools/gravelroutes/" class="ander"><span class="ander__km" data-km-tool="gravelroutes">KM 10</span><strong>Gravel Routes in the Netherlands and Belgium</strong><span>Signposted gravel routes and GPX routes in the Netherlands and Flanders, by province and distance.</span></a>

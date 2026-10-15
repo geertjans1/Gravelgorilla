@@ -131,6 +131,18 @@
     <p class="ggcalc-warning is-hidden" id="ggWarning">Dieses Ergebnis liegt außerhalb des üblichen Bereichs für Gravelreifen — prüf den Maximaldruck auf der Reifenflanke.</p>
 
     <p class="ggcalc-tip"><strong>Tipp:</strong> Das ist ein guter Ausgangspunkt, kein ehernes Gesetz. Fahr ihn aus, justier nach Gefühl und geh nie über den Maximaldruck, der auf der Reifenflanke steht.</p>
+    <details class="ggcalc-hoe">
+      <summary>Wie kommt diese Zahl zustande?</summary>
+      <ul>
+        <li><strong>Basis:</strong> 30 psi hinten bei 85 kg gesamt (du + Rad) auf 40-mm-Reifen. Schwerer = mehr Druck, im gleichen Verhältnis. Breiterer Reifen = weniger Druck: 45 mm liegt etwa 16 % niedriger als 40 mm.</li>
+        <li><strong>Vorderreifen:</strong> 10 % niedriger als hinten, weil weniger Gewicht darauf lastet.</li>
+        <li><strong>Untergrund:</strong> glatt 15 % höher, rau 15 % niedriger.</li>
+        <li><strong>Laufradgröße:</strong> 650b 5 % höher als 700c.</li>
+        <li><strong>Schlauch:</strong> 15 % höher als tubeless, um Durchschläge (Snakebites) zu vermeiden.</li>
+        <li>Auf ein halbes psi gerundet und immer zwischen 15 und 60 psi.</li>
+      </ul>
+      <p>Das ist eine Faustregel von Gravel Gorilla, keine Messung. Karkasse, Felgenbreite und dein eigenes Gefühl entscheiden die letzten paar psi.</p>
+    </details>
   </div>
 </div>
 
@@ -344,6 +356,11 @@
   padding-top: 1rem;
 }
 .ggcalc-tip strong { color: var(--ink); }
+.ggcalc-hoe { margin-top: .9rem; font-size: .85rem; color: var(--gravel); }
+.ggcalc-hoe summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.ggcalc-hoe ul { margin: .6rem 0 .5rem 1.1rem; padding: 0; }
+.ggcalc-hoe li { margin: .25rem 0; }
+.ggcalc-hoe p { margin: 0; }
 </style>
 
 <script>

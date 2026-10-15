@@ -131,6 +131,18 @@
     <p class="ggcalc-warning is-hidden" id="ggWarning">Deze uitkomst valt buiten het gangbare bereik voor gravelbanden — check het maximum op de zijkant van je band.</p>
 
     <p class="ggcalc-tip"><strong>Tip:</strong> dit is een goed startpunt, geen wet van Meden en Perzen. Rijd &#8216;m uit, stel bij op gevoel en ga nooit boven de maximale druk die op de zijkant van je band staat.</p>
+    <details class="ggcalc-hoe">
+      <summary>Hoe komt dit getal tot stand?</summary>
+      <ul>
+        <li><strong>Basis:</strong> 30 psi achter bij 85 kg totaal (jij + fiets) op 40 mm banden. Zwaarder = meer druk, in dezelfde verhouding. Bredere band = minder druk: 45 mm komt ongeveer 16% lager uit dan 40 mm.</li>
+        <li><strong>Voorband:</strong> 10% lager dan achter, omdat er minder gewicht op rust.</li>
+        <li><strong>Ondergrond:</strong> glad 15% hoger, ruw 15% lager.</li>
+        <li><strong>Wielmaat:</strong> 650b 5% hoger dan 700c.</li>
+        <li><strong>Binnenband:</strong> 15% hoger dan tubeless, om lekrijden door doorslaan te voorkomen.</li>
+        <li>Afgerond op een halve psi en altijd tussen 15 en 60 psi.</li>
+      </ul>
+      <p>Dit is een vuistregel van Gravel Gorilla, geen meting. Karkas, velgbreedte en je eigen gevoel bepalen de laatste paar psi.</p>
+    </details>
   </div>
 </div>
 
@@ -344,6 +356,11 @@
   padding-top: 1rem;
 }
 .ggcalc-tip strong { color: var(--ink); }
+.ggcalc-hoe { margin-top: .9rem; font-size: .85rem; color: var(--gravel); }
+.ggcalc-hoe summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.ggcalc-hoe ul { margin: .6rem 0 .5rem 1.1rem; padding: 0; }
+.ggcalc-hoe li { margin: .25rem 0; }
+.ggcalc-hoe p { margin: 0; }
 </style>
 
 <script>
