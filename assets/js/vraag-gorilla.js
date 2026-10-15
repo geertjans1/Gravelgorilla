@@ -444,12 +444,12 @@
 
     /* ===== Gravelroutes ===== */
     "gravelroutes": {
-      eigen: /route|graveln|gravel|rijden|provincie|km|gpx|bewegwijzer|waar|limburg|drenthe|zeeland|gelderland|achterhoek|veluwe|kempen|vlaanderen|belgi|nederland|ride|where|signpost|flanders|netherlands|province|fahren|wo |ausgeschildert|flandern|niederlande|provinz/,
+      eigen: /route|graveln|gravel|rijden|provincie|km|gpx|bewegwijzer|waar|limburg|drenthe|zeeland|gelderland|achterhoek|veluwe|kempen|vlaanderen|belgi|nederland|gratis|ride|where|signpost|flanders|netherlands|province|free|fahren|wo |ausgeschildert|flandern|niederlande|provinz|kostenlos/,
       plek: ["Bijv. Bewegwijzerde gravelroutes in Limburg", "E.g. Signposted gravel routes in Limburg", "Z. B. Ausgeschilderte Gravelrouten in Limburg"],
       voorbeelden: [
-        ["Gravelroutes in Zuid-Limburg", "Een korte route in Drenthe", "Bewegwijzerde routes in Gelderland", "Lange route in Vlaanderen", "Waar kan ik graveln bij Maastricht?"],
-        ["Gravel routes in South Limburg", "A short route in Drenthe", "Signposted routes in Gelderland", "Long route in Flanders", "Where can I ride gravel near Maastricht?"],
-        ["Gravelrouten in Süd-Limburg", "Eine kurze Route in Drenthe", "Ausgeschilderte Routen in Gelderland", "Lange Route in Flandern", "Wo kann ich bei Maastricht graveln?"]],
+        ["Gravelroutes in Zuid-Limburg", "Een korte route in Drenthe", "Gratis routes in Vlaams-Brabant", "Lange route in Vlaanderen", "Waar kan ik graveln bij Maastricht?"],
+        ["Gravel routes in South Limburg", "A short route in Drenthe", "Free routes in Flemish Brabant", "Long route in Flanders", "Where can I ride gravel near Maastricht?"],
+        ["Gravelrouten in Süd-Limburg", "Eine kurze Route in Drenthe", "Kostenlose Routen in Flämisch-Brabant", "Lange Route in Flandern", "Wo kann ich bei Maastricht graveln?"]],
       kennis: [
         { vraag: ["Hoe zet ik een GPX-route op mijn fietscomputer?", "How do I put a GPX route on my bike computer?", "Wie bekomme ich eine GPX-Route auf meinen Radcomputer?"], w: "gpx fietscomputer garmin wahoo komoot telefoon downloaden bike computer phone download radcomputer handy herunterladen", tekst: ["Download het GPX-bestand bij de bron van de route. Bij een Garmin of Wahoo zet je het via de app van je fietscomputer of via Komoot op je toestel. Op je telefoon open je het in een app zoals Komoot of RideWithGPS en volg je de lijn.", "Download the GPX file at the route's source. For a Garmin or Wahoo, put it on your device via your bike computer's app or via Komoot. On your phone, open it in an app like Komoot or RideWithGPS and follow the line.", "Lade die GPX-Datei bei der Quelle der Route herunter. Bei Garmin oder Wahoo spielst du sie über die App des Radcomputers oder über Komoot auf. Auf dem Handy öffnest du sie in einer App wie Komoot oder RideWithGPS und folgst der Linie."] },
         { vraag: ["Mag ik in natuurgebieden graveln?", "Can I ride gravel in nature areas?", "Darf ich in Naturgebieten graveln?"], w: "natuurgebied bos heide mag toegestaan regels verboden nature forest heath allowed rules forbidden naturgebiet wald heide erlaubt regeln verboten", tekst: ["Alleen op paden waar fietsen is toegestaan. Op officiële routes zit je goed. Daarbuiten: let op de borden van Staatsbosbeheer, Natuurmonumenten of Natuurpunt, en blijf van wandelpaden af.", "Only on paths where cycling is allowed. On official routes you're fine. Elsewhere: watch the signs of the land managers (such as Staatsbosbeheer, Natuurmonumenten or Natuurpunt) and stay off walking paths.", "Nur auf Wegen, auf denen Radfahren erlaubt ist. Auf offiziellen Routen bist du richtig. Anderswo: Achte auf die Schilder der Geländeverwalter (etwa Staatsbosbeheer, Natuurmonumenten oder Natuurpunt) und bleib von Wanderwegen fern."] }
@@ -477,6 +477,7 @@
         else if (heeft(q, ["lange", "meerdaag", "bikepack", "long", "multi-day", "lang", "mehrtag"])) keuze.lengte = "extra";
         if (heeft(q, ["bewegwijzer", "bordjes", "paaltjes", "pijlen", "signpost", "waymark", "signs", "ausgeschildert", "schilder", "beschildert"])) keuze.nav = "bord";
         else if (heeft(q, ["gpx"])) keuze.nav = "gpx";
+        if (heeft(q, ["gratis", "free", "kostenlos", "zonder lid", "without member", "ohne mitglied"])) keuze.kosten = "gratis";
         if (!Object.keys(keuze).length) return null;
         const uit = window.GG_ROUTES_ZET(keuze);
         if (!uit.length) return { html: T("Daar vindt de gorilla nog geen route bij. Probeer het ruimer, bijvoorbeeld zonder lengte, of kies een andere provincie op de kaart.", "The gorilla can't find a route for that yet. Try broader, for example without a distance, or choose another province on the map.", "Dazu findet der Gorilla noch keine Route. Versuch es weiter gefasst, zum Beispiel ohne Länge, oder wähle eine andere Provinz auf der Karte.") };
@@ -484,7 +485,7 @@
         return {
           html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? T("route", "route", "Route") : T("routes", "routes", "Routen")) + "</b>" + T("", "", " gefunden") +
             (uit.length > 5 ? T(". De kortste vijf:", ". The five shortest:", ". Die fünf kürzesten:") : ":") +
-            lijst(top.map(r => '<a href="' + r.u + '" target="_blank" rel="noopener">' + html(r.n) + " ↗</a> " + komma(r.km) + (r.tot ? "–" + r.tot : "") + " km, " + (r.nav === "bord" ? T("bewegwijzerd", "signposted", "ausgeschildert") : "GPX"))) +
+            lijst(top.map(r => '<a href="' + r.u + '" target="_blank" rel="noopener">' + html(r.n) + " ↗</a> " + komma(r.km) + (r.tot ? "–" + r.tot : "") + " km, " + (r.nav === "bord" ? T("bewegwijzerd", "signposted", "ausgeschildert") : "GPX") + (r.lid ? T(", alleen voor leden", ", members only", ", nur für Mitglieder") : ""))) +
             T("Ik heb de filters hierboven ook zo gezet.", "I've set the filters above the same way.", "Ich habe die Filter oben auch so eingestellt."),
           knop: { tekst: T("Bekijk alle routes", "See all routes", "Alle Routen ansehen"), naar: "#grLijst" }
         };

@@ -29,7 +29,7 @@ id="ps-new">Andere route</button> ‖ id="ps-new">Different route</button> ‖ i
 <span>Naam op de sticker (max. 24 tekens) <em ‖ <span>Name on the sticker (max. 24 characters) <em ‖ <span>Name auf dem Aufkleber (max. 24 Zeichen) <em
 id="ps-reverse">⇄ Andersom rijden</button> ‖ id="ps-reverse">⇄ Ride it in reverse</button> ‖ id="ps-reverse">⇄ Andersherum fahren</button>
 <h2>Verfijnen <span ‖ <h2>Refine <span ‖ <h2>Verfeinern <span
-<p>Je sticker is al klaar met standaardwaarden. Wil je hem preciezer maken, open dan een onderdeel hieronder.</p> ‖ <p>Your sticker is already done with default values. Want to make it more precise? Open a section below.</p> ‖ <p>Dein Aufkleber ist mit Standardwerten schon fertig. Willst du ihn genauer machen, öffne einen Bereich unten.</p>
+<p>Je sticker is al klaar met standaardwaarden. Wil je hem preciezer maken? Begin bij je rijprofiel: dat maakt het meeste verschil voor je tijden.</p> ‖ <p>Your sticker is already done with default values. Want to make it more precise? Start with your rider profile: that makes the biggest difference to your times.</p> ‖ <p>Dein Aufkleber ist mit Standardwerten schon fertig. Willst du ihn genauer machen? Fang mit deinem Fahrprofil an: Das macht den größten Unterschied für deine Zeiten.</p>
 data-fold="surf">Ondergrond <span ‖ data-fold="surf">Surface <span ‖ data-fold="surf">Untergrund <span
 id="ps-osm-txt" aria-live="polite">De ondergrond wordt automatisch opgehaald bij OpenStreetMap.</div> ‖ id="ps-osm-txt" aria-live="polite">The surface is fetched automatically from OpenStreetMap.</div> ‖ id="ps-osm-txt" aria-live="polite">Der Untergrund wird automatisch von OpenStreetMap abgerufen.</div>
 id="ps-osm-btn">Ondergrond ophalen</button> ‖ id="ps-osm-btn">Fetch surface</button> ‖ id="ps-osm-btn">Untergrund abrufen</button>
@@ -55,7 +55,7 @@ data-fold="posts">Posten <span ‖ data-fold="posts">Stops <span ‖ data-fold="
 <label>Soort<select ‖ <label>Type<select ‖ <label>Art<select
 >＋ Post toevoegen</button> ‖ >＋ Add stop</button> ‖ >＋ Stopp hinzufügen</button>
 data-fold="rider">Rijprofiel <span ‖ data-fold="rider">Rider profile <span ‖ data-fold="rider">Fahrerprofil <span
-<p class="ps-purpose">Jij, je fiets en je tempo. Dit bepaalt je aankomsttijden, de wattages op de sticker en je kledingadvies.</p> ‖ <p class="ps-purpose">You, your bike and your pace. This sets your arrival times, the watts on the sticker and your clothing advice.</p> ‖ <p class="ps-purpose">Du, dein Rad und dein Tempo. Das bestimmt deine Ankunftszeiten, die Watt auf dem Aufkleber und deine Kleidungsempfehlung.</p>
+<p class="ps-purpose">Jij, je fiets en je tempo. Dit bepaalt je aankomsttijden en de wattages op de sticker.</p> ‖ <p class="ps-purpose">You, your bike and your pace. This sets your arrival times and the watts on the sticker.</p> ‖ <p class="ps-purpose">Du, dein Rad und dein Tempo. Das bestimmt deine Ankunftszeiten und die Watt auf dem Aufkleber.</p>
 <span>Snel instellen</span> ‖ <span>Quick setup</span> ‖ <span>Schnell einstellen</span>
 data-preset="dag">Dagrit</button> ‖ data-preset="dag">Day ride</button> ‖ data-preset="dag">Tagestour</button>
 data-preset="race">Gravelwedstrijd</button> ‖ data-preset="race">Gravel race</button> ‖ data-preset="race">Gravelrennen</button>
@@ -74,6 +74,7 @@ id="ps-wkg-wrap" hidden>Watt per kilo lichaamsgewicht <input ‖ id="ps-wkg-wrap
 <span>Wat wil je?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Doel"> ‖ <span>What do you want?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Goal"> ‖ <span>Was willst du?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Ziel">
 <span id="lbl-if">Intensiteit (% van je FTP en IF)</span> ‖ <span id="lbl-if">Intensity (% of your FTP and IF)</span> ‖ <span id="lbl-if">Intensität (% deiner FTP und IF)</span>
 > Automatisch</label> ‖ > Automatic</label> ‖ > Automatisch</label>
+<h3>Wanneer rijd je?</h3> ‖ <h3>When are you riding?</h3> ‖ <h3>Wann fährst du?</h3>
 <span>Startdatum</span> ‖ <span>Start date</span> ‖ <span>Startdatum</span>
 <span>Starttijd</span> ‖ <span>Start time</span> ‖ <span>Startzeit</span>
 <span id="lbl-temp">Verwachte temperatuur</span> ‖ <span id="lbl-temp">Expected temperature</span> ‖ <span id="lbl-temp">Erwartete Temperatur</span>
@@ -477,7 +478,6 @@ else if (ps.length <= 3) t = ps.length + (ps.length === 1 ? ' post: ' : ' posten
 else t = ps.length + ' posten, van km ' + fmtKm(ps[0].km) + ' tot km ' + fmtKm(ps[ps.length - 1].km) + '.'; ‖ else t = ps.length + ' stops, from km ' + fmtKm(ps[0].km) + ' to km ' + fmtKm(ps[ps.length - 1].km) + '.'; ‖ else t = ps.length + ' Stopps, von km ' + fmtKm(ps[0].km) + ' bis km ' + fmtKm(ps[ps.length - 1].km) + '.';
 .replace(/ \(.*\)/, '').toLowerCase() + ' niveau')); ‖ .replace(/ \(.*\)/, '').toLowerCase() + ' level')); ‖ .replace(/ \(.*\)/, '') + ' (Niveau)'));
 ' (zelf gekozen)' ‖ ' (chosen by you)' ‖ ' (selbst gewählt)'
-parts.push('start ' + (R.time || '08:00')); ‖ parts.push('start ' + (R.time || '08:00')); ‖ parts.push('Start ' + (R.time || '08:00'));
 if (N.useBar) eat.push(N.barMode === 'half' ? 'halve repen' : 'hele repen'); ‖ if (N.useBar) eat.push(N.barMode === 'half' ? 'half bars' : 'whole bars'); ‖ if (N.useBar) eat.push(N.barMode === 'half' ? 'halbe Riegel' : 'ganze Riegel');
 if (N.useReal) eat.push('echt eten'); ‖ if (N.useReal) eat.push('real food'); ‖ if (N.useReal) eat.push('echtes Essen');
 $('#ps-nut-sum').textContent = nutr.rate + ' g koolhydraten per uur' + (N.mode === 'auto' ? ' (automatisch)' : ‖ $('#ps-nut-sum').textContent = nutr.rate + ' g carbohydrate per hour' + (N.mode === 'auto' ? ' (automatic)' : ‖ $('#ps-nut-sum').textContent = nutr.rate + ' g Kohlenhydrate pro Stunde' + (N.mode === 'auto' ? ' (automatisch)' :

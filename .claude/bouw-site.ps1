@@ -212,7 +212,7 @@ $tools = @(
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<wbr><span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
     seoTitel = 'Ultra gravel events 2027–2028 kiezen | Gravel Gorilla'
-    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 80 ultra gravel- en bikepacking-events in 2027 en 2028. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
+    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 120 ultra gravel- en bikepacking-events van eind 2026 tot en met 2028. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
     naamKort = 'Ultra-eventkiezer'; kort = 'Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist.'
     filter = 'plannen'; plaatje = 'vlag'
     soort = 'kiezer'; scope = 'ue-scope'; uitlegKop = 'Over deze kiezer' }

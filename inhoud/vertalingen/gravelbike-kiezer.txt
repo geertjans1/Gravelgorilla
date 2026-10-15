@@ -518,6 +518,8 @@ wielmaat:{all:"Alle wielmaten","700c":"700c (28 inch)","32":"32 inch"}, ‖ wiel
 <span class="gk-badge w32">32 inch wielen</span> ‖ <span class="gk-badge w32">32-inch wheels</span> ‖ <span class="gk-badge w32">32-Zoll-Laufräder</span>
 [html]
 <span class="gk-label">Wielmaat <span ‖ <span class="gk-label">Wheel size <span ‖ <span class="gk-label">Laufradgröße <span
+<span class="gk-chip" data-val="700c">700c (28 inch)</span> ‖ <span class="gk-chip" data-val="700c">700c (28 inch)</span> ‖ <span class="gk-chip" data-val="700c">700c (28 Zoll)</span>
+<span class="gk-chip" data-val="32">32 inch</span> ‖ <span class="gk-chip" data-val="32">32 inch</span> ‖ <span class="gk-chip" data-val="32">32 Zoll</span>
 <span class="gk-pop-text">De wielmaat waarmee de fiets geleverd wordt. 700c (28 inch) is de standaard. 32 inch is nieuw: grotere wielen rollen makkelijker over stenen en kuilen en passen goed bij lange rijders, maar er zijn nog weinig fietsen en banden voor.</span> ‖ <span class="gk-pop-text">The wheel size the bike comes with. 700c (28 inch) is the standard. 32 inch is new: bigger wheels roll more easily over rocks and holes and suit tall riders, but there are still few bikes and tyres for it.</span> ‖ <span class="gk-pop-text">Die Laufradgröße, mit der das Rad geliefert wird. 700c (28 Zoll) ist Standard. 32 Zoll ist neu: Größere Laufräder rollen leichter über Steine und Schlaglöcher und passen gut zu großen Fahrern, aber es gibt noch wenige Räder und Reifen dafür.</span>
 aria-label="Kiezer-modus" ‖ aria-label="Mode" ‖ aria-label="Modus"
 </span> Vind mijn gravelbike</button> ‖ </span> Find my gravel bike</button> ‖ </span> Mein Gravelbike finden</button>

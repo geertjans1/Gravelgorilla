@@ -34,4 +34,6 @@
 .gr-route__onder a:hover { text-decoration: underline; }
 .gr-badge { font-size: .75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--achtergrond-2); }
 .gr-badge--bord { background: var(--groen); color: #fff; }
+.gr-badge--lid { background: #FFF0E6; color: #B5500F; border: 1px solid #F2B48F; cursor: help; }
+:root[data-thema="donker"] .gr-badge--lid { background: #2C211B; color: #FF8A50; border-color: #7A3E22; }
 @media (max-width: 480px) { .gr-kaart { grid-auto-rows: 52px; } .gr-tegel b { font-size: .64rem; } }

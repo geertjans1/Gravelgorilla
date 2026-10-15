@@ -53,7 +53,7 @@ small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top
 .ps-main{display:flex;flex-direction:column;gap:16px}
 .ps-col{display:contents}
 .ps-col > .ps-card + .ps-card{margin-top:0}
-#ps-steps{order:0} #ps-route-card{order:1} #ps-sticker-card{order:2} #ps-refine-head{order:3} #ps-surf-card{order:4} #ps-posts-card{order:5} #ps-rider-card{order:6} #ps-nut-card{order:7} #ps-results{order:8}
+#ps-steps{order:0} #ps-route-card{order:1} #ps-sticker-card{order:2} #ps-refine-head{order:3} #ps-rider-card{order:4} #ps-surf-card{order:5} #ps-posts-card{order:6} #ps-nut-card{order:7} #ps-results{order:8}
 @media (min-width:1100px){
   .ps-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:18px;align-items:start}
   .ps-col{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -302,6 +302,8 @@ table.ps-table{border-collapse:collapse;width:100%;font-size:14px}
 .ps-optl{font-style:normal;font-weight:500;color:var(--muted);font-size:13px}
 .ps-purpose{margin:0 0 12px;color:var(--ink2);font-size:15px}
 .ps-fold .ps-card-head{margin-bottom:8px}
+.ps-when{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.ps-when h3{font-family:var(--cond);font-weight:700;font-size:19px;line-height:1.15;margin:0 0 10px}
 .ps-fold-btn{display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:0;border:0;background:none;cursor:pointer;font:inherit;color:inherit;text-align:left}
 .ps-fold-btn::after{content:"";margin-left:auto;flex:none;width:10px;height:10px;border-right:2.5px solid var(--ink2);border-bottom:2.5px solid var(--ink2);transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
 .ps-fold-btn[aria-expanded=true]::after{transform:rotate(-135deg) translate(-2px,-2px)}
@@ -403,12 +405,70 @@ input[aria-invalid=true],select[aria-invalid=true]{border:2px solid var(--crit) 
         <div class="ps-stats" id="ps-stats"></div>
         <p class="ps-note" id="ps-route-note"></p>
         <div class="ps-row"><button type="button" class="ps-btn ps-btn-ghost ps-btn-sm" id="ps-reverse">⇄ Andersherum fahren</button></div>
+        <div class="ps-when">
+          <h3>Wann fährst du?</h3>
+          <div class="ps-grid2">
+            <label class="ps-field"><span>Startdatum</span><input id="ps-date" type="date"></label>
+            <label class="ps-field"><span>Startzeit</span><input id="ps-time" type="time"></label>
+          </div>
+          <div class="ps-field">
+            <span id="lbl-temp">Erwartete Temperatur</span>
+            <div class="ps-rate"><input type="range" id="ps-tempc" min="-5" max="40" step="1" aria-labelledby="lbl-temp"><output id="ps-tempc-out" for="ps-tempc"></output></div>
+          </div>
+          <div class="ps-field"><span>Regen</span><div class="ps-chips" id="ps-rain" role="radiogroup" aria-label="Regen"></div><small>Wird für deine Trink- und Kleidungsempfehlung verwendet.</small></div>
+        </div>
       </section>
 
       <div class="ps-refine-head" id="ps-refine-head" tabindex="-1">
         <h2>Verfeinern <span class="ps-opt">optional</span></h2>
-        <p>Dein Aufkleber ist mit Standardwerten schon fertig. Willst du ihn genauer machen, öffne einen Bereich unten.</p>
+        <p>Dein Aufkleber ist mit Standardwerten schon fertig. Willst du ihn genauer machen? Fang mit deinem Fahrprofil an: Das macht den größten Unterschied für deine Zeiten.</p>
       </div>
+
+      <section class="ps-card ps-fold" id="ps-rider-card" aria-labelledby="h-rider">
+        <div class="ps-card-head"><h2 id="h-rider"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-rider-body" data-fold="rider">Fahrerprofil <span class="ps-opt">optional</span></button></h2></div>
+        <p class="ps-card-sum" id="ps-rider-sum"></p>
+        <div class="ps-card-body" id="ps-rider-body" hidden>
+          <p class="ps-purpose">Du, dein Rad und dein Tempo. Das bestimmt deine Ankunftszeiten und die Watt auf dem Aufkleber.</p>
+          <div class="ps-field">
+            <span>Schnell einstellen</span>
+            <div class="ps-chips ps-presets" id="ps-presets">
+              <button type="button" class="ps-chip" data-preset="dag">Tagestour</button>
+              <button type="button" class="ps-chip" data-preset="race">Gravelrennen</button>
+              <button type="button" class="ps-chip" data-preset="ultra">Ultra oder Bikepacking</button>
+            </div>
+            <div class="ps-preset-msg" id="ps-preset-msg" role="status" aria-live="polite"></div>
+          </div>
+          <div class="ps-field"><span>Was willst du?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Ziel"></div></div>
+          <div class="ps-grid2">
+            <label class="ps-field"><span>FTP in Watt <em class="ps-optl">optional</em></span><input id="ps-ftp" type="number" inputmode="numeric" min="50" max="700" placeholder="z. B. 250" aria-describedby="err-ftp"><small class="ps-err" id="err-ftp" hidden></small><small>FTP ist die Leistung, die du etwa eine Stunde halten kannst. Weißt du sie nicht? Lass das Feld leer und wähle dein Niveau.</small></label>
+            <div class="ps-field" id="ps-level-wrap">
+              <label for="ps-level"><span class="ps-lbl">Dein Niveau</span></label><select class="ps-inp" id="ps-level"></select>
+              <label class="ps-inline" id="ps-wkg-wrap" hidden>Watt pro Kilo Körpergewicht <input class="ps-inp-s" id="ps-wkg" type="text" autocomplete="off" inputmode="decimal" min="1" max="7" step="0.1" aria-describedby="err-wkg"></label>
+              <small class="ps-err" id="err-wkg" hidden></small>
+              <small id="ps-level-hint"></small>
+            </div>
+            <label class="ps-field"><span>Dein Gewicht (kg)</span><input id="ps-weight" type="text" autocomplete="off" inputmode="decimal" min="30" max="200" step="0.5" aria-describedby="err-weight"><small class="ps-err" id="err-weight" hidden></small></label>
+            <label class="ps-field"><span>Rad mit vollen Flaschen (kg)</span><input id="ps-bike" type="text" autocomplete="off" inputmode="decimal" min="5" max="40" step="0.5" aria-describedby="err-bike"><small class="ps-err" id="err-bike" hidden></small><small>Ein Gravelbike mit 2 vollen Flaschen wiegt ± 11 bis 12 kg.</small></label>
+          </div>
+          <div class="ps-field"><span>Gepäck</span><div class="ps-chips" id="ps-bag" role="radiogroup" aria-label="Gepäck"></div><small>Bikepacking: Taschen mit 10 bis 15 kg. Das zählt bei deinem Gewicht und deinem Luftwiderstand mit.</small></div>
+          <label class="ps-field"><span>Sitzposition auf dem Rad</span><select id="ps-cda"></select><small>Je tiefer du sitzt, desto weniger Luftwiderstand und desto schneller bist du bei gleicher Leistung.</small></label>
+          <div class="ps-field ps-ifbox">
+            <span id="lbl-if">Intensität (% deiner FTP und IF)</span>
+            <div class="ps-rate">
+              <label class="ps-check" style="margin:0"><input type="checkbox" id="ps-if-auto"> Automatisch</label>
+              <input type="range" id="ps-if" min="0.5" max="1.05" step="0.01" aria-labelledby="lbl-if">
+              <output id="ps-if-out" for="ps-if"></output>
+            </div>
+            <div class="ps-ifinfo" id="ps-if-info"></div>
+          </div>
+          <details class="ps-details">
+            <summary>Weitere Einstellungen</summary>
+            <label class="ps-field"><span>Deine eigene Durchschnittsgeschwindigkeit (km/h, nur Fahrzeit) <em class="ps-optl">optional</em></span><input id="ps-own" type="text" autocomplete="off" inputmode="decimal" min="8" max="45" step="0.1" placeholder="leer = berechnen" aria-describedby="err-own"><small class="ps-err" id="err-own" hidden></small><small>Weißt du, was du auf ähnlichem Gelände fährst? Dann rechnen alle Zeiten damit statt mit dem Modell.</small></label>
+            <label class="ps-field"><span>Zusätzliche Standzeit (Minuten pro Stunde)</span><input id="ps-extra" type="number" inputmode="numeric" min="0" max="30" step="1" aria-describedby="err-extra"><small class="ps-err" id="err-extra" hidden></small><small>Pinkelpausen, Navigieren, Fotos, Gatter und Ampeln. Zusätzlich zur Stoppzeit an deinen Stopps.</small></label>
+            <label class="ps-field"><span>Anstiege erkennen ab</span><select id="ps-climbmin"></select></label>
+          </details>
+        </div>
+      </section>
 
       <section class="ps-card ps-fold" id="ps-surf-card" aria-labelledby="h-surf">
         <div class="ps-card-head"><h2 id="h-surf"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-surf-body" data-fold="surf">Untergrund <span class="ps-opt">optional</span></button></h2></div>
@@ -463,61 +523,6 @@ input[aria-invalid=true],select[aria-invalid=true]{border:2px solid var(--crit) 
           </form>
           <small class="ps-err" id="err-ap" hidden></small>
           <p class="ps-sr" id="ps-posts-status" role="status" aria-live="polite"></p>
-        </div>
-      </section>
-
-      <section class="ps-card ps-fold" id="ps-rider-card" aria-labelledby="h-rider">
-        <div class="ps-card-head"><h2 id="h-rider"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-rider-body" data-fold="rider">Fahrerprofil <span class="ps-opt">optional</span></button></h2></div>
-        <p class="ps-card-sum" id="ps-rider-sum"></p>
-        <div class="ps-card-body" id="ps-rider-body" hidden>
-          <p class="ps-purpose">Du, dein Rad und dein Tempo. Das bestimmt deine Ankunftszeiten, die Watt auf dem Aufkleber und deine Kleidungsempfehlung.</p>
-          <div class="ps-field">
-            <span>Schnell einstellen</span>
-            <div class="ps-chips ps-presets" id="ps-presets">
-              <button type="button" class="ps-chip" data-preset="dag">Tagestour</button>
-              <button type="button" class="ps-chip" data-preset="race">Gravelrennen</button>
-              <button type="button" class="ps-chip" data-preset="ultra">Ultra oder Bikepacking</button>
-            </div>
-            <div class="ps-preset-msg" id="ps-preset-msg" role="status" aria-live="polite"></div>
-          </div>
-          <div class="ps-grid2">
-            <label class="ps-field"><span>FTP in Watt <em class="ps-optl">optional</em></span><input id="ps-ftp" type="number" inputmode="numeric" min="50" max="700" placeholder="z. B. 250" aria-describedby="err-ftp"><small class="ps-err" id="err-ftp" hidden></small><small>FTP ist die Leistung, die du etwa eine Stunde halten kannst. Weißt du sie nicht? Lass das Feld leer und wähle dein Niveau.</small></label>
-            <div class="ps-field" id="ps-level-wrap">
-              <label for="ps-level"><span class="ps-lbl">Dein Niveau</span></label><select class="ps-inp" id="ps-level"></select>
-              <label class="ps-inline" id="ps-wkg-wrap" hidden>Watt pro Kilo Körpergewicht <input class="ps-inp-s" id="ps-wkg" type="text" autocomplete="off" inputmode="decimal" min="1" max="7" step="0.1" aria-describedby="err-wkg"></label>
-              <small class="ps-err" id="err-wkg" hidden></small>
-              <small id="ps-level-hint"></small>
-            </div>
-            <label class="ps-field"><span>Dein Gewicht (kg)</span><input id="ps-weight" type="text" autocomplete="off" inputmode="decimal" min="30" max="200" step="0.5" aria-describedby="err-weight"><small class="ps-err" id="err-weight" hidden></small></label>
-            <label class="ps-field"><span>Rad mit vollen Flaschen (kg)</span><input id="ps-bike" type="text" autocomplete="off" inputmode="decimal" min="5" max="40" step="0.5" aria-describedby="err-bike"><small class="ps-err" id="err-bike" hidden></small><small>Ein Gravelbike mit 2 vollen Flaschen wiegt ± 11 bis 12 kg.</small></label>
-          </div>
-          <div class="ps-field"><span>Gepäck</span><div class="ps-chips" id="ps-bag" role="radiogroup" aria-label="Gepäck"></div><small>Bikepacking: Taschen mit 10 bis 15 kg. Das zählt bei deinem Gewicht und deinem Luftwiderstand mit.</small></div>
-          <label class="ps-field"><span>Sitzposition auf dem Rad</span><select id="ps-cda"></select><small>Je tiefer du sitzt, desto weniger Luftwiderstand und desto schneller bist du bei gleicher Leistung.</small></label>
-          <div class="ps-field"><span>Was willst du?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Ziel"></div></div>
-          <div class="ps-field ps-ifbox">
-            <span id="lbl-if">Intensität (% deiner FTP und IF)</span>
-            <div class="ps-rate">
-              <label class="ps-check" style="margin:0"><input type="checkbox" id="ps-if-auto"> Automatisch</label>
-              <input type="range" id="ps-if" min="0.5" max="1.05" step="0.01" aria-labelledby="lbl-if">
-              <output id="ps-if-out" for="ps-if"></output>
-            </div>
-            <div class="ps-ifinfo" id="ps-if-info"></div>
-          </div>
-          <div class="ps-grid2">
-            <label class="ps-field"><span>Startdatum</span><input id="ps-date" type="date"></label>
-            <label class="ps-field"><span>Startzeit</span><input id="ps-time" type="time"></label>
-          </div>
-          <div class="ps-field">
-            <span id="lbl-temp">Erwartete Temperatur</span>
-            <div class="ps-rate"><input type="range" id="ps-tempc" min="-5" max="40" step="1" aria-labelledby="lbl-temp"><output id="ps-tempc-out" for="ps-tempc"></output></div>
-          </div>
-          <div class="ps-field"><span>Regen</span><div class="ps-chips" id="ps-rain" role="radiogroup" aria-label="Regen"></div><small>Wird für deine Trink- und Kleidungsempfehlung verwendet.</small></div>
-          <details class="ps-details">
-            <summary>Weitere Einstellungen</summary>
-            <label class="ps-field"><span>Deine eigene Durchschnittsgeschwindigkeit (km/h, nur Fahrzeit) <em class="ps-optl">optional</em></span><input id="ps-own" type="text" autocomplete="off" inputmode="decimal" min="8" max="45" step="0.1" placeholder="leer = berechnen" aria-describedby="err-own"><small class="ps-err" id="err-own" hidden></small><small>Weißt du, was du auf ähnlichem Gelände fährst? Dann rechnen alle Zeiten damit statt mit dem Modell.</small></label>
-            <label class="ps-field"><span>Zusätzliche Standzeit (Minuten pro Stunde)</span><input id="ps-extra" type="number" inputmode="numeric" min="0" max="30" step="1" aria-describedby="err-extra"><small class="ps-err" id="err-extra" hidden></small><small>Pinkelpausen, Navigieren, Fotos, Gatter und Ampeln. Zusätzlich zur Stoppzeit an deinen Stopps.</small></label>
-            <label class="ps-field"><span>Anstiege erkennen ab</span><select id="ps-climbmin"></select></label>
-          </details>
         </div>
       </section>
 
@@ -4545,8 +4550,6 @@ function renderSummaries() {
   if (R.bag !== 'geen') parts.push(BAGS[R.bag].label.toLowerCase());
   parts.push(GOALS[R.goal].label.toLowerCase());
   parts.push('IF ' + fmt(plan.IF, 2) + (plan.ifManual ? ' (selbst gewählt)' : ''));
-  parts.push('Start ' + (R.time || '08:00'));
-  parts.push(fmt(R.tempC) + ' °C, ' + RAIN[R.rain].label.toLowerCase());
   $('#ps-rider-sum').textContent = parts.join(' · ');
   // voeding
   const eat = [];

@@ -53,7 +53,7 @@ small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top
 .ps-main{display:flex;flex-direction:column;gap:16px}
 .ps-col{display:contents}
 .ps-col > .ps-card + .ps-card{margin-top:0}
-#ps-steps{order:0} #ps-route-card{order:1} #ps-sticker-card{order:2} #ps-refine-head{order:3} #ps-surf-card{order:4} #ps-posts-card{order:5} #ps-rider-card{order:6} #ps-nut-card{order:7} #ps-results{order:8}
+#ps-steps{order:0} #ps-route-card{order:1} #ps-sticker-card{order:2} #ps-refine-head{order:3} #ps-rider-card{order:4} #ps-surf-card{order:5} #ps-posts-card{order:6} #ps-nut-card{order:7} #ps-results{order:8}
 @media (min-width:1100px){
   .ps-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:18px;align-items:start}
   .ps-col{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -302,6 +302,8 @@ table.ps-table{border-collapse:collapse;width:100%;font-size:14px}
 .ps-optl{font-style:normal;font-weight:500;color:var(--muted);font-size:13px}
 .ps-purpose{margin:0 0 12px;color:var(--ink2);font-size:15px}
 .ps-fold .ps-card-head{margin-bottom:8px}
+.ps-when{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.ps-when h3{font-family:var(--cond);font-weight:700;font-size:19px;line-height:1.15;margin:0 0 10px}
 .ps-fold-btn{display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:0;border:0;background:none;cursor:pointer;font:inherit;color:inherit;text-align:left}
 .ps-fold-btn::after{content:"";margin-left:auto;flex:none;width:10px;height:10px;border-right:2.5px solid var(--ink2);border-bottom:2.5px solid var(--ink2);transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
 .ps-fold-btn[aria-expanded=true]::after{transform:rotate(-135deg) translate(-2px,-2px)}
@@ -402,12 +404,70 @@ input[aria-invalid=true],select[aria-invalid=true]{border:2px solid var(--crit) 
         <div class="ps-stats" id="ps-stats"></div>
         <p class="ps-note" id="ps-route-note"></p>
         <div class="ps-row"><button type="button" class="ps-btn ps-btn-ghost ps-btn-sm" id="ps-reverse">⇄ Andersom rijden</button></div>
+        <div class="ps-when">
+          <h3>Wanneer rijd je?</h3>
+          <div class="ps-grid2">
+            <label class="ps-field"><span>Startdatum</span><input id="ps-date" type="date"></label>
+            <label class="ps-field"><span>Starttijd</span><input id="ps-time" type="time"></label>
+          </div>
+          <div class="ps-field">
+            <span id="lbl-temp">Verwachte temperatuur</span>
+            <div class="ps-rate"><input type="range" id="ps-tempc" min="-5" max="40" step="1" aria-labelledby="lbl-temp"><output id="ps-tempc-out" for="ps-tempc"></output></div>
+          </div>
+          <div class="ps-field"><span>Regen</span><div class="ps-chips" id="ps-rain" role="radiogroup" aria-label="Regen"></div><small>Gebruikt voor je drinkadvies en je kledingadvies.</small></div>
+        </div>
       </section>
 
       <div class="ps-refine-head" id="ps-refine-head" tabindex="-1">
         <h2>Verfijnen <span class="ps-opt">optioneel</span></h2>
-        <p>Je sticker is al klaar met standaardwaarden. Wil je hem preciezer maken, open dan een onderdeel hieronder.</p>
+        <p>Je sticker is al klaar met standaardwaarden. Wil je hem preciezer maken? Begin bij je rijprofiel: dat maakt het meeste verschil voor je tijden.</p>
       </div>
+
+      <section class="ps-card ps-fold" id="ps-rider-card" aria-labelledby="h-rider">
+        <div class="ps-card-head"><h2 id="h-rider"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-rider-body" data-fold="rider">Rijprofiel <span class="ps-opt">optioneel</span></button></h2></div>
+        <p class="ps-card-sum" id="ps-rider-sum"></p>
+        <div class="ps-card-body" id="ps-rider-body" hidden>
+          <p class="ps-purpose">Jij, je fiets en je tempo. Dit bepaalt je aankomsttijden en de wattages op de sticker.</p>
+          <div class="ps-field">
+            <span>Snel instellen</span>
+            <div class="ps-chips ps-presets" id="ps-presets">
+              <button type="button" class="ps-chip" data-preset="dag">Dagrit</button>
+              <button type="button" class="ps-chip" data-preset="race">Gravelwedstrijd</button>
+              <button type="button" class="ps-chip" data-preset="ultra">Ultra of bikepacking</button>
+            </div>
+            <div class="ps-preset-msg" id="ps-preset-msg" role="status" aria-live="polite"></div>
+          </div>
+          <div class="ps-field"><span>Wat wil je?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Doel"></div></div>
+          <div class="ps-grid2">
+            <label class="ps-field"><span>FTP in watt <em class="ps-optl">optioneel</em></span><input id="ps-ftp" type="number" inputmode="numeric" min="50" max="700" placeholder="bijv. 250" aria-describedby="err-ftp"><small class="ps-err" id="err-ftp" hidden></small><small>FTP is het vermogen dat je ongeveer een uur volhoudt. Weet je het niet? Laat leeg en kies je niveau.</small></label>
+            <div class="ps-field" id="ps-level-wrap">
+              <label for="ps-level"><span class="ps-lbl">Je niveau</span></label><select class="ps-inp" id="ps-level"></select>
+              <label class="ps-inline" id="ps-wkg-wrap" hidden>Watt per kilo lichaamsgewicht <input class="ps-inp-s" id="ps-wkg" type="text" autocomplete="off" inputmode="decimal" min="1" max="7" step="0.1" aria-describedby="err-wkg"></label>
+              <small class="ps-err" id="err-wkg" hidden></small>
+              <small id="ps-level-hint"></small>
+            </div>
+            <label class="ps-field"><span>Je gewicht (kg)</span><input id="ps-weight" type="text" autocomplete="off" inputmode="decimal" min="30" max="200" step="0.5" aria-describedby="err-weight"><small class="ps-err" id="err-weight" hidden></small></label>
+            <label class="ps-field"><span>Fiets met volle bidons (kg)</span><input id="ps-bike" type="text" autocomplete="off" inputmode="decimal" min="5" max="40" step="0.5" aria-describedby="err-bike"><small class="ps-err" id="err-bike" hidden></small><small>Een gravelbike met 2 volle bidons weegt ± 11 tot 12 kg.</small></label>
+          </div>
+          <div class="ps-field"><span>Bagage</span><div class="ps-chips" id="ps-bag" role="radiogroup" aria-label="Bagage"></div><small>Bikepacking: tassen met 10 tot 15 kg. Dat telt mee in je gewicht en je luchtweerstand.</small></div>
+          <label class="ps-field"><span>Houding op de fiets</span><select id="ps-cda"></select><small>Hoe lager je zit, hoe minder luchtweerstand en hoe sneller je bent bij hetzelfde vermogen.</small></label>
+          <div class="ps-field ps-ifbox">
+            <span id="lbl-if">Intensiteit (% van je FTP en IF)</span>
+            <div class="ps-rate">
+              <label class="ps-check" style="margin:0"><input type="checkbox" id="ps-if-auto"> Automatisch</label>
+              <input type="range" id="ps-if" min="0.5" max="1.05" step="0.01" aria-labelledby="lbl-if">
+              <output id="ps-if-out" for="ps-if"></output>
+            </div>
+            <div class="ps-ifinfo" id="ps-if-info"></div>
+          </div>
+          <details class="ps-details">
+            <summary>Meer instellingen</summary>
+            <label class="ps-field"><span>Je eigen gemiddelde snelheid (km/u, alleen rijtijd) <em class="ps-optl">optioneel</em></span><input id="ps-own" type="text" autocomplete="off" inputmode="decimal" min="8" max="45" step="0.1" placeholder="leeg = berekenen" aria-describedby="err-own"><small class="ps-err" id="err-own" hidden></small><small>Weet je wat je haalt op vergelijkbaar terrein? Dan rekenen alle tijden daarmee in plaats van met het model.</small></label>
+            <label class="ps-field"><span>Extra stilstand (minuten per uur)</span><input id="ps-extra" type="number" inputmode="numeric" min="0" max="30" step="1" aria-describedby="err-extra"><small class="ps-err" id="err-extra" hidden></small><small>Plassen, navigeren, foto's, hekjes en stoplichten. Bovenop de stoptijd bij je posten.</small></label>
+            <label class="ps-field"><span>Klimmen herkennen vanaf</span><select id="ps-climbmin"></select></label>
+          </details>
+        </div>
+      </section>
 
       <section class="ps-card ps-fold" id="ps-surf-card" aria-labelledby="h-surf">
         <div class="ps-card-head"><h2 id="h-surf"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-surf-body" data-fold="surf">Ondergrond <span class="ps-opt">optioneel</span></button></h2></div>
@@ -462,61 +522,6 @@ input[aria-invalid=true],select[aria-invalid=true]{border:2px solid var(--crit) 
           </form>
           <small class="ps-err" id="err-ap" hidden></small>
           <p class="ps-sr" id="ps-posts-status" role="status" aria-live="polite"></p>
-        </div>
-      </section>
-
-      <section class="ps-card ps-fold" id="ps-rider-card" aria-labelledby="h-rider">
-        <div class="ps-card-head"><h2 id="h-rider"><button type="button" class="ps-fold-btn" aria-expanded="false" aria-controls="ps-rider-body" data-fold="rider">Rijprofiel <span class="ps-opt">optioneel</span></button></h2></div>
-        <p class="ps-card-sum" id="ps-rider-sum"></p>
-        <div class="ps-card-body" id="ps-rider-body" hidden>
-          <p class="ps-purpose">Jij, je fiets en je tempo. Dit bepaalt je aankomsttijden, de wattages op de sticker en je kledingadvies.</p>
-          <div class="ps-field">
-            <span>Snel instellen</span>
-            <div class="ps-chips ps-presets" id="ps-presets">
-              <button type="button" class="ps-chip" data-preset="dag">Dagrit</button>
-              <button type="button" class="ps-chip" data-preset="race">Gravelwedstrijd</button>
-              <button type="button" class="ps-chip" data-preset="ultra">Ultra of bikepacking</button>
-            </div>
-            <div class="ps-preset-msg" id="ps-preset-msg" role="status" aria-live="polite"></div>
-          </div>
-          <div class="ps-grid2">
-            <label class="ps-field"><span>FTP in watt <em class="ps-optl">optioneel</em></span><input id="ps-ftp" type="number" inputmode="numeric" min="50" max="700" placeholder="bijv. 250" aria-describedby="err-ftp"><small class="ps-err" id="err-ftp" hidden></small><small>FTP is het vermogen dat je ongeveer een uur volhoudt. Weet je het niet? Laat leeg en kies je niveau.</small></label>
-            <div class="ps-field" id="ps-level-wrap">
-              <label for="ps-level"><span class="ps-lbl">Je niveau</span></label><select class="ps-inp" id="ps-level"></select>
-              <label class="ps-inline" id="ps-wkg-wrap" hidden>Watt per kilo lichaamsgewicht <input class="ps-inp-s" id="ps-wkg" type="text" autocomplete="off" inputmode="decimal" min="1" max="7" step="0.1" aria-describedby="err-wkg"></label>
-              <small class="ps-err" id="err-wkg" hidden></small>
-              <small id="ps-level-hint"></small>
-            </div>
-            <label class="ps-field"><span>Je gewicht (kg)</span><input id="ps-weight" type="text" autocomplete="off" inputmode="decimal" min="30" max="200" step="0.5" aria-describedby="err-weight"><small class="ps-err" id="err-weight" hidden></small></label>
-            <label class="ps-field"><span>Fiets met volle bidons (kg)</span><input id="ps-bike" type="text" autocomplete="off" inputmode="decimal" min="5" max="40" step="0.5" aria-describedby="err-bike"><small class="ps-err" id="err-bike" hidden></small><small>Een gravelbike met 2 volle bidons weegt ± 11 tot 12 kg.</small></label>
-          </div>
-          <div class="ps-field"><span>Bagage</span><div class="ps-chips" id="ps-bag" role="radiogroup" aria-label="Bagage"></div><small>Bikepacking: tassen met 10 tot 15 kg. Dat telt mee in je gewicht en je luchtweerstand.</small></div>
-          <label class="ps-field"><span>Houding op de fiets</span><select id="ps-cda"></select><small>Hoe lager je zit, hoe minder luchtweerstand en hoe sneller je bent bij hetzelfde vermogen.</small></label>
-          <div class="ps-field"><span>Wat wil je?</span><div class="ps-chips" id="ps-goal" role="radiogroup" aria-label="Doel"></div></div>
-          <div class="ps-field ps-ifbox">
-            <span id="lbl-if">Intensiteit (% van je FTP en IF)</span>
-            <div class="ps-rate">
-              <label class="ps-check" style="margin:0"><input type="checkbox" id="ps-if-auto"> Automatisch</label>
-              <input type="range" id="ps-if" min="0.5" max="1.05" step="0.01" aria-labelledby="lbl-if">
-              <output id="ps-if-out" for="ps-if"></output>
-            </div>
-            <div class="ps-ifinfo" id="ps-if-info"></div>
-          </div>
-          <div class="ps-grid2">
-            <label class="ps-field"><span>Startdatum</span><input id="ps-date" type="date"></label>
-            <label class="ps-field"><span>Starttijd</span><input id="ps-time" type="time"></label>
-          </div>
-          <div class="ps-field">
-            <span id="lbl-temp">Verwachte temperatuur</span>
-            <div class="ps-rate"><input type="range" id="ps-tempc" min="-5" max="40" step="1" aria-labelledby="lbl-temp"><output id="ps-tempc-out" for="ps-tempc"></output></div>
-          </div>
-          <div class="ps-field"><span>Regen</span><div class="ps-chips" id="ps-rain" role="radiogroup" aria-label="Regen"></div><small>Gebruikt voor je drinkadvies en je kledingadvies.</small></div>
-          <details class="ps-details">
-            <summary>Meer instellingen</summary>
-            <label class="ps-field"><span>Je eigen gemiddelde snelheid (km/u, alleen rijtijd) <em class="ps-optl">optioneel</em></span><input id="ps-own" type="text" autocomplete="off" inputmode="decimal" min="8" max="45" step="0.1" placeholder="leeg = berekenen" aria-describedby="err-own"><small class="ps-err" id="err-own" hidden></small><small>Weet je wat je haalt op vergelijkbaar terrein? Dan rekenen alle tijden daarmee in plaats van met het model.</small></label>
-            <label class="ps-field"><span>Extra stilstand (minuten per uur)</span><input id="ps-extra" type="number" inputmode="numeric" min="0" max="30" step="1" aria-describedby="err-extra"><small class="ps-err" id="err-extra" hidden></small><small>Plassen, navigeren, foto's, hekjes en stoplichten. Bovenop de stoptijd bij je posten.</small></label>
-            <label class="ps-field"><span>Klimmen herkennen vanaf</span><select id="ps-climbmin"></select></label>
-          </details>
         </div>
       </section>
 
@@ -4544,8 +4549,6 @@ function renderSummaries() {
   if (R.bag !== 'geen') parts.push(BAGS[R.bag].label.toLowerCase());
   parts.push(GOALS[R.goal].label.toLowerCase());
   parts.push('IF ' + fmt(plan.IF, 2) + (plan.ifManual ? ' (zelf gekozen)' : ''));
-  parts.push('start ' + (R.time || '08:00'));
-  parts.push(fmt(R.tempC) + ' °C, ' + RAIN[R.rain].label.toLowerCase());
   $('#ps-rider-sum').textContent = parts.join(' · ');
   // voeding
   const eat = [];
