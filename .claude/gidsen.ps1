@@ -52,7 +52,7 @@ $gidsFietsen = @([IO.File]::ReadAllLines("$root\inhoud\bron\gravelbike-kiezer.ht
   }
   $f.niveau = GroepNiveau $f.groep
   # score: wat krijg je voor je geld? groep telt het zwaarst, dan frame, wielen en gewicht
-  $licht = if ($kg) { [Math]::Max(0, [Math]::Min(3, (11 - $kg) * 0.8)) } else { 1 }
+  $licht = if ($kg) { [Math]::Max(0.0, [Math]::Min(3.0, (11 - $kg) * 0.8)) } else { 1 }
   $f.score = $f.niveau * 2 + $(if ($f.frame -eq 'carbon') { 2 } elseif ($f.frame -eq 'titanium') { 1 } else { 0 }) + $(if ($f.wielen -eq 'carbon') { 1 } else { 0 }) + $licht
   $f
 } | Where-Object { -not $_.ebike -and $_.prijs -gt 0 })
