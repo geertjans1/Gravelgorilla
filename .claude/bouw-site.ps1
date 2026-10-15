@@ -122,7 +122,7 @@ function VoetHtml($L) {
 # $pad is het taalvrije pad (bijv. /over-ons/); het echte adres wordt /en/over-ons/ enz.
 function Kop([string]$titel, [string]$beschrijving, [string]$pad, [string[]]$css = @(), [string]$beeld = "", [string]$soort = "website", [string]$schema = "", $L = $nl) {
   $extraCss = ($css | ForEach-Object { "  <link rel=""stylesheet"" href=""/assets/css/$_"">" }) -join "`n"
-  $ogBeeld = if ($beeld) { "$site$beeld" } else { "$site/assets/img/deelplaatje.png" }
+  $ogBeeld = if ($beeld) { "$site$beeld" } elseif ($L.taal -ne "nl") { "$site/assets/img/deelplaatje-$($L.taal).png" } else { "$site/assets/img/deelplaatje.png" }   # deelplaatje per taal (ontwerp: .claude/deelplaatje.html)
   $adres = TaalPad $L $pad
 @"
 <!doctype html>
@@ -211,8 +211,8 @@ $tools = @(
     filter = 'kiezen'; plaatje = 'wiel'
     soort = 'kiezer'; uitlegKop = 'Over deze kiezer' }
   [ordered]@{ slug = 'ultra-eventkiezer'; km = '04'; kop = 'Ultra-event<wbr><span class="groen">kiezer</span>'; titel = 'Ultra-eventkiezer'
-    seoTitel = 'Ultra gravel events 2026–2027 kiezen | Gravel Gorilla'
-    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 80 ultra gravel- en bikepacking-events in 2026 en 2027. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
+    seoTitel = 'Ultra gravel events 2027–2028 kiezen | Gravel Gorilla'
+    sub = 'Welke ultra gravel-event past bij jouw ervaring, conditie en agenda?'; beschrijving = 'Kalender met 80 ultra gravel- en bikepacking-events in 2027 en 2028. Filter op maand, land, afstand, ondergrond en fiets en vind het event dat bij je past.'
     naamKort = 'Ultra-eventkiezer'; kort = 'Welk ultra gravel-event past bij jouw ervaring, conditie en agenda? Je krijgt een shortlist.'
     filter = 'plannen'; plaatje = 'vlag'
     soort = 'kiezer'; scope = 'ue-scope'; uitlegKop = 'Over deze kiezer' }
@@ -727,6 +727,7 @@ foreach ($L in $talen) {
     $voorpagina = $voorpagina.Replace('<link rel="canonical" href="https://gravelgorilla.nl/">', "<link rel=""canonical"" href=""$site$($L.pre)/"">")
     $voorpagina = $voorpagina.Replace('<meta property="og:url" content="https://gravelgorilla.nl/">', "<meta property=""og:url"" content=""$site$($L.pre)/"">")
     $voorpagina = $voorpagina.Replace('<meta property="og:locale" content="nl_NL">', "<meta property=""og:locale"" content=""$($L.ogLocale)"">")
+    $voorpagina = $voorpagina.Replace("/assets/img/deelplaatje.png", "/assets/img/deelplaatje-$($L.taal).png")
     # interne links in de pagina zelf (niet in het taalmenu) naar deze taal
     $voorpagina = [regex]::Replace($voorpagina, '(?s)<main>.*</main>', { param($m) Prefix $m.Value $L })
     Schrijf "$($L.taal)\index.html" $voorpagina

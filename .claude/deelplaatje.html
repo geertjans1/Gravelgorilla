@@ -1,4 +1,7 @@
-<!-- Ontwerp van het deelplaatje (assets/img/deelplaatje.png, 1200x630). Opnieuw maken: "C:Program Files (x86)MicrosoftEdgeApplicationmsedge.exe" --headless=new --hide-scrollbars --allow-file-access-from-files --window-size=1200,630 --virtual-time-budget=8000 --screenshot=<pad>ssetsimgdeelplaatje.png file:///<pad>/.claude/deelplaatje.html -->
+<!-- Ontwerp van de deelplaatjes (1200x630): assets/img/deelplaatje.png (NL), deelplaatje-en.png en deelplaatje-de.png.
+     De taal kies je met ?taal=en of ?taal=de achter het adres. Opnieuw maken (Edge, zonder venster), per taal:
+     "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --hide-scrollbars --allow-file-access-from-files --window-size=1200,630 --virtual-time-budget=8000 --screenshot=<pad>\assets\img\deelplaatje-en.png "file:///<pad>/.claude/deelplaatje.html?taal=en"
+     Nieuwe tool? Zet hem in de drie lijstjes hieronder. -->
 <!doctype html>
 <html lang="nl"><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@500;600&display=block" rel="stylesheet">
@@ -7,27 +10,43 @@
   body { background: #F4F1EA; font-family: Inter, sans-serif; color: #15181A; position: relative; }
   .rand { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: repeating-linear-gradient(90deg, #2F8F3E 0 18px, #14361E 18px 32px); }
   .lijnen { position: absolute; inset: 0; opacity: .5; background: repeating-radial-gradient(ellipse at 88% 18%, transparent 0 34px, #E3DDCF 34px 36px); }
-  .inhoud { position: absolute; inset: 0 0 26px 0; display: grid; grid-template-columns: 1fr 380px; align-items: center; padding: 0 70px; gap: 40px; }
-  .merk { font-family: Oswald; font-weight: 600; font-size: 30px; letter-spacing: .06em; text-transform: uppercase; }
+  .inhoud { position: absolute; inset: 0 0 26px 0; display: grid; grid-template-columns: 1fr 330px; align-items: center; padding: 0 64px; gap: 40px; }
+  .merk { font-family: Oswald; font-weight: 600; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }
   .merk b { color: #2F8F3E; font-weight: 600; }
-  h1 { font-family: Oswald; font-weight: 700; text-transform: uppercase; font-size: 96px; line-height: .92; margin: 18px 0 22px; }
+  h1 { font-family: Oswald; font-weight: 700; text-transform: uppercase; font-size: 84px; line-height: .92; margin: 14px 0 18px; }
   h1 span { color: #2F8F3E; }
-  p { font-size: 27px; font-weight: 500; margin: 0 0 26px; color: #3A3F3B; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
-  .chips span { font-size: 19px; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 2px solid #D9D3C5; background: #FBF9F4; }
+  p { font-size: 25px; font-weight: 500; margin: 0 0 20px; color: #3A3F3B; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { font-size: 16.5px; font-weight: 600; padding: 7px 13px; border-radius: 999px; border: 2px solid #D9D3C5; background: #FBF9F4; }
   .chips span:first-child { background: #FF6B2C; border-color: #FF6B2C; }
-  .logo { width: 380px; height: 380px; }
+  .logo { width: 330px; height: 330px; }
 </style></head>
 <body>
   <div class="lijnen"></div>
   <div class="inhoud">
     <div>
       <div class="merk">Gravel <b>Gorilla</b></div>
-      <h1>Laat de gorilla<br><span>je helpen.</span></h1>
-      <p>Gratis tools voor gravelrijders</p>
-      <div class="chips"><span>Gravelbike kiezen</span><span>Bandenspanning</span><span>Gravelbanden</span><span>Wielen</span><span>Ultra-events</span><span>Profielsticker</span><span>Kledingadvies</span></div>
+      <h1 id="kop">Laat de gorilla<br><span>je helpen.</span></h1>
+      <p id="sub">Gratis tools voor gravelrijders</p>
+      <div class="chips" id="chips"></div>
     </div>
-    <img class="logo" src="file:///C:/Users/Geert/Projecten/Gravelgorilla/assets/img/logo-icon.svg" alt="">
+    <img class="logo" src="../assets/img/logo-icon.svg" alt="">
   </div>
   <div class="rand"></div>
+  <script>
+    var T = {
+      nl: { kop: 'Laat de gorilla<br><span>je helpen.</span>', sub: 'Gratis tools voor gravelrijders',
+            tools: ['Gravelbike kiezen', 'Framemaat', 'Bandenspanning', 'Gravelbanden', 'Wielen', 'Versnellingen', 'Gravelroutes', 'Ultra-events', 'Paklijst', 'Profielsticker', 'Kledingadvies'] },
+      en: { kop: 'Let the gorilla<br><span>help you.</span>', sub: 'Free tools for gravel riders',
+            tools: ['Choose a gravel bike', 'Frame size', 'Tyre pressure', 'Gravel tyres', 'Wheels', 'Gearing', 'Gravel routes', 'Ultra events', 'Packing list', 'Profile sticker', 'Clothing advice'] },
+      de: { kop: 'Lass den Gorilla<br><span>dir helfen.</span>', sub: 'Gratis Tools für Gravelfahrer',
+            tools: ['Gravelbike finden', 'Rahmengröße', 'Reifendruck', 'Gravelreifen', 'Laufräder', 'Übersetzung', 'Gravelrouten', 'Ultra-Events', 'Packliste', 'Profilaufkleber', 'Kleidung'] }
+    };
+    var taal = (location.search.match(/taal=(\w+)/) || [])[1];
+    var t = T[taal] || T.nl;
+    document.documentElement.lang = T[taal] ? taal : 'nl';
+    document.getElementById('kop').innerHTML = t.kop;
+    document.getElementById('sub').textContent = t.sub;
+    document.getElementById('chips').innerHTML = t.tools.map(function (x) { return '<span>' + x + '</span>'; }).join('');
+  </script>
 </body></html>

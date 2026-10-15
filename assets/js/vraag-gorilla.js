@@ -306,7 +306,7 @@
         [["spain|spanien", "spanje"], ["france|frankreich", "frankrijk"], ["italy|italien", "italie"], ["germany|deutschland", "duitsland"], ["belgium|belgien", "belgie"],
          ["netherlands|holland|niederlande", "nederland"], ["switzerland|schweiz", "zwitserland"], ["austria|osterreich", "oostenrijk"], ["norway|norwegen", "noorwegen"],
          ["sweden|schweden", "zweden"], ["portugal", "portugal"], ["scotland|schottland", "schotland"], ["united kingdom|uk|britain|grossbritannien|england", "verenigd koninkrijk"],
-         ["morocco|marokko", "marokko"], ["slovenia|slowenien", "slovenie"], ["poland|polen", "polen"], ["czech|tschechien", "tsjechie"], ["usa|united states|america|amerika", "verenigde staten"],
+         ["morocco|marokko", "marokko"], ["luxembourg", "luxemburg"], ["estonia", "estland"], ["slovenia|slowenien", "slovenie"], ["poland|polen", "polen"], ["czech|tschechien", "tsjechie"], ["usa|united states|america|amerika", "verenigde staten"],
          ["europe", "europa"], ["africa", "afrika"], ["asia|asien", "azie"], ["oceania|ozeanien", "oceanie"]]
           .forEach(([andere, nl]) => { if (TAAL === "nl") q = q.replace(new RegExp("(^|[^a-z])(" + andere + ")(?![a-z])", "g"), "$1" + nl); });
         const MAANDEN = ["jan", "feb", "maart|mrt|mar|marz", "apr", "mei|may|mai", "jun", "jul", "aug", "sep", "okt|oct", "nov", "dec|dez"];
@@ -344,12 +344,16 @@
         if (!uit.length) return { html: T("Daar vindt de gorilla geen event bij. Probeer het wat ruimer, bijvoorbeeld zonder maand of met een heel werelddeel.", "The gorilla can't find an event for that. Try a bit broader, for example without a month or with a whole continent.", "Dazu findet der Gorilla kein Event. Versuch es etwas weiter, zum Beispiel ohne Monat oder mit einem ganzen Kontinent.") };
         const landNaam = l => (window.GG_LAND ? window.GG_LAND(l) : l);
         const datum = (d, opties) => new Date(d).toLocaleDateString(LOC, opties || { day: "numeric", month: "short", year: "numeric" });
-        const wanneer = e => new Date(e.d) >= vandaag
-          ? datum(e.d) + (e.tbc ? T(" (onder voorbehoud)", " (provisional)", " (unter Vorbehalt)") : "")
-          : T("volgende editie rond ", "next edition around ", "nächste Ausgabe etwa im ") + datum(volgende(e), { month: "long", year: "numeric" }) + T(" (vorige: ", " (previous: ", " (zuletzt: ") + datum(e.d) + ")";
+        // tbc = datum nog niet (definitief) bekend: dan alleen de verwachte maand noemen
+        const maand = d => datum(d, { month: "long", year: "numeric" });
+        const wanneer = e => e.geen
+          ? T("geen nieuwe editie aangekondigd", "no new edition announced", "keine neue Ausgabe angekündigt") + T(" (vorige: ", " (previous: ", " (zuletzt: ") + datum(e.d) + ")"
+          : new Date(e.d) >= vandaag
+          ? (e.tbc ? T("rond ", "around ", "etwa im ") + maand(e.d) + T(" (datum nog niet bekend)", " (date not yet announced)", " (Termin noch nicht bekannt)") : datum(e.d))
+          : T("volgende editie rond ", "next edition around ", "nächste Ausgabe etwa im ") + maand(volgende(e)) + T(" (vorige: ", " (previous: ", " (zuletzt: ") + datum(e.d) + ")";
         const regel = e => '<a href="' + e.u + '" target="_blank" rel="noopener">' + html(e.n) + " ↗</a> " +
           wanneer(e) + ", " + html(landNaam(e.land)) + ", " + e.km.toLocaleString(LOC) + " km" + (e.hm ? ", " + e.hm.toLocaleString(LOC) + T(" hm", " m climbing", " hm") : "");
-        const geweest = uit.slice(0, 5).some(e => new Date(e.d) < vandaag);
+        const geweest = uit.slice(0, 5).some(e => !e.geen && new Date(e.d) < vandaag);
         return {
           html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? T("event", "event", "Event") : T("events", "events", "Events")) + "</b>" + T("", "", " gefunden") + (uit.length > 5 ? T(". De eerste vijf:", ". The first five:", ". Die ersten fünf:") : ":") +
             lijst(uit.slice(0, 5).map(regel)) +

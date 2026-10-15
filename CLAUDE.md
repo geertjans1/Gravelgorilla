@@ -22,7 +22,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 - Nieuwere tools (maatbepaler, paklijst, gravelroutes, versnellingen) delen hun opmaak in `assets/css/werkbank.css` (scope `wb-scope` plus een eigen scope). Gravelroutes: alleen routes met een bron die je zelf hebt gecontroleerd.
 - Vraag de Gorilla: komt vanzelf onder elke tool (behalve gravelbike- en wielenkiezer, die hebben er een in de tool). Voorbeelden, extra kennis en het invullen van de tool staan per tool in `assets/js/vraag-gorilla.js` (TOOLS); de veelgestelde vragen van de pagina gebruikt hij ook.
 - Veelgestelde vragen per tool: `inhoud/tools/<naam>-faq.html` (paren `<h3>vraag</h3><p>antwoord</p>`), worden ook FAQ-schema.
-- SEO: elke pagina krijgt schema (JSON-LD), deelplaatje `assets/img/deelplaatje.png` (ontwerp in `.claude/deelplaatje.html`), `llms.txt` wordt gegenereerd.
+- SEO: elke pagina krijgt schema (JSON-LD), deelplaatje per taal `assets/img/deelplaatje.png`, `deelplaatje-en.png`, `deelplaatje-de.png` (ontwerp in `.claude/deelplaatje.html`, met de lijst van alle tools: nieuwe tool daar toevoegen en de plaatjes opnieuw maken), `llms.txt` wordt gegenereerd.
 - Kiezers: `.claude/kiezer-importeren.ps1` (gravelbike/wielen), `.claude/ultra-importeren.ps1`.
 - Logo: bron in `.claude/logo/` (svg + png 512). Nieuw logo? Vervang `assets/img/logo-icon.svg`, draai `.claude/maak-favicons.ps1`, pas het grote logo in `index.html` (opening__band) aan en maak het deelplaatje opnieuw.
 - Profielsticker: bron is `inhoud/bron/profielsticker.html` (daar aanpassen), daarna `.claude/profielsticker-importeren.ps1`.
