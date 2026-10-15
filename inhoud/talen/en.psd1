@@ -16,7 +16,6 @@
     broodTools = 'Tools'; nieuw = 'New'
   }
   orgBeschrijving = 'Independent Dutch website with free tools for gravel riders: choosing a gravel bike and frame size, gravel tyres, tyre pressure, wheels, gearing, gravel routes, ultra events, a bikepacking packing list, profile stickers and clothing advice.'
-  eersteTip = @{ tekst = 'Riding a lot of sand? A wider tyre with a bit less pressure sinks in less than a narrow, hard tyre.'; link = '/tools/bandenspanning-calculator/' }
   homeTitel = 'Gravel bike finder, tyre pressure and more | Gravel Gorilla'
   homeBeschrijving = 'Free tools for gravel riders: choose your gravel bike and frame size, calculate tyre pressure and gearing, find gravel routes, a packing list, clothing advice and more.'
   lijstNaam = 'Free tools for gravel riders'

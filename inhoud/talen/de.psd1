@@ -16,7 +16,6 @@
     broodTools = 'Tools'; nieuw = 'Neu'
   }
   orgBeschrijving = 'Unabhängige niederländische Website mit kostenlosen Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Gravelreifen, Reifendruck, Laufräder, Übersetzung, Gravelrouten, Ultra-Events, Bikepacking-Packliste, Profilsticker und Kleidungsberater.'
-  eersteTip = @{ tekst = 'Viel Sand unterwegs? Ein breiterer Reifen mit etwas weniger Druck sinkt weniger ein als ein schmaler, harter Reifen.'; link = '/tools/bandenspanning-calculator/' }
   homeTitel = 'Gravelbike finden, Reifendruck und mehr | Gravel Gorilla'
   homeBeschrijving = 'Kostenlose Tools für Gravelfahrer: Gravelbike und Rahmengröße finden, Reifendruck und Übersetzung berechnen, Gravelrouten, Packliste, Kleidungsberater und mehr.'
   lijstNaam = 'Kostenlose Tools für Gravelfahrer'

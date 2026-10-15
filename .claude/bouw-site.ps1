@@ -463,9 +463,9 @@ foreach ($t in $toolsHier) {
     $wa = [Uri]::EscapeDataString("$deelTekst $adres")
     $mail = "mailto:?subject=$([Uri]::EscapeDataString($u.deelOnderwerp + ': ' + $t.titel))&amp;body=$([Uri]::EscapeDataString("$deelTekst`n$adres"))"
 @"
-      <div class="deel$extra" data-deel-url="$adres" data-deel-titel="$(Html $t.titel)" data-deel-tekst="$(Html $deelTekst)" data-deel-klaar="$(Html $u.deelGekopieerd)">
-        <button class="deel__knop" type="button" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></g></svg><span>$($u.deel)</span></button>
-        <div class="deel__menu" hidden>
+      <div class="deelknop$extra" data-deel-url="$adres" data-deel-titel="$(Html $t.titel)" data-deel-tekst="$(Html $deelTekst)" data-deel-klaar="$(Html $u.deelGekopieerd)">
+        <button class="deelknop__knop" type="button" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></g></svg><span>$($u.deel)</span></button>
+        <div class="deelknop__menu" hidden>
           <button type="button" data-deel-kopie>$($u.deelKopie)</button>
           <a href="https://wa.me/?text=$wa" target="_blank" rel="noopener">WhatsApp</a>
           <a href="$mail">$($u.deelMail)</a>
@@ -486,7 +486,7 @@ $(& $deelHtml '')
 $tool
     <section class="deel-balk">
       <p>$($u.deelVraag)</p>
-$(& $deelHtml ' deel--actie')
+$(& $deelHtml ' deelknop--actie')
     </section>
 $gorillaHtml
     <article class="lees tool-uitleg">
@@ -709,10 +709,9 @@ foreach ($L in $talen) {
   $voorpagina = [regex]::Replace($voorpagina, '(?s)(<ol class="bordjes" id="bordjes">).*?(</ol>)', { param($m) $m.Groups[1].Value + "`n" + $bordjesHtml + "`n      " + $m.Groups[2].Value })
 
   # eerste gorilla-tip vast in de pagina (de rest wisselt via main.js)
-  if ($L.taal -eq 'nl') {
-    $m1 = [regex]::Match($main, '\{ tekst: "([^"]+)", link: "([^"]+)" \}')
-    $tip = if ($m1.Success) { @{ tekst = $m1.Groups[1].Value; link = $m1.Groups[2].Value } } else { $null }
-  } else { $tip = $L.eersteTip }
+  #   (eerste regel van TIPS_ALLE in main.js; de link krijgt hieronder via Prefix vanzelf /en of /de ervoor)
+  $m1 = [regex]::Match($main, '\{ t: "([^"]+)", nl: "([^"]+)", en: "([^"]+)", de: "([^"]+)" \}')
+  $tip = if ($m1.Success) { @{ tekst = $m1.Groups[@{ nl = 2; en = 3; de = 4 }[$L.taal]].Value; link = "/tools/$($m1.Groups[1].Value)/" } } else { Write-Host "LET OP: eerste gorilla-tip niet gevonden in main.js"; $null }
   if ($tip) {
     $voorpagina = [regex]::Replace($voorpagina, '(?s)(<blockquote class="tips__tekst" id="tipTekst"[^>]*>).*?(</blockquote>)', { param($m) $m.Groups[1].Value + '“' + $tip.tekst + '”' + $m.Groups[2].Value })
     $voorpagina = [regex]::Replace($voorpagina, '<a href="[^"]*" class="tips__link" id="tipLink">', '<a href="' + $tip.link + '" class="tips__link" id="tipLink">')

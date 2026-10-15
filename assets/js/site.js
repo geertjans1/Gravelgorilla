@@ -49,9 +49,9 @@ function klapMenu(houder, knop, zet, isOpen, tik) {
   document.addEventListener("keydown", e => { if (e.key === "Escape") zet(false); });
 }
 
-document.querySelectorAll(".deel").forEach(deel => {
-  const knop = deel.querySelector(".deel__knop");
-  const menu = deel.querySelector(".deel__menu");
+document.querySelectorAll(".deelknop[data-deel-url]").forEach(deel => {
+  const knop = deel.querySelector(".deelknop__knop");
+  const menu = deel.querySelector(".deelknop__menu");
   const zet = open => { menu.hidden = !open; knop.setAttribute("aria-expanded", open); };
   // met de vinger: het deelmenu van de telefoon zelf, als die dat kan
   klapMenu(deel, knop, zet, () => !menu.hidden, async () => {

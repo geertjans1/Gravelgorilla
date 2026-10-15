@@ -206,6 +206,15 @@ button { font: inherit; color: inherit; }
 .tips__inhoud { position: relative; }
 .tips__label { font-family: var(--kopfont); text-transform: uppercase; font-weight: 600; letter-spacing: .08em; color: #9AA098; }
 .tips__label span { color: var(--actie); }
+/* tipregel: "Gorilla-tip 05" en rechts daarvan het KM-bordje + naam van de tool (doorklik) */
+.tips__label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+.tips__tool { display: inline-flex; align-items: center; gap: 10px; padding-left: 18px; border-left: 1px solid rgba(244,241,234,.28); color: #F4F1EA; text-decoration: none; }
+.tips__tool[hidden] { display: none; }
+.tips__label .tips__tool span { color: inherit; }
+.tips__bord { display: inline-flex; flex-direction: column; align-items: center; min-width: 40px; padding: 3px 7px 2px; border-radius: 5px; background: var(--groen); color: #fff; font-weight: 700; font-size: 1.05rem; line-height: 1; letter-spacing: .02em; transition: transform .2s, background .2s, color .2s; }
+.tips__bord small { font-size: .5rem; font-weight: 600; letter-spacing: .14em; margin-bottom: 2px; }
+.tips__tool:hover .tips__bord { transform: rotate(-5deg); background: var(--actie); color: #15181A; }
+.tips__tool:hover #tipToolNaam { text-decoration: underline; text-underline-offset: 4px; }
 .tips__tekst { margin: 14px 0 32px; font-family: var(--kopfont); font-weight: 500; font-size: clamp(1.7rem, 3.6vw, 3rem); line-height: 1.12; min-height: 3.4em; transition: opacity .35s, transform .35s var(--zacht); }
 .tips__tekst.is-wissel { opacity: 0; transform: translateY(12px); }
 .tips__knoppen { display: flex; align-items: center; gap: 10px; }

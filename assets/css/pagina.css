@@ -167,15 +167,15 @@
 .vg__rij .knop { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
 
 /* ---------- Deelknop (toolpagina's) ---------- */
-.deel { position: relative; display: inline-block; margin-top: 18px; }
-.deel__knop { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--lijn); background: transparent; color: var(--tekst); font: inherit; font-weight: 600; font-size: .92rem; cursor: pointer; transition: border-color .2s, background .2s; }
-.deel__knop:hover, .deel__knop[aria-expanded="true"] { border-color: var(--tekst); }
-.deel--actie .deel__knop { border-color: var(--actie); background: var(--actie); color: #15181A; }
-.deel--actie .deel__knop:hover { background: var(--actie-hover); border-color: var(--actie-hover); }
-.deel__menu { position: absolute; left: 0; top: calc(100% + 8px); z-index: 40; min-width: 190px; padding: 6px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.15); display: grid; }
-.deel__menu[hidden] { display: none; }
-.deel__menu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; } /* brugje: muis van knop naar menu zonder dat hij dichtklapt */
-.deel__menu a, .deel__menu button { display: block; text-align: left; padding: 9px 12px; border-radius: 9px; border: 0; background: none; font: inherit; font-size: .95rem; font-weight: 500; color: var(--tekst); text-decoration: none; cursor: pointer; }
-.deel__menu a:hover, .deel__menu button:hover { background: var(--achtergrond-2); }
+.deelknop { position: relative; display: inline-block; margin-top: 18px; }
+.deelknop__knop { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--lijn); background: transparent; color: var(--tekst); font: inherit; font-weight: 600; font-size: .92rem; cursor: pointer; transition: border-color .2s, background .2s; }
+.deelknop__knop:hover, .deelknop__knop[aria-expanded="true"] { border-color: var(--tekst); }
+.deelknop--actie .deelknop__knop { border-color: var(--actie); background: var(--actie); color: #15181A; }
+.deelknop--actie .deelknop__knop:hover { background: var(--actie-hover); border-color: var(--actie-hover); }
+.deelknop__menu { position: absolute; left: 0; top: calc(100% + 8px); z-index: 40; min-width: 190px; padding: 6px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.15); display: grid; }
+.deelknop__menu[hidden] { display: none; }
+.deelknop__menu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; } /* brugje: muis van knop naar menu zonder dat hij dichtklapt */
+.deelknop__menu a, .deelknop__menu button { display: block; text-align: left; padding: 9px 12px; border-radius: 9px; border: 0; background: none; font: inherit; font-size: .95rem; font-weight: 500; color: var(--tekst); text-decoration: none; cursor: pointer; }
+.deelknop__menu a:hover, .deelknop__menu button:hover { background: var(--achtergrond-2); }
 .deel-balk { max-width: var(--breed); margin: 28px auto 0; padding: 0 clamp(16px, 4vw, 40px); display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; }
 .deel-balk p { margin: 18px 0 0; font-weight: 600; }

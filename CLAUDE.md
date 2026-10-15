@@ -18,6 +18,7 @@ Browsers houden oude versies vast; dat heeft al meerdere keren voor verwarring g
 ## Waar wat staat
 - Pagina's worden gemaakt door `.claude/bouw-site.ps1` uit `inhoud/` — gemaakte pagina's niet met de hand bewerken.
 - Homepage: `index.html` (met de hand), maar de wegwijzer-bordjes, de eerste tip en het schema zet `bouw-site.ps1` erin.
+- Gorilla-tips (homepage): 3 per tool in `TIPS_ALLE` in `assets/js/main.js` (NL/EN/DE + tool). Naast het tipnummer staan KM-bordje en naam van de tool, overgenomen van de wegwijzer. Nieuwe tool = ook 3 tips toevoegen.
 - Eén lijst met alle tools staat in `.claude/bouw-site.ps1` (`$tools`): titels, SEO-titel, wegwijzertekst, filter, plaatje. Nieuwe tool = daar toevoegen + `api/teller.php` (TOOLS) + "Ik wil…" en de fiets in `index.html` + een blok in `assets/js/vraag-gorilla.js`.
 - Nieuwere tools (maatbepaler, paklijst, gravelroutes, versnellingen) delen hun opmaak in `assets/css/werkbank.css` (scope `wb-scope` plus een eigen scope). Gravelroutes: alleen routes met een bron die je zelf hebt gecontroleerd.
 - Vraag de Gorilla: komt vanzelf onder elke tool (behalve gravelbike- en wielenkiezer, die hebben er een in de tool). Voorbeelden, extra kennis en het invullen van de tool staan per tool in `assets/js/vraag-gorilla.js` (TOOLS); de veelgestelde vragen van de pagina gebruikt hij ook.
