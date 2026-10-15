@@ -366,6 +366,8 @@ button { font: inherit; color: inherit; }
 .deel.is-aan { color: var(--groen); }
 .sticker__vlak { fill: #F4F1EA; stroke: currentColor; stroke-width: 2.5; transition: fill .25s; }
 .deel--sticker.is-aan .sticker__vlak { fill: #FFD2B8; }
+.deel--maat.is-aan .maat__lat { stroke: var(--groen); }
+.deel--vlag.is-aan .vlag__doek { fill: var(--groen); }
 .punt__kern { fill: var(--actie); transition: fill .25s, transform .25s var(--zacht); transform-box: fill-box; transform-origin: center; }
 .punt text { fill: #15181A; font-family: var(--kopfont); font-size: 15px; font-weight: 700; text-anchor: middle; pointer-events: none; }
 .punt__golf { fill: var(--actie); opacity: 0; transform-box: fill-box; transform-origin: center; animation: golf 4.2s var(--zacht) infinite; animation-delay: var(--d, 0ms); }
