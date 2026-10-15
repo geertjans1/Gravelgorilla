@@ -17,6 +17,7 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en fram
 - [Paklijst bikepacking](https://gravelgorilla.nl/tools/paklijst-bikepacking/): Bikepacking paklijst die zich aanpast aan je tocht: kies duur, seizoen, slapen en bevoorrading en vink af wat je meeneemt. Met gewicht, kopiëren en printen.
 - [Gravelroutes in Nederland en België](https://gravelgorilla.nl/tools/gravelroutes/): Gravelroutes in Nederland en België op een rij: bewegwijzerde routes en GPX-routes per provincie, te filteren op lengte. Met links naar de officiële bron.
 - [Versnellingscalculator](https://gravelgorilla.nl/tools/versnellingscalculator/): Welk voorblad en welke cassette voor je gravelbike? Bereken je lichtste verzet, topsnelheid en de steilste klim die je haalt, en vergelijk twee opstellingen.
+- [Gravel Toertochten](https://gravelgorilla.nl/tools/gravel-toertochten/): Kalender met gravel-toertochten in Nederland, België en net over de grens: filter op datum, provincie, afstand of in de buurt van jou. Met links naar de officiële inschrijving.
 
 ## Over
 
@@ -39,6 +40,7 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en fram
 - [Bikepacking Packing List](https://gravelgorilla.nl/en/tools/paklijst-bikepacking/): Bikepacking packing list that adapts to your trip: choose length, season, sleeping and resupply and tick off what you take. With weight, copy and print.
 - [Gravel Routes in the Netherlands and Belgium](https://gravelgorilla.nl/en/tools/gravelroutes/): Gravel routes in the Netherlands and Belgium: signposted routes and GPX routes per province, filtered by distance. With links to the official source.
 - [Gear Calculator](https://gravelgorilla.nl/en/tools/versnellingscalculator/): Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.
+- [Gravel Tours](https://gravelgorilla.nl/en/tools/gravel-toertochten/): Calendar of organised gravel tours in the Netherlands, Belgium and just across the border: filter by date, province, distance or near you. With links to the official registration.
 
 ## Deutsch (https://gravelgorilla.nl/de/)
 
@@ -55,3 +57,4 @@ Gravel Gorilla helpt gravelrijders met concrete keuzes: welke gravelbike en fram
 - [Bikepacking-Packliste](https://gravelgorilla.nl/de/tools/paklijst-bikepacking/): Bikepacking-Packliste, die sich an deine Tour anpasst: wähle Dauer, Jahreszeit, Schlafen und Versorgung und hake ab, was du mitnimmst. Mit Gewicht, Kopieren und Drucken.
 - [Gravelrouten in den Niederlanden und Belgien](https://gravelgorilla.nl/de/tools/gravelroutes/): Gravelrouten in den Niederlanden und Belgien: ausgeschilderte Routen und GPX-Routen nach Provinz, filterbar nach Länge. Mit Links zur offiziellen Quelle.
 - [Übersetzungsrechner](https://gravelgorilla.nl/de/tools/versnellingscalculator/): Welches Kettenblatt und welche Kassette fürs Gravelbike? Berechne leichtesten Gang, Höchsttempo und die steilste machbare Steigung und vergleiche zwei Setups.
+- [Gravel-Touren](https://gravelgorilla.nl/de/tools/gravel-toertochten/): Kalender mit organisierten Gravel-Touren in den Niederlanden, Belgien und im Grenzgebiet: Filter nach Datum, Provinz, Strecke oder in deiner Nähe. Mit Links zur offiziellen Anmeldung.

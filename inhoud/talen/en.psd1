@@ -60,6 +60,9 @@
     'versnellingscalculator' = @{ kop = 'Gear <span class="groen">Calculator</span>'; titel = 'Gear Calculator'; seoTitel = 'Gravel bike gear calculator | Gravel Gorilla'
       sub = 'Choose your chainring and cassette and see your lowest gear, your top speed and how steep you can still climb. Compare two setups.'; beschrijving = 'Which chainring and cassette for your gravel bike? Calculate your lowest gear, top speed and the steepest climb you can ride, and compare two setups.'
       naamKort = 'Gearing'; kort = 'Compare chainring and cassette: your lowest gear and how steep you can still climb.'; uitlegKop = 'The right gear for every climb'; label = 'New' }
+    'gravel-toertochten' = @{ kop = 'Gravel <span class="groen">Tours</span>'; titel = 'Gravel Tours'; seoTitel = 'Gravel tours calendar: Netherlands, Belgium and the border | Gravel Gorilla'
+      sub = 'All organised gravel tours (non-competitive group rides) in the Netherlands, Belgium and just across the border. Choose when, where and how far you want to ride.'; beschrijving = 'Calendar of organised gravel tours in the Netherlands, Belgium and just across the border: filter by date, province, distance or near you. With links to the official registration.'
+      naamKort = 'Gravel Tours'; kort = 'Calendar of organised gravel rides in the Netherlands, Belgium and just across the border. By date, place and distance.'; uitlegKop = 'Riding gravel together, at your own pace'; label = 'New' }
   }
 
   # homepage: Nederlandse tekst → Engelse tekst (de Nederlandse homepage index.html is de bron)
@@ -82,6 +85,7 @@
     @('</span>weten wat ik meeneem</a>', '</span>know what to pack</a>'),
     @('</span>een gravelroute vinden</a>', '</span>find a gravel route</a>'),
     @('</span>mijn versnellingen berekenen</a>', '</span>calculate my gearing</a>'),
+    @('</span>een gravel-toertocht vinden</a>', '</span>find a gravel tour</a>'),
     @('LAAT DE GORILLA JE HELPEN  ·  GRATIS GRAVELTOOLS', 'LET THE GORILLA HELP YOU  ·  FREE GRAVEL TOOLS'),
     @('aria-label="Route over deze pagina"', 'aria-label="Route through this page"'),
     @('<small>Top</small>Wegwijzer', '<small>Summit</small>Signpost'),

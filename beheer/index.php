@@ -23,6 +23,7 @@ function pad_voor($naam) {
 $tellers = lees_json(pad_voor('tellers'));
 $stemmen = lees_json(pad_voor('stemmen'));
 $gebruik = lees_json(pad_voor('gebruik'));
+$aanmeldingen = array_reverse(lees_json(pad_voor('aanmeldingen'))); // nieuwste bovenaan
 $sinds = $gebruik['_sinds'] ?? null;
 unset($gebruik['_sinds']);
 
@@ -71,6 +72,9 @@ function getal($n) { return number_format($n, 0, ',', '.'); }
     dl { margin: 28px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: .95rem; }
     dt { font-weight: 700; }
     dd { margin: 0; color: var(--zacht); }
+    h2 { font-size: 1.3rem; margin: 40px 0 4px; text-transform: uppercase; letter-spacing: .02em; }
+    td a { color: var(--groen); }
+    td { white-space: normal; vertical-align: top; }
   </style>
 </head>
 <body>
@@ -103,6 +107,30 @@ function getal($n) { return number_format($n, 0, ',', '.'); }
     <dt>Volgende stap</dt><dd>Hoe vaak iemand vanaf deze tool doorklikte naar een tool bij "Volgende stap".</dd>
     <dt>▲ / ▼</dt><dd>Stemmen omhoog en omlaag. Een lage of negatieve score: die tool verdient aandacht.</dd>
   </dl>
+
+  <h2>Aangemelde toertochten <span class="klein">(<?= count($aanmeldingen) ?>)</span></h2>
+  <p class="uitleg">Via het formulier onder Gravel Toertochten. Niets staat vanzelf online: controleer de tocht en vraag Claude hem toe te voegen aan de kalender.</p>
+<?php if (!$aanmeldingen): ?>
+  <p class="klein">Nog geen aanmeldingen.</p>
+<?php else: ?>
+  <div class="tabel">
+    <table>
+      <thead><tr><th>Ontvangen</th><th>Tocht</th><th>Datum</th><th>Plaats</th><th>Afstanden</th><th>Aanmelder</th></tr></thead>
+      <tbody>
+<?php foreach ($aanmeldingen as $a): ?>
+        <tr>
+          <td class="klein"><?= h($a['ontvangen'] ?? '') ?></td>
+          <td><a href="<?= h($a['website'] ?? '#') ?>" target="_blank" rel="noopener noreferrer"><?= h($a['naam'] ?? '') ?></a><?php if (!empty($a['opmerking'])): ?><br><span class="klein"><?= h($a['opmerking']) ?></span><?php endif; ?></td>
+          <td><?= h($a['datum'] ?? '') ?></td>
+          <td><?= h(($a['plaats'] ?? '') . ' (' . ($a['land'] ?? '') . ')') ?></td>
+          <td><?= h($a['afstanden'] ?? '') ?></td>
+          <td class="klein"><?= h($a['contact'] ?? '') ?><br><a href="mailto:<?= h($a['email'] ?? '') ?>"><?= h($a['email'] ?? '') ?></a></td>
+        </tr>
+<?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+<?php endif; ?>
 </main>
 </body>
 </html>

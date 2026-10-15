@@ -1,0 +1,108 @@
+<div class="wb-wrap">
+  <div class="wb-raster">
+
+    <!-- ===== Filters ===== -->
+    <section class="wb-kaart" aria-labelledby="ttKopInvoer">
+      <h2 class="wb-kop" id="ttKopInvoer"><span class="wb-stap">1</span> Wann willst du fahren?</h2>
+      <div class="wb-veld">
+        <div class="wb-chips" data-veld="wanneer">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">Alle</button>
+          <button type="button" data-waarde="weekend" aria-pressed="false">Kommendes Wochenende</button>
+          <button type="button" data-waarde="4weken" aria-pressed="false">Nächste 4 Wochen</button>
+        </div>
+      </div>
+      <label class="wb-veld">
+        <span class="wb-label">Oder wähle einen Monat</span>
+        <select id="ttMaand" class="tt-select"></select>
+      </label>
+
+      <h2 class="wb-kop"><span class="wb-stap">2</span> Wo?</h2>
+      <div class="wb-veld">
+        <span class="wb-label">In deiner Nähe</span>
+        <div class="tt-buurt">
+          <button type="button" class="wb-knop tt-locatie" id="ttLocatie">📍 Meinen Standort verwenden</button>
+          <div class="wb-chips" data-veld="straal">
+            <button type="button" data-waarde="25" aria-pressed="false">25 km</button>
+            <button type="button" data-waarde="50" class="is-aan" aria-pressed="true">50 km</button>
+            <button type="button" data-waarde="100" aria-pressed="false">100 km</button>
+          </div>
+        </div>
+        <span class="wb-klein" id="ttLocatieTekst">Dein Standort bleibt auf deinem Gerät: Wir speichern ihn nicht.</span>
+      </div>
+      <span class="wb-label">Oder tippe auf eine Provinz</span>
+      <div class="gr-kaart tt-kaart" id="ttKaart" role="group" aria-label="Wähle eine Provinz"></div>
+      <div class="wb-veld">
+        <span class="wb-label">Land</span>
+        <div class="wb-chips" data-veld="land">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">Alle</button>
+          <button type="button" data-waarde="NL" aria-pressed="false">Niederlande</button>
+          <button type="button" data-waarde="BE" aria-pressed="false">Belgien</button>
+          <button type="button" data-waarde="DE" aria-pressed="false">Deutschland</button>
+        </div>
+      </div>
+
+      <h2 class="wb-kop"><span class="wb-stap">3</span> Wie weit?</h2>
+      <div class="wb-veld">
+        <div class="wb-chips" data-veld="lengte">
+          <button type="button" data-waarde="alle" class="is-aan" aria-pressed="true">Egal</button>
+          <button type="button" data-waarde="kort" aria-pressed="false">Bis 50 km</button>
+          <button type="button" data-waarde="middel" aria-pressed="false">50 – 100 km</button>
+          <button type="button" data-waarde="lang" aria-pressed="false">Über 100 km</button>
+        </div>
+        <span class="wb-klein">Eine Tour zählt, wenn mindestens eine ihrer Strecken passt.</span>
+      </div>
+      <label class="wb-veld">
+        <span class="wb-label">Suche nach Name oder Ort</span>
+        <input type="search" id="ttZoek" class="gr-zoek" placeholder="Z. B. Winterswijk, Kempen oder Weihnachten">
+      </label>
+    </section>
+
+    <!-- ===== Overzicht ===== -->
+    <aside class="wb-advies" aria-live="polite" aria-labelledby="ttKopAdvies">
+      <h2 class="wb-kop wb-kop--licht" id="ttKopAdvies">Gefunden</h2>
+      <div class="wb-samenvatting">
+        <div><span class="wb-klein-licht">Touren</span><strong id="ttAantal">0</strong></div>
+        <div><span class="wb-klein-licht">Nächste</span><strong id="ttEerste">–</strong></div>
+      </div>
+      <p class="wb-uitleg" id="ttFilterTekst">Alle Gravel-Touren in den Niederlanden, Belgien und direkt hinter der Grenze.</p>
+      <p class="wb-uitleg">Eine Gravel-Tour ist kein Rennen: Du meldest dich an, fährst in deinem Tempo, und unterwegs gibt es meist eine Kaffeepause.</p>
+      <p class="wb-tip">Schau kurz vorher noch auf die Website des Veranstalters: Touren werden manchmal verschoben oder abgesagt, etwa bei Sturm oder wenn es zu nass ist.</p>
+      <div class="wb-knoppen"><button type="button" class="wb-knop gr-wis" id="ttWis">Alle Filter aus</button></div>
+    </aside>
+  </div>
+
+  <!-- ===== Tochten ===== -->
+  <section class="wb-resultaat" aria-labelledby="ttKopLijst">
+    <h2 class="wb-kop" id="ttKopLijst"><span class="wb-stap">4</span> Die Touren</h2>
+    <div id="ttLijst" class="tt-lijst"></div>
+    <p class="wb-bron">Quellen (geprüft im Oktober 2026): der Tourenkalender der <a href="https://www.fietssport.nl/toertochten" target="_blank" rel="noopener">NTFU (fietssport.nl)</a>, der Freizeitkalender von <a href="https://cycling.vlaanderen/recreatie/kalender" target="_blank" rel="noopener">Cycling Vlaanderen</a> und der Kalender der <a href="https://www.velo-liberte.be/calendrier/" target="_blank" rel="noopener">FFBC</a> in Wallonien. Jede Tour verlinkt auf ihre offizielle Seite (meist auf Niederländisch oder Französisch). Vergangene Touren verschwinden automatisch aus der Liste.</p>
+  </section>
+
+  <!-- ===== Aanmelden ===== -->
+  <section class="wb-kaart tt-aanmeld" id="ttAanmelden" aria-labelledby="ttKopAanmeld">
+    <h2 class="wb-kop" id="ttKopAanmeld">Organisierst du selbst eine Gravel-Tour?</h2>
+    <p class="tt-aanmeld__intro">Melde sie an, dann nehmen wir sie kostenlos in den Kalender auf. Wir prüfen jede Anmeldung zuerst, es kann also ein paar Tage dauern, bis deine Tour erscheint.</p>
+    <form id="ttForm" class="tt-form" novalidate>
+      <label class="wb-veld"><span class="wb-label">Name der Tour *</span><input name="naam" required maxlength="120" autocomplete="off"></label>
+      <div class="tt-form__twee">
+        <label class="wb-veld"><span class="wb-label">Datum *</span><input name="datum" type="date" required></label>
+        <label class="wb-veld"><span class="wb-label">Startort *</span><input name="plaats" required maxlength="80" placeholder="Z. B. Winterswijk"></label>
+      </div>
+      <div class="tt-form__twee">
+        <label class="wb-veld"><span class="wb-label">Land</span>
+          <select name="land"><option value="NL">Niederlande</option><option value="BE">Belgien</option><option value="DE">Deutschland</option></select></label>
+        <label class="wb-veld"><span class="wb-label">Strecken in km</span><input name="afstanden" maxlength="60" placeholder="Z. B. 45, 70, 110"></label>
+      </div>
+      <label class="wb-veld"><span class="wb-label">Website oder Anmeldeseite *</span><input name="website" type="url" required maxlength="300" placeholder="https://"></label>
+      <div class="tt-form__twee">
+        <label class="wb-veld"><span class="wb-label">Dein Name</span><input name="contact" maxlength="80" autocomplete="name"></label>
+        <label class="wb-veld"><span class="wb-label">Deine E-Mail-Adresse *</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+      </div>
+      <label class="wb-veld"><span class="wb-label">Noch etwas?</span><textarea name="opmerking" rows="3" maxlength="1000" placeholder="Z. B. wie viel unbefestigt ist, ob es Pfeile gibt, der Preis"></textarea></label>
+      <label class="tt-hp" aria-hidden="true">Leer lassen <input name="adres2" tabindex="-1" autocomplete="off"></label>
+      <label class="tt-akkoord"><input type="checkbox" name="akkoord" required> Ich organisiere diese Tour oder darf sie anmelden. Meine E-Mail-Adresse wird nur für Rückfragen zu dieser Anmeldung verwendet.</label>
+      <div class="wb-knoppen"><button type="submit" class="wb-knop wb-knop--actie">Tour anmelden</button></div>
+      <p class="tt-form__melding" id="ttFormMelding" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>

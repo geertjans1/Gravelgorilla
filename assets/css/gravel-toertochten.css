@@ -1,0 +1,65 @@
+/* Gravel Gorilla — Gravel Toertochten (basis in werkbank.css, tegelkaart zoals bij Gravelroutes) */
+.tt-scope .gr-kaart { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 54px; gap: 6px; margin: 6px 0 14px; }
+.tt-scope .gr-tegel { font: inherit; display: flex; flex-direction: column; justify-content: space-between; padding: 6px 8px; border-radius: 10px; cursor: pointer; text-align: left; min-width: 0; overflow: hidden;
+  border: 1.5px solid transparent; background: rgba(47,143,62,.14); color: var(--tekst); transition: background .2s, transform .2s var(--zacht), border-color .2s; }
+.tt-scope .gr-tegel--be { background: rgba(255,107,44,.14); }
+.tt-scope .gr-tegel b { font-size: .72rem; font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
+.tt-scope .gr-tegel span { font-family: var(--kopfont); font-weight: 700; font-size: 1.15rem; line-height: 1; }
+.tt-scope .gr-tegel:hover { transform: translateY(-2px); border-color: var(--tekst); }
+.tt-scope .gr-tegel.is-aan { background: var(--groen); color: #fff; }
+.tt-scope .gr-tegel--be.is-aan { background: var(--actie); color: #15181A; }
+.tt-scope .gr-tegel.is-leeg { opacity: .4; }
+.tt-scope .gr-grens { grid-column: 1 / -1; grid-row: 5; align-self: end; justify-self: end; font-size: .72rem; color: var(--tekst-zacht); padding: 0 4px 2px; pointer-events: none; }
+.tt-scope .gr-zoek, .tt-select, .tt-form input:not([type=checkbox]), .tt-form select, .tt-form textarea {
+  font: inherit; color: var(--tekst); background: var(--achtergrond); border: 1.5px solid var(--lijn); border-radius: 10px; padding: 11px 13px; width: 100%; }
+.tt-scope .gr-zoek:focus, .tt-select:focus, .tt-form input:focus, .tt-form select:focus, .tt-form textarea:focus { outline: none; border-color: var(--groen); }
+.tt-scope .gr-wis { border-color: rgba(244,241,234,.5); color: #F4F1EA; }
+.tt-scope .gr-wis:hover { background: #F4F1EA; color: #14361E; }
+
+.tt-buurt { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 6px; }
+.tt-locatie.is-aan { background: var(--groen); border-color: var(--groen); color: #fff; }
+
+/* lijst per maand */
+.tt-maand { font-family: var(--kopfont); text-transform: uppercase; font-size: 1.15rem; letter-spacing: .02em; margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--lijn); }
+.tt-maand:first-child { margin-top: 14px; }
+.tt-tochten { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; }
+.tt-tocht { display: grid; grid-template-columns: 64px 1fr; gap: 14px; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 14px; transition: border-color .3s, transform .3s var(--zacht); }
+.tt-tocht:hover { border-color: var(--groen); transform: translateY(-3px); }
+.tt-datum { display: grid; align-content: center; text-align: center; border-radius: 12px; background: var(--diepgroen); color: #F4F1EA; padding: 8px 4px; line-height: 1.1; }
+.tt-datum span { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: #9AA098; }
+.tt-datum strong { font-family: var(--kopfont); font-size: 1.6rem; line-height: 1.05; }
+.tt-info { min-width: 0; }
+.tt-info h4 { font-size: 1.08rem; line-height: 1.15; margin: 0; overflow-wrap: anywhere; }
+.tt-info > p { font-size: .86rem; color: var(--tekst-zacht); margin-top: 4px; }
+.tt-info > p.tt-noot { color: var(--tekst); }
+.tt-km { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.tt-km span { font-size: .78rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; border: 1.5px solid var(--groen); color: var(--groen-tekst); }
+.tt-km .tt-km--onbekend { border-style: dashed; border-color: var(--lijn); color: var(--tekst-zacht); font-weight: 600; }
+.tt-onder { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 10px; font-size: .86rem; }
+.tt-onder a { color: var(--groen-tekst); font-weight: 600; }
+.tt-onder a:hover { text-decoration: underline; }
+.tt-scope .gr-badge { font-size: .75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--achtergrond-2); }
+.tt-scope .gr-badge--bord { background: var(--groen); color: #fff; }
+.tt-agenda { font: inherit; font-size: .82rem; font-weight: 600; background: none; border: 1.5px solid var(--lijn); border-radius: 999px; padding: 4px 10px; color: var(--tekst); cursor: pointer; }
+.tt-agenda:hover { border-color: var(--groen); color: var(--groen-tekst); }
+
+/* aanmelden */
+.tt-aanmeld { margin-top: 28px; }
+.tt-aanmeld__intro { color: var(--tekst-zacht); margin: 0 0 16px; max-width: 62ch; }
+.tt-form { display: grid; gap: 4px; max-width: 760px; }
+.tt-form__twee { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.tt-form textarea { resize: vertical; }
+.tt-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.tt-akkoord { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; color: var(--tekst-zacht); margin: 6px 0 10px; }
+.tt-akkoord input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--groen); flex: none; }
+.tt-form__melding { min-height: 1.4em; font-weight: 600; margin: 8px 0 0; }
+.tt-form__melding.is-goed { color: var(--groen-tekst); }
+.tt-form__melding.is-fout { color: #C0392B; }
+:root[data-thema="donker"] .tt-form__melding.is-fout { color: #FF8A7A; }
+
+@media (max-width: 600px) {
+  .tt-form__twee { grid-template-columns: 1fr; }
+  .tt-tochten { grid-template-columns: 1fr; }
+  .tt-tocht { grid-template-columns: 56px 1fr; gap: 12px; padding: 12px; }
+}
+@media (max-width: 480px) { .tt-scope .gr-kaart { grid-auto-rows: 50px; } .tt-scope .gr-tegel b { font-size: .64rem; } }

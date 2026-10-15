@@ -258,6 +258,12 @@ $tools = @(
     naamKort = 'Versnellingen'; kort = 'Voorblad en cassette vergelijken: je lichtste verzet en hoe steil je nog omhoog komt.'
     filter = 'berekenen'; plaatje = 'tandwiel'; label = 'Nieuw'
     soort = 'kiezer'; scope = 'wb-scope vs-scope'; uitlegKop = 'Het juiste verzet voor elke klim' }
+  [ordered]@{ slug = 'gravel-toertochten'; km = '12'; kop = 'Gravel<wbr><span class="groen">toer<wbr>tochten</span>'; titel = 'Gravel Toertochten'
+    seoTitel = 'Gravel toertochten: kalender NL, BE en net over de grens | Gravel Gorilla'
+    sub = 'Alle georganiseerde gravel-toertochten in Nederland, België en net over de grens op een rij. Kies wanneer, waar en hoe ver je wilt rijden.'; beschrijving = 'Kalender met gravel-toertochten in Nederland, België en net over de grens: filter op datum, provincie, afstand of in de buurt van jou. Met links naar de officiële inschrijving.'
+    naamKort = 'Gravel Toertochten'; kort = 'Kalender met gravel-toertochten in Nederland, België en net over de grens. Op datum, plek en afstand.'
+    filter = 'plannen'; plaatje = 'kalender'; label = 'Nieuw'
+    soort = 'kiezer'; scope = 'wb-scope tt-scope'; uitlegKop = 'Samen gravelen, in je eigen tempo' }
 )
 
 # Kleine plaatjes die oppoppen als je over een bordje in de wegwijzer beweegt
@@ -274,6 +280,7 @@ $plaatjes = @{
   maat    = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M20 78 L48 30 L80 30 M48 30 L60 78 L20 78 M60 78 L80 30" fill="none" stroke="#15181A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M44 30 L40 16 M32 16 H50" stroke="#15181A" stroke-width="5" stroke-linecap="round"/><path d="M88 14 V86" stroke="#FF6B2C" stroke-width="4"/><path d="M82 14 H94 M82 86 H94 M84 32 H92 M84 50 H92 M84 68 H92" stroke="#FF6B2C" stroke-width="3"/></svg>'
   tas     = '<svg viewBox="0 0 100 100" width="96" height="96"><rect x="14" y="26" width="72" height="56" rx="12" fill="#2F8F3E"/><path d="M36 26 V18 Q36 12 42 12 H58 Q64 12 64 18 V26" fill="none" stroke="#15181A" stroke-width="5"/><path d="M30 48 l6 6 l12 -12 M30 66 l6 6 l12 -12" fill="none" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M56 48 H72 M56 66 H72" stroke="#F4F1EA" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="26" r="9" fill="#FF6B2C"/></svg>'
   kaart   = '<svg viewBox="0 0 100 100" width="100" height="100"><path d="M12 24 L36 14 L64 24 L88 14 V76 L64 86 L36 76 L12 86 Z" fill="#E3DDCF" stroke="#15181A" stroke-width="4" stroke-linejoin="round"/><path d="M36 14 V76 M64 24 V86" stroke="#15181A" stroke-width="3"/><path d="M20 66 Q34 40 50 52 T80 30" fill="none" stroke="#2F8F3E" stroke-width="5" stroke-dasharray="7 5" stroke-linecap="round"/><circle cx="80" cy="30" r="7" fill="#FF6B2C"/></svg>'
+  kalender = '<svg viewBox="0 0 100 100" width="96" height="96"><rect x="12" y="20" width="76" height="66" rx="10" fill="#F4F1EA" stroke="#15181A" stroke-width="4"/><path d="M12 30 Q12 20 22 20 H78 Q88 20 88 30 V38 H12 Z" fill="#2F8F3E"/><path d="M32 12 V28 M68 12 V28" stroke="#15181A" stroke-width="5" stroke-linecap="round"/><g fill="#C9C2B2"><rect x="22" y="48" width="10" height="9" rx="2"/><rect x="38" y="48" width="10" height="9" rx="2"/><rect x="54" y="48" width="10" height="9" rx="2"/><rect x="22" y="64" width="10" height="9" rx="2"/><rect x="38" y="64" width="10" height="9" rx="2"/></g><rect x="68" y="46" width="13" height="12" rx="2" fill="#FF6B2C"/></svg>'
   tandwiel = '<svg viewBox="0 0 100 100" width="100" height="100">' + ((0..11 | ForEach-Object { '<rect x="45" y="8" width="10" height="12" rx="2" fill="#15181A" transform="rotate(' + ($_ * 30) + ' 50 50)"/>' }) -join '') + '<circle cx="50" cy="50" r="32" fill="#15181A"/><circle cx="50" cy="50" r="22" fill="#2F8F3E"/><circle cx="50" cy="50" r="8" fill="#FF6B2C"/><circle cx="50" cy="50" r="3" fill="#15181A"/></svg>'
 }
 
@@ -361,6 +368,9 @@ $volgendeStap = @{
   'gravelroutes' = @(
     @{ slug = 'profielsticker'; nl = 'Maak een hoogteprofiel-sticker van je route.'; en = 'Make an elevation profile sticker of your route.'; de = 'Mach einen Höhenprofil-Sticker von deiner Route.' }
     @{ slug = 'kledingadvies'; nl = 'Wat trek je aan voor deze rit?'; en = 'What will you wear for this ride?'; de = 'Was ziehst du für diese Fahrt an?' })
+  'gravel-toertochten' = @(
+    @{ slug = 'bandenspanning-calculator'; nl = 'Welke bandenspanning voor deze tocht?'; en = 'Which tyre pressure for this ride?'; de = 'Welcher Reifendruck für diese Tour?' }
+    @{ slug = 'kledingadvies'; nl = 'Wat trek je aan op de dag van de tocht?'; en = 'What will you wear on the day of the ride?'; de = 'Was ziehst du am Tag der Tour an?' })
   'profielsticker' = @(
     @{ slug = 'gravelroutes'; nl = 'Nog geen route? Zoek een gravelroute.'; en = 'No route yet? Find a gravel route.'; de = 'Noch keine Route? Finde eine Gravelroute.' }
     @{ slug = 'kledingadvies'; nl = 'Wat trek je aan op de dag zelf?'; en = 'What will you wear on the day?'; de = 'Was ziehst du am Tag selbst an?' })
@@ -657,7 +667,7 @@ $pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt gee
   <main>
     <section class="pagina-kop">
       <a href="/" class="terug">← Home</a>
-      <p class="pagina-km">Bijgewerkt op 14 oktober 2026</p>
+      <p class="pagina-km">Bijgewerkt op 15 oktober 2026</p>
       <h1 class="kop-l">Privacy<wbr><span class="groen">verklaring</span></h1>
       <p class="pagina-sub">Kort gezegd: geen cookies, geen advertenties en geen account. Hieronder lees je precies wat de site wel doet.</p>
     </section>
@@ -685,6 +695,10 @@ $pagina = (Kop "Privacyverklaring | Gravel Gorilla" "Gravel Gorilla gebruikt gee
       <p>Zoals bij vrijwel elke website houdt de server bij onze hostingpartij Cloud86 technische logbestanden bij, met onder andere het IP-adres, het tijdstip en de opgevraagde pagina. Die worden alleen gebruikt voor beveiliging en het oplossen van storingen, en na een beperkte tijd automatisch verwijderd.</p>
       <h3>Als je mailt</h3>
       <p>Mail je ons, dan gebruiken we je e-mailadres en bericht alleen om je te antwoorden. We delen ze met niemand.</p>
+      <h3>Een toertocht aanmelden</h3>
+      <p>Meld je via het formulier bij Gravel Toertochten een tocht aan, dan bewaren we wat je invult (de gegevens van de tocht, je naam en je e-mailadres) en sturen we het naar ons eigen mailadres. Je naam en e-mailadres gebruiken we alleen om contact op te nemen over je aanmelding; ze komen niet op de site en we delen ze met niemand. We bewaren ze tot de tocht voorbij is. Je IP-adres slaan we daarbij niet op.</p>
+      <h3>Je locatie bij Gravel Toertochten</h3>
+      <p>Tik je op "Gebruik mijn locatie", dan vraagt je browser eerst om toestemming. Je locatie wordt alleen op je eigen apparaat gebruikt om de afstand tot de tochten te berekenen. Hij wordt niet naar ons of naar iemand anders gestuurd.</p>
 
       <h2>Links naar andere websites</h2>
       <p>De tools linken naar websites van fietsmerken, winkels en events. Op die websites gelden hun eigen privacyregels.</p>

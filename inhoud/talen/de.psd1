@@ -60,6 +60,9 @@
     'versnellingscalculator' = @{ kop = 'Übersetzungs<wbr><span class="groen">rechner</span>'; titel = 'Übersetzungsrechner'; seoTitel = 'Übersetzungsrechner fürs Gravelbike | Gravel Gorilla'
       sub = 'Wähle Kettenblatt und Kassette und sieh deinen leichtesten Gang, deine Höchstgeschwindigkeit und wie steil du noch fahren kannst. Vergleiche zwei Setups.'; beschrijving = 'Welches Kettenblatt und welche Kassette fürs Gravelbike? Berechne leichtesten Gang, Höchsttempo und die steilste machbare Steigung und vergleiche zwei Setups.'
       naamKort = 'Übersetzung'; kort = 'Kettenblatt und Kassette vergleichen: dein leichtester Gang und wie steil du noch hochkommst.'; uitlegKop = 'Die richtige Übersetzung für jeden Anstieg'; label = 'Neu' }
+    'gravel-toertochten' = @{ kop = 'Gravel<wbr><span class="groen">touren</span>'; titel = 'Gravel-Touren'; seoTitel = 'Gravel-Touren: Kalender Niederlande, Belgien und Grenzgebiet | Gravel Gorilla'
+      sub = 'Alle organisierten Gravel-Touren (Radtouren ohne Wettkampf) in den Niederlanden, Belgien und direkt hinter der Grenze. Wähle, wann, wo und wie weit du fahren willst.'; beschrijving = 'Kalender mit organisierten Gravel-Touren in den Niederlanden, Belgien und im Grenzgebiet: Filter nach Datum, Provinz, Strecke oder in deiner Nähe. Mit Links zur offiziellen Anmeldung.'
+      naamKort = 'Gravel-Touren'; kort = 'Kalender mit organisierten Gravel-Touren in den Niederlanden, Belgien und direkt hinter der Grenze. Nach Datum, Ort und Strecke.'; uitlegKop = 'Gemeinsam graveln, im eigenen Tempo'; label = 'Neu' }
   }
 
   home = @(
@@ -81,6 +84,7 @@
     @('</span>weten wat ik meeneem</a>', '</span>wissen, was ich einpacke</a>'),
     @('</span>een gravelroute vinden</a>', '</span>eine Gravelroute finden</a>'),
     @('</span>mijn versnellingen berekenen</a>', '</span>meine Übersetzung berechnen</a>'),
+    @('</span>een gravel-toertocht vinden</a>', '</span>eine Gravel-Tour finden</a>'),
     @('LAAT DE GORILLA JE HELPEN  ·  GRATIS GRAVELTOOLS', 'LASS DIR VOM GORILLA HELFEN  ·  GRATIS GRAVELTOOLS'),
     @('aria-label="Route over deze pagina"', 'aria-label="Route über diese Seite"'),
     @('<small>Top</small>Wegwijzer', '<small>Gipfel</small>Wegweiser'),

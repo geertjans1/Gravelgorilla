@@ -96,6 +96,7 @@
     { slug: "maatbepaler", naam: ["Maatbepaler", "Frame Size Finder", "Rahmengrößen-Rechner"], w: "maat framemaat lengte binnenbeen zadelhoogte zadel stack reach size frame height inseam saddle grosse rahmengrosse schrittlange sattel" },
     { slug: "paklijst-bikepacking", naam: ["Paklijst bikepacking", "Bikepacking Packing List", "Bikepacking-Packliste"], w: "paklijst meenemen inpakken tassen slaapzak tent bagage packing pack bags sleeping bag luggage packliste einpacken taschen schlafsack zelt gepack" },
     { slug: "gravelroutes", naam: ["Gravelroutes", "Gravel Routes", "Gravelrouten"], w: "gravelroute routes graveln gravelen waar rijden provincie bewegwijzerd route where ride signposted routen wo fahren ausgeschildert" },
+    { slug: "gravel-toertochten", naam: ["Gravel Toertochten", "Gravel Tours", "Gravel-Touren"], w: "toertocht toertochten tocht tochten kalender agenda georganiseerd inschrijven stempelpost tour tours calendar organised organized ride event touren kalender veranstaltung anmelden" },
     { slug: "versnellingscalculator", naam: ["Versnellingscalculator", "Gear Calculator", "Übersetzungsrechner"], w: "versnelling versnellingen verzet voorblad cassette tandwiel klimmen gear gears gearing chainring sprocket climb gang gange ubersetzung kettenblatt ritzel kassette klettern" }
   ].filter(a => a.slug !== tool).map(a => ({
     vraag: a.w, tekst: T("Daar heeft de gorilla een aparte tool voor: ", "The gorilla has a separate tool for that: ", "Dafür hat der Gorilla ein eigenes Tool: ") + '<a href="' + PRE + "/tools/" + a.slug + '/">' + L(a.naam) + " →</a>"
@@ -488,6 +489,58 @@
             lijst(top.map(r => '<a href="' + r.u + '" target="_blank" rel="noopener">' + html(r.n) + " ↗</a> " + komma(r.km) + (r.tot ? "–" + r.tot : "") + " km, " + (r.nav === "bord" ? T("bewegwijzerd", "signposted", "ausgeschildert") : "GPX") + (r.lid ? T(", alleen voor leden", ", members only", ", nur für Mitglieder") : ""))) +
             T("Ik heb de filters hierboven ook zo gezet.", "I've set the filters above the same way.", "Ich habe die Filter oben auch so eingestellt."),
           knop: { tekst: T("Bekijk alle routes", "See all routes", "Alle Routen ansehen"), naar: "#grLijst" }
+        };
+      }
+    },
+
+    /* ===== Gravel Toertochten ===== */
+    "gravel-toertochten": {
+      eigen: /tocht|toer|kalender|agenda|weekend|maand|januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december|kerst|winter|buurt|provincie|km|inschrijv|limburg|brabant|gelderland|achterhoek|veluwe|twente|drenthe|vlaanderen|belgi|duitsland|tour|ride|calendar|month|near|january|february|march|may|june|july|october|december|christmas|flanders|germany|tour|monat|januar|februar|marz|mai|juni|juli|oktober|dezember|weihnacht|nahe|flandern|deutschland|niederlande/,
+      plek: ["Bijv. Een tocht van 60 km in Brabant in december", "E.g. A 60 km ride in North Brabant in December", "Z. B. Eine 60-km-Tour in Nordbrabant im Dezember"],
+      voorbeelden: [
+        ["Tochten komend weekend", "Een kersttocht in Gelderland", "Tot 50 km in Vlaanderen", "Meer dan 100 km in januari", "Wat is een toertocht?"],
+        ["Rides this weekend", "A Christmas ride in Gelderland", "Up to 50 km in Flanders", "More than 100 km in January", "What is a gravel tour?"],
+        ["Touren am Wochenende", "Eine Weihnachtstour in Gelderland", "Bis 50 km in Flandern", "Über 100 km im Januar", "Was ist eine Gravel-Tour?"]],
+      kennis: [
+        { vraag: ["Wat is een toertocht?", "What is a gravel tour?", "Was ist eine Gravel-Tour?"], w: "toertocht wat betekent wedstrijd verschil tour what mean race difference tour was bedeutet rennen unterschied", tekst: ["Een georganiseerde rit waar je je voor inschrijft, meestal met meerdere afstanden, pijlen of een GPX-bestand en een stempel- of koffiepost onderweg. Het is geen wedstrijd: je rijdt in je eigen tempo en er is geen uitslag.", "An organised ride you sign up for, usually with several distances, arrows or a GPX file and a coffee stop along the way. It's not a race: you ride at your own pace and there are no results.", "Eine organisierte Fahrt, für die du dich anmeldest, meist mit mehreren Strecken, Pfeilen oder einer GPX-Datei und einer Pause unterwegs. Es ist kein Rennen: Du fährst in deinem Tempo, und es gibt keine Ergebnisliste."] },
+        { vraag: ["Moet ik lid zijn van een fietsbond?", "Do I need to be a member of a cycling federation?", "Muss ich Mitglied eines Radsportverbands sein?"], w: "lid lidmaatschap ntfu bond korting verzekering member membership federation discount insurance mitglied verband rabatt versicherung", tekst: ["Nee. Iedereen mag meedoen. Leden van bijvoorbeeld de NTFU of Cycling Vlaanderen krijgen vaak korting, en soms ben je dan ook verzekerd. De prijs bij een tocht is de gewone dagprijs.", "No. Anyone can take part. Members of for example the NTFU or Cycling Vlaanderen often get a discount, and are sometimes insured. The price shown is the normal day price.", "Nein. Jeder darf mitfahren. Mitglieder etwa der NTFU oder von Cycling Vlaanderen bekommen oft Rabatt und sind manchmal versichert. Der angegebene Preis ist der normale Tagespreis."] }
+      ],
+      slim(q) {
+        if (!window.GG_TOCHTEN_ZET || !window.GG_PROV) return null;
+        const keuze = {};
+        const belg = heeft(q, ["belgi", "vlaander", "vlaams", "wallon", "flanders", "flemish", "flandern", "flamisch"]);
+        if (/limburg/.test(q)) keuze.prov = belg || /belgisch|belgian/.test(q) ? "LB" : "LI";
+        else if (/achterhoek|veluwe|arnhem|nijmegen/.test(q)) keuze.prov = "GE";
+        else if (/twente/.test(q)) keuze.prov = "OV";
+        else if (/brabant/.test(q) && !/vlaams|flemish|flamisch|waals|walloon|wallonisch/.test(q)) keuze.prov = "NB";
+        else {
+          const p = Object.entries(window.GG_PROV).find(([, v]) => q.includes(norm(v[0]).replace(/ \((nl|be)\)/, "")));
+          if (p) keuze.prov = p[0];
+        }
+        if (!keuze.prov) {
+          if (belg) keuze.land = "BE";
+          else if (heeft(q, ["duitsland", "germany", "deutschland"])) keuze.land = "DE";
+          else if (heeft(q, ["nederland", "netherlands", "holland", "niederlande"])) keuze.land = "NL";
+        }
+        if (heeft(q, ["weekend", "wochenende"])) keuze.wanneer = "weekend";
+        else if (heeft(q, ["binnenkort", "komende weken", "deze maand", "soon", "next weeks", "bald", "nachsten wochen"])) keuze.wanneer = "4weken";
+        const MND = [["jan"], ["feb"], ["maart", "march", "marz"], ["april"], ["mei", "may", "mai"], ["juni", "june"], ["juli", "july"], ["aug"], ["sept"], ["okt", "oct"], ["nov"], ["dec", "kerst", "christmas", "weihnacht"]];
+        const mi = MND.findIndex(ws => heeft(q, ws));
+        if (mi >= 0) { const m = (window.GG_MAANDEN || []).find(x => Number(x.slice(5, 7)) === mi + 1); if (m) { keuze.maand = m; keuze.wanneer = "alle"; } }
+        const km = getal(q, "km|kilometer");
+        if (km) keuze.lengte = km <= 50 ? "kort" : km <= 100 ? "middel" : "lang";
+        else if (heeft(q, ["kort", "short", "kurz"])) keuze.lengte = "kort";
+        else if (heeft(q, ["lang", "long"])) keuze.lengte = "lang";
+        if (!Object.keys(keuze).length) return null;
+        const uit = window.GG_TOCHTEN_ZET(keuze);
+        if (!uit.length) return { html: T("Daar vindt de gorilla geen tocht bij. Probeer het ruimer, bijvoorbeeld zonder afstand of in een andere maand.", "The gorilla can't find a ride for that. Try broader, for example without a distance or in another month.", "Dazu findet der Gorilla keine Tour. Versuch es weiter gefasst, zum Beispiel ohne Strecke oder in einem anderen Monat.") };
+        const top = uit.slice(0, 5);
+        return {
+          html: T("De gorilla vond <b>", "The gorilla found <b>", "Der Gorilla hat <b>") + uit.length + " " + (uit.length === 1 ? T("tocht", "ride", "Tour") : T("tochten", "rides", "Touren")) + "</b>" + T("", "", " gefunden") +
+            (uit.length > 5 ? T(". De eerstvolgende vijf:", ". The next five:", ". Die nächsten fünf:") : ":") +
+            lijst(top.map(t => t.dt.toLocaleDateString(LOC, { weekday: "short", day: "numeric", month: "short" }) + ': <a href="' + t.u + '" target="_blank" rel="noopener">' + html(t.n) + " ↗</a> " + html(t.pl) + (t.km && t.km.length ? ", " + t.km.join("/") + " km" : ""))) +
+            T("Ik heb de filters hierboven ook zo gezet.", "I've set the filters above the same way.", "Ich habe die Filter oben auch so eingestellt."),
+          knop: { tekst: T("Bekijk alle tochten", "See all rides", "Alle Touren ansehen"), naar: "#ttLijst" }
         };
       }
     },
