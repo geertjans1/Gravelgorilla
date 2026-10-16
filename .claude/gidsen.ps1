@@ -117,7 +117,7 @@ foreach ($g in $gidsen) {
       [ordered]@{ '@type' = 'ListItem'; position = 3; name = $g.titel; item = "$site$pad" }) }
     $organisatie) })
   $pagina = (Kop $g.seoTitel $g.beschrijving $pad @() "" "article" $schema) + @"
-  <main>
+  <main class="gids-pagina">
     <section class="pagina-kop">
       <a href="/gids/" class="terug">← Alle gidsen</a>
       <p class="pagina-km">Gids · bijgewerkt $(GidsDatum $g.datum) · door <a href="/over-ons/">Geert Jans</a></p>
