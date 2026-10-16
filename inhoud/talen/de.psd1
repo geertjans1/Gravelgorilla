@@ -28,8 +28,8 @@
 
   tools = @{
     'gravelbike-kiezer' = @{ kop = 'Gravelbike-<wbr><span class="groen">Finder</span>'; titel = 'Gravelbike-Finder'; seoTitel = 'Welches Gravelbike passt zu mir? Gratis Finder | Gravel Gorilla'
-      sub = 'Finde das Gravelbike, das zu dir passt.'; beschrijving = 'Welches Gravelbike passt zu dir? Fünf kurze Fragen und du bekommst einen ehrlichen Match-Score mit Begründung, aus 147 Modellen von 13 Marken. Kostenlos.'
-      naamKort = 'Gravelbike-Finder'; kort = 'Ein paar Fragen dazu, wie und wo du fährst, und du siehst, welche von 147 Gravelbikes zu dir passen.'; uitlegKop = 'Über diesen Finder' }
+      sub = 'Finde das Gravelbike, das zu dir passt.'; beschrijving = 'Welches Gravelbike passt zu dir? Fünf kurze Fragen und du bekommst einen ehrlichen Match-Score mit Begründung, aus 152 Modellen von 15 Marken. Kostenlos.'
+      naamKort = 'Gravelbike-Finder'; kort = 'Ein paar Fragen dazu, wie und wo du fährst, und du siehst, welche von 152 Gravelbikes zu dir passen.'; uitlegKop = 'Über diesen Finder' }
     'bandenspanning-calculator' = @{ kop = 'Reifendruck-<wbr><span class="groen">Rechner</span>'; titel = 'Reifendruck-Rechner'; seoTitel = 'Reifendruck fürs Gravelbike berechnen | Gravel Gorilla'
       sub = 'Der richtige Druck für dein Gewicht, deine Reifenbreite und den Untergrund. Vorne und hinten getrennt, in bar und psi.'; beschrijving = 'Berechne den richtigen Reifendruck für dein Gravelbike: nach Gewicht, Reifenbreite, Laufradgröße und Untergrund. Vorder- und Hinterreifen getrennt, in bar und psi.'
       naamKort = 'Reifendruck'; kort = 'Der richtige Druck für dein Gewicht, deine Reifenbreite und den Untergrund. Vorne und hinten getrennt.'; uitlegKop = 'Über diesen Rechner' }

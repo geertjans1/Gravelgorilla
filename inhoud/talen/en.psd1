@@ -28,8 +28,8 @@
 
   tools = @{
     'gravelbike-kiezer' = @{ kop = 'Gravel Bike <span class="groen">Finder</span>'; titel = 'Gravel Bike Finder'; seoTitel = 'Which gravel bike suits me? Free finder | Gravel Gorilla'
-      sub = 'Find the gravel bike that suits you.'; beschrijving = 'Which gravel bike suits you? Five short questions and you get an honest Match Score with the reasons, from 147 models by 13 brands. Free.'
-      naamKort = 'Gravel Bike Finder'; kort = 'A few questions about how and where you ride, and you see which of 147 gravel bikes suit you.'; uitlegKop = 'About this finder' }
+      sub = 'Find the gravel bike that suits you.'; beschrijving = 'Which gravel bike suits you? Five short questions and you get an honest Match Score with the reasons, from 152 models by 15 brands. Free.'
+      naamKort = 'Gravel Bike Finder'; kort = 'A few questions about how and where you ride, and you see which of 152 gravel bikes suit you.'; uitlegKop = 'About this finder' }
     'bandenspanning-calculator' = @{ kop = 'Tyre Pressure <span class="groen">Calculator</span>'; titel = 'Tyre Pressure Calculator'; seoTitel = 'Gravel bike tyre pressure calculator | Gravel Gorilla'
       sub = 'The right pressure for your weight, tyre width and surface. Front and rear separately, in bar and psi.'; beschrijving = 'Calculate the right tyre pressure for your gravel bike based on your weight, tyre width, wheel size and surface. Front and rear separately, in bar and psi.'
       naamKort = 'Tyre Pressure'; kort = 'The right pressure for your weight, tyre width and surface. Front and rear separately.'; uitlegKop = 'About this calculator' }
